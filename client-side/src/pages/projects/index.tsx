@@ -22,7 +22,7 @@ const Projects = ({ featuredProjects }: FeaturedProjectsProps) => {
         </div>
       ))}
 
-      <Button type="primary">Click Me</Button>
+      <Button type="primary">Details</Button>
     </div>
   );
 };
