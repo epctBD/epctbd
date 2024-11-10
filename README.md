@@ -16,13 +16,14 @@ To get a local copy up and running, follow these steps.
 
 2. **Install dependencies for both the client and server:**
 
-   Open both client-side and server-side folder from root folder and install dependancy
+   Run the command from root folder to install dependancy
 
    ```bash
-   cd client-side (from root folder)
-   npm install
-
-   cd server-side (from root folder)
-   npm install
+   npm run i-modules
 
 3. **Running the Project:**
+
+   Run the command from root folder to start both server and client side
+   
+   ```bash
+   npm run dev
