@@ -1,4 +1,5 @@
 const express = require("express");
+const router = require("./routes");
 const app = express();
 const port = 5000;
 
@@ -11,9 +12,8 @@ app.get("/", (req, res) => {
 });
 
 // Example API endpoint
-app.get("/projects", (req, res) => {
-  res.json({ message: "Welcome to the API!" });
-});
+
+router.registerApplicationRoutes(app);
 
 // Start the server
 app.listen(port, () => {
