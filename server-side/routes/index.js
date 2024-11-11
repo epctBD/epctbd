@@ -1,5 +1,6 @@
 const routes = {
-  "/api/user": require("./project"),
+  "/api/project": require("./project"),
+  "/api/team-member": require("./team-member"),
 };
 
 module.exports.registerApplicationRoutes = function (app) {
