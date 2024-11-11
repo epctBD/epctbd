@@ -1,28 +1,21 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 const router = require("./routes");
 const dotenv = require("dotenv");
+const database = require("./database");
+const { commonMiddleWare } = require("./middlewares/common.middleware");
 
 dotenv.config();
 const port = process.env.PORT || 5000;
 const app = express();
 
-//databse connection
-const Database = require("./database");
-
-// Middleware to handle JSON requests
-app.use(express.json());
-
-// Root endpoint
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
-
-// Example API endpoint
+app.use(bodyParser.json());
+app.use(...commonMiddleWare);
 
 router.registerApplicationRoutes(app);
 
 // Start the server
 app.listen(port, () => {
-  console.log(`Server running on http://localhost:${port}`);
-  Database.connect();
+  console.log(`Server running on port ${port}`);
+  database.connect();
 });
