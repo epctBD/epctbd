@@ -2,7 +2,7 @@ class customError extends Error {
   constructor(message, statusCode) {
     super(message);
     this.statusCode = statusCode;
-    Object.setPrototypeOf(this, CustomError.prototype);
+    Object.setPrototypeOf(this, customError.prototype);
   }
 
   serialize() {
