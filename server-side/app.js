@@ -1,7 +1,13 @@
 const express = require("express");
 const router = require("./routes");
+const dotenv = require("dotenv");
+
+dotenv.config();
+const port = process.env.PORT || 5000;
 const app = express();
-const port = 5000;
+
+//databse connection
+const Database = require("./database");
 
 // Middleware to handle JSON requests
 app.use(express.json());
@@ -18,4 +24,5 @@ router.registerApplicationRoutes(app);
 // Start the server
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
+  Database.connect();
 });
