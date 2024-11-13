@@ -1,6 +1,6 @@
 const routes = {
   "/api/project": require("./project"),
-  "/api/team-member": require("./team-member"),
+  "/api/team": require("./team"),
   "/api/admin": require("./admin"),
 };
 
