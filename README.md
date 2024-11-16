@@ -19,6 +19,7 @@ To get a local copy up and running, follow these steps.
    Run the command from root folder to install dependancy
 
    ```bash
+   npm install
    npm run i-modules
 
 3. **Running the Project:**
