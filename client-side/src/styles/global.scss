@@ -1,0 +1,15 @@
+@import "./global-scss/general.scss";
+@import "./global-scss/variable.scss";
+
+body {
+  width: 100vw;
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}

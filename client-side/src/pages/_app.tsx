@@ -1,5 +1,5 @@
 import LayoutWrapper from "@/components/layout/layout-wrapper/LayoutWrapper";
-import "@/styles/globals.css";
+import "../styles/global.scss";
 import type { AppProps } from "next/app";
 import theme from "./theme/themeConfig";
 import { ConfigProvider } from "antd";
