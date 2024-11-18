@@ -1,6 +1,6 @@
 import { Button } from "antd";
 import Head from "next/head";
-import "../styles/Home.module.scss";
+import styles from "../styles/Home.module.scss";
 
 export default function Home() {
   return (
@@ -12,7 +12,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div>
-        <main style={{ padding: "20px" }} className="home-wrapper">
+        <main style={{ padding: "20px" }} className={styles["home-wrapper"]}>
           Click here: <Button>Click me</Button>
         </main>
       </div>
