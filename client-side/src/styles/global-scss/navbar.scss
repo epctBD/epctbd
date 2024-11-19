@@ -1,0 +1,58 @@
+@import "../global-scss/variable.scss";
+
+.ant-menu-horizontal {
+  background-color: $background-color !important;
+
+  .ant-menu-title-content {
+    transition: none !important;
+    display: flex !important;
+    align-items: end !important;
+    height: 50px !important;
+  }
+
+  &.ant-menu-root {
+    font-size: 16px;
+    border: none;
+
+    .ant-menu-item {
+      color: $secondary-text-color;
+      font-size: 16px;
+      font-weight: 500;
+      height: 35px !important;
+
+      &::after {
+        content: "";
+        width: 0%;
+        border-bottom: 4px solid $primary-color !important;
+        border-radius: 20px !important;
+        transition: none !important;
+      }
+
+      &:hover {
+        color: $primary-color !important;
+        transition: none !important;
+
+        &::after {
+          content: "";
+          width: 30%;
+          border-bottom: 4px solid $primary-color !important;
+          border-radius: 20px !important;
+        }
+      }
+    }
+
+    .ant-menu-item-selected {
+      transition: none !important;
+      height: 35px !important;
+      color: $primary-color !important;
+      font-weight: 600;
+
+      &::after {
+        content: "";
+        width: 30%;
+        border-bottom: 4px solid $primary-color !important;
+        border-radius: 20px !important;
+      }
+    }
+  }
+}
