@@ -1,5 +1,17 @@
 @import "../global-scss/variable.scss";
 
+.ant-layout-header {
+  padding: 0 80px !important;
+
+  @media (max-width: 992px) {
+    padding: 0px 40px !important;
+  }
+
+  @media (max-width: 768px) {
+    padding: 0px 16px !important;
+  }
+}
+
 .ant-menu-horizontal {
   background-color: $content-background-color !important;
 
@@ -92,6 +104,72 @@
       width: 30%;
       border-bottom: 4px solid $primary-color !important;
       border-radius: 20px !important;
+    }
+  }
+}
+
+.ant-drawer-content {
+  background-color: $content-background-color !important;
+
+  .ant-menu {
+    background-color: $content-background-color !important;
+  }
+
+  .ant-menu-item {
+    // background-color: $content-background-color !important;
+    font-size: 16px;
+    font-weight: 500;
+    color: $white-color !important;
+
+    &::after {
+      content: "";
+      width: 0%;
+      border-bottom: 4px solid $primary-color !important;
+      border-radius: 20px !important;
+      transition: none !important;
+    }
+
+    &:hover {
+      background-color: $background-color !important;
+      color: $primary-color !important;
+      transition: none !important;
+
+      &::after {
+        content: "";
+        width: 30%;
+        border-bottom: 4px solid $primary-color !important;
+        border-radius: 20px !important;
+      }
+    }
+  }
+
+  .ant-menu-item-selected {
+    background-color: $background-color !important;
+    transition: none !important;
+    color: $primary-color !important;
+    font-weight: 600;
+
+    &::after {
+      content: "";
+      width: 30%;
+      border-bottom: 4px solid $primary-color !important;
+      border-radius: 20px !important;
+    }
+  }
+
+  .ant-menu-submenu-title {
+    display: flex !important;
+    flex-direction: row-reverse !important;
+    align-items: center !important;
+    justify-content: start;
+    gap: 4px !important;
+
+    color: $white-color !important;
+    font-size: 16px !important;
+    font-weight: 500 !important;
+
+    svg {
+      margin-top: 6px !important;
     }
   }
 }

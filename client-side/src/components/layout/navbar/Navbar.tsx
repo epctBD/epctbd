@@ -5,6 +5,7 @@ import styles from "./Navbar.module.scss";
 import Image from "next/image";
 import epct_logo from "/public/images/epct_logo.png";
 import Icon from "./Icon";
+import { MenuFoldOutlined } from "@ant-design/icons";
 
 const { Header } = Layout;
 
@@ -65,9 +66,7 @@ const Navbar = () => {
             position: "sticky",
             top: 0,
             zIndex: 1,
-            padding: "0px 80px",
             height: "100%",
-            // borderBottom: "1px solid #E8E8E8",
           }}
         >
           <div className={styles["navbar-inner-wrapper"]}>
@@ -84,14 +83,17 @@ const Navbar = () => {
               className={styles["menu-wrapper"]}
             />
 
-            {/* <MenuFoldOutlined className="drawer-button" onClick={showDrawer} /> */}
+            <MenuFoldOutlined
+              className={styles["drawer-button"]}
+              onClick={showDrawer}
+            />
 
             <Drawer
               placement="right"
               closable
               onClose={onClose}
               open={open}
-              className="drawer-wrapper"
+              className={styles["drawer-wrapper"]}
             >
               <Menu
                 mode="vertical"
