@@ -1,7 +1,7 @@
 @import "../global-scss/variable.scss";
 
 .ant-menu-horizontal {
-  background-color: $background-color !important;
+  background-color: $content-background-color !important;
 
   .ant-menu-title-content {
     transition: none !important;
@@ -53,6 +53,45 @@
         border-bottom: 4px solid $primary-color !important;
         border-radius: 20px !important;
       }
+    }
+  }
+}
+
+.ant-menu-submenu-horizontal {
+  height: 35px !important;
+
+  .ant-menu-submenu-title {
+    display: flex !important;
+    flex-direction: row-reverse !important;
+    align-items: center !important;
+    gap: 4px !important;
+
+    color: $secondary-text-color !important;
+    font-size: 16px !important;
+    font-weight: 500 !important;
+
+    svg {
+      margin-bottom: 10px !important;
+    }
+  }
+
+  &::after {
+    content: "";
+    width: 0%;
+    border-bottom: 4px solid $primary-color !important;
+    border-radius: 20px !important;
+    transition: none !important;
+  }
+
+  &:hover {
+    color: $primary-color !important;
+    transition: none !important;
+
+    &::after {
+      content: "";
+      width: 30%;
+      border-bottom: 4px solid $primary-color !important;
+      border-radius: 20px !important;
     }
   }
 }
