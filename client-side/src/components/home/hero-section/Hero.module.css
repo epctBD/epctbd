@@ -1,0 +1,63 @@
+.heroSection {
+  position: relative;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  color: #fff;
+  overflow: hidden;
+}
+
+.heroBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  filter: brightness(70%);
+  -webkit-filter: brightness(50%);
+}
+
+.heroProjectType {
+  /* background-color: white; */
+  color: #0077ee;
+  border-radius: 4px;
+  padding: 4px 12px;
+
+  font-weight: 600;
+}
+
+.heroTitle {
+  font-weight: 700;
+  font-size: 56px;
+
+  background: linear-gradient(to bottom, #ffffff, #9b9b9b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.heroContent {
+  position: relative;
+  padding: 2rem;
+  z-index: 1;
+  width: 40%;
+}
+
+.carouselContent {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  max-width: 60%;
+  margin-right: -8%;
+  z-index: 1;
+}

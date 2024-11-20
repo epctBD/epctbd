@@ -8,7 +8,6 @@ import epct_logo from "/public/images/epct_logo.png";
 const { Header } = Layout;
 
 const Navbar = () => {
-  const logo = "/path-to-logo.png";
   const [selectedKey, setSelectedKey] = useState("");
 
   type MenuItem = Required<React.ComponentProps<typeof Menu>>["items"][number];
@@ -40,9 +39,9 @@ const Navbar = () => {
 
   const [open, setOpen] = useState(false);
 
-  const showDrawer = () => {
-    setOpen(true);
-  };
+  // const showDrawer = () => {
+  //   setOpen(true);
+  // };
 
   const onClose = () => {
     setOpen(false);
