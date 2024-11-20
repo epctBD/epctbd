@@ -64,7 +64,7 @@ const Navbar = () => {
             zIndex: 1,
             padding: "0px 80px",
             height: "100%",
-            borderBottom: "1px solid #E8E8E8",
+            // borderBottom: "1px solid #E8E8E8",
           }}
         >
           <div className={styles["navbar-inner-wrapper"]}>
