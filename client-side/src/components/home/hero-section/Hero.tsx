@@ -42,14 +42,14 @@ const HeroSection: React.FC = () => {
       {/* Content Section */}
       <div className={styles.heroContent}>
         <div>
-          <div>
+          <div className={styles.heroProjectTypeWrapper}>
             <p className={styles.heroProjectType}>
               {backgroundData.projectType}
             </p>
           </div>
           <p className={styles.heroTitle}>{backgroundData.title}</p>
-          <p style={{ color: "#D4D6D8" }}>{backgroundData.projectIntro}</p>
-          <div>
+          <p className={styles.heroIntro}>{backgroundData.projectIntro}</p>
+          <div className={styles.heroButtonWrapper}>
             <Button type="primary">See Projects</Button>
             <Button variant="outlined">Contact us</Button>
           </div>

@@ -1,6 +1,6 @@
 .heroSection {
   position: relative;
-  height: 80vh;
+  height: 663px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -19,8 +19,12 @@
   -webkit-filter: brightness(50%);
 }
 
+.heroProjectTypeWrapper {
+  display: flex;
+}
+
 .heroProjectType {
-  /* background-color: white; */
+  background-color: white;
   color: #0077ee;
   border-radius: 4px;
   padding: 4px 12px;
@@ -31,10 +35,23 @@
 .heroTitle {
   font-weight: 700;
   font-size: 56px;
+  line-height: 68px;
 
-  background: linear-gradient(to bottom, #ffffff, #9b9b9b);
+  background: linear-gradient(to bottom, #ffffff 100%, #9b9b9b 50%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.heroIntro {
+  margin-top: 12px;
+  color: #d4d6d8;
+  font-size: 16px;
+}
+
+.heroButtonWrapper {
+  margin-top: 24px;
+  display: flex;
+  gap: 24px;
 }
 
 .overlay {
@@ -47,17 +64,25 @@
 }
 
 .heroContent {
-  position: relative;
-  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  position: absolute;
+  /* padding-left: 80px;
+  padding-bottom: 60px; */
+  bottom: 60px;
+  left: 80px;
+
   z-index: 1;
   width: 40%;
 }
 
 .carouselContent {
   position: absolute;
-  bottom: 2rem;
-  right: 2rem;
-  max-width: 60%;
-  margin-right: -8%;
+  bottom: 60px;
+  right: 0;
+  width: 60%;
+  margin-right: -60px;
   z-index: 1;
 }

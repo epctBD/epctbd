@@ -20,17 +20,18 @@ interface HeroCarouselProps {
 
 const HeroCarousel: React.FC<HeroCarouselProps> = ({ updateBackground }) => {
   const settings: Settings = {
-    dots: true,
+    // dots: true,
     infinite: true,
     slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
     speed: 200,
+    swipeToSlide: true,
     autoplaySpeed: 2000,
     cssEase: "linear",
     beforeChange: (oldIndex: number, newIndex: number) => {
       const newBackgroundData = carouselData[newIndex % carouselData.length];
-      updateBackground(newBackgroundData); // Pass the entire object
+      updateBackground(newBackgroundData);
     },
   };
 

@@ -31,7 +31,7 @@ export const carouselData: CarouselItem[] = [
   {
     id: 3,
     imageId: img3,
-    title: "Popular Diagonstic Centre, 9 Storied Building",
+    title: "Popular Diagonstic Centre, Sylhet",
     projectType: "Healthcare industry",
     projectIntro:
       "This 9-story center integrates labs, consultation rooms, and offices, providing a streamlined space for high-quality healthcare services.",
