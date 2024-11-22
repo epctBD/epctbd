@@ -52,4 +52,56 @@
       gap: 12px;
     }
   }
+
+  .socialSection {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    .followTitle {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .iconWrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+  }
+
+  .divider {
+    background-color: $gray-color-800;
+    margin: 22px 0;
+  }
+
+  .footerBottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @media (max-width: 480px) {
+      flex-direction: column;
+      gap: 16px;
+      justify-content: center;
+    }
+
+    .creditText {
+      margin: 0;
+      font-size: 14px;
+      color: $gray-color-400;
+
+      span {
+        font-weight: 600;
+      }
+    }
+
+    .reservedText {
+      margin: 0;
+      font-size: 14px;
+      color: $gray-color-300;
+    }
+  }
 }
