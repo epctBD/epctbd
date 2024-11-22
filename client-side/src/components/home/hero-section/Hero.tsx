@@ -34,8 +34,8 @@ const HeroSection: React.FC = () => {
           src={backgroundData.imageId}
           alt="Building Background"
           layout="fill"
-          objectFit="cover"
           quality={100}
+          className={styles.heroBackgroundImage}
         />
       </div>
 

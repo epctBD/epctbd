@@ -1,0 +1,39 @@
+.carousel-container {
+  display: flex;
+  border-radius: 15px;
+
+  .carousel-image {
+    border-radius: 15px;
+    height: 180px;
+    width: 256px;
+    filter: brightness(96%);
+  }
+
+  @media (max-width: 1340px) {
+    .carousel-image {
+      height: 160px;
+      width: 230px;
+    }
+  }
+
+  @media (max-width: 1200px) {
+    .carousel-image {
+      height: 140px;
+      width: 200px;
+    }
+  }
+
+  @media (max-width: 1100px) {
+    .carousel-image {
+      height: 120px;
+      width: 175px;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .carousel-image {
+      height: 90px;
+      width: 145px;
+    }
+  }
+}

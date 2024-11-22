@@ -14,3 +14,53 @@ p {
   margin: 0;
   padding: 0;
 }
+
+// React slick Hide arrow
+.slick-prev:before,
+.slick-next:before {
+  display: none !important;
+}
+
+.slick-prev::after,
+.slick-next::after {
+  display: none !important;
+}
+
+// React slick custom dots
+.slick-dots {
+  position: absolute !important;
+  bottom: 5%;
+  right: 10%;
+}
+
+.slick-dots li.slick-active button {
+  background-color: white !important;
+  width: 50px !important;
+}
+
+.slick-dots li {
+  width: 50px !important;
+  color: black !important;
+}
+
+.slick-dots li button {
+  background-color: white !important;
+  width: 11px !important;
+  height: 11px !important;
+  border-radius: 0 !important;
+  color: #d9d9d9 !important;
+
+  display: flex !important;
+  gap: 5px !important;
+}
+
+.slick-dots li button:before {
+  font-size: 0px !important;
+  width: 11px !important;
+  height: 11px !important;
+  border-radius: 0 !important;
+  color: white !important;
+
+  display: flex !important;
+  gap: 5px !important;
+}

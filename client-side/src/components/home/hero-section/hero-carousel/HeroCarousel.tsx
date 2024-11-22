@@ -2,6 +2,7 @@ import React from "react";
 import Slider, { Settings } from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import styles from "./HeroCarousel.module.scss";
 
 import Image, { StaticImageData } from "next/image";
 import { carouselData } from "./CarouselData";
@@ -20,14 +21,14 @@ interface HeroCarouselProps {
 
 const HeroCarousel: React.FC<HeroCarouselProps> = ({ updateBackground }) => {
   const settings: Settings = {
-    // dots: true,
+    dots: true,
     infinite: true,
     slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
-    speed: 200,
+    speed: 500,
     swipeToSlide: true,
-    autoplaySpeed: 2000,
+    autoplaySpeed: 5000,
     cssEase: "linear",
     beforeChange: (oldIndex: number, newIndex: number) => {
       const newBackgroundData = carouselData[newIndex % carouselData.length];
@@ -39,13 +40,11 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ updateBackground }) => {
     <div className="slider-container">
       <Slider {...settings}>
         {carouselData.map((item) => (
-          <div key={item.id} className="carousel-container">
+          <div key={item.id} className={styles["carousel-container"]}>
             <Image
-              style={{ borderRadius: "15px" }}
               src={item.imageId}
               alt={item.title}
-              width={256}
-              height={180}
+              className={styles["carousel-image"]}
             />
           </div>
         ))}
