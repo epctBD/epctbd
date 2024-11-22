@@ -5,7 +5,7 @@ import styles from "./Navbar.module.scss";
 import Image from "next/image";
 import epct_logo from "/public/images/epct_logo.png";
 import Icon from "./Icon";
-import { MenuFoldOutlined } from "@ant-design/icons";
+import { MenuOutlined } from "@ant-design/icons";
 
 const { Header } = Layout;
 
@@ -83,10 +83,12 @@ const Navbar = () => {
               className={styles["menu-wrapper"]}
             />
 
-            <MenuFoldOutlined
-              className={styles["drawer-button"]}
-              onClick={showDrawer}
-            />
+            <div className={styles["drawer-button-wrapper"]}>
+              <MenuOutlined
+                className={styles["drawer-button"]}
+                onClick={showDrawer}
+              />
+            </div>
 
             <Drawer
               placement="right"
