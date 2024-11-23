@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Image, { StaticImageData } from "next/image";
-import img1 from "../../../../public/Carousel/1.png";
+import demo_img from "../../../../public/Carousel/demo.png";
 import HeroCarousel from "./hero-carousel/HeroCarousel";
 import styles from "./Hero.module.css";
 import { Button } from "antd";
@@ -16,7 +16,7 @@ interface CarouselItem {
 const HeroSection: React.FC = () => {
   const [backgroundData, setBackgroundData] = useState<CarouselItem>({
     id: 1,
-    imageId: img1,
+    imageId: demo_img,
     title: "Baytus Salam Jame Mosque, Beanibazar",
     projectType: "Healthcare Industry",
     projectIntro:
@@ -28,20 +28,17 @@ const HeroSection: React.FC = () => {
   };
 
   return (
-    <section className={styles.heroSection}>
-      <div className={styles.heroBackground}>
+    <div className={styles.heroSection}>
+      <div className={styles.backgroundImageWrapper}>
         <Image
           src={backgroundData.imageId}
-          alt="Building Background"
-          layout="fill"
-          quality={100}
-          className={styles.heroBackgroundImage}
+          alt="backgroundImage"
+          className={styles.backgroundImage}
         />
+        asdasdas
       </div>
-
-      {/* Content Section */}
-      <div className={styles.heroContent}>
-        <div>
+      <div className={styles.heroContentWrapper}>
+        <div className={styles.heroContent}>
           <div className={styles.heroProjectTypeWrapper}>
             <p className={styles.heroProjectType}>
               {backgroundData.projectType}
@@ -54,11 +51,11 @@ const HeroSection: React.FC = () => {
             <Button variant="outlined">Contact us</Button>
           </div>
         </div>
+        <div className={styles.carouselContent}>
+          <HeroCarousel updateBackground={updateBackground} />
+        </div>
       </div>
-      <div className={styles.carouselContent}>
-        <HeroCarousel updateBackground={updateBackground} />
-      </div>
-    </section>
+    </div>
   );
 };
 
