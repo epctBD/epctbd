@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Image, { StaticImageData } from "next/image";
 import demo_img from "../../../../public/Carousel/demo.png";
 import HeroCarousel from "./hero-carousel/HeroCarousel";
-import styles from "./Hero.module.css";
+import styles from "./Hero.module.scss";
 import { Button } from "antd";
 
 interface CarouselItem {
@@ -35,7 +35,6 @@ const HeroSection: React.FC = () => {
           alt="backgroundImage"
           className={styles.backgroundImage}
         />
-        asdasdas
       </div>
       <div className={styles.heroContentWrapper}>
         <div className={styles.heroContent}>

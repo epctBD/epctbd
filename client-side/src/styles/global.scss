@@ -19,10 +19,24 @@ p {
 .slick-prev:before,
 .slick-next:before {
   display: none !important;
+  position: absolute;
+  right: 100px !important;
+  bottom: 0px !important;
 }
 
 .slick-prev::after,
 .slick-next::after {
+  display: none !important;
+  position: absolute;
+  right: 100px !important;
+  bottom: 0px !important;
+}
+
+.slick-prev,
+.slick-next {
+  position: absolute;
+  right: 50px !important;
+  bottom: 0px !important;
   display: none !important;
 }
 
