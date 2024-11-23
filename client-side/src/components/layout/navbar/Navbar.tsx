@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import styles from "./Navbar.module.scss";
 import Image from "next/image";
 import epct_logo from "/public/images/epct_logo.png";
+import Icon from "./Icon";
+import { MenuOutlined } from "@ant-design/icons";
 
 const { Header } = Layout;
 
@@ -32,9 +34,12 @@ const Navbar = () => {
     getItem(<Link href="/">Home</Link>, ""),
     getItem(<Link href="/projects">Portfolio</Link>, "portfolio"),
     getItem(<Link href="/about-us">About Us</Link>, "about-us"),
-    getItem(<Link href="/Services">Services</Link>, "services"),
+    getItem(<Link href="/services">Services</Link>, "services"),
     getItem(<Link href="/contact-us">Contact Us</Link>, "contact-us"),
-    getItem(<Link href="/recourses">Resources</Link>, "resources"),
+    getItem(<div>Resources</div>, "resources", <Icon />, [
+      getItem(<Link href="/blogs">Blogs</Link>, "blogs"),
+      getItem(<Link href="/gallery">Gallery</Link>, "gallery"),
+    ]),
   ];
 
   const [open, setOpen] = useState(false);
@@ -57,13 +62,11 @@ const Navbar = () => {
       <Layout style={{ overflow: "auto" }}>
         <Header
           style={{
-            background: "#1b1b1f",
+            background: "#202127",
             position: "sticky",
             top: 0,
             zIndex: 1,
-            padding: "0px 80px",
             height: "100%",
-            borderBottom: "1px solid #E8E8E8",
           }}
         >
           <div className={styles["navbar-inner-wrapper"]}>
@@ -78,19 +81,21 @@ const Navbar = () => {
               onClick={(e) => setSelectedKey(e.key)}
               items={items}
               className={styles["menu-wrapper"]}
-              style={{
-                background: "#FAFAFA",
-              }}
             />
 
-            {/* <MenuFoldOutlined className="drawer-button" onClick={showDrawer} /> */}
+            <div className={styles["drawer-button-wrapper"]}>
+              <MenuOutlined
+                className={styles["drawer-button"]}
+                onClick={showDrawer}
+              />
+            </div>
 
             <Drawer
               placement="right"
               closable
               onClose={onClose}
               open={open}
-              className="drawer-wrapper"
+              className={styles["drawer-wrapper"]}
             >
               <Menu
                 mode="vertical"

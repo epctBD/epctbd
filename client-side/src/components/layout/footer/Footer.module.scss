@@ -1,0 +1,107 @@
+@import "../../../styles/global-scss//variable.scss";
+
+.footerWrapper {
+  background-color: $content-background-color;
+  padding: 80px;
+  color: white;
+
+  .marginTop24 {
+    margin-top: 24px;
+  }
+
+  @media (max-width: 992px) {
+    padding: 46px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 40px 36px;
+  }
+
+  @media (max-width: 557px) {
+    padding: 40px 16px;
+  }
+
+  .logoContainer {
+    height: 100%;
+    display: flex;
+    align-items: center;
+
+    img {
+      max-width: 220px;
+
+      @media (max-width: 768px) {
+        max-width: 140px;
+      }
+    }
+  }
+
+  .listWrapepr {
+    .heading {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .list {
+      margin: 12px 0 0 0;
+      list-style: none;
+      padding: 0;
+
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+  }
+
+  .socialSection {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    .followTitle {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .iconWrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+  }
+
+  .divider {
+    background-color: $gray-color-800;
+    margin: 22px 0;
+  }
+
+  .footerBottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @media (max-width: 480px) {
+      flex-direction: column;
+      gap: 16px;
+      justify-content: center;
+    }
+
+    .creditText {
+      margin: 0;
+      font-size: 14px;
+      color: $gray-color-400;
+
+      span {
+        font-weight: 600;
+      }
+    }
+
+    .reservedText {
+      margin: 0;
+      font-size: 14px;
+      color: $gray-color-300;
+    }
+  }
+}

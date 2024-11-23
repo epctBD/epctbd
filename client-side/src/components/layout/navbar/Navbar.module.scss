@@ -1,8 +1,11 @@
+@import "../../../styles/global-scss/variable.scss";
+
 .navbar-wrapper {
   .navbar-inner-wrapper {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
     height: 88px;
 
     .header-logo-wrapper {
@@ -14,6 +17,31 @@
       width: 100%;
       display: flex;
       justify-content: center;
+
+      @media (max-width: 768px) {
+        display: none;
+      }
+    }
+
+    .drawer-button-wrapper {
+      padding: 8px 10px;
+      background-color: $background-color;
+      border: 1px solid $gray-color-800;
+      border-radius: 8px;
+
+      .drawer-button {
+        display: none;
+        color: $gray-color-200 !important;
+        font-size: 20px;
+
+        @media (max-width: 768px) {
+          display: block;
+        }
+      }
+    }
+
+    .drawer-wrapper {
+      background-color: red;
     }
   }
 }
