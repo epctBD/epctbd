@@ -1,6 +1,7 @@
 import { Button } from "antd";
 import Head from "next/head";
 import styles from "../styles/Home.module.scss";
+import CoreBanner from "@/components/common/core-components/core-banner/CoreBanner";
 
 export default function Home() {
   return (
@@ -15,6 +16,13 @@ export default function Home() {
         <main style={{ padding: "20px" }} className={styles["home-wrapper"]}>
           Click here: <Button>Click me</Button>
         </main>
+
+        <CoreBanner
+          title="About us"
+          subtitle="Discover our journey and the passion behind exceptional travel."
+          crumbOne="Home"
+          crumbTwo="About Us"
+        />
       </div>
     </>
   );
