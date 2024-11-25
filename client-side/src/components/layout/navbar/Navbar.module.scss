@@ -24,19 +24,19 @@
     }
 
     .drawer-button-wrapper {
+      display: none;
       padding: 8px 10px;
       background-color: $background-color;
       border: 1px solid $gray-color-800;
       border-radius: 8px;
 
+      @media (max-width: 768px) {
+        display: flex;
+      }
+
       .drawer-button {
-        display: none;
         color: $gray-color-200 !important;
         font-size: 20px;
-
-        @media (max-width: 768px) {
-          display: block;
-        }
       }
     }
 
