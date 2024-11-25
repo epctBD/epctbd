@@ -1,26 +1,26 @@
 .carousel-container {
-  height: 180px !important;
+  height: 144px !important;
   width: 256px !important;
   border-radius: 15px !important;
   overflow: hidden;
 
   @media (max-width: 1400px) {
-    height: 160px !important;
+    height: 130px !important;
     width: 230px !important;
   }
 
   @media (max-width: 1200px) {
-    height: 140px !important;
+    height: 113px !important;
     width: 200px !important;
   }
 
   @media (max-width: 1100px) {
-    height: 120px !important;
+    height: 100px !important;
     width: 175px !important;
   }
 
   @media (max-width: 900px) {
-    height: 90px !important;
+    height: 82px !important;
     width: 145px !important;
   }
 

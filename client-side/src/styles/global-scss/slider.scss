@@ -1,0 +1,57 @@
+// React slick custom dots
+// .slick-dots {
+//   //   position: absolute !important;
+// }
+
+.slick-dots li.slick-active button {
+  background-color: white !important;
+  width: 50px !important;
+  transition: width 4s ease, background-color 0.5s ease;
+  border-radius: 25% !important;
+}
+
+.slick-dots li {
+  width: 50px !important;
+}
+
+.slick-dots li button {
+  background-color: white !important;
+  width: 11px !important;
+  height: 11px !important;
+  border-radius: 0 !important;
+  color: #d9d9d9 !important;
+  border-radius: 50% !important;
+}
+
+.slick-dots li button:before {
+  font-size: 0px !important;
+  width: 11px !important;
+  height: 11px !important;
+  border-radius: 0 !important;
+  color: white !important;
+}
+
+// React slick Hide arrow
+.slick-prev:before,
+.slick-next:before {
+  display: none !important;
+  position: absolute;
+  right: 100px !important;
+  bottom: 0px !important;
+}
+
+.slick-prev::after,
+.slick-next::after {
+  display: none !important;
+  position: absolute;
+  right: 100px !important;
+  bottom: 0px !important;
+}
+
+.slick-prev,
+.slick-next {
+  position: absolute;
+  right: 50px !important;
+  bottom: 0px !important;
+  display: none !important;
+}

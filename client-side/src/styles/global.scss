@@ -1,6 +1,7 @@
 @import "./global-scss/general.scss";
 @import "./global-scss/variable.scss";
-@import "./global-scss//navbar.scss";
+@import "./global-scss/navbar.scss";
+@import "./global-scss/slider.scss";
 
 body {
   width: 100vw;
@@ -13,68 +14,4 @@ body {
 p {
   margin: 0;
   padding: 0;
-}
-
-// React slick Hide arrow
-.slick-prev:before,
-.slick-next:before {
-  display: none !important;
-  position: absolute;
-  right: 100px !important;
-  bottom: 0px !important;
-}
-
-.slick-prev::after,
-.slick-next::after {
-  display: none !important;
-  position: absolute;
-  right: 100px !important;
-  bottom: 0px !important;
-}
-
-.slick-prev,
-.slick-next {
-  position: absolute;
-  right: 50px !important;
-  bottom: 0px !important;
-  display: none !important;
-}
-
-// React slick custom dots
-.slick-dots {
-  position: absolute !important;
-  bottom: 5%;
-  right: 10%;
-}
-
-.slick-dots li.slick-active button {
-  background-color: white !important;
-  width: 50px !important;
-}
-
-.slick-dots li {
-  width: 50px !important;
-  color: white !important;
-}
-
-.slick-dots li button {
-  background-color: white !important;
-  width: 11px !important;
-  height: 11px !important;
-  border-radius: 0 !important;
-  color: #d9d9d9 !important;
-
-  display: flex !important;
-  gap: 5px !important;
-}
-
-.slick-dots li button:before {
-  font-size: 0px !important;
-  width: 11px !important;
-  height: 11px !important;
-  border-radius: 0 !important;
-  color: white !important;
-
-  display: flex !important;
-  gap: 5px !important;
 }
