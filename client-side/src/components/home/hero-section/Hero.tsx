@@ -3,7 +3,7 @@ import Image, { StaticImageData } from "next/image";
 import demo_img from "../../../../public/Carousel/demo.png";
 import HeroCarousel from "./hero-carousel/HeroCarousel";
 import styles from "./Hero.module.scss";
-import { Button } from "antd";
+import CoreButton from "@/components/common/core-components/core-button/CoreButton";
 
 interface CarouselItem {
   id: number;
@@ -46,8 +46,8 @@ const HeroSection: React.FC = () => {
           <p className={styles.heroTitle}>{backgroundData.title}</p>
           <p className={styles.heroIntro}>{backgroundData.projectIntro}</p>
           <div className={styles.heroButtonWrapper}>
-            <Button type="primary">See Projects</Button>
-            <Button variant="outlined">Contact us</Button>
+            <CoreButton text="See Projects" type="primary" />
+            <CoreButton text="Contact Us" type="secondary" />
           </div>
         </div>
         <div className={styles.carouselContent}>
