@@ -4,6 +4,7 @@ import styles from "../styles/Home.module.scss";
 import CoreBanner from "@/components/common/core-components/core-banner/CoreBanner";
 import ServiceCard from "@/components/common/service-card/ServiceCard";
 import image from "@/components/common/service-card/service.png";
+import Cta from "@/components/cta/Cta";
 
 export default function Home() {
   return (
@@ -31,6 +32,10 @@ export default function Home() {
           title="Interior Design"
           subtitle="Crafting spaces that inspire and elevate."
         />
+
+        <div style={{ padding: "40px 80px" }}>
+          <Cta />
+        </div>
       </div>
     </>
   );
