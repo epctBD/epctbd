@@ -28,12 +28,21 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ updateBackground }) => {
     autoplay: true,
     speed: 500,
     swipeToSlide: true,
-    autoplaySpeed: 4000,
+    autoplaySpeed: 3000,
     cssEase: "linear",
     beforeChange: (oldIndex: number, newIndex: number) => {
       const newBackgroundData = carouselData[newIndex % carouselData.length];
       updateBackground(newBackgroundData);
     },
+    responsive: [
+      {
+        breakpoint: 900,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   return (

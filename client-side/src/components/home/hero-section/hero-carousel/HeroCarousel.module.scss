@@ -22,11 +22,26 @@
   @media (max-width: 900px) {
     height: 82px !important;
     width: 145px !important;
+    border-radius: 12px !important;
+  }
+
+  @media (max-width: 767px) {
+    height: 56px !important;
+    width: 100px !important;
+    border-radius: 10px !important;
   }
 
   .carousel-image {
     width: 100%;
     height: 100%;
     border-radius: 15px;
+
+    @media (max-width: 900px) {
+      border-radius: 12px !important;
+    }
+
+    @media (max-width: 767px) {
+      border-radius: 10px !important;
+    }
   }
 }

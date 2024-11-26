@@ -1,7 +1,14 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.scss";
-import HeroSection from "@/components/home/hero-section/Hero";
+// import HeroSection from "@/components/home/hero-section/Hero";
+import dynamic from "next/dynamic";
 
+const DynamicHeroSection = dynamic(
+  () => import("@/components/home/hero-section/Hero"),
+  {
+    ssr: false,
+  }
+);
 export default function Home() {
   return (
     <>
@@ -13,7 +20,7 @@ export default function Home() {
       </Head>
       <div>
         <main className={styles["home-wrapper"]}>
-          <HeroSection />
+          <DynamicHeroSection />
         </main>
       </div>
     </>
