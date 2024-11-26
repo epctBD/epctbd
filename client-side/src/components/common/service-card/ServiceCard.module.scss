@@ -1,0 +1,38 @@
+@import "@/styles/global-scss/variable.scss";
+
+.ServiceCardWrapper {
+  max-width: 262px;
+  background-color: $content-background-color;
+  padding: 20px;
+  border: 1px solid $gray-color-800;
+  border-radius: 16px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  text-align: center;
+
+  .ServiceImageWrapper {
+    padding: 15.5px 40px;
+    height: 100%;
+    background-color: $background-color;
+    border-radius: 66px;
+  }
+
+  .title {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 600;
+    background: $title-color;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .subTitle {
+    margin: 4px 0 0 0;
+    color: $primary-text-color;
+  }
+}
