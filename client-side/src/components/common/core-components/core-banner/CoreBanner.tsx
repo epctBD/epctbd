@@ -1,5 +1,5 @@
 import Image from "next/image";
-import banner_bg from "../../../../../public/images/banner-bg.png";
+import banner_bg from "./banner.jpeg";
 import styles from "./CoreBanner.module.scss";
 
 interface ICoreBannerProps {

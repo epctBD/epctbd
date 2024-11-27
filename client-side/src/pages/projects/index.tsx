@@ -1,4 +1,5 @@
 import CoreButton from "@/components/common/core-components/core-button/CoreButton";
+import PortfolioCard from "@/components/common/portfolio-card/PortfolioCard";
 import { GetServerSideProps } from "next";
 import React from "react";
 
@@ -26,6 +27,10 @@ const Projects = ({ featuredProjects }: FeaturedProjectsProps) => {
         <CoreButton text="Click me" type="secondary" size="large" />
         <CoreButton text="Click me" type="primaryHover" size="large" />
         <CoreButton text="Click me" type="basic" size="large" />
+      </div>
+
+      <div style={{ padding: "40px 80px" }}>
+        <PortfolioCard />
       </div>
     </div>
   );
