@@ -1,7 +1,9 @@
 import CoreButton from "@/components/common/core-components/core-button/CoreButton";
 import PortfolioCard from "@/components/common/portfolio-card/PortfolioCard";
 import { GetServerSideProps } from "next";
-import React from "react";
+import image from "@/components/common/core-components/core-banner/banner.jpeg";
+import TeamCard from "@/components/common/team-card/TeamCard";
+import teamimage from "@/components/common/team-card/profile-image.jpg";
 
 interface Project {
   id: string;
@@ -29,8 +31,40 @@ const Projects = ({ featuredProjects }: FeaturedProjectsProps) => {
         <CoreButton text="Click me" type="basic" size="large" />
       </div>
 
-      <div style={{ padding: "40px 80px" }}>
-        <PortfolioCard />
+      <div
+        style={{
+          padding: "40px 80px",
+          display: "flex",
+          flexDirection: "column",
+          gap: "20px",
+        }}
+      >
+        <PortfolioCard
+          imageSrc={image}
+          title=" Innovative Urban Development at City Square"
+          subTitle="  A blend of modern architecture and sustainability, this project
+            redefines city living with energy-efficient solutions and stylish
+            spaces."
+          position="left"
+        />
+
+        <PortfolioCard
+          imageSrc={image}
+          title=" Innovative Urban Development at City Square"
+          subTitle="  A blend of modern architecture and sustainability, this project
+            redefines city living with energy-efficient solutions and stylish
+            spaces."
+          position="right"
+        />
+
+        <TeamCard
+          imageSrc={teamimage}
+          name="Mujammal Ahmed"
+          position="Software Engineer"
+          facebook="https://www.facebook.com/"
+          twitter="https://x.com/"
+          linkedin="https://linkedin.com/"
+        />
       </div>
     </div>
   );

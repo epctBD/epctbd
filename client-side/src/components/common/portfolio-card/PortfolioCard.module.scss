@@ -23,7 +23,6 @@
       position: absolute;
       width: 480px;
       bottom: 40px;
-      left: 40px;
 
       background-color: $background-color;
       border: 1px solid $gray-color-800;
@@ -34,6 +33,14 @@
       flex-direction: column;
       gap: 20px;
       justify-content: center;
+
+      &.cardLeft {
+        left: 40px;
+      }
+
+      &.cardRight {
+        right: 40px;
+      }
 
       .title {
         margin: 0;
