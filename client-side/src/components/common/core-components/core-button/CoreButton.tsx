@@ -12,7 +12,7 @@ interface ICoreButtonProps
     | "size"
     | "className"
   > {
-  text?: string;
+  text: string;
   type?:
     | "primary"
     | "secondary"

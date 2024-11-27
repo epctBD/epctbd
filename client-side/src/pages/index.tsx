@@ -2,6 +2,10 @@ import Head from "next/head";
 import styles from "../styles/Home.module.scss";
 // import HeroSection from "@/components/home/hero-section/Hero";
 import dynamic from "next/dynamic";
+import CoreBanner from "@/components/common/core-components/core-banner/CoreBanner";
+import ServiceCard from "@/components/common/service-card/ServiceCard";
+import image from "@/components/common/service-card/service.png";
+import Cta from "@/components/cta/Cta";
 
 const DynamicHeroSection = dynamic(
   () => import("@/components/home/hero-section/Hero"),
@@ -22,6 +26,23 @@ export default function Home() {
         <main className={styles["home-wrapper"]}>
           <DynamicHeroSection />
         </main>
+
+        <CoreBanner
+          title="About us"
+          subtitle="Discover our journey and the passion behind exceptional travel."
+          crumbOne="Home"
+          crumbTwo="About Us"
+        />
+
+        <ServiceCard
+          image={image}
+          title="Interior Design"
+          subtitle="Crafting spaces that inspire and elevate."
+        />
+
+        <div style={{ padding: "40px 80px" }}>
+          <Cta />
+        </div>
       </div>
     </>
   );

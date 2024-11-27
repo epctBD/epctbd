@@ -10,7 +10,7 @@ const LayoutWrapper = ({ children }: LayoutWrapperProps) => {
   return (
     <div>
       <Navbar />
-      <div style={{ height: "100vh", backgroundColor: "#1b1b1f" }}>
+      <div style={{ minHeight: "100vh", backgroundColor: "#1b1b1f" }}>
         {children}
       </div>
       <Footer />
