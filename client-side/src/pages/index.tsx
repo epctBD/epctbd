@@ -1,11 +1,18 @@
-import { Button } from "antd";
 import Head from "next/head";
 import styles from "../styles/Home.module.scss";
+// import HeroSection from "@/components/home/hero-section/Hero";
+import dynamic from "next/dynamic";
 import CoreBanner from "@/components/common/core-components/core-banner/CoreBanner";
 import ServiceCard from "@/components/common/service-card/ServiceCard";
 import image from "@/components/common/service-card/service.png";
 import Cta from "@/components/cta/Cta";
 
+const DynamicHeroSection = dynamic(
+  () => import("@/components/home/hero-section/Hero"),
+  {
+    ssr: false,
+  }
+);
 export default function Home() {
   return (
     <>
@@ -16,8 +23,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div>
-        <main style={{ padding: "20px" }} className={styles["home-wrapper"]}>
-          Click here: <Button>Click me</Button>
+        <main className={styles["home-wrapper"]}>
+          <DynamicHeroSection />
         </main>
 
         <CoreBanner
