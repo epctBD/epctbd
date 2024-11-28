@@ -1,11 +1,13 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.scss";
-// import HeroSection from "@/components/home/hero-section/Hero";
 import dynamic from "next/dynamic";
 import CoreBanner from "@/components/common/core-components/core-banner/CoreBanner";
 import ServiceCard from "@/components/common/service-card/ServiceCard";
 import image from "@/components/common/service-card/service.png";
 import Cta from "@/components/cta/Cta";
+import HomeProjects from "@/components/home/home-projects/HomeProjects";
+import PortfolioCard from "@/components/common/portfolio-card/PortfolioCard";
+import HomeFeedback from "@/components/home/home-feedback/HomeFeedback";
 
 const DynamicHeroSection = dynamic(
   () => import("@/components/home/hero-section/Hero"),
@@ -25,6 +27,11 @@ export default function Home() {
       <div>
         <main className={styles["home-wrapper"]}>
           <DynamicHeroSection />
+
+          <div className={styles["Home-inner-wrapper"]}>
+            <HomeProjects />
+            <HomeFeedback />
+          </div>
         </main>
 
         <CoreBanner
@@ -33,6 +40,8 @@ export default function Home() {
           crumbOne="Home"
           crumbTwo="About Us"
         />
+
+        <PortfolioCard />
 
         <ServiceCard
           image={image}
