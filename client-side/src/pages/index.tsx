@@ -8,6 +8,7 @@ import Cta from "@/components/cta/Cta";
 import HomeProjects from "@/components/home/home-projects/HomeProjects";
 import PortfolioCard from "@/components/common/portfolio-card/PortfolioCard";
 import HomeFeedback from "@/components/home/home-feedback/HomeFeedback";
+import HomeBlogs from "@/components/home/home-blog/HomeBlogs";
 
 const DynamicHeroSection = dynamic(
   () => import("@/components/home/hero-section/Hero"),
@@ -31,6 +32,7 @@ export default function Home() {
           <div className={styles["Home-inner-wrapper"]}>
             <HomeProjects />
             <HomeFeedback />
+            <HomeBlogs />
           </div>
         </main>
 
