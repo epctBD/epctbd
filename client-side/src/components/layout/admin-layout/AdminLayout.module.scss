@@ -1,0 +1,20 @@
+@import "@/styles/global-scss/variable.scss";
+
+.adminGetItem {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+}
+
+.adminMenuWrapper {
+  height: calc(100vh - 0px);
+  overflow: hidden;
+  display: flex;
+
+  .adminMenuInnerWrapper {
+    border-right: 1px solid $gray-color-700;
+    width: 210px !important;
+    display: flex;
+    flex-direction: column;
+  }
+}

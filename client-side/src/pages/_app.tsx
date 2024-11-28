@@ -4,12 +4,18 @@ import type { AppProps } from "next/app";
 import theme from "./theme/themeConfig";
 import { ConfigProvider } from "antd";
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({ Component, pageProps, router }: AppProps) {
+  const isAdminRoute = router.pathname.startsWith("/admin");
+
   return (
     <ConfigProvider theme={theme}>
-      <LayoutWrapper>
+      {isAdminRoute ? (
         <Component {...pageProps} />
-      </LayoutWrapper>
+      ) : (
+        <LayoutWrapper>
+          <Component {...pageProps} />
+        </LayoutWrapper>
+      )}
     </ConfigProvider>
   );
 }
