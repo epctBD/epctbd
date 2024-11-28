@@ -1,0 +1,118 @@
+@import "@/styles/global-scss/variable.scss";
+
+.contactWrapper {
+  color: white;
+
+  .contactLayout {
+    padding: 80px;
+    .getInTouch {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 600;
+      color: $primary-color;
+    }
+
+    .title {
+      margin: 0;
+      font-size: 48px;
+      font-weight: 700;
+      background: $title-color;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+
+  .contactCard {
+    margin-top: 24px;
+    border: 1px solid $gray-color-800;
+    border-radius: 16px;
+    padding: 24px;
+
+    background-color: $content-background-color;
+
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    .singleSection {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      .textSection {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+
+        .type {
+          margin: 0;
+          color: $gray-color-300;
+        }
+
+        .value {
+          margin: 0;
+          font-weight: 600;
+          color: $white-color;
+        }
+      }
+    }
+  }
+
+  .contactUsForn {
+    border: 1px solid $gray-color-800;
+    border-radius: 16px;
+    padding: 24px;
+
+    .header {
+      .letTalk {
+        margin: 0;
+        font-size: 48px;
+        font-weight: 700;
+        background: $title-color;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .subTitle {
+        margin: 8px 0 0 0;
+        color: $gray-color-400;
+      }
+    }
+
+    .formWrapepr {
+      margin-top: 60px;
+    }
+  }
+}
+
+.inputWrapper {
+  margin-bottom: 16px;
+}
+
+.generalInput {
+  height: 62px;
+  background-color: transparent;
+  border: 1px solid $gray-color-800;
+  color: $primary-text-color !important;
+
+  &:hover {
+    background-color: transparent;
+  }
+
+  &:focus {
+    border-color: $primary-color;
+    background-color: transparent;
+    outline: none;
+  }
+
+  &::placeholder {
+    color: $primary-text-color !important;
+  }
+}
+
+.errorMessage {
+  margin: 0;
+  color: red;
+  font-size: 14px;
+}

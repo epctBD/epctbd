@@ -4,13 +4,7 @@ import styles from "./CoreButton.module.scss";
 interface ICoreButtonProps
   extends Pick<
     ButtonProps,
-    | "loading"
-    | "disabled"
-    | "htmlType"
-    | "icon"
-    | "onClick"
-    | "size"
-    | "className"
+    "loading" | "disabled" | "htmlType" | "icon" | "onClick" | "size"
   > {
   text: string;
   type?:
@@ -22,7 +16,6 @@ interface ICoreButtonProps
     | "primaryHover";
   antType?: "primary" | "text" | "link" | "default" | "dashed" | undefined;
   isFullWidth?: boolean;
-  linkTo?: string;
 }
 
 const CoreButton = (props: ICoreButtonProps) => {
@@ -31,16 +24,16 @@ const CoreButton = (props: ICoreButtonProps) => {
     antType,
     text,
     isFullWidth = false,
-    linkTo = undefined,
     htmlType,
-    className,
     ...others
   } = props;
 
   return (
     <Button
       type={antType}
-      className={`${styles["core-button"]} ${styles[type]}`}
+      className={`${styles["core-button"]} ${styles[type]} ${
+        isFullWidth ? styles["full-width"] : ""
+      }`}
       {...others}
       htmlType={htmlType}
     >
