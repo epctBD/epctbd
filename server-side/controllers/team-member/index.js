@@ -43,66 +43,73 @@ const getTeamMembers = asyncHandler(async (req, res) => {
   new apiResponse(res, statusCode, message, team_members);
 });
 
-const updateTeamMember = async (req, res) => {
-  const { team_member_id } = req.params;
-  const { member_name, position, isWorker, member_image_link } = req.body;
+const updateTeamMember = asyncHandler(async (req, res) => {
+  const { member_id } = req.params;
+  const {
+    name,
+    position,
+    isExTeam,
+    facebook,
+    twitter,
+    linkedin,
+    existing_image_link,
+  } = req.body;
 
-  if (!member_name || !position || !isWorker) {
-    return res.status(400).json({
-      message: "Please provide the required information",
-    });
+  if (!name || !position) {
+    new apiError(400, "Please provide the required information");
   }
 
-  let member_photo;
+  let display_picture = null;
 
-  if (member_image_link) {
-    member_photo = member_image_link;
+  if (req.file) {
+    try {
+      display_picture = await singleUpload(req.file);
+    } catch (error) {
+      return new apiError(500, "Image upload failed");
+    }
+  }
+
+  if (existing_image_link) {
+    display_picture = existing_image_link;
   } else {
-    const photoService = new PhotoService(req.file);
-    await photoService
-      .upload()
-      .then((link) => {
-        member_photo = link;
-      })
-      .catch((error) => {
-        console.error("Error uploading photo:", error);
-      });
+    try {
+      display_picture = await singleUpload(req.file);
+    } catch (error) {
+      return new apiError(500, "Image upload failed");
+    }
   }
 
   const member_data = {
-    member_name,
+    name,
     position,
-    isWorker: isWorker == "true" ? true : false,
-    member_image: member_photo,
+    isExTeam: isExTeam == "true" ? true : false,
+    display_picture: display_picture,
+    facebook,
+    twitter,
+    linkedin,
   };
 
   const { message, statusCode } = await teamService.updateTeamMember(
-    team_member_id,
+    member_id,
     member_data
   );
 
-  res.status(statusCode).json({
-    message,
-  });
-};
+  new apiResponse(res, statusCode, message);
+});
 
-const deleteTeamMember = async (req, res) => {
-  const { team_member_id } = req.params;
+const deleteTeamMember = asyncHandler(async (req, res) => {
+  const { member_id } = req.params;
 
-  if (!team_member_id) {
-    return res.status(400).json({
-      message: "Please provide a team member id",
-    });
+  if (!member_id) {
+    new apiError(400, "Please provide a team member id");
   }
 
-  const { message, statusCode } = await teamService.deleteTeamMember(
-    team_member_id
-  );
+  const { message, statusCode } = await teamService.deleteTeamMember(member_id);
 
   res.status(statusCode).json({
     message,
   });
-};
+});
 
 module.exports = {
   addTeamMember,

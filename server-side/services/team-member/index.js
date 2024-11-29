@@ -32,17 +32,17 @@ const getTeamMembers = async () => {
   };
 };
 
-const deleteTeamMember = async (team_member_id) => {
-  const team = await Team.findById(team_member_id);
+const deleteTeamMember = async (member_id) => {
+  const team = await Team.findById(member_id);
 
   if (!team) {
     return {
-      message: "Team not found",
+      message: "Team member not found",
       statusCode: statusCodes.CLIENT_ERROR.BAD_REQUEST,
     };
   }
 
-  await Team.findByIdAndDelete(team_member_id);
+  await Team.findByIdAndDelete(member_id);
 
   return {
     message: "Team Member deleted successfully",
@@ -50,19 +50,17 @@ const deleteTeamMember = async (team_member_id) => {
   };
 };
 
-const updateTeamMember = async (team_member_id, member_data) => {
-  const team = await Team.findById(team_member_id);
+const updateTeamMember = async (member_id, member_data) => {
+  const team = await Team.findById(member_id);
 
   if (!team) {
     return {
-      message: "Team not found",
+      message: "Team member not found",
       statusCode: statusCodes.CLIENT_ERROR.BAD_REQUEST,
     };
   }
 
-  console.log(team, "member_data");
-
-  await Team.findByIdAndUpdate(team_member_id, member_data, {
+  await Team.findByIdAndUpdate(member_id, member_data, {
     new: true,
   });
 
