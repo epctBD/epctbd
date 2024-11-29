@@ -2,7 +2,6 @@ const { customError } = require("../utils/customError");
 
 const errorHandler = (err, req, res, next) => {
   let error = err;
-  console.log("asdasdasd");
 
   if (error instanceof customError) {
     res.status(error.statusCode).json({ errors: error.serialize() });
