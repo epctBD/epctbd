@@ -31,9 +31,11 @@ const addTeamMember = asyncHandler(async (req, res) => {
     linkedin,
   };
 
-  const { message, statusCode } = await teamService.addTeamMember(member_data);
+  const { message, team_members, statusCode } = await teamService.addTeamMember(
+    member_data
+  );
 
-  new apiResponse(res, statusCode, message);
+  new apiResponse(res, statusCode, message, team_members);
 });
 
 const getTeamMembers = asyncHandler(async (req, res) => {

@@ -1,13 +1,51 @@
 import AdminLayout from "@/components/layout/admin-layout/AdminLayout";
-import React from "react";
+import { ITeamMemberList } from "@/models/teamMember.model";
+import { getTeamMembers } from "@/services/teamMember.service";
+import { GetServerSideProps } from "next";
+import dynamic from "next/dynamic";
+import React, { useState } from "react";
 
-const TeamMember = () => {
+const TeamMemberList = dynamic(
+  () =>
+    import("@/components/admin/team-member/team-member-list/TeamMemberList"),
+  {
+    ssr: false,
+  }
+);
+
+interface ITeamMemberProps {
+  team: ITeamMemberList[];
+}
+
+const TeamMember = ({ team }: ITeamMemberProps) => {
+  const [teamMembers, setTeamMembers] = useState<ITeamMemberList[]>(team);
+  console.log(typeof teamMembers, "type of teamMembers");
   return (
     <AdminLayout>
-      <h1>Admin Team Page</h1>
-      <p>This is the admin team page content.</p>
+      <TeamMemberList
+        teamMembers={teamMembers}
+        setTeamMembers={setTeamMembers}
+      />
     </AdminLayout>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  try {
+    const response = await getTeamMembers();
+    return {
+      props: {
+        team: response,
+      },
+    };
+  } catch (error) {
+    console.error("Error fetching team members:", error);
+    return {
+      props: {
+        team: [],
+      },
+    };
+  }
 };
 
 export default TeamMember;

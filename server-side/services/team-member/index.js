@@ -6,10 +6,12 @@ const addTeamMember = async (member_data) => {
     ...member_data,
   });
 
-  team.save();
+  await team.save();
+  const team_members = await Team.find();
 
   return {
     message: "Team Member Added Successfully",
+    team_members,
     statusCode: statusCodes.SUCCESSFUL.CREATED,
   };
 };

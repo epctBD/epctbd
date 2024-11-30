@@ -8,7 +8,7 @@ const commonMiddleWare = [
   express.urlencoded({ extended: true }),
   cookieParser(),
   cors({
-    origin: "*",
+    origin: "http://localhost:3000",
     methods: ["HEAD", "GET", "POST", "PUT", "PATCH", "DELETE"],
     credentials: true,
     allowedHeaders: [
