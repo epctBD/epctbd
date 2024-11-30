@@ -1,20 +1,25 @@
 import React from "react";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import CoreTitles from "@/components/common/core-titles/CoreTitles";
 import FeedbackCard from "@/components/common/feedback-card/FeedbackCard";
 import Slider from "react-slick";
 import { feedbackData } from "./FeedbackData";
 import styles from "./HomeFeedback.module.scss";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 
 const HomeFeedback = () => {
   const settings = {
     className: "center",
     centerMode: true,
+    dots: true,
     infinite: true,
-    centerPadding: 0,
+    slidesToScroll: 1,
+    autoplay: true,
+    centerPadding: "160px",
+    speed: 200,
+    autoplaySpeed: 2000,
+    cssEase: "linear",
     slidesToShow: 1,
-    speed: 500,
   };
 
   return (

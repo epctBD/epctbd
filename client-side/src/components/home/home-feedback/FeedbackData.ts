@@ -1,5 +1,6 @@
 import { StaticImageData } from "next/image";
 import profileImg from "../../../../public/images/feedback-profile.png";
+import profileImg1 from "../../../../public/Carousel/1.png";
 
 export interface Feedback {
   name: string;
@@ -13,7 +14,7 @@ export const feedbackData: Feedback[] = [
   {
     name: "Jemma Cumming",
     designation: "Design Lead at LSKD",
-    profileImage: profileImg,
+    profileImage: profileImg1,
 
     feedback:
       "Tolstoy provides an authentic interaction without actually conversing. It allows us to meet shoppers where they are, show them what they'd like to see, and engage them more with our brand. Tolstoy isn't just a nice-to-have; it's a must-have.",

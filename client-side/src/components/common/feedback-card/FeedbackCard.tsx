@@ -23,8 +23,6 @@ const FeedbackCard: React.FC<FeedbackCardProps> = ({
           src={profileImage}
           alt={`${name}-profile`}
           className={styles.feedbackImage}
-          width={60} // Adjust size as necessary
-          height={60}
         />
         <div>
           <p className={styles.feedbackCardName}>{name}</p>

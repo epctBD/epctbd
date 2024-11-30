@@ -1,5 +1,7 @@
 import { StaticImageData } from "next/image";
 import blogImg from "../../../../public/images/blog-image.png";
+import blogImg1 from "../../../../public/Carousel/1.png";
+import blogImg2 from "../../../../public/Carousel/2.png";
 
 // Define the Blog interface
 export interface Blog {
@@ -25,7 +27,7 @@ export const blogData: Blog[] = [
     title: "The Future of AI in Marketing",
     description:
       "AI technology is revolutionizing the way businesses approach marketing. From personalized ads to customer service automation, AI is enhancing every aspect of digital marketing.",
-    image: blogImg,
+    image: blogImg1,
     type: "Tech",
   },
   {
@@ -33,7 +35,7 @@ export const blogData: Blog[] = [
     title: "How to Improve Your SEO Strategy in 2024",
     description:
       "SEO is a constantly evolving field. With new algorithm updates and changes to search engine behavior, staying up-to-date is crucial. Here's how you can adapt your SEO strategy for success in 2024.",
-    image: blogImg,
+    image: blogImg2,
     type: "Marketing",
   },
   {

@@ -4,7 +4,7 @@ import img2 from "../../../../public/Carousel/2.png";
 // import img3 from "../../../../public/Carousel/3.png";
 // import img4 from "../../../../public/Carousel/4.jpeg";
 // import img5 from "../../../../public/Carousel/5.webp";
-import img6 from "../../../../public/Carousel/6.jpeg";
+// import img6 from "../../../../public/Carousel/6.jpeg";
 
 export interface ProjectCardItem {
   id: number;
@@ -30,13 +30,13 @@ export const ProjectData: ProjectCardItem[] = [
     imageSrc: img2,
     type: "Religious Center",
   },
-  {
-    id: 6,
-    title: "Gemini 2040 Tower, Sylhet",
-    location: "Sylhet",
-    imageSrc: img6,
-    type: "Religious Center",
-  },
+  // {
+  //   id: 6,
+  //   title: "Gemini 2040 Tower, Sylhet",
+  //   location: "Sylhet",
+  //   imageSrc: img6,
+  //   type: "Religious Center",
+  // },
   //   {
   //     id: 3,
   //     title: "Popular Diagnostic Centre, Sylhet",
