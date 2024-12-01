@@ -47,6 +47,7 @@ const getTeamMembers = asyncHandler(async (req, res) => {
 
 const updateTeamMember = asyncHandler(async (req, res) => {
   const { member_id } = req.params;
+
   const {
     name,
     position,
@@ -91,12 +92,10 @@ const updateTeamMember = asyncHandler(async (req, res) => {
     linkedin,
   };
 
-  const { message, statusCode } = await teamService.updateTeamMember(
-    member_id,
-    member_data
-  );
+  const { message, team_members, statusCode } =
+    await teamService.updateTeamMember(member_id, member_data);
 
-  new apiResponse(res, statusCode, message);
+  new apiResponse(res, statusCode, message, team_members);
 });
 
 const deleteTeamMember = asyncHandler(async (req, res) => {
@@ -106,11 +105,10 @@ const deleteTeamMember = asyncHandler(async (req, res) => {
     new apiError(400, "Please provide a team member id");
   }
 
-  const { message, statusCode } = await teamService.deleteTeamMember(member_id);
+  const { message, team_members, statusCode } =
+    await teamService.deleteTeamMember(member_id);
 
-  res.status(statusCode).json({
-    message,
-  });
+  new apiResponse(res, statusCode, message, team_members);
 });
 
 module.exports = {

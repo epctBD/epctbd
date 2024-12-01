@@ -1,5 +1,4 @@
 import {
-  ITeamMember,
   ITeamMemberList,
   ITeamMemberResponse,
 } from "@/models/teamMember.model";
@@ -22,12 +21,20 @@ export const createTeamMember = async (
 
 export const updateTeamMember = async (
   id: string,
-  data: Partial<ITeamMember>
-): Promise<ITeamMember> => {
-  const response = await AXIOS_INSTANCE.put(`/team-member/${id}`, data);
-  return response.data;
+  data: FormData
+): Promise<ITeamMemberList[]> => {
+  const response = await AXIOS_INSTANCE.patch<ITeamMemberResponse>(
+    `/team-member/${id}`,
+    data
+  );
+  return response?.data?.data;
 };
 
-export const deleteTeamMember = async (id: string): Promise<void> => {
-  await AXIOS_INSTANCE.delete(`/team-member/${id}`);
+export const deleteTeamMember = async (
+  id: string
+): Promise<ITeamMemberList[]> => {
+  const response = await AXIOS_INSTANCE.delete<ITeamMemberResponse>(
+    `/team-member/${id}`
+  );
+  return response?.data?.data;
 };

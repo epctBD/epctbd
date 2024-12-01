@@ -46,8 +46,11 @@ const deleteTeamMember = async (member_id) => {
 
   await Team.findByIdAndDelete(member_id);
 
+  const team_members = await Team.find();
+
   return {
     message: "Team Member deleted successfully",
+    team_members,
     statusCode: statusCodes.SUCCESSFUL.SUCCESS,
   };
 };
@@ -66,8 +69,11 @@ const updateTeamMember = async (member_id, member_data) => {
     new: true,
   });
 
+  const team_members = await Team.find();
+
   return {
     message: "Team Member Updated Successfully",
+    team_members,
     statusCode: statusCodes.SUCCESSFUL.CREATED,
   };
 };
