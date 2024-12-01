@@ -1,0 +1,55 @@
+.projectCardWrapper {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  .proejectImageWrapper {
+    width: 410px;
+    height: 480px;
+    position: relative;
+
+    .projectImage {
+      border-radius: 16px;
+      border: 1px solid #27282a;
+    }
+  }
+
+  .projectDetailsWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    padding: 12px 16px;
+
+    .projectTitle {
+      font-size: 20px;
+      font-weight: 600;
+      background: linear-gradient(180deg, #ffffff 12.23%, #9b9b9b 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-fill-color: transparent;
+    }
+
+    .projectLocationWrapper {
+      display: flex;
+      gap: 8px;
+
+      .projectLocation {
+        font-size: 14px;
+        color: #a3a6aa;
+      }
+    }
+  }
+
+  .projectType {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    font-size: 14px;
+    color: #0077ee;
+    background-color: #000000cc;
+    border-radius: 12px;
+    z-index: 100;
+    padding: 8px 16px;
+  }
+}

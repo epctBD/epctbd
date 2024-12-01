@@ -46,14 +46,14 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ updateBackground }) => {
   };
 
   return (
-    <div className="slider-container carousel-wrapper">
+    <div className={`slider-container carousel-wrapper ${styles.heroCarousel}`}>
       <Slider {...settings}>
         {carouselData.map((item) => (
-          <div key={item.id} className={styles["carousel-container"]}>
+          <div key={item.id} className={styles.carouselContainer}>
             <Image
               src={item.imageId}
               alt={item.title}
-              className={styles["carousel-image"]}
+              className={styles.carouselImage}
             />
           </div>
         ))}
