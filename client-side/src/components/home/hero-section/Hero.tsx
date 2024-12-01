@@ -52,7 +52,7 @@ const HeroSection = () => {
           </div>
           <motion.p
             className={styles.heroTitle}
-            key={backgroundData.title} // Re-trigger animation on title change
+            key={backgroundData.title}
             initial={{ opacity: 0, x: -100 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
@@ -89,7 +89,7 @@ const HeroSection = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
             >
-              <CoreButton text="Contact Us" type="secondary" />
+              <CoreButton text="Contact Us" type="primaryHover" size="large" />
             </motion.div>
           </div>
         </div>
