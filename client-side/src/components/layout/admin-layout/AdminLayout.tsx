@@ -1,5 +1,6 @@
 import {
   AppstoreAddOutlined,
+  ProfileOutlined,
   UnorderedListOutlined,
   UsergroupAddOutlined,
 } from "@ant-design/icons";
@@ -48,6 +49,20 @@ const AdminLayout = ({ children }: AdminLayoutLayoutProps) => {
         </Link>
       </Tooltip>,
       "project-list"
+    ),
+    getItem(
+      <Tooltip
+        placement="right"
+        trigger={["hover", "click"]}
+        title={`${isMobile ? "Project List" : ""}`}
+        className="tool-tip-container"
+      >
+        <Link href="/admin/portfolio" className={styles.adminGetItem}>
+          <ProfileOutlined className="admin-list-icon" />
+          <p className="admin-list-name">Portfolio List</p>
+        </Link>
+      </Tooltip>,
+      "portfolio-list"
     ),
     getItem(
       <Tooltip

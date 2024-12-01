@@ -29,11 +29,10 @@ const addPortfolio = asyncHandler(async (req, res) => {
     feature_image,
   };
 
-  const { message, statusCode } = await portfolioService.addPortfolio(
-    portfolio_data
-  );
+  const { message, portfolios, statusCode } =
+    await portfolioService.addPortfolio(portfolio_data);
 
-  new apiResponse(res, statusCode, message);
+  new apiResponse(res, statusCode, message, portfolios);
 });
 
 const getPortfolios = asyncHandler(async (req, res) => {
