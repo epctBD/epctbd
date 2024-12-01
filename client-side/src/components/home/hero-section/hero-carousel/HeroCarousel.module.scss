@@ -1,5 +1,6 @@
-// Hero Carousel- Hide arrow
+@import "../../../../styles/global-scss/variable.scss";
 
+// Hero Carousel - Hide arrows
 .heroCarousel :global(.slick-prev),
 .heroCarousel :global(.slick-next) {
   display: none !important;
@@ -15,7 +16,7 @@
   display: none !important;
 }
 
-//  Carousel Container
+// Carousel Container
 .carouselContainer {
   height: 144px !important;
   width: 256px !important;
@@ -62,4 +63,38 @@
       border-radius: 10px !important;
     }
   }
+}
+
+// React slick custom dots
+// .heroCarousel :global(.slick-dots) {
+// Uncomment the next line if you want to position the dots explicitly
+// position: absolute !important;
+// }
+
+.heroCarousel :global(.slick-dots li.slick-active button) {
+  background-color: $primary-color !important;
+  width: 11px !important;
+  height: 11px !important;
+  border-radius: 50% !important;
+}
+
+.heroCarousel :global(.slick-dots li) {
+  width: 11px !important;
+  height: 11px !important;
+}
+
+.heroCarousel :global(.slick-dots li button) {
+  background-color: white !important;
+  width: 11px !important;
+  height: 11px !important;
+  border-radius: 50% !important;
+  color: white !important;
+}
+
+.heroCarousel :global(.slick-dots li button:before) {
+  font-size: 0px !important;
+  width: 11px !important;
+  height: 11px !important;
+  border-radius: 0 !important;
+  color: white !important;
 }

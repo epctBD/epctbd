@@ -1,7 +1,72 @@
+@import "../../../styles/global-scss/variable.scss";
+
 .feedbackWrapper {
+  position: relative;
+
   .feedbackCardContainer {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    // Style for arrows
+    :global(.slick-prev),
+    :global(.slick-next) {
+      position: absolute;
+      bottom: -40px; // Place below the feedback cards
+      z-index: 1; // Ensure arrows are above other elements
+      font-size: 20px; // Adjust size of the arrows
+      color: #333; // Arrow color
+      cursor: pointer;
+      display: none;
+
+      &:hover {
+        color: #007bff; // Arrow hover color
+      }
+    }
+
+    // Position the left arrow
+    :global(.slick-prev) {
+      top: 105% !important;
+      left: 45% !important;
+    }
+
+    // Position the right arrow
+    :global(.slick-next) {
+      top: 105% !important;
+      right: 45% !important;
+    }
+
+    // Hide default slick dots if they are not needed
+    // :global(.slick-dots) {
+    //   margin-top: 20px;
+    // }
   }
+}
+
+.feedbackCardContainer :global(.slick-dots li.slick-active button) {
+  background-color: $primary-color !important;
+  width: 11px !important;
+  height: 11px !important;
+  border-radius: 50% !important;
+}
+
+.feedbackCardContainer :global(.slick-dots li) {
+  width: 11px !important;
+  height: 11px !important;
+}
+
+.feedbackCardContainer :global(.slick-dots li button) {
+  background-color: white !important;
+  width: 11px !important;
+  height: 11px !important;
+  border-radius: 50% !important;
+  color: white !important;
+}
+
+.feedbackCardContainer :global(.slick-dots li button:before) {
+  font-size: 0px !important;
+  width: 11px !important;
+  height: 11px !important;
+  border-radius: 0 !important;
+  color: white !important;
 }
