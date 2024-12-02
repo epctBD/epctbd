@@ -41,21 +41,41 @@ async function singleUpload(file) {
   }
 }
 
-async function multipleUpload(filePaths) {
+async function multipleUpload(files) {
   try {
-    if (!Array.isArray(filePaths)) {
-      throw new Error("filePaths must be an array of file paths");
+    if (!Array.isArray(files)) {
+      throw new Error("files must be an array of file objects");
     }
 
     const uploadResults = await Promise.all(
-      filePaths.map((filePath) =>
-        cloudinary.uploader.upload(filePath, {
-          folder: "uploaded_images",
-        })
+      files.map(
+        (file) =>
+          new Promise((resolve, reject) => {
+            const uploadStream = cloudinary.uploader.upload_stream(
+              {
+                resource_type: "auto",
+                folder: "uploaded_images",
+                public_id: file.originalname.split(".")[0], // Use the name without extension
+              },
+              (error, result) => {
+                if (error) {
+                  console.error("Error during multiple upload:", error);
+                  return reject(error);
+                }
+
+                resolve(result.secure_url);
+              }
+            );
+
+            // Pipe the file buffer to Cloudinary
+            const bufferStream = new stream.PassThrough();
+            bufferStream.end(file.buffer);
+            bufferStream.pipe(uploadStream);
+          })
       )
     );
 
-    return uploadResults.map((result) => result.secure_url);
+    return uploadResults;
   } catch (error) {
     console.error("Error during multiple upload:", error);
     throw error;
