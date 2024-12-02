@@ -8,8 +8,11 @@ const addPortfolio = async (portfolio_data) => {
 
   await portfolio.save();
 
+  const portfolios = await Portfolio.find();
+
   return {
     message: "Portfolio Added Successfully",
+    portfolios,
     statusCode: statusCodes.SUCCESSFUL.CREATED,
   };
 };
