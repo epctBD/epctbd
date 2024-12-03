@@ -6,7 +6,7 @@ import ServiceCard from "@/components/common/service-card/ServiceCard";
 import image from "@/components/common/service-card/service.png";
 import Cta from "@/components/cta/Cta";
 import HomeProjects from "@/components/home/home-projects/HomeProjects";
-import PortfolioCard from "@/components/common/portfolio-card/PortfolioCard";
+// import PortfolioCard from "@/components/common/portfolio-card/PortfolioCard";
 import HomeFeedback from "@/components/home/home-feedback/HomeFeedback";
 import HomeBlogs from "@/components/home/home-blog/HomeBlogs";
 
@@ -43,7 +43,7 @@ export default function Home() {
           crumbTwo="About Us"
         />
 
-        <PortfolioCard />
+        {/* <PortfolioCard /> */}
 
         <ServiceCard
           image={image}

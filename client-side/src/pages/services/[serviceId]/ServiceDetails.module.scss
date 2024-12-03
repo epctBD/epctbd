@@ -1,0 +1,110 @@
+.serviceDetailWrapper {
+  padding: 0 80px;
+  .serviceDetailHeader {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 0 80px 0;
+    border-bottom: 1px solid #27282a;
+
+    .detailHeaderText {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+
+      .detailTitleWrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        .detailTitle {
+          background: linear-gradient(180deg, #ffffff 12.23%, #9b9b9b 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          font-size: 48px;
+          font-weight: 700;
+        }
+
+        .detailSubtitle {
+          color: white;
+          font-size: 12px;
+          width: 400px;
+        }
+      }
+
+      .detailHeaderButtonWrapper {
+        margin-top: 24px;
+      }
+    }
+
+    .detailHeaderImageWrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+
+      .detailHeaderRow1 {
+        display: flex;
+        gap: 16px;
+
+        .serviceHeaderImage {
+          height: 136px;
+          width: 220px;
+          border-radius: 16px;
+        }
+      }
+
+      .detailHeaderRow2 {
+        display: flex;
+        gap: 16px;
+        padding-left: 76px;
+
+        .serviceHeaderImage {
+          height: 136px;
+          width: 220px;
+          border-radius: 16px;
+        }
+      }
+    }
+  }
+
+  .serviceDetailOuterWrapper {
+    padding: 40px 64px;
+
+    .serviceDetailInnerWrapper {
+      padding: 40px 0;
+      .serviceDetailImageWrapper {
+        width: 562px;
+        height: 356px;
+        border-radius: 16px;
+
+        .serviceDetailImage {
+          width: 100%;
+          height: 100%;
+          border-radius: 16px;
+        }
+      }
+
+      .serviceDetailTextWrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .serviceDetailTextInnerWrapper {
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+
+          .serviceDetailTitle {
+            font-size: 32px;
+            font-weight: 600;
+            color: #ffffff;
+          }
+
+          .serviceDetailsubTitle {
+            font-size: 16px;
+            color: #ffffff;
+          }
+        }
+      }
+    }
+  }
+}
