@@ -2,16 +2,17 @@ import { Breadcrumb, Col, Row } from "antd";
 import styles from "./BlogDetails.module.scss";
 import Image from "next/image";
 import img1 from "../../../../public/Carousel/1.png";
+import img2 from "../../../../public/Carousel/2.png";
+import img3 from "../../../../public/Carousel/3.png";
 
 const blogData = [
   {
     id: "123",
-    category: "Services",
-    title: "Tolstoy provides an authentic interaction",
     type: "Blog",
+    title: "Tolstoy provides an authentic interaction",
+    category: "Architectural Design",
     date: "24 Aug 2024",
     image: img1,
-    imageAlt: "An illustrative blog image",
     content: `
     Consistency ensures that all elements of your design work
     together harmoniously. This means:
@@ -30,13 +31,34 @@ const blogData = [
   },
 ];
 
+const relatedBlogs = [
+  {
+    id: 1,
+    image: img1,
+    title: "Enhance User Engagement with These 5 UX Design Tips",
+    link: "/blog/ux-design-tips",
+  },
+  {
+    id: 2,
+    image: img2,
+    title: "Top 10 Tools for Efficient Web Development in 2024",
+    link: "/blog/web-development-tools",
+  },
+  {
+    id: 3,
+    image: img3,
+    title: "Understanding React Server Components",
+    link: "/blog/react-server-components",
+  },
+];
+
 const BlogDetails = () => {
   // Extract the blog data (assuming you are using the first blog in the array)
   const blog = blogData[0];
 
   return (
     <div className={styles.blogDetailsWrapper}>
-      <Row>
+      <Row gutter={20}>
         <Col span={17}>
           <div className={styles.blogDetailsInnerWrapper}>
             <div className={styles.blogDetailsHeader}>
@@ -46,12 +68,14 @@ const BlogDetails = () => {
                   {
                     title: (
                       <a href="/Blogs" style={{ color: "#0077EE" }}>
-                        {blog.category}
+                        Blogs
                       </a>
                     ),
                   },
                   {
-                    title: <span style={{ color: "#A3A6AA" }}>{blog.id}</span>,
+                    title: (
+                      <span style={{ color: "#A3A6AA" }}>{blog.category}</span>
+                    ),
                   },
                 ]}
               />
@@ -64,7 +88,7 @@ const BlogDetails = () => {
             <div className={styles.blogDetailImageWrapper}>
               <Image
                 src={blog.image}
-                alt={blog.imageAlt}
+                alt={blog.title}
                 className={styles.blogDetailImage}
                 width={800}
                 height={400}
@@ -75,9 +99,22 @@ const BlogDetails = () => {
             </div>
           </div>
         </Col>
-        <Col span={7} style={{ border: "1px solid red" }}>
-          <h4>Related Blogs</h4>
-          {/* Add related blogs here if available */}
+        <Col span={6}>
+          <div className={styles.relatedBlogWraper}>
+            <p className={styles.relatedBlogHeader}>Related Blogs</p>
+            <div className={styles.relatedBlogInnerWrapper}>
+              {relatedBlogs.map((blog) => (
+                <div key={blog.id} className={styles.relatedBlogCardWrapper}>
+                  <Image
+                    src={blog.image}
+                    alt={blog.title}
+                    className={styles.relatedBlogImage}
+                  />
+                  <p className={styles.relatedBlogTitle}>{blog.title}</p>
+                </div>
+              ))}
+            </div>
+          </div>
         </Col>
       </Row>
     </div>
