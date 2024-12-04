@@ -1,9 +1,9 @@
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import styles from "./PortfolioCard.module.scss";
 import CoreButton from "../core-components/core-button/CoreButton";
 
 interface IPortfolioCardProps {
-  imageSrc: StaticImageData;
+  imageSrc: string;
   title: string;
   subTitle: string;
   position?: "left" | "right";

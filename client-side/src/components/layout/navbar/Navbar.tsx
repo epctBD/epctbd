@@ -32,7 +32,7 @@ const Navbar = () => {
 
   const items: MenuItem[] = [
     getItem(<Link href="/">Home</Link>, ""),
-    getItem(<Link href="/projects">Portfolio</Link>, "portfolio"),
+    getItem(<Link href="/portfolio">Portfolio</Link>, "portfolio"),
     getItem(<Link href="/about-us">About Us</Link>, "about-us"),
     getItem(<Link href="/services">Services</Link>, "services"),
     getItem(<Link href="/contact-us">Contact Us</Link>, "contact-us"),

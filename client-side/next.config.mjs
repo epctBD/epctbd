@@ -10,6 +10,9 @@ const nextConfig = {
     "rc-notification",
     "rc-tooltip",
   ],
+  images: {
+    domains: ["res.cloudinary.com"],
+  },
 };
 
 export default nextConfig;

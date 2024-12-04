@@ -1,4 +1,5 @@
 export interface IPortfolio {
+  _id: string;
   title: string;
   subtitle: string;
   feature_image: string;
