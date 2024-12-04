@@ -41,19 +41,37 @@ const getProject = async (projectSlug) => {
   };
 };
 
-const updateProject = async (projectId) => {
-  const project = new Project({
-    ...project_data,
+const updateProject = async (id, updateData) => {
+  const project = await Project.findByIdAndUpdate(id, updateData, {
+    new: true,
   });
 
-  await project.save();
+  if (!project) {
+    throw new apiError(404, "Project not found");
+  }
 
   const projects = await Project.find();
 
   return {
-    message: "Project Added Successfully",
+    message: "Project Updated Successfully",
     projects,
-    statusCode: statusCodes.SUCCESSFUL.CREATED,
+    statusCode: statusCodes.SUCCESSFUL.SUCCESS,
+  };
+};
+
+const deleteProject = async (id) => {
+  const project = await Project.findByIdAndDelete(id);
+
+  if (!project) {
+    throw new apiError(404, "Project not found");
+  }
+
+  const projects = await Project.find();
+
+  return {
+    message: "Project Deleted Successfully",
+    projects,
+    statusCode: statusCodes.SUCCESSFUL.SUCCESS,
   };
 };
 
@@ -62,4 +80,5 @@ module.exports = {
   addProject,
   getProject,
   updateProject,
+  deleteProject,
 };

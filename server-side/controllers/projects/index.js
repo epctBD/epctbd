@@ -76,6 +76,9 @@ const getProject = asyncHandler(async (req, res) => {
 });
 
 const updateProject = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+
+  console.log(id, "id");
   const {
     name,
     details,
@@ -87,23 +90,38 @@ const updateProject = asyncHandler(async (req, res) => {
     projectOverview,
     keyFeatures,
     outcome,
+    existing_image_links,
   } = req.body;
 
-  if (!name || !details || !category) {
-    throw new apiError(400, "Please provide all required information");
+  if (!id) {
+    throw new apiError(400, "Project ID is required");
   }
 
-  let projectImages = [];
+  let newProjectImageLinks = [];
 
   if (req.files && req.files.length > 0) {
     try {
-      projectImages = await multipleUpload(req.files);
+      newProjectImageLinks = await multipleUpload(req.files);
     } catch (error) {
-      throw new apiError(500, "Image upload failed");
+      return new apiError(500, "Image upload failed");
     }
+  } else {
+    return new apiError(400, "Feature image is required");
   }
 
-  const project_data = {
+  const validNewProjectImageLinks = Array.isArray(newProjectImageLinks)
+    ? newProjectImageLinks.filter(
+        (link) => typeof link === "string" && link.startsWith("http")
+      )
+    : [];
+
+  const validExistingImageLinks = Array.isArray(existing_image_links)
+    ? existing_image_links.filter(
+        (link) => typeof link === "string" && link.startsWith("http")
+      )
+    : [];
+
+  const update_Data = {
     name,
     details,
     category,
@@ -114,11 +132,26 @@ const updateProject = asyncHandler(async (req, res) => {
     projectOverview,
     keyFeatures,
     outcome,
-    projectImages,
+    projectImages: [...validExistingImageLinks, ...validNewProjectImageLinks],
   };
 
   const { message, projects, statusCode } = await projectService.updateProject(
-    project_data
+    id,
+    update_Data
+  );
+
+  new apiResponse(res, statusCode, message, projects);
+});
+
+const deleteProject = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+
+  if (!id) {
+    throw new apiError(400, "Project ID is required");
+  }
+
+  const { message, projects, statusCode } = await projectService.deleteProject(
+    id
   );
 
   new apiResponse(res, statusCode, message, projects);
@@ -128,4 +161,6 @@ module.exports = {
   getProjects,
   addProject,
   getProject,
+  updateProject,
+  deleteProject,
 };
