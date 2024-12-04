@@ -70,14 +70,18 @@ const AddTeamMember = ({
       footer={null}
     >
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div style={{ marginBottom: "15px" }}>
-          <label>Name</label>
+        <div className={"general-input-wrapper"}>
+          <label className={"general-label"}>Name</label>
           <Controller
             name="name"
             control={control}
             rules={{ required: "Name is required" }}
             render={({ field }) => (
-              <Input {...field} placeholder="Enter name" />
+              <Input
+                {...field}
+                placeholder="Enter name"
+                className={"general-input"}
+              />
             )}
           />
           {errors.name && (
@@ -87,14 +91,18 @@ const AddTeamMember = ({
           )}
         </div>
 
-        <div style={{ marginBottom: "15px" }}>
-          <label>Position</label>
+        <div className={"general-input-wrapper"}>
+          <label className={"general-label"}>Position</label>
           <Controller
             name="position"
             control={control}
             rules={{ required: "Position is required" }}
             render={({ field }) => (
-              <Input {...field} placeholder="Enter position" />
+              <Input
+                {...field}
+                placeholder="Enter position"
+                className={"general-input"}
+              />
             )}
           />
           {errors.position && (
@@ -104,7 +112,7 @@ const AddTeamMember = ({
           )}
         </div>
 
-        <div style={{ marginBottom: "15px" }}>
+        <div className={"general-input-wrapper"}>
           <label className="general-label">Member Image</label>
           <CoreImageUploader
             buttonText="Upload Image"
@@ -114,8 +122,14 @@ const AddTeamMember = ({
           />
         </div>
 
-        <div style={{ marginBottom: "15px" }}>
-          <label>Is Ex-Team Member?</label>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            marginBottom: "12px",
+          }}
+        >
+          <label className={"general-label"}>Is Ex-Team Member?</label>
           <Controller
             name="isExTeam"
             control={control}
@@ -128,12 +142,40 @@ const AddTeamMember = ({
           />
         </div>
 
-        <CoreButton
-          text="Add Team Member"
-          type="primary"
-          htmlType="submit"
-          loading={loading}
-        />
+        <div className={"general-input-wrapper"}>
+          <label className={"general-label"}>Facebook Handle Link</label>
+          <Controller
+            name="facebook"
+            control={control}
+            rules={{ required: "Facebook is required" }}
+            render={({ field }) => (
+              <Input
+                {...field}
+                placeholder="Enter Facebook Handel"
+                className={"general-input"}
+              />
+            )}
+          />
+          {errors.position && (
+            <p style={{ color: "red", marginTop: "5px" }}>
+              {errors.position.message}
+            </p>
+          )}
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "end",
+          }}
+        >
+          <CoreButton
+            text="Add Team Member"
+            type="primary"
+            htmlType="submit"
+            loading={loading}
+          />
+        </div>
       </form>
     </Modal>
   );

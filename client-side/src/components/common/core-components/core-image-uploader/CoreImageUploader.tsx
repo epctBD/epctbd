@@ -1,5 +1,6 @@
-import { Button, Image, message } from "antd";
+import { Image, message } from "antd";
 import React, { useRef, ChangeEvent, useState } from "react";
+import CoreButton from "../core-button/CoreButton";
 
 interface ImageUploaderProps {
   buttonText: string;
@@ -97,18 +98,11 @@ const CoreImageUploader: React.FC<ImageUploaderProps> = ({
 
   return (
     <div style={{ display: "flex" }}>
-      <Button
-        size="large"
+      <CoreButton
+        type="primary"
+        text={buttonText}
         onClick={handleUploadClick}
-        style={{
-          marginRight: "10px",
-          backgroundColor: "yellow",
-          color: "black",
-          borderRadius: "0px",
-        }}
-      >
-        {buttonText}
-      </Button>
+      />
 
       <input
         ref={inputRef}
