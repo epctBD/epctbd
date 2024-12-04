@@ -1,6 +1,7 @@
 import BlogCard from "@/components/common/blog-card/BlogCard";
 import CoreBanner from "@/components/common/core-components/core-banner/CoreBanner";
 import img1 from "../../../public/Carousel/1.png";
+import Link from "next/link";
 
 const Blogs = () => {
   return (
@@ -13,16 +14,18 @@ const Blogs = () => {
       />
 
       <div>
-        <BlogCard
-          image={img1}
-          title="Tolstoy provides an authentic interaction"
-          description="Tolstoy provides an authentic interaction without
+        <Link href={"/blogs/blogid"}>
+          <BlogCard
+            image={img1}
+            title="Tolstoy provides an authentic interaction"
+            description="Tolstoy provides an authentic interaction without
 actually conversing. It allows us to meet shoppers
 where they are, show them what they'd like to see, and
 engage them more with our brand Tolstoy isn't just a
 nice to have. It's a must-have."
-          type="Blog"
-        />
+            type="Blog"
+          />
+        </Link>
       </div>
     </div>
   );

@@ -1,0 +1,60 @@
+.blogDetailsWrapper {
+  margin: 0 80px;
+
+  .blogDetailsInnerWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding: 32px 0;
+    .blogDetailsHeader {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      .blogDetailsTitle {
+        background: linear-gradient(180deg, #ffffff 12.23%, #9b9b9b 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-size: 32px;
+        font-weight: 600;
+      }
+      .blogTypeWrapper {
+        display: flex;
+        gap: 16px;
+        margin-top: 16px;
+
+        .blogDetailType {
+          background-color: #dad4f4;
+          padding: 6px 12px;
+          color: #3a20a0;
+          font-size: 14px;
+          font-weight: 500;
+          border-radius: 38px;
+        }
+
+        .blogTimestamp {
+          color: white;
+        }
+      }
+    }
+
+    .blogDetailImageWrapper {
+      width: 895px;
+      height: 532px;
+      border-radius: 16px;
+      overflow: hidden;
+
+      .blogDetailImage {
+        width: 100%;
+        height: 100%;
+        border-radius: 16px;
+      }
+    }
+
+    .blogDetailTextWrapper {
+      .blogDetailText {
+        font-size: 18px;
+        color: #a3a6aa;
+      }
+    }
+  }
+}
