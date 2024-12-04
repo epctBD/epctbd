@@ -75,6 +75,55 @@ const getProject = asyncHandler(async (req, res) => {
   new apiResponse(res, statusCode, message, project);
 });
 
+const updateProject = asyncHandler(async (req, res) => {
+  const {
+    name,
+    details,
+    category,
+    area,
+    projectYear,
+    designer,
+    location,
+    projectOverview,
+    keyFeatures,
+    outcome,
+  } = req.body;
+
+  if (!name || !details || !category) {
+    throw new apiError(400, "Please provide all required information");
+  }
+
+  let projectImages = [];
+
+  if (req.files && req.files.length > 0) {
+    try {
+      projectImages = await multipleUpload(req.files);
+    } catch (error) {
+      throw new apiError(500, "Image upload failed");
+    }
+  }
+
+  const project_data = {
+    name,
+    details,
+    category,
+    area,
+    projectYear,
+    designer,
+    location,
+    projectOverview,
+    keyFeatures,
+    outcome,
+    projectImages,
+  };
+
+  const { message, projects, statusCode } = await projectService.updateProject(
+    project_data
+  );
+
+  new apiResponse(res, statusCode, message, projects);
+});
+
 module.exports = {
   getProjects,
   addProject,

@@ -41,8 +41,25 @@ const getProject = async (projectSlug) => {
   };
 };
 
+const updateProject = async (projectId) => {
+  const project = new Project({
+    ...project_data,
+  });
+
+  await project.save();
+
+  const projects = await Project.find();
+
+  return {
+    message: "Project Added Successfully",
+    projects,
+    statusCode: statusCodes.SUCCESSFUL.CREATED,
+  };
+};
+
 module.exports = {
   getProjects,
   addProject,
   getProject,
+  updateProject,
 };
