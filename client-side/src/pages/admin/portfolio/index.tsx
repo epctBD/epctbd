@@ -19,8 +19,6 @@ interface IPortfolioProps {
 const Portfolio = ({ portfolios }: IPortfolioProps) => {
   const [portfolioList, setPortfolioList] = useState<IPortfolio[]>(portfolios);
 
-  console.log(typeof portfolioList, "type of portfolioList");
-
   return (
     <AdminLayout>
       <PortfolioList

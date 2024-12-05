@@ -1,14 +1,21 @@
 import Image from "next/image";
 import styles from "./ProjectCard.module.scss";
 import MapIcons from "../svg/MapIcons";
-import { ProjectCardItem } from "@/components/home/home-projects/ProjectData";
 
-const ProjectCard: React.FC<ProjectCardItem> = ({
+export interface IProjectCardProps {
+  id: string;
+  title: string;
+  location: string;
+  imageSrc: string;
+  type: string;
+}
+
+const ProjectCard = ({
   title,
   location,
   imageSrc,
   type,
-}) => {
+}: IProjectCardProps) => {
   return (
     <div className={styles.projectCardWrapper}>
       <div className={styles.proejectImageWrapper}>

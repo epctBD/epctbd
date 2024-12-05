@@ -36,6 +36,7 @@ const Navbar = () => {
     getItem(<Link href="/portfolio">Portfolio</Link>, "portfolio"),
     getItem(<Link href="/about-us">About Us</Link>, "about-us"),
     getItem(<Link href="/services">Services</Link>, "services"),
+    getItem(<Link href="/project">Project</Link>, "project"),
     getItem(<Link href="/contact-us">Contact Us</Link>, "contact-us"),
     getItem(<div>Resources</div>, "resources", <Icon />, [
       getItem(<Link href="/blogs">Blogs</Link>, "blogs"),
