@@ -31,8 +31,10 @@ const PortfolioCard = ({
             position === "right" ? styles.cardRight : styles.cardLeft
           }`}
         >
-          <p className={styles.title}>{title}</p>
-          <p className={styles.subTitle}>{subTitle}</p>
+          <div>
+            <p className={styles.title}>{title}</p>
+            <p className={styles.subTitle}>{subTitle}</p>
+          </div>
           <div className={styles.actions}>
             <CoreButton text="See PDF" type="primary" />
             <CoreButton text="See Details" type="secondary" />

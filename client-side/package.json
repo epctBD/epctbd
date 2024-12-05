@@ -12,6 +12,7 @@
     "@ant-design/cssinjs": "^1.21.1",
     "antd": "^5.22.2",
     "axios": "^1.7.8",
+    "lodash": "^4.17.21",
     "motion": "^11.11.17",
     "next": "14.2.17",
     "next-plugin-antd-less": "^1.8.0",
@@ -25,6 +26,7 @@
   },
   "devDependencies": {
     "@ant-design/icons": "^5.5.1",
+    "@types/lodash": "^4.17.13",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

@@ -1,8 +1,15 @@
 import CoreBanner from "@/components/common/core-components/core-banner/CoreBanner";
-import PortfolioView from "@/components/portfolio/PortfolioView";
 import { IPortfolio } from "@/models/portfolio.model";
 import { getPortfolio } from "@/services/portfolio.service";
 import { GetServerSideProps } from "next";
+import dynamic from "next/dynamic";
+
+const PortfolioView = dynamic(
+  () => import("@/components/portfolio/PortfolioView"),
+  {
+    ssr: false,
+  }
+);
 
 interface IPortfolioProps {
   portfolios: IPortfolio[];
@@ -17,7 +24,7 @@ const Portfolio = ({ portfolios }: IPortfolioProps) => {
         crumbOne="Home"
         crumbTwo="Portfolio"
       />
-      <div style={{ marginTop: "40px" }}>
+      <div className={"container-wrapper"}>
         <PortfolioView portfolios={portfolios} />
       </div>
     </div>

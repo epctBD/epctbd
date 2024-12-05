@@ -6,11 +6,12 @@ import Image from "next/image";
 import epct_logo from "/public/images/epct_logo.png";
 import Icon from "./Icon";
 import { MenuOutlined } from "@ant-design/icons";
+import useGetMenuKey from "@/hooks/useGetMenuKey";
 
 const { Header } = Layout;
 
 const Navbar = () => {
-  const [selectedKey, setSelectedKey] = useState("");
+  const selectedKey = useGetMenuKey();
 
   type MenuItem = Required<React.ComponentProps<typeof Menu>>["items"][number];
 
@@ -77,8 +78,7 @@ const Navbar = () => {
             <Menu
               mode="horizontal"
               defaultSelectedKeys={[""]}
-              selectedKeys={[selectedKey]}
-              onClick={(e) => setSelectedKey(e.key)}
+              selectedKeys={selectedKey}
               items={items}
               className={styles["menu-wrapper"]}
             />
@@ -100,8 +100,7 @@ const Navbar = () => {
               <Menu
                 mode="vertical"
                 defaultSelectedKeys={[""]}
-                selectedKeys={[selectedKey]}
-                onClick={(e) => setSelectedKey(e.key)}
+                selectedKeys={selectedKey}
                 items={items}
                 className="menu-wrapper-drawer"
                 style={{

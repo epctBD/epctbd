@@ -11,12 +11,12 @@ const PortfolioView = ({ portfolios }: IPortfolioViewProps) => {
   return (
     <div className={styles.portfolioViewWrapper}>
       <Row align="bottom">
-        <Col span={16}>
+        <Col span={14}>
           <p className={styles.headerTitle}>
             Inspiring Projects That Shape Spaces and Elevate Experiences
           </p>
         </Col>
-        <Col span={8}>
+        <Col span={10}>
           <p className={styles.headerSubtitle}>
             Discover a collection of our most impactful architectural designs,
             blending innovation and functionality.
