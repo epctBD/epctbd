@@ -16,7 +16,7 @@ const truncateByWordCount = (text: string, wordLimit: number): string => {
 
 // BlogCardProps now properly uses destructuring
 export interface BlogCardProps {
-  id: number;
+  // id: number;
   title: string;
   description: string;
   image: StaticImageData;
