@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import styles from "./ProjectCard.module.scss";
 import MapIcons from "../svg/MapIcons";
 
@@ -6,8 +6,9 @@ export interface IProjectCardProps {
   id: string;
   title: string;
   location: string;
-  imageSrc: string;
+  imageSrc: StaticImageData;
   type: string;
+  imgHeight: number;
 }
 
 const ProjectCard = ({
@@ -15,15 +16,20 @@ const ProjectCard = ({
   location,
   imageSrc,
   type,
+  imgHeight = 460, // Default imgHeight if not provided
 }: IProjectCardProps) => {
   return (
     <div className={styles.projectCardWrapper}>
-      <div className={styles.proejectImageWrapper}>
+      <div
+        className={styles.proejectImageWrapper}
+        style={{ height: `${imgHeight}px` }}
+      >
         <Image
           className={styles.projectImage}
           src={imageSrc}
           alt={title}
-          fill
+          layout="fill"
+          objectFit="cover"
         />
       </div>
       <div className={styles.projectDetailsWrapper}>
