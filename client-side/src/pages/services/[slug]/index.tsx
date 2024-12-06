@@ -6,35 +6,21 @@ import img2 from "../../../../public/Carousel/2.png";
 import img3 from "../../../../public/Carousel/3.png";
 import img4 from "../../../../public/Carousel/4.jpeg";
 import styles from "./ServiceDetails.module.scss";
-
-const services = [
-  {
-    title: "3D Modelling & Animation",
-    description:
-      "We create detailed, realistic 3D models and animations to bring your architectural designs to life. Our services help clients visualize projects accurately before construction, enhancing decision-making and design clarity.",
-    image: img1,
-  },
-  {
-    title: "Architectural Plan, Elevation & Section",
-    description:
-      "We provide comprehensive architectural planning, including floor plans, building elevations, and sectional views. This service ensures accurate visualization of the entire project, helping you understand both the internal layout and external structure, making it easier to finalize designs and guide the construction process.",
-    image: img2,
-  },
-  {
-    title: "Interior Design Visualization",
-    description:
-      "Our interior design visualization services help you see your spaces before they are built, offering insights into material choices, lighting, and overall aesthetics to ensure satisfaction.",
-    image: img3,
-  },
-  {
-    title: "Virtual Reality Walkthroughs",
-    description:
-      "Experience your designs in immersive virtual reality, allowing you to explore and interact with your architectural spaces before they are built.",
-    image: img4,
-  },
-];
+import { services } from "@/components/services/constant";
+import { useRouter } from "next/router";
 
 const ServiceDetails = () => {
+  const router = useRouter();
+  const { slug } = router.query;
+
+  // Find the service based on the slug
+  const service = services.find((s) => s.slug === slug);
+
+  // Render fallback for invalid slugs
+  if (!service) {
+    return <p>Service not found!</p>;
+  }
+
   return (
     <div className={styles.serviceDetailWrapper}>
       <div className={styles.serviceDetailHeader}>
@@ -50,16 +36,15 @@ const ServiceDetails = () => {
                 ),
               },
               {
-                title: <span style={{ color: "#A3A6AA" }}>serviceId</span>,
+                title: (
+                  <span style={{ color: "#A3A6AA" }}>{service.title}</span>
+                ),
               },
             ]}
           />
           <div className={styles.detailTitleWrapper}>
-            <p className={styles.detailTitle}>Architectural Design</p>
-            <p className={styles.detailSubtitle}>
-              Crafting visionary designs with precision, sustainability, and
-              functionality to elevate every project we undertake.
-            </p>
+            <p className={styles.detailTitle}>{service.title}</p>
+            <p className={styles.detailSubtitle}>{service.description}</p>
           </div>
           <div className={styles.detailHeaderButtonWrapper}>
             <CoreButton text="Contact Us" type="secondary" />

@@ -1,7 +1,10 @@
 @import "@/styles/global-scss/variable.scss";
 
 .ServiceCardWrapper {
-  max-width: 262px;
+  box-sizing: border-box;
+  cursor: pointer;
+
+  max-width: 300px;
   background-color: $content-background-color;
   padding: 20px;
   border: 1px solid $gray-color-800;

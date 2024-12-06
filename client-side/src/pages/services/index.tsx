@@ -1,17 +1,18 @@
-import ServiceCard from "@/components/common/service-card/ServiceCard";
-import image from "@/components/common/service-card/service.png";
-import Link from "next/link";
+import CoreBanner from "@/components/common/core-components/core-banner/CoreBanner";
+import ServicesView from "@/components/services/services-view/ServicesView";
 
 const Services = () => {
   return (
     <div>
-      <Link href={"/services/interior-design"}>
-        <ServiceCard
-          image={image}
-          title="Interior Design"
-          subtitle="Crafting spaces that inspire and elevate."
-        />
-      </Link>
+      <CoreBanner
+        title="Our Services"
+        subtitle="Services"
+        crumbOne="Home"
+        crumbTwo="Services"
+      />
+      <div className={"container-wrapper"}>
+        <ServicesView />
+      </div>
     </div>
   );
 };
