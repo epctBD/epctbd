@@ -5,7 +5,10 @@ const { asyncHandler } = require("../../utils/asyncHandler");
 const { multipleUpload } = require("../../utils/cloudinary");
 
 const getProjects = asyncHandler(async (req, res) => {
-  const { message, projects, statusCode } = await projectService.getProjects();
+  const { category } = req.query;
+  const { message, projects, statusCode } = await projectService.getProjects(
+    category
+  );
 
   console.log(message, "statusCode");
 
@@ -17,6 +20,7 @@ const addProject = asyncHandler(async (req, res) => {
     name,
     details,
     category,
+    serviceType,
     area,
     projectYear,
     designer,
@@ -44,6 +48,7 @@ const addProject = asyncHandler(async (req, res) => {
     name,
     details,
     category,
+    serviceType,
     area,
     projectYear,
     designer,
@@ -53,6 +58,8 @@ const addProject = asyncHandler(async (req, res) => {
     outcome,
     projectImages,
   };
+
+  console.log(project_data, "data");
 
   const { message, projects, statusCode } = await projectService.addProject(
     project_data

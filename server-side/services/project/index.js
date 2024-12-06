@@ -1,8 +1,9 @@
 const Project = require("../../models/project");
 const { statusCodes } = require("../../utils/statusCodes");
 
-const getProjects = async () => {
-  const projects = await Project.find({});
+const getProjects = async (category) => {
+  const filter = category ? { category } : {};
+  const projects = await Project.find(filter);
 
   return {
     message: "Project created successfully",

@@ -3,6 +3,7 @@ export interface IProject {
   projectSlug?: string;
   name: string;
   details: string;
+  serviceType: string;
   category: string;
   area?: string;
   projectYear?: string;

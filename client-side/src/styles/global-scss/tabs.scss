@@ -1,0 +1,54 @@
+@import "../global-scss/variable.scss";
+
+.ant-tabs {
+  width: auto; // Allow tabs to adjust width based on content
+  display: inline-block;
+}
+
+.tablist {
+  border: 1px solid red !important;
+}
+
+.ant-tabs-nav {
+  border-bottom: none !important;
+}
+
+.ant-tabs-nav::before {
+  border-bottom: none !important;
+}
+
+.ant-tabs-ink-bar {
+  display: none;
+}
+
+.ant-tabs-nav-wrap {
+  background-color: $content-background-color;
+  border-radius: 1000px;
+  height: auto;
+  padding: 4px !important;
+  width: 50%;
+}
+
+.ant-tabs-tab {
+  padding: 0px !important;
+  margin: 0px !important;
+  .ant-tabs-tab-btn {
+    color: white !important;
+    background-color: transparent;
+    padding: 8px 16px !important;
+    border-radius: 1000px !important;
+    font-size: 16px !important;
+    font-weight: 400 !important;
+  }
+}
+
+.ant-tabs-tab-active {
+  .ant-tabs-tab-btn {
+    color: white !important;
+    background-color: $primary-color;
+    padding: 8px 16px !important;
+    border-radius: 1000px !important;
+    font-size: 16px !important;
+    font-weight: 400 !important;
+  }
+}

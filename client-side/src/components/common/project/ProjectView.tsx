@@ -3,6 +3,7 @@ import { Col, message, Row, Tabs, TabsProps } from "antd";
 import React, { useEffect, useState } from "react";
 import ProjectCard from "../project-card/ProjectCard";
 import { getProjects } from "@/services/project.service";
+import styles from "./ProjectView.module.scss";
 
 interface IProjectViewProps {
   projectList: IProject[];
@@ -13,8 +14,6 @@ const ProjectView = ({ projectList, setProjectList }: IProjectViewProps) => {
   const [isLoading] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("");
 
-  console.log(selectedCategory, "selectedCategory");
-
   useEffect(() => {
     if (selectedCategory) {
       getFilteredProjects();
@@ -23,9 +22,8 @@ const ProjectView = ({ projectList, setProjectList }: IProjectViewProps) => {
 
   const getFilteredProjects = async () => {
     try {
-      const response = await getProjects();
+      const response = await getProjects(selectedCategory);
       setProjectList(response);
-      message.success("Portfolio added successfully!");
     } catch (error) {
       console.error("Error adding portfolio:", error);
       message.error("Failed to add portfolio. Please try again.");
@@ -47,6 +45,10 @@ const ProjectView = ({ projectList, setProjectList }: IProjectViewProps) => {
       key: "3",
       label: "Private Projects",
     },
+    {
+      key: "4",
+      label: "Highlighted Projects",
+    },
   ];
 
   const onTabChange = (key: string) => {
@@ -57,8 +59,10 @@ const ProjectView = ({ projectList, setProjectList }: IProjectViewProps) => {
   };
 
   return (
-    <div>
-      <Tabs defaultActiveKey="1" items={items} onChange={onTabChange} />
+    <div className={styles.projectViewWrapper}>
+      <div className={styles.projectTabWrapper}>
+        <Tabs defaultActiveKey="1" items={items} onChange={onTabChange} />
+      </div>
       <Row justify="center" align="middle" gutter={[24, 24]}>
         {isLoading ? (
           <div className="project-card-loader">loading</div>
@@ -72,7 +76,7 @@ const ProjectView = ({ projectList, setProjectList }: IProjectViewProps) => {
                 title={project.name}
                 location={project.location || ""}
                 imageSrc={project.projectImages?.[0] || ""}
-                type={project.category}
+                type={project.serviceType}
               />
             </Col>
           ))

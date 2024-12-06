@@ -1,5 +1,5 @@
 const { Schema, model } = require("mongoose");
-const slugify = require('slugify');
+const slugify = require("slugify");
 
 const projectSchema = new Schema(
   {
@@ -17,6 +17,10 @@ const projectSchema = new Schema(
       required: true,
     },
     category: {
+      type: String,
+      required: true,
+    },
+    serviceType: {
       type: String,
       required: true,
     },

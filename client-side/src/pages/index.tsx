@@ -1,5 +1,4 @@
 import Head from "next/head";
-import styles from "../styles/Home.module.scss";
 import dynamic from "next/dynamic";
 import CoreBanner from "@/components/common/core-components/core-banner/CoreBanner";
 import ServiceCard from "@/components/common/service-card/ServiceCard";
@@ -26,10 +25,10 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div>
-        <main className={styles["home-wrapper"]}>
+        <main>
           <DynamicHeroSection />
 
-          <div className={styles["Home-inner-wrapper"]}>
+          <div>
             <HomeProjects />
             <HomeFeedback />
             <HomeBlogs />

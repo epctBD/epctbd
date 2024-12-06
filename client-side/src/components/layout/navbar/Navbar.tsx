@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import styles from "./Navbar.module.scss";
 import Image from "next/image";
 import epct_logo from "/public/images/epct_logo.png";
-import Icon from "./Icon";
 import { MenuOutlined } from "@ant-design/icons";
 import useGetMenuKey from "@/hooks/useGetMenuKey";
 
@@ -38,10 +37,7 @@ const Navbar = () => {
     getItem(<Link href="/services">Services</Link>, "services"),
     getItem(<Link href="/project">Project</Link>, "project"),
     getItem(<Link href="/contact-us">Contact Us</Link>, "contact-us"),
-    getItem(<div>Resources</div>, "resources", <Icon />, [
-      getItem(<Link href="/blogs">Blogs</Link>, "blogs"),
-      getItem(<Link href="/gallery">Gallery</Link>, "gallery"),
-    ]),
+    getItem(<Link href="resources">Resources</Link>, "resources"),
   ];
 
   const [open, setOpen] = useState(false);
