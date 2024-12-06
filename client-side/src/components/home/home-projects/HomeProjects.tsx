@@ -34,7 +34,7 @@ const HomeProjects = () => {
               location={project.location}
               imageSrc={project.imageSrc}
               type={project.type}
-              imgHeight={heights[index % heights.length]}
+              imageHeight={heights[index % heights.length]}
             />
           </Col>
         ))}
