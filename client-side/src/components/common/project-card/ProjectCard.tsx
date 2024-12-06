@@ -16,7 +16,7 @@ const ProjectCard = ({
   location,
   imageSrc,
   type,
-  imgHeight = 460, // Default imgHeight if not provided
+  imgHeight = 460,
 }: IProjectCardProps) => {
   return (
     <div className={styles.projectCardWrapper}>

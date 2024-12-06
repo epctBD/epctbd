@@ -5,7 +5,6 @@ import { ProjectData } from "./ProjectData";
 import { Row, Col } from "antd";
 
 const HomeProjects = () => {
-  // Define the cyclic heights pattern
   const heights = [
     480,
     560,
@@ -35,7 +34,7 @@ const HomeProjects = () => {
               location={project.location}
               imageSrc={project.imageSrc}
               type={project.type}
-              imgHeight={heights[index % heights.length]} // Cyclic height
+              imgHeight={heights[index % heights.length]}
             />
           </Col>
         ))}
