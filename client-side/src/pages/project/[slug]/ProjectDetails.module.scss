@@ -1,0 +1,49 @@
+.projectDetailsWrapper {
+  margin: 0 80px;
+  padding: 80px 0;
+
+  .projectDetailsHeader {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .ProjectDetailsTitle {
+      font-size: 56px;
+      font-weight: 700;
+      background: linear-gradient(180deg, #ffffff 12.23%, #9b9b9b 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .ProjectDetailsDescription {
+      color: white;
+      font-size: 16px;
+    }
+
+    .ProjectDetailsInnerWrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+
+      .areaWrapper {
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        gap: 8px;
+        color: white;
+        font-size: 16px;
+
+        .projectIcon {
+          padding: 12px;
+          border-radius: 50%;
+          background-color: #202127;
+        }
+
+        .areaSpan {
+          font-size: 18px;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}
