@@ -1,0 +1,52 @@
+@import "@/styles/global-scss/variable.scss";
+
+.founderImageSection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .founderImageWrapper {
+    border-radius: 16px;
+    max-width: 400px;
+
+    img {
+      width: 100%;
+      border-radius: 16px;
+    }
+  }
+}
+
+.founderDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  .title {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 600;
+    background: $title-color;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .name {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 600;
+    color: $white-color;
+  }
+
+  .position {
+    margin: 0;
+    font-weight: 500;
+    color: $gray-color-400;
+  }
+
+  .founderSocial {
+    display: flex;
+    gap: 8px;
+    color: $white-color;
+  }
+}

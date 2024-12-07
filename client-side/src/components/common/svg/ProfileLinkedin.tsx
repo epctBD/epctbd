@@ -26,21 +26,21 @@ const ProfileLinkedin = () => {
       />
       <path
         d="M13.832 22.1666V19.25V16.3333"
-        stroke="#71757A"
+        stroke="currentColor"
         strokeWidth="1.3"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <path
         d="M17.168 22.1666V19.4583M17.168 16.3333V19.4583M17.168 19.4583C17.168 16.3333 22.168 16.3333 22.168 19.4583V22.1666"
-        stroke="#71757A"
+        stroke="currentColor"
         strokeWidth="1.3"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <path
         d="M13.832 13.8417L13.8404 13.8324"
-        stroke="#71757A"
+        stroke="currentColor"
         strokeWidth="1.3"
         strokeLinecap="round"
         strokeLinejoin="round"

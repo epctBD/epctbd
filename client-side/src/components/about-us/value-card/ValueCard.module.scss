@@ -1,0 +1,32 @@
+@import "@/styles/global-scss/variable.scss";
+
+.valueCardWrapper {
+  border: 1p solid red;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  max-width: 296px;
+
+  border: 1px solid $gray-color-800;
+  border-radius: 16px;
+
+  .textSection {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    .title {
+      margin: 0;
+      color: $white-color;
+      font-size: 24px;
+      font-weight: 600;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: $gray-color-400;
+    }
+  }
+}

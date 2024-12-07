@@ -24,7 +24,7 @@ const ProfileTwitter = () => {
       />
       <path
         d="M24.668 10.5L11.3346 25.5"
-        stroke="#71757A"
+        stroke="currentColor"
         strokeWidth="1.3"
         strokeLinecap="round"
       />

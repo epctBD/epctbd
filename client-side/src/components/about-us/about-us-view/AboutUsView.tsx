@@ -3,6 +3,8 @@ import styles from "./AboutUsView.module.scss";
 import Image from "next/image";
 import img from "../about-us.png";
 import CoreButton from "@/components/common/core-components/core-button/CoreButton";
+import ValueCard from "../value-card/ValueCard";
+import FounderSection from "../founder-section/FounderSection";
 
 const AboutUsView = () => {
   return (
@@ -46,6 +48,34 @@ const AboutUsView = () => {
           </div>
         </Col>
       </Row>
+
+      <Row className={styles.marginX80}>
+        <Col span={11}>
+          <div className={styles.startTag}>
+            <div className={styles.divider} />
+            <p className={styles.tagText}>Our Core Values</p>
+          </div>
+          <p className={styles.title}>Principles That Inspire Excellence</p>
+        </Col>
+        <Col span={13}>
+          <div className={styles.valueCardWrapper}>
+            <div
+              className={`${styles.valueCardInnerWrapper} ${styles.marginLeft}`}
+            >
+              <ValueCard />
+              <ValueCard />
+            </div>
+            <div className={styles.valueCardInnerWrapper}>
+              <ValueCard />
+              <ValueCard />
+            </div>
+          </div>
+        </Col>
+      </Row>
+
+      <div className={styles.marginX80}>
+        <FounderSection />
+      </div>
     </div>
   );
 };
