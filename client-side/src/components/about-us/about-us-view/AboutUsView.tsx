@@ -5,8 +5,14 @@ import img from "../about-us.png";
 import CoreButton from "@/components/common/core-components/core-button/CoreButton";
 import ValueCard from "../value-card/ValueCard";
 import FounderSection from "../founder-section/FounderSection";
+import { ITeamMemberList } from "@/models/teamMember.model";
+import TeamCard from "@/components/common/team-card/TeamCard";
 
-const AboutUsView = () => {
+interface IAboutUsViewProps {
+  team: ITeamMemberList[];
+}
+
+const AboutUsView = ({ team }: IAboutUsViewProps) => {
   return (
     <div className={styles.aboutUsWrapper}>
       <Row gutter={[48, 24]} align="middle">
@@ -75,6 +81,21 @@ const AboutUsView = () => {
 
       <div className={styles.marginX80}>
         <FounderSection />
+      </div>
+
+      <div className={styles.marginX80}>
+        <p className={styles.title}>Meet Our Team</p>
+        {team.map((member) => (
+          <TeamCard
+            key={member?._id}
+            imageSrc={member?.display_picture}
+            name={member.name}
+            position={member.position}
+            facebook={member.facebook}
+            twitter={member.twitter}
+            linkedin={member.linkedin}
+          />
+        ))}
       </div>
     </div>
   );

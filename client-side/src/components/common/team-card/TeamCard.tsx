@@ -1,4 +1,4 @@
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import styles from "./TeamCard.module.scss";
 import ProfileFacebook from "../svg/ProfileFacebook";
 import Link from "next/link";
@@ -6,7 +6,7 @@ import ProfileTwitter from "../svg/ProfileTwitter";
 import ProfileLinkedin from "../svg/ProfileLinkedin";
 
 interface ITeamCardProps {
-  imageSrc: StaticImageData;
+  imageSrc: string;
   name: string;
   position: string;
   facebook?: string;
@@ -29,6 +29,8 @@ const TeamCard = ({
           src={imageSrc}
           alt="Profile Image"
           className={styles.userImage}
+          width={120}
+          height={120}
         />
       </div>
 
