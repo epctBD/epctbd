@@ -12,6 +12,7 @@ interface ITeamCardProps {
   facebook?: string;
   twitter?: string;
   linkedin?: string;
+  exTeamMember: boolean;
 }
 
 const TeamCard = ({
@@ -21,6 +22,7 @@ const TeamCard = ({
   facebook,
   twitter,
   linkedin,
+  exTeamMember,
 }: ITeamCardProps) => {
   return (
     <div className={styles.teamCardWrapper}>
@@ -37,23 +39,25 @@ const TeamCard = ({
       <div className={styles.innerWrapper}>
         <p className={styles.name}>{name}</p>
         <p className={styles.position}>{position}</p>
-        <div className={styles.socialMediaSection}>
-          {facebook && (
-            <Link href={""}>
-              <ProfileFacebook />
-            </Link>
-          )}
-          {twitter && (
-            <Link href={""}>
-              <ProfileTwitter />
-            </Link>
-          )}
-          {linkedin && (
-            <Link href={""}>
-              <ProfileLinkedin />
-            </Link>
-          )}
-        </div>
+        {!exTeamMember && (
+          <div className={styles.socialMediaSection}>
+            {facebook && (
+              <Link href={""} className={styles.socialMediaLink}>
+                <ProfileFacebook />
+              </Link>
+            )}
+            {twitter && (
+              <Link href={""} className={styles.socialMediaLink}>
+                <ProfileTwitter />
+              </Link>
+            )}
+            {linkedin && (
+              <Link href={""} className={styles.socialMediaLink}>
+                <ProfileLinkedin />
+              </Link>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

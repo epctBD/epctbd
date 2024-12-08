@@ -2,7 +2,7 @@
 
 .teamCardWrapper {
   padding: 16px;
-  width: 270px;
+  max-width: 270px;
   border: 1px solid $gray-color-800;
   background-color: $content-background-color;
   border-radius: 16px;
@@ -51,11 +51,16 @@
   }
 
   .socialMediaSection {
+    height: 40px;
     margin-top: 20px;
 
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
+
+    .socialMediaLink {
+      color: $gray-color-500;
+    }
   }
 }

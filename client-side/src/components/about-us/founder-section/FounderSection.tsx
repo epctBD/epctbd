@@ -9,14 +9,14 @@ import ProfileLinkedin from "@/components/common/svg/ProfileLinkedin";
 const FounderSection = () => {
   return (
     <Row gutter={[24, 24]} justify="center">
-      <Col span={12}>
+      <Col xs={24} md={12}>
         <div className={styles.founderImageSection}>
           <div className={styles.founderImageWrapper}>
             <Image src={img} alt="About us image" />
           </div>
         </div>
       </Col>
-      <Col span={12}>
+      <Col xs={24} md={12}>
         <div className={styles.founderDetails}>
           <p className={styles.title}>
             Our mission has always been to transform challenges into

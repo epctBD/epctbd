@@ -25,6 +25,7 @@ const UpdateTeamMember = ({
     control,
     reset,
     formState: { errors },
+    watch,
   } = useForm<ITeamMember>();
 
   const [imageData, setImageData] = useState<File | null>(null);
@@ -36,6 +37,9 @@ const UpdateTeamMember = ({
         name: currentTeam.name,
         position: currentTeam.position,
         isExTeam: currentTeam.isExTeam,
+        facebook: currentTeam.facebook,
+        twitter: currentTeam.twitter,
+        linkedin: currentTeam.linkedin,
       });
       setImageB64(currentTeam.display_picture || null);
     }
@@ -58,6 +62,9 @@ const UpdateTeamMember = ({
       formData.append("name", data.name);
       formData.append("position", data.position);
       formData.append("isExTeam", data.isExTeam ? "true" : "false");
+      formData.append("facebook", data.facebook || "");
+      formData.append("twitter", data.twitter || "");
+      formData.append("linkedin", data.linkedin || "");
 
       if (imageData) {
         formData.append("display_picture", imageData);
@@ -78,6 +85,8 @@ const UpdateTeamMember = ({
     }
   };
 
+  const isExMember = watch("isExTeam");
+
   return (
     <Modal
       key="update team member"
@@ -87,8 +96,8 @@ const UpdateTeamMember = ({
       footer={null}
     >
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div style={{ marginBottom: "15px" }}>
-          <label>Name</label>
+        <div className={"general-input-wrapper"}>
+          <label className={"general-label"}>Name</label>
           <Controller
             name="name"
             control={control}
@@ -104,14 +113,18 @@ const UpdateTeamMember = ({
           )}
         </div>
 
-        <div style={{ marginBottom: "15px" }}>
-          <label>Position</label>
+        <div className={"general-input-wrapper"}>
+          <label className={"general-label"}>Position</label>
           <Controller
             name="position"
             control={control}
             rules={{ required: "Position is required" }}
             render={({ field }) => (
-              <Input {...field} placeholder="Enter position" />
+              <Input
+                {...field}
+                placeholder="Enter position"
+                className={"general-input"}
+              />
             )}
           />
           {errors.position && (
@@ -121,7 +134,7 @@ const UpdateTeamMember = ({
           )}
         </div>
 
-        <div style={{ marginBottom: "15px" }}>
+        <div className={"general-input-wrapper"}>
           <label className="general-label">Member Image</label>
           <CoreImageUploader
             buttonText="Update Image"
@@ -131,8 +144,14 @@ const UpdateTeamMember = ({
           />
         </div>
 
-        <div style={{ marginBottom: "15px" }}>
-          <label>Is Ex-Team Member?</label>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            marginBottom: "12px",
+          }}
+        >
+          <label className={"general-label"}>Is Ex-Team Member?</label>
           <Controller
             name="isExTeam"
             control={control}
@@ -142,15 +161,82 @@ const UpdateTeamMember = ({
                 <Radio value={true}>Yes</Radio>
               </Radio.Group>
             )}
+            rules={{
+              validate: (value) =>
+                value !== undefined || "Ex Team member is required",
+            }}
           />
+          {errors.isExTeam && (
+            <p style={{ color: "red", marginTop: "5px" }}>
+              {errors.isExTeam.message}
+            </p>
+          )}
         </div>
 
-        <CoreButton
-          text="Update Team Member"
-          type="primary"
-          htmlType="submit"
-          loading={loading}
-        />
+        {!isExMember && (
+          <div className={"general-input-wrapper"}>
+            <label className={"general-label"}>Facebook Handle Link</label>
+            <Controller
+              name="facebook"
+              control={control}
+              render={({ field }) => (
+                <Input
+                  {...field}
+                  placeholder="Enter Facebook Handel"
+                  className={"general-input"}
+                />
+              )}
+            />
+          </div>
+        )}
+
+        {!isExMember && (
+          <div className={"general-input-wrapper"}>
+            <label className={"general-label"}>Twitter Handle Link</label>
+            <Controller
+              name="twitter"
+              control={control}
+              render={({ field }) => (
+                <Input
+                  {...field}
+                  placeholder="Enter Twitter Handel"
+                  className={"general-input"}
+                />
+              )}
+            />
+          </div>
+        )}
+
+        {!isExMember && (
+          <div className={"general-input-wrapper"}>
+            <label className={"general-label"}>Linkedin Handle Link</label>
+            <Controller
+              name="linkedin"
+              control={control}
+              render={({ field }) => (
+                <Input
+                  {...field}
+                  placeholder="Enter Linkedin Handel"
+                  className={"general-input"}
+                />
+              )}
+            />
+          </div>
+        )}
+
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "end",
+          }}
+        >
+          <CoreButton
+            text="Update"
+            type="primary"
+            htmlType="submit"
+            loading={loading}
+          />
+        </div>
       </form>
     </Modal>
   );

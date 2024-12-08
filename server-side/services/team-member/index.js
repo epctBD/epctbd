@@ -17,7 +17,7 @@ const addTeamMember = async (member_data) => {
 };
 
 const getTeamMembers = async () => {
-  const team_members = await Team.find({});
+  const team_members = await Team.find();
 
   if (team_members.length === 0) {
     return {

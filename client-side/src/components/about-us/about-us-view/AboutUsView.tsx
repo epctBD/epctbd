@@ -16,14 +16,14 @@ const AboutUsView = ({ team }: IAboutUsViewProps) => {
   return (
     <div className={styles.aboutUsWrapper}>
       <Row gutter={[48, 24]} align="middle">
-        <Col span={11}>
+        <Col xs={24} lg={11}>
           <div className={styles.leftSide}>
             <div className={styles.imageWrapper}>
               <Image src={img} alt="About us image" />
             </div>
           </div>
         </Col>
-        <Col span={13}>
+        <Col xs={24} lg={13}>
           <div className={styles.rightSide}>
             <div className={styles.startTag}>
               <div className={styles.divider} />
@@ -55,15 +55,15 @@ const AboutUsView = ({ team }: IAboutUsViewProps) => {
         </Col>
       </Row>
 
-      <Row className={styles.marginX80}>
-        <Col span={11}>
+      <Row gutter={[24, 24]} className={styles.marginX80} align="middle">
+        <Col xs={24} lg={11}>
           <div className={styles.startTag}>
             <div className={styles.divider} />
             <p className={styles.tagText}>Our Core Values</p>
           </div>
           <p className={styles.title}>Principles That Inspire Excellence</p>
         </Col>
-        <Col span={13}>
+        <Col xs={24} lg={13}>
           <div className={styles.valueCardWrapper}>
             <div
               className={`${styles.valueCardInnerWrapper} ${styles.marginLeft}`}
@@ -83,19 +83,56 @@ const AboutUsView = ({ team }: IAboutUsViewProps) => {
         <FounderSection />
       </div>
 
-      <div className={styles.marginX80}>
-        <p className={styles.title}>Meet Our Team</p>
-        {team.map((member) => (
-          <TeamCard
-            key={member?._id}
-            imageSrc={member?.display_picture}
-            name={member.name}
-            position={member.position}
-            facebook={member.facebook}
-            twitter={member.twitter}
-            linkedin={member.linkedin}
-          />
-        ))}
+      <div className={styles.teamSection}>
+        <div className={styles.teamHeader}>
+          <p className={styles.title}>Meet Our Team</p>
+          <p className={styles.subtitle}>
+            A team dedicated to bringing your vision to life.
+          </p>
+        </div>
+        <Row gutter={[24, 100]}>
+          {team
+            .filter((member) => !member.isExTeam)
+            .map((member) => (
+              <Col xs={24} sm={12} md={8} lg={6} key={member?._id}>
+                <TeamCard
+                  imageSrc={member?.display_picture}
+                  name={member.name}
+                  position={member.position}
+                  facebook={member.facebook}
+                  twitter={member.twitter}
+                  linkedin={member.linkedin}
+                  exTeamMember={member.isExTeam}
+                />
+              </Col>
+            ))}
+        </Row>
+      </div>
+
+      <div className={styles.teamSection}>
+        <div className={styles.teamHeader}>
+          <p className={styles.title}>Our Ex Teammate</p>
+          <p className={styles.subtitle}>
+            People who helped us becamce what we are
+          </p>
+        </div>
+        <Row gutter={[24, 100]}>
+          {team
+            .filter((member) => member.isExTeam)
+            .map((member) => (
+              <Col xs={24} sm={12} md={8} lg={6} key={member?._id}>
+                <TeamCard
+                  imageSrc={member?.display_picture}
+                  name={member.name}
+                  position={member.position}
+                  facebook={member.facebook}
+                  twitter={member.twitter}
+                  linkedin={member.linkedin}
+                  exTeamMember={member.isExTeam}
+                />
+              </Col>
+            ))}
+        </Row>
       </div>
     </div>
   );
