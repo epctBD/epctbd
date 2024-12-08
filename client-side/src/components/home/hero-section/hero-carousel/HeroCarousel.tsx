@@ -19,7 +19,7 @@ interface HeroCarouselProps {
   updateBackground: (item: CarouselItem) => void; // Updated type
 }
 
-const HeroCarousel: React.FC<HeroCarouselProps> = ({ updateBackground }) => {
+const HeroCarousel = ({ updateBackground }: HeroCarouselProps) => {
   const settings: Settings = {
     dots: true,
     infinite: true,

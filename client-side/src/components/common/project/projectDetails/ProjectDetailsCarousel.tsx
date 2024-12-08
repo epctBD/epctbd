@@ -15,9 +15,7 @@ interface ProjectDetailsCarouselProps {
   data: CarouselItem[];
 }
 
-const ProjectDetailsCarousel: React.FC<ProjectDetailsCarouselProps> = ({
-  data,
-}) => {
+const ProjectDetailsCarousel = ({ data }: ProjectDetailsCarouselProps) => {
   const [selectedItem, setSelectedItem] = useState<CarouselItem>(data[0]);
 
   const settings: Settings = {

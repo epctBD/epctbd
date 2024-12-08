@@ -1,4 +1,4 @@
-import { Breadcrumb, Col, Row } from "antd";
+import { Breadcrumb, Col, Row, Tabs } from "antd";
 import styles from "./ProjectDetails.module.scss";
 import AreaIcon from "@/components/common/svg/AreaIcon";
 import Lighting from "@/components/common/svg/Lighting";
@@ -7,7 +7,7 @@ import img1 from "../../../../public/Carousel/1.png";
 import img2 from "../../../../public/Carousel/2.png";
 import img3 from "../../../../public/Carousel/3.png";
 import img4 from "../../../../public/Carousel/demo.png";
-import ProjectDetailsCarousel from "@/components/projects/project-details/projectDetails/ProjectDetailsCarousel";
+import ProjectDetailsCarousel from "@/components/common/project/projectDetails/ProjectDetailsCarousel";
 import { StaticImageData } from "next/image";
 
 export interface IProjectData {
@@ -16,8 +16,24 @@ export interface IProjectData {
   area?: string;
   lightingDesigners?: string;
   location?: string;
+  year?: string;
   images: Array<{ id: number; imageId: StaticImageData }>;
 }
+
+const items = [
+  {
+    key: "1",
+    label: "Project Overview",
+  },
+  {
+    key: "2",
+    label: "Key Features",
+  },
+  {
+    key: "3",
+    label: "Outcome",
+  },
+];
 
 const dummyProjectData: IProjectData = {
   title: "Green Valley Residential Complex",
@@ -25,6 +41,7 @@ const dummyProjectData: IProjectData = {
     "Green Valley is a modern residential complex featuring eco-friendly designs, open spaces, and state-of-the-art facilities. This project aims to provide a luxurious and sustainable living experience for residents.",
   area: "1,200 sqft",
   lightingDesigners: "Bright Illumination Co.",
+  year: "2003",
   location: "Dhaka, Bangladesh",
   images: [
     { id: 1, imageId: img1 },
@@ -41,16 +58,21 @@ const ProjectDetails = () => {
     return <div>No project data available.</div>;
   }
 
-  const { title, description, area, lightingDesigners, location, images } =
-    projectData;
+  const {
+    title,
+    description,
+    area,
+    lightingDesigners,
+    location,
+    images,
+    year,
+  } = projectData;
 
   return (
     <div className={styles.projectDetailsWrapper}>
       <Row gutter={32}>
-        {/* Project Details Section */}
         <Col span={12}>
           <div className={styles.projectDetailsHeader}>
-            {/* Breadcrumb */}
             <Breadcrumb
               separator={<span style={{ color: "#A3A6AA" }}>/</span>}
               items={[
@@ -66,13 +88,10 @@ const ProjectDetails = () => {
                 },
               ]}
             />
-            {/* Title */}
             <div className={styles.ProjectDetailsTitle}>{title}</div>
-            {/* Description */}
             <div className={styles.ProjectDetailsDescription}>
               {description}
             </div>
-            {/* Additional Info */}
             <div className={styles.ProjectDetailsInnerWrapper}>
               {area && (
                 <div className={styles.areaWrapper}>
@@ -81,6 +100,16 @@ const ProjectDetails = () => {
                   </div>
                   <p>
                     <span className={styles.areaSpan}>Area: </span> {area}
+                  </p>
+                </div>
+              )}
+              {year && (
+                <div className={styles.areaWrapper}>
+                  <div className={styles.projectIcon}>
+                    <AreaIcon />
+                  </div>
+                  <p>
+                    <span className={styles.areaSpan}>Year: </span> {year}
                   </p>
                 </div>
               )}
@@ -121,6 +150,21 @@ const ProjectDetails = () => {
                 imageId: image.imageId,
               }))}
             />
+          </div>
+        </Col>
+      </Row>
+
+      <Row>
+        <Col span={14}>
+          <div className={styles.projectTabWrapper}>
+            <div className={styles.projectTabInnerWrapper}>
+              <Tabs
+                defaultActiveKey="1"
+                items={items}
+                // onChange={onTabChange}
+              />
+            </div>
+            <div></div>
           </div>
         </Col>
       </Row>

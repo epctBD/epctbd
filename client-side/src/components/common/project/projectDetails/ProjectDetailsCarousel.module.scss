@@ -1,0 +1,92 @@
+@import "../../../../styles/global-scss/variable.scss";
+
+.projectDetailsCarousel {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  position: relative; // Add relative positioning for proper placement of child elements
+
+  .largeImageWrapper {
+    width: auto;
+    height: 443px;
+    border-radius: 24px;
+
+    .largeImage {
+      width: 100%;
+      height: 100%;
+      border-radius: 24px;
+    }
+  }
+
+  .carouselContainer {
+    display: flex;
+    gap: 8px !important;
+    height: 108px;
+
+    .carouselImage {
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  // Position arrows and dots together in the bottom-right corner
+  :global(.slick-prev),
+  :global(.slick-next),
+  :global(.slick-dots) {
+    position: absolute !important;
+  }
+
+  // Custom arrow styles
+  :global(.slick-prev),
+  :global(.slick-next) {
+    display: block !important;
+    font-size: 20px !important;
+    color: $primary-color; // Replace with your theme's primary color
+    bottom: -20px !important; // Align arrows with the dots
+  }
+
+  :global(.slick-prev) {
+    right: 80px !important; // Adjust spacing for the left arrow
+    bottom: 0 !important;
+  }
+
+  :global(.slick-next) {
+    right: 50px !important; // Adjust spacing for the right arrow
+    bottom: 0 !important;
+  }
+
+  // Custom dot styles
+  :global(.slick-dots) {
+    bottom: 20px !important; // Align dots with the arrows
+    right: 30px !important; // Position the dots closer to the right side
+    display: flex !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+  }
+
+  :global(.slick-dots li) {
+    width: 12px !important;
+    height: 12px !important;
+    margin: 0 6px !important; // Adjust spacing between dots
+  }
+
+  :global(.slick-dots li button) {
+    background-color: #ffffff !important;
+    width: 12px !important;
+    height: 12px !important;
+    border-radius: 50% !important;
+    color: #ffffff !important;
+  }
+
+  :global(.slick-dots li.slick-active button) {
+    background-color: $primary-color !important;
+  }
+
+  :global(.slick-dots li button:before) {
+    font-size: 0px !important;
+    width: 12px !important;
+    height: 12px !important;
+    border-radius: 0 !important;
+    color: #ffffff !important;
+  }
+}
