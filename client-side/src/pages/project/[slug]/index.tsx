@@ -3,6 +3,12 @@ import styles from "./ProjectDetails.module.scss";
 import AreaIcon from "@/components/common/svg/AreaIcon";
 import Lighting from "@/components/common/svg/Lighting";
 import MapIcons from "@/components/common/svg/MapIcons";
+import img1 from "../../../../public/Carousel/1.png";
+import img2 from "../../../../public/Carousel/2.png";
+import img3 from "../../../../public/Carousel/3.png";
+import img4 from "../../../../public/Carousel/demo.png";
+import ProjectDetailsCarousel from "@/components/projects/project-details/projectDetails/ProjectDetailsCarousel";
+import { StaticImageData } from "next/image";
 
 export interface IProjectData {
   title: string;
@@ -10,6 +16,7 @@ export interface IProjectData {
   area?: string;
   lightingDesigners?: string;
   location?: string;
+  images: Array<{ id: number; imageId: StaticImageData }>;
 }
 
 const dummyProjectData: IProjectData = {
@@ -19,6 +26,12 @@ const dummyProjectData: IProjectData = {
   area: "1,200 sqft",
   lightingDesigners: "Bright Illumination Co.",
   location: "Dhaka, Bangladesh",
+  images: [
+    { id: 1, imageId: img1 },
+    { id: 2, imageId: img2 },
+    { id: 3, imageId: img3 },
+    { id: 4, imageId: img4 },
+  ],
 };
 
 const ProjectDetails = () => {
@@ -28,13 +41,16 @@ const ProjectDetails = () => {
     return <div>No project data available.</div>;
   }
 
-  const { title, description, area, lightingDesigners, location } = projectData;
+  const { title, description, area, lightingDesigners, location, images } =
+    projectData;
 
   return (
     <div className={styles.projectDetailsWrapper}>
-      <Row>
+      <Row gutter={32}>
+        {/* Project Details Section */}
         <Col span={12}>
           <div className={styles.projectDetailsHeader}>
+            {/* Breadcrumb */}
             <Breadcrumb
               separator={<span style={{ color: "#A3A6AA" }}>/</span>}
               items={[
@@ -50,10 +66,13 @@ const ProjectDetails = () => {
                 },
               ]}
             />
+            {/* Title */}
             <div className={styles.ProjectDetailsTitle}>{title}</div>
+            {/* Description */}
             <div className={styles.ProjectDetailsDescription}>
               {description}
             </div>
+            {/* Additional Info */}
             <div className={styles.ProjectDetailsInnerWrapper}>
               {area && (
                 <div className={styles.areaWrapper}>
@@ -92,7 +111,18 @@ const ProjectDetails = () => {
             </div>
           </div>
         </Col>
-        <Col span={12}>project detail image</Col>
+
+        {/* Image Section */}
+        <Col span={12}>
+          <div className={styles.carouselSection}>
+            <ProjectDetailsCarousel
+              data={images.map((image) => ({
+                id: image.id,
+                imageId: image.imageId,
+              }))}
+            />
+          </div>
+        </Col>
       </Row>
     </div>
   );

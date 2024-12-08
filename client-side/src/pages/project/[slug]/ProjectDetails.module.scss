@@ -34,6 +34,12 @@
         font-size: 16px;
 
         .projectIcon {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          height: 24px;
+          width: 24px;
           padding: 12px;
           border-radius: 50%;
           background-color: #202127;

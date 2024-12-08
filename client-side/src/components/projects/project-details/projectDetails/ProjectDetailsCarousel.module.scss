@@ -1,0 +1,28 @@
+.projectDetailsCarousel {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  .largeImageWrapper {
+    width: auto;
+    height: 443px;
+    border-radius: 24px;
+
+    .largeImage {
+      width: 100%;
+      height: 100%;
+      border-radius: 24px;
+    }
+  }
+
+  .carouselContainer {
+    display: flex;
+    gap: 8px !important;
+    height: 108px;
+
+    .carouselImage {
+      height: 100%;
+      width: 100%;
+    }
+  }
+}
