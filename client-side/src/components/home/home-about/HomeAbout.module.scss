@@ -1,0 +1,126 @@
+@import "@/styles/global-scss/variable.scss";
+
+.homeAboutWrapper {
+  position: relative;
+  .homeAboutImageWrapper {
+    img {
+      width: 100%;
+    }
+  }
+
+  .sinceText {
+    margin-top: 46px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    @media (max-width: 1175px) {
+      margin-top: 0;
+    }
+
+    .divider {
+      background: white;
+      width: 32px;
+      height: 1px;
+      margin: 0;
+    }
+
+    p {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 600;
+      color: $primary-color;
+    }
+  }
+
+  .title {
+    margin: 0;
+    font-size: 48px;
+    font-weight: 700;
+    background: $title-color;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .subtitle {
+    margin: 16px 0 0 0;
+    color: $gray-color-400;
+  }
+
+  .bulletPoints {
+    margin-top: 24px;
+    margin-bottom: 32px;
+
+    .bulletList {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: space-between;
+      max-width: 470px;
+      padding: 0;
+      list-style: none;
+      color: white;
+    }
+
+    .bulletList li {
+      flex: 0 0 calc(50% - 8px);
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      font-weight: 600;
+      gap: 8px;
+    }
+
+    .bulletList li::before {
+      content: "⚪";
+      color: white;
+      font-size: 10px;
+      margin-right: 4px;
+    }
+  }
+
+  .statsSection {
+    position: absolute;
+    bottom: -25px;
+    left: 27%;
+
+    @media (max-width: 1125px) {
+      margin-top: 0;
+      bottom: -30px;
+      // left: 305px;
+    }
+
+    padding: 24px;
+    border: 1px solid $gray-color-800;
+    border-radius: 32px;
+    background-color: $content-background-color;
+
+    display: flex;
+    gap: 24px;
+
+    .singleCard {
+      background-color: #1b1b1f;
+      padding: 16px 24px;
+      border: 1px solid $gray-color-800;
+      border-radius: 16px;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      .number {
+        margin: 0;
+        font-weight: 700;
+        font-size: 56px;
+        color: $white-color;
+      }
+      .text {
+        margin: 0;
+        color: $gray-color-400;
+      }
+    }
+  }
+}

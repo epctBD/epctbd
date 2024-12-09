@@ -1,13 +1,6 @@
 import Head from "next/head";
 import dynamic from "next/dynamic";
-import CoreBanner from "@/components/common/core-components/core-banner/CoreBanner";
-import ServiceCard from "@/components/common/service-card/ServiceCard";
-import image from "@/components/common/service-card/service.png";
-import Cta from "@/components/cta/Cta";
-import HomeProjects from "@/components/home/home-projects/HomeProjects";
-// import PortfolioCard from "@/components/common/portfolio-card/PortfolioCard";
-import HomeFeedback from "@/components/home/home-feedback/HomeFeedback";
-import HomeBlogs from "@/components/home/home-blog/HomeBlogs";
+import HomeAbout from "@/components/home/home-about/HomeAbout";
 
 const DynamicHeroSection = dynamic(
   () => import("@/components/home/hero-section/Hero"),
@@ -25,33 +18,10 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div>
-        <main>
-          <DynamicHeroSection />
+        <DynamicHeroSection />
 
-          <div>
-            <HomeProjects />
-            <HomeFeedback />
-            <HomeBlogs />
-          </div>
-        </main>
-
-        <CoreBanner
-          title="About us"
-          subtitle="Discover our journey and the passion behind exceptional travel."
-          crumbOne="Home"
-          crumbTwo="About Us"
-        />
-
-        {/* <PortfolioCard /> */}
-
-        <ServiceCard
-          image={image}
-          title="Interior Design"
-          subtitle="Crafting spaces that inspire and elevate."
-        />
-
-        <div style={{ padding: "40px 80px" }}>
-          <Cta />
+        <div className={"container-wrapper"}>
+          <HomeAbout />
         </div>
       </div>
     </>
