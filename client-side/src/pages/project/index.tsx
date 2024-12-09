@@ -19,6 +19,8 @@ interface IProjectProps {
 const Project = ({ projects }: IProjectProps) => {
   const [projectList, setProjectList] = useState<IProject[]>(projects);
 
+  console.log(projectList);
+
   return (
     <div>
       <CoreBanner

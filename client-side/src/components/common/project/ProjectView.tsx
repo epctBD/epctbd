@@ -5,6 +5,18 @@ import ProjectCard from "../project-card/ProjectCard";
 import { getProjects } from "@/services/project.service";
 import styles from "./ProjectView.module.scss";
 
+export const heights = [
+  480,
+  560,
+  435, // Row 1
+  512,
+  480,
+  480, // Row 2
+  435,
+  480,
+  435, // Row 3
+];
+
 interface IProjectViewProps {
   projectList: IProject[];
   setProjectList: React.Dispatch<React.SetStateAction<IProject[]>>;
@@ -63,13 +75,13 @@ const ProjectView = ({ projectList, setProjectList }: IProjectViewProps) => {
       <div className={styles.projectTabWrapper}>
         <Tabs defaultActiveKey="1" items={items} onChange={onTabChange} />
       </div>
-      <Row justify="center" align="middle" gutter={[24, 24]}>
+      <Row justify="center" gutter={[24, 24]}>
         {isLoading ? (
           <div className="project-card-loader">loading</div>
         ) : projectList?.length <= 0 ? (
           <div className="no-data">No data</div>
         ) : (
-          projectList?.map((project: IProject) => (
+          projectList?.map((project: IProject, index) => (
             <Col span={8} xs={24} sm={24} md={12} lg={8} key={project?._id}>
               <ProjectCard
                 id={project._id}
@@ -77,6 +89,8 @@ const ProjectView = ({ projectList, setProjectList }: IProjectViewProps) => {
                 location={project.location || ""}
                 imageSrc={project.projectImages?.[0] || ""}
                 type={project.serviceType}
+                imageHeight={heights[index % heights.length]}
+                slug={project.projectSlug || ""}
               />
             </Col>
           ))

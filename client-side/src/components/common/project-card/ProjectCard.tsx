@@ -1,6 +1,7 @@
 import styles from "./ProjectCard.module.scss";
 import MapIcons from "../svg/MapIcons";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 export interface IProjectCardProps {
   id: string;
@@ -9,6 +10,7 @@ export interface IProjectCardProps {
   imageSrc: string;
   type: string;
   imageHeight: number;
+  slug: string;
 }
 
 const ProjectCard = ({
@@ -17,9 +19,15 @@ const ProjectCard = ({
   imageSrc,
   type,
   imageHeight = 460,
+  slug,
 }: IProjectCardProps) => {
+  const router = useRouter();
+  const goToDetails = () => {
+    router.push(`project/${slug}`);
+  };
+
   return (
-    <div className={styles.projectCardWrapper}>
+    <div className={styles.projectCardWrapper} onClick={goToDetails}>
       <div
         className={styles.proejectImageWrapper}
         style={{ height: `${imageHeight}px` }}

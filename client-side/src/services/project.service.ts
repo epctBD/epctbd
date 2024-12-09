@@ -9,6 +9,12 @@ export const getProjects = async (category: string): Promise<IProject[]> => {
   return response?.data?.data;
 };
 
+export const getProject = async (projectSlug: string): Promise<IProject[]> => {
+  const url = `project/${projectSlug}`;
+  const response = await AXIOS_INSTANCE.get<IProjectResponse>(url);
+  return response?.data?.data;
+};
+
 export const createPortfolio = async (
   data: FormData
 ): Promise<IPortfolio[]> => {

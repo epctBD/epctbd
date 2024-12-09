@@ -1,6 +1,5 @@
 export interface IProject {
   _id: string;
-  slug: string;
   projectSlug?: string;
   name: string;
   details: string;
