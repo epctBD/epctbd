@@ -1,0 +1,76 @@
+.projectDetailsWrapper {
+  margin: 0 80px;
+  padding: 80px 0;
+
+  .projectDetailsHeader {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .ProjectDetailsTitle {
+      font-size: 48px;
+      font-weight: 700;
+      background: linear-gradient(180deg, #ffffff 12.23%, #9b9b9b 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .ProjectDetailsDescription {
+      color: white;
+      font-size: 16px;
+    }
+
+    .ProjectDetailsInnerWrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+
+      .areaWrapper {
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        gap: 8px;
+        color: white;
+        font-size: 16px;
+
+        .projectIcon {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          height: 24px;
+          width: 24px;
+          padding: 12px;
+          border-radius: 50%;
+          background-color: #202127;
+        }
+
+        .areaSpan {
+          font-size: 18px;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+
+  .projectTabWrapper {
+    border: 1px solid #27282a;
+    background-color: #202127;
+    border-radius: 24px;
+    margin: 104px 0 40px 0;
+    padding: 24px;
+    // display: flex;
+    min-height: 300px;
+
+    .projecttabinnerwrapper {
+      margin-bottom: 40px;
+
+      .customTabContent {
+        .tabItemDescription {
+          font-size: 16px;
+          color: white !important;
+        }
+      }
+    }
+  }
+}

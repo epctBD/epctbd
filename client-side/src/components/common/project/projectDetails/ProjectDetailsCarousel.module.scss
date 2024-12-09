@@ -1,0 +1,126 @@
+@import "../../../../styles/global-scss/variable.scss";
+
+.projectDetailsCarousel {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  .largeImageWrapper {
+    width: auto;
+    height: 443px;
+    border-radius: 24px;
+
+    .largeImage {
+      width: 100%;
+      height: 100%;
+      border-radius: 24px;
+    }
+  }
+
+  .carouselContainer {
+    position: relative;
+
+    .carouselImageWrapper {
+      height: 108px;
+      display: flex !important;
+      gap: 8px !important;
+      margin: 0 4px;
+
+      .carouselImage {
+        height: 100%;
+        width: 100%;
+        border-radius: 16px;
+        filter: brightness(70%);
+      }
+    }
+  }
+
+  // Custom arrow styles
+  :global(.slick-prev),
+  :global(.slick-next) {
+    display: block !important;
+    font-size: 0px !important;
+    color: $primary-color;
+  }
+
+  :global(.slick-prev) {
+    top: 120% !important;
+    left: 72% !important;
+    width: 24px !important;
+    height: 24px !important;
+    z-index: 100;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background-color: #18191b !important;
+    border: 1px solid #27282a !important;
+    padding: 16px !important;
+    border-radius: 50% !important;
+  }
+
+  :global(.slick-next) {
+    top: 120% !important;
+    left: 95% !important;
+    width: 24px !important;
+    height: 24px !important;
+    z-index: 100;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background-color: #18191b !important;
+    border: 1px solid #27282a !important;
+    padding: 16px !important;
+    border-radius: 50% !important;
+  }
+
+  :global(.slick-prev:before),
+  :global(.slick-next:before) {
+    display: none !important;
+  }
+
+  :global(.slick-prev::after) {
+    content: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTE1IDE5TDggMTJMMTUgNSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjwvc3ZnPgo=") !important;
+    color: white !important;
+    font-size: 15px !important;
+  }
+
+  :global(.slick-next::after) {
+    content: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5IiBoZWlnaHQ9IjE2IiB2aWV3Qm94PSIwIDAgOSAxNiIgZmlsbD0ibm9uZSI+PHBhdGggZD0iTTEgMUw4IDhMMiAxNSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PC9zdmc+") !important;
+    color: white !important;
+    font-size: 15px !important;
+  }
+
+  // Custom dot styles
+  :global(.slick-dots) {
+    position: absolute !important;
+    top: 105%;
+    left: 66%;
+    width: 40%;
+  }
+
+  :global(.slick-dots li) {
+    width: 8px !important;
+    height: 8px !important;
+    margin: 0 6px !important;
+  }
+
+  :global(.slick-dots li button) {
+    background-color: #27282a !important;
+    width: 8px !important;
+    height: 8px !important;
+    border-radius: 50% !important;
+    color: #27282a !important;
+  }
+
+  :global(.slick-dots li.slick-active button) {
+    background-color: white !important;
+  }
+
+  :global(.slick-dots li button:before) {
+    font-size: 0px !important;
+    width: 8px !important;
+    height: 8px !important;
+    border-radius: 0 !important;
+    color: #ffffff !important;
+  }
+}
