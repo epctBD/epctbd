@@ -8,12 +8,12 @@ const HomeAbout = () => {
   return (
     <div className={styles.homeAboutWrapper}>
       <Row gutter={[24, 24]}>
-        <Col span={12}>
+        <Col xs={24} md={12}>
           <div className={styles.homeAboutImageWrapper}>
             <Image src={home_about} alt="Landing Page's About Us" />
           </div>
         </Col>
-        <Col span={12}>
+        <Col xs={24} md={12}>
           <div className={styles.sinceText}>
             <div className={styles.divider} />
             <p>Since 19992</p>
