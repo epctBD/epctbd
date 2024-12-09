@@ -6,17 +6,12 @@ import styles from "./ProjectDetailsCarousel.module.scss";
 
 import Image from "next/image";
 
-interface CarouselItem {
-  id: string;
-  imageId: string;
-}
-
 interface ProjectDetailsCarouselProps {
-  data: CarouselItem[];
+  data: string[];
 }
 
 const ProjectDetailsCarousel = ({ data }: ProjectDetailsCarouselProps) => {
-  const [selectedItem, setSelectedItem] = useState<CarouselItem>(data[0]);
+  const [selectedItem, setSelectedItem] = useState(data[0]);
 
   const settings: Settings = {
     dots: true,
@@ -49,24 +44,28 @@ const ProjectDetailsCarousel = ({ data }: ProjectDetailsCarouselProps) => {
     >
       <div className={styles.largeImageWrapper}>
         <Image
-          src={selectedItem.imageId}
+          src={selectedItem}
           alt="Project-images"
           className={styles.largeImage}
-          objectFit="cover"
-          priority
+          // objectFit="cover"
+          // priority
+          width={630}
+          height={443}
         />
       </div>
 
       {/* Carousel  */}
       <Slider {...settings}>
-        {data.map((item) => (
-          <div key={item.id} className={styles.carouselContainer}>
+        {data.map((item, index) => (
+          <div key={index} className={styles.carouselContainer}>
             <div className={styles.carouselImageWrapper}>
               <Image
-                src={item.imageId}
+                src={item}
                 alt="project-image"
                 className={styles.carouselImage}
                 objectFit="cover"
+                width={140}
+                height={108}
               />
             </div>
           </div>
