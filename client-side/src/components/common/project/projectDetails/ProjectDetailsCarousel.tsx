@@ -61,12 +61,14 @@ const ProjectDetailsCarousel = ({ data }: ProjectDetailsCarouselProps) => {
       <Slider {...settings}>
         {data.map((item) => (
           <div key={item.id} className={styles.carouselContainer}>
-            <Image
-              src={item.imageId}
-              alt="project-image"
-              className={styles.carouselImage}
-              objectFit="cover"
-            />
+            <div className={styles.carouselImageWrapper}>
+              <Image
+                src={item.imageId}
+                alt="project-image"
+                className={styles.carouselImage}
+                objectFit="cover"
+              />
+            </div>
           </div>
         ))}
       </Slider>
