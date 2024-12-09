@@ -26,7 +26,7 @@ const ProjectDetailsCarousel = ({ data }: ProjectDetailsCarouselProps) => {
     autoplay: true,
     speed: 500,
     swipeToSlide: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 2000,
     cssEase: "linear",
     beforeChange: (oldIndex: number, newIndex: number) => {
       const newSelectedItem = data[newIndex % data.length];
