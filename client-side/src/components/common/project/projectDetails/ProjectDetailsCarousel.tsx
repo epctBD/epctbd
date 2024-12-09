@@ -4,11 +4,11 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import styles from "./ProjectDetailsCarousel.module.scss";
 
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 
 interface CarouselItem {
-  id: number;
-  imageId: StaticImageData;
+  id: string;
+  imageId: string;
 }
 
 interface ProjectDetailsCarouselProps {

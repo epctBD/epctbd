@@ -54,10 +54,23 @@
   }
 
   .projectTabWrapper {
-    .projectTabInnerWrapper {
+    border: 1px solid #27282a;
+    background-color: #202127;
+    border-radius: 24px;
+    margin: 104px 0 40px 0;
+    padding: 24px;
+    // display: flex;
+    min-height: 300px;
+
+    .projecttabinnerwrapper {
       margin-bottom: 40px;
-      display: flex;
-      justify-content: space-between;
+
+      .customTabContent {
+        .tabItemDescription {
+          font-size: 16px;
+          color: white !important;
+        }
+      }
     }
   }
 }
