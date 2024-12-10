@@ -15,7 +15,7 @@ const HomeFeedback = () => {
     infinite: true,
     slidesToScroll: 1,
     autoplay: true,
-    centerPadding: "160px",
+    centerPadding: "230px",
     speed: 200,
     autoplaySpeed: 2000,
     cssEase: "linear",
