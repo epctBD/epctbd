@@ -1,3 +1,4 @@
+import CoreBanner from "@/components/common/core-components/core-banner/CoreBanner";
 import dynamic from "next/dynamic";
 import Head from "next/head";
 
@@ -14,8 +15,16 @@ const Contact = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div>
-        <ContactUs />
+      <div className="">
+        <CoreBanner
+          title="Contact Us"
+          subtitle="Contact us"
+          crumbOne="Home"
+          crumbTwo="Contact Us"
+        />
+        <div className={"container-wrapper"}>
+          <ContactUs />
+        </div>
       </div>
     </>
   );

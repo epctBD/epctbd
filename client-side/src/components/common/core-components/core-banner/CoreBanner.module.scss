@@ -20,6 +20,18 @@
     pointer-events: none;
   }
 
+  @media (max-width: 1024px) {
+    height: 200px;
+  }
+
+  @media (max-width: 768px) {
+    height: 180px;
+  }
+
+  @media (max-width: 480px) {
+    height: 150px;
+  }
+
   .bannerBackgroundImage {
     height: 100%;
     width: 100%;
@@ -39,12 +51,32 @@
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
+
+      @media (max-width: 1024px) {
+        font-size: 36px;
+      }
+
+      @media (max-width: 768px) {
+        font-size: 28px;
+      }
     }
 
     .SubTitle {
       margin: 0;
       font-size: 16px;
       color: $secondary-text-color;
+    }
+
+    @media (max-width: 1024px) {
+      left: 40px;
+    }
+
+    @media (max-width: 768px) {
+      left: 20px;
+    }
+
+    @media (max-width: 480px) {
+      left: 10px;
     }
   }
 
@@ -73,6 +105,20 @@
     .crumbTwo {
       margin: 0;
       font-size: 16px;
+    }
+
+    @media (max-width: 1024px) {
+      right: 40px;
+    }
+
+    @media (max-width: 768px) {
+      right: 20px;
+      padding: 10px 20px;
+    }
+
+    @media (max-width: 480px) {
+      right: 10px;
+      padding: 6px 12px;
     }
   }
 }

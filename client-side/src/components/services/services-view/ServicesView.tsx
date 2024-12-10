@@ -8,9 +8,9 @@ const ServicesView = () => {
     <div className={styles.servicesViewWrapper}>
       <p className={styles.serviceTitle}>Specialization Is Our Strength</p>
       <div>
-        <Row gutter={[24, 24]} justify="center">
+        <Row gutter={[24, 24]} justify="center" align="middle">
           {services.map((service) => (
-            <Col span={6} key={service.slug}>
+            <Col xs={24} sm={12} md={8} lg={6} key={service.slug}>
               <ServiceCard
                 image={service.image}
                 title={service.title}

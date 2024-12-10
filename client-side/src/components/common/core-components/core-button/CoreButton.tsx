@@ -25,6 +25,7 @@ const CoreButton = (props: ICoreButtonProps) => {
     text,
     isFullWidth = false,
     htmlType,
+    size,
     ...others
   } = props;
 
@@ -35,6 +36,7 @@ const CoreButton = (props: ICoreButtonProps) => {
         isFullWidth ? styles["full-width"] : ""
       }`}
       {...others}
+      size={size}
       htmlType={htmlType}
     >
       {text}

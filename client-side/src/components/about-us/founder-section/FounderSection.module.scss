@@ -7,11 +7,19 @@
 
   .founderImageWrapper {
     border-radius: 16px;
-    max-width: 400px;
+    width: 100%;
+
+    @media (max-width: 576px) {
+      height: auto;
+    }
 
     img {
       width: 100%;
       border-radius: 16px;
+
+      @media (max-width: 576px) {
+        height: 100%;
+      }
     }
   }
 }

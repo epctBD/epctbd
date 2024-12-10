@@ -1,5 +1,4 @@
 import { Col, Row } from "antd";
-import CoreBanner from "../common/core-components/core-banner/CoreBanner";
 import styles from "./ContactUs.module.scss";
 import ContactPhone from "../common/svg/ContactPhone";
 import ContactEmail from "../common/svg/ContactEmail";
@@ -9,15 +8,9 @@ import ContactUsForm from "./ContactUsForm";
 const ContactUs = () => {
   return (
     <div className={styles.contactWrapper}>
-      <CoreBanner
-        title="Contact Us"
-        subtitle="Contact us"
-        crumbOne="Home"
-        crumbTwo="Contact Us"
-      />
       <div className={styles.contactLayout}>
         <Row gutter={[24, 24]}>
-          <Col span={8}>
+          <Col xs={24} lg={8}>
             <p className={styles.getInTouch}>Get In Touch</p>
             <p className={styles.title}>
               CONTACT US FOR RELIABLE EXPERT SOLUTIONS
@@ -48,7 +41,7 @@ const ContactUs = () => {
               </div>
             </div>
           </Col>
-          <Col span={16}>
+          <Col xs={24} lg={16}>
             <ContactUsForm />
           </Col>
         </Row>

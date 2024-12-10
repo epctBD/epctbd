@@ -4,7 +4,6 @@
   color: white;
 
   .contactLayout {
-    padding: 80px;
     .getInTouch {
       margin: 0;
       font-size: 20px;
@@ -20,6 +19,10 @@
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
+
+      @media (max-width: 576px) {
+        font-size: 32px;
+      }
     }
   }
 
@@ -35,10 +38,19 @@
     flex-direction: column;
     gap: 24px;
 
+    @media (max-width: 576px) {
+      padding: 16px;
+    }
+
     .singleSection {
       display: flex;
       gap: 12px;
       align-items: center;
+
+      @media (max-width: 576px) {
+        gap: 8px;
+      }
+
       .textSection {
         display: flex;
         flex-direction: column;
@@ -47,12 +59,20 @@
         .type {
           margin: 0;
           color: $gray-color-300;
+
+          @media (max-width: 576px) {
+            font-size: 14px;
+          }
         }
 
         .value {
           margin: 0;
           font-weight: 600;
           color: $white-color;
+
+          @media (max-width: 576px) {
+            font-size: 16px;
+          }
         }
       }
     }
@@ -63,6 +83,10 @@
     border-radius: 16px;
     padding: 24px;
 
+    @media (max-width: 576px) {
+      padding: 16px;
+    }
+
     .header {
       .letTalk {
         margin: 0;
@@ -72,6 +96,10 @@
         -webkit-background-clip: text;
         background-clip: text;
         -webkit-text-fill-color: transparent;
+
+        @media (max-width: 576px) {
+          font-size: 32px;
+        }
       }
 
       .subTitle {
@@ -82,12 +110,20 @@
 
     .formWrapepr {
       margin-top: 60px;
+
+      @media (max-width: 576px) {
+        margin-top: 40px;
+      }
     }
   }
 }
 
 .inputWrapper {
   margin-bottom: 16px;
+
+  @media (max-width: 576px) {
+    margin-bottom: 12px;
+  }
 }
 
 .generalInput {

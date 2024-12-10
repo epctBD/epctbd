@@ -1,12 +1,12 @@
 @import "../global-scss/variable.scss";
 
 .ant-tabs {
-  width: auto; // Allow tabs to adjust width based on content
+  width: auto;
   display: inline-block;
-}
 
-.tablist {
-  border: 1px solid red !important;
+  @media (max-width: 700px) {
+    width: 100%;
+  }
 }
 
 .ant-tabs-nav {

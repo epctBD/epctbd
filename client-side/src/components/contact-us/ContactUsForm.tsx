@@ -34,7 +34,7 @@ const ContactUsForm = () => {
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className={styles.formWrapepr}>
         <Row gutter={24}>
-          <Col span={12}>
+          <Col xs={24} md={12}>
             <div className={styles.inputWrapper}>
               <Controller
                 name="Name"
@@ -53,7 +53,7 @@ const ContactUsForm = () => {
               )}
             </div>
           </Col>
-          <Col span={12}>
+          <Col xs={24} md={12}>
             <div className={styles.inputWrapper}>
               <Controller
                 name="PhoneNumber"

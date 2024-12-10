@@ -9,8 +9,13 @@
   border: 1px solid $gray-color-800;
   border-radius: 20px;
 
+  @media (max-width: 768px) {
+    height: 500px;
+  }
+
   @media (max-width: 576px) {
     height: auto;
+    min-height: 290px;
     aspect-ratio: 1.618;
   }
 
@@ -24,6 +29,21 @@
       width: 480px;
       bottom: 40px;
 
+      @media (max-width: 1024px) {
+        width: 400px;
+        bottom: 30px;
+      }
+
+      @media (max-width: 768px) {
+        width: 60%;
+      }
+
+      @media (max-width: 576px) {
+        width: 90%;
+        bottom: 20px;
+        left: 0;
+      }
+
       background-color: $background-color;
       border: 1px solid $gray-color-800;
       border-radius: 16px;
@@ -36,10 +56,18 @@
 
       &.cardLeft {
         left: 40px;
+
+        @media (max-width: 576px) {
+          left: 0;
+        }
       }
 
       &.cardRight {
         right: 40px;
+
+        @media (max-width: 576px) {
+          right: 0;
+        }
       }
 
       .title {
@@ -47,16 +75,29 @@
         color: white;
         font-size: 28px;
         font-weight: 600;
+
+        @media (max-width: 576px) {
+          font-size: 24px;
+        }
       }
 
       .subTitle {
         margin: 8px 0 0 0;
         color: white;
+        font-size: 16px;
+
+        @media (max-width: 576px) {
+          font-size: 14px;
+        }
       }
 
       .actions {
         display: flex;
         gap: 20px;
+
+        @media (max-width: 576px) {
+          gap: 12px;
+        }
       }
     }
   }

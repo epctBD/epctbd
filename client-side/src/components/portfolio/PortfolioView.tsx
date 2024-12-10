@@ -10,13 +10,13 @@ interface IPortfolioViewProps {
 const PortfolioView = ({ portfolios }: IPortfolioViewProps) => {
   return (
     <div className={styles.portfolioViewWrapper}>
-      <Row align="bottom">
-        <Col span={14}>
+      <Row gutter={[24, 24]} align="bottom">
+        <Col xs={24} md={14}>
           <p className={styles.headerTitle}>
             Inspiring Projects That Shape Spaces and Elevate Experiences
           </p>
         </Col>
-        <Col span={10}>
+        <Col xs={24} md={10}>
           <p className={styles.headerSubtitle}>
             Discover a collection of our most impactful architectural designs,
             blending innovation and functionality.
