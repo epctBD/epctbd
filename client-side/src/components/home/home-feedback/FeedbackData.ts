@@ -28,7 +28,7 @@ export const feedbackData: Feedback[] = [
       "Working with this team has been a game-changer for our marketing strategy. The level of creativity and professionalism they bring is unparalleled.",
   },
   {
-    name: "Maria Gonzalez",
+    name: "Raisul Karim Saju",
     designation: "Founder at Creativa",
 
     profileImage: profileImg,

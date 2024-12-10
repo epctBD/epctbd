@@ -31,7 +31,7 @@ const FeedbackCard: React.FC<FeedbackCardProps> = ({
       </div>
       <div className={styles.feedbackTextWrapper}>
         <Image src={qouteImg} alt="quote" className={styles.qouteImg} />
-        <p className={styles.feedbackText}>{feedback}</p>
+        <p className={styles.feedbackText}>{feedback}&quot;</p>
       </div>
     </div>
   );
