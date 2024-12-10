@@ -1,6 +1,7 @@
 import Head from "next/head";
 import dynamic from "next/dynamic";
 import HomeAbout from "@/components/home/home-about/HomeAbout";
+import GetInTouch from "@/components/home/home-get-in-touch/GetInTouch";
 
 const DynamicHeroSection = dynamic(
   () => import("@/components/home/hero-section/Hero"),
@@ -22,6 +23,7 @@ export default function Home() {
 
         <div className={"container-wrapper"}>
           <HomeAbout />
+          <GetInTouch />
         </div>
       </div>
     </>
