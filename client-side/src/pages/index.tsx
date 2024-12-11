@@ -3,6 +3,9 @@ import dynamic from "next/dynamic";
 import HomeAbout from "@/components/home/home-about/HomeAbout";
 import GetInTouch from "@/components/home/home-get-in-touch/GetInTouch";
 import HomeFeedback from "@/components/home/home-feedback/HomeFeedback";
+import Cta from "@/components/cta/Cta";
+import HomeService from "@/components/home/home-service/HomeService";
+import HomeProjects from "@/components/home/home-projects/HomeProjects";
 
 const DynamicHeroSection = dynamic(
   () => import("@/components/home/hero-section/Hero"),
@@ -24,9 +27,12 @@ export default function Home() {
 
         <div className={"container-wrapper"}>
           <HomeAbout />
+          <HomeService />
+          <HomeFeedback />
+          <Cta />
+          <HomeProjects />
           <GetInTouch />
         </div>
-        <HomeFeedback />
       </div>
     </>
   );

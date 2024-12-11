@@ -7,7 +7,7 @@ import Slider from "react-slick";
 import { feedbackData } from "./FeedbackData";
 import styles from "./HomeFeedback.module.scss";
 
-const HomeFeedback = () => {
+const  HomeFeedback = () => {
   const settings = {
     className: "center",
     centerMode: true,

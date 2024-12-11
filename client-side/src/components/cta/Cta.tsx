@@ -4,7 +4,6 @@ import styles from "./Cta.module.scss";
 const Cta = () => {
   return (
     <div className={styles.ctaWrapper}>
-      {/* <div className={styles.overlay}>sss</div> */}
       <div className={styles.headerWrapper}>
         <p className={styles.title}>
           Ready to Bring Your Vision to Life? Let’s Build Together!
