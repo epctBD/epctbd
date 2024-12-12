@@ -10,12 +10,12 @@ export interface FeedbackCardProps {
   feedback: string;
 }
 
-const FeedbackCard: React.FC<FeedbackCardProps> = ({
+const FeedbackCard = ({
   profileImage,
   name,
   designation,
   feedback,
-}) => {
+}: FeedbackCardProps) => {
   return (
     <div className={styles.feedbackCardWrapper}>
       <div className={styles.feedbackImageWrapper}>

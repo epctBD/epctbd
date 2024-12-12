@@ -32,6 +32,7 @@ export default function Home() {
           <Cta />
           <HomeProjects />
           <GetInTouch />
+          <HomeFeedback />
         </div>
       </div>
     </>

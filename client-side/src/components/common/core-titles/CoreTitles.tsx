@@ -7,12 +7,7 @@ interface CoreTitlesProps {
   className?: string;
 }
 
-const CoreTitles: React.FC<CoreTitlesProps> = ({
-  subTitle,
-  title,
-  intro,
-  className,
-}) => {
+const CoreTitles = ({ subTitle, title, intro, className }: CoreTitlesProps) => {
   return (
     <div className={`${styles.coreTitleWrapper} ${className || ""}`}>
       <div className={styles.coreTitleInnerWrapper}>
