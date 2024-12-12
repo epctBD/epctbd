@@ -25,8 +25,8 @@ export default function Home() {
         <div className={"container-wrapper"}>
           <HomeAbout />
           <GetInTouch />
+          <HomeFeedback />
         </div>
-        <HomeFeedback />
       </div>
     </>
   );
