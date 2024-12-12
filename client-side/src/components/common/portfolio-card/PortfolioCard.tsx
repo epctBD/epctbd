@@ -21,26 +21,31 @@ const PortfolioCard = ({
         <Image
           src={imageSrc}
           alt="Portfolio feature image"
-          fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           className={styles.portfolioFeatureImage}
+          width={1280}
+          height={600}
+          style={{
+            width: "100%",
+            maxHeight: "600px",
+            objectFit: "cover",
+          }}
         />
-
-        <div
-          className={`${styles.cardWrapper} ${
-            position === "right" ? styles.cardRight : styles.cardLeft
-          }`}
-        >
-          <div>
-            <p className={styles.title}>{title}</p>
-            <p className={styles.subTitle}>{subTitle}</p>
-          </div>
-          <div className={styles.actions}>
-            <CoreButton text="See PDF" type="primary" />
-            <CoreButton text="See Details" type="secondary" />
-          </div>
-        </div>
       </div>
+
+       <div
+        className={`${styles.cardWrapper} ${
+          position === "right" ? styles.cardRight : styles.cardLeft
+        }`}
+      >
+        <div>
+          <p className={styles.title}>{title}</p>
+          <p className={styles.subTitle}>{subTitle}</p>
+        </div>
+        <div className={styles.actions}>
+          <CoreButton text="See PDF" type="primary" />
+          <CoreButton text="See Details" type="secondary" />
+        </div>
+      </div> 
     </div>
   );
 };
