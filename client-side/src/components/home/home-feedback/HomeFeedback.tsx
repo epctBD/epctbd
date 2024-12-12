@@ -14,12 +14,38 @@ const HomeFeedback = () => {
     dots: true,
     infinite: true,
     slidesToScroll: 1,
-    autoplay: true,
-    centerPadding: "230px",
+    autoplay: false,
     speed: 200,
     autoplaySpeed: 2000,
     cssEase: "linear",
     slidesToShow: 1,
+    centerPadding: "200px",
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          centerPadding: "120px",
+        },
+      },
+      {
+        breakpoint: 992,
+        settings: {
+          centerPadding: "120px",
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          centerPadding: "30px",
+        },
+      },
+      {
+        breakpoint: 576,
+        settings: {
+          centerPadding: "0px",
+        },
+      },
+    ],
   };
 
   return (
