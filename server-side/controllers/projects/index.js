@@ -11,6 +11,7 @@ const getProjects = asyncHandler(async (req, res) => {
   );
 
   console.log(message, "statusCode");
+  console.log(message, "statusCode"); // addede comment
 
   new apiResponse(res, statusCode, message, projects);
 });
