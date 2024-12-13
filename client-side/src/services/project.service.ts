@@ -14,9 +14,13 @@ export const addProject = async (data: FormData): Promise<IProject[]> => {
 export const updateProject = async (
   id: string,
   data: FormData
-): Promise<IProject> => {
-  const response = await AXIOS_INSTANCE.put<IProject>(`projects/${id}`, data);
-  return response.data;
+): Promise<IProject[]> => {
+  const response = await AXIOS_INSTANCE.patch<IProjectResponse>(
+    `project/${id}`,
+    data
+  );
+
+  return response?.data?.data;
 };
 
 export const deleteProject = async (id: string): Promise<void> => {

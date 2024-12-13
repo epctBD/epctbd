@@ -29,7 +29,7 @@ const projectSchema = new Schema(
       required: false,
     },
     projectYear: {
-      type: Boolean,
+      type: String,
       required: false,
     },
     designer: {

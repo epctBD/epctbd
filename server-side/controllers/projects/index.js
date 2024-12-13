@@ -10,9 +10,6 @@ const getProjects = asyncHandler(async (req, res) => {
     category
   );
 
-  console.log(message, "statusCode");
-  console.log(message, "statusCode"); // addede comment
-
   new apiResponse(res, statusCode, message, projects);
 });
 
@@ -60,8 +57,6 @@ const addProject = asyncHandler(async (req, res) => {
     projectImages,
   };
 
-  console.log(project_data, "data in be");
-
   const { message, projects, statusCode } = await projectService.addProject(
     project_data
   );
@@ -86,7 +81,6 @@ const getProject = asyncHandler(async (req, res) => {
 const updateProject = asyncHandler(async (req, res) => {
   const { id } = req.params;
 
-  console.log(id, "id");
   const {
     name,
     details,
@@ -127,6 +121,9 @@ const updateProject = asyncHandler(async (req, res) => {
     ? existing_image_links.filter(
         (link) => typeof link === "string" && link.startsWith("http")
       )
+    : typeof existing_image_links === "string" &&
+      existing_image_links.startsWith("http")
+    ? [existing_image_links]
     : [];
 
   const update_Data = {

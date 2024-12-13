@@ -16,7 +16,7 @@ export interface IProject {
   projectOverview?: string;
   keyFeatures?: string;
   outcome?: string;
-  projectImages?: IPhoto[];
+  projectImages?: string[];
 }
 
 export interface IProjectResponse {

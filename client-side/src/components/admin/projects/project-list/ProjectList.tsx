@@ -4,6 +4,9 @@ import React, { useState } from "react";
 
 import CoreButton from "@/components/common/core-components/core-button/CoreButton";
 import AddProject from "../add-projects/AddProjects";
+import { DeleteFilled, EditFilled } from "@ant-design/icons";
+import UpdateProject from "../update-project/UpdateProject";
+import DeleteModal from "@/components/common/delete-modal/DeleteModal";
 
 interface IProjectListProps {
   projects: IProject[];
@@ -12,6 +15,13 @@ interface IProjectListProps {
 
 const ProjectList = ({ projects, setProjects }: IProjectListProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [updateModalOpen, setUpdateModalOpen] = useState(false);
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState<IProject>();
+
+  const onDeleteClick = async () => {
+    if (!selectedItem) return;
+  };
 
   const columns = [
     {
@@ -35,6 +45,33 @@ const ProjectList = ({ projects, setProjects }: IProjectListProps) => {
           width={80}
           height={80}
         />
+      ),
+    },
+    {
+      title: "Actions",
+      dataIndex: "_id",
+      key: "display_picture",
+      render: (id: string, item: IProject) => (
+        <div style={{ display: "flex", gap: "12px" }}>
+          <div
+            style={{ cursor: "pointer" }}
+            onClick={() => {
+              setUpdateModalOpen(true);
+              setSelectedItem(item);
+            }}
+          >
+            <EditFilled />
+          </div>
+          <div
+            style={{ cursor: "pointer" }}
+            onClick={() => {
+              setDeleteModalOpen(true);
+              setSelectedItem(item);
+            }}
+          >
+            <DeleteFilled />
+          </div>
+        </div>
       ),
     },
   ];
@@ -70,6 +107,24 @@ const ProjectList = ({ projects, setProjects }: IProjectListProps) => {
           setIsModalOpen={setIsModalOpen}
           setProjects={setProjects}
         />
+
+        {updateModalOpen && (
+          <UpdateProject
+            isModalOpen={updateModalOpen}
+            setIsModalOpen={setUpdateModalOpen}
+            project={selectedItem || null}
+            setProjects={setProjects}
+          />
+        )}
+
+        {deleteModalOpen && (
+          <DeleteModal
+            isModalOpen={deleteModalOpen}
+            setIsModalOpen={setDeleteModalOpen}
+            onDeleteClick={onDeleteClick}
+            isLoading={false}
+          />
+        )}
       </div>
     </div>
   );
