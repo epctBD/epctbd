@@ -17,8 +17,16 @@
       color: #0077ee;
       text-transform: uppercase;
 
+      @media (max-width: 1200px) {
+        font-size: 16px;
+      }
+
       @media (max-width: 992px) {
         font-size: 14px;
+      }
+
+      @media (max-width: 768px) {
+        font-size: 12px;
       }
     }
 
@@ -32,8 +40,19 @@
       -webkit-text-fill-color: transparent;
       text-fill-color: transparent;
 
-      @media (max-width: 992px) {
+      @media (max-width: 1200px) {
         font-size: 36px;
+        line-height: 40px;
+      }
+
+      @media (max-width: 992px) {
+        font-size: 30px;
+        line-height: 33px;
+      }
+
+      @media (max-width: 992px) {
+        font-size: 24px;
+        line-height: 25px;
       }
     }
 
@@ -45,6 +64,10 @@
 
       @media (max-width: 992px) {
         font-size: 12px;
+      }
+
+      @media (max-width: 768px) {
+        font-size: 10px;
       }
     }
   }
