@@ -1,8 +1,8 @@
 import CoreButton from "@/components/common/core-components/core-button/CoreButton";
-import CoreImageUploader from "@/components/common/core-components/core-image-uploader/CoreImageUploader";
-import { IProject } from "@/models/project.model";
-import { createProject } from "@/services/project.service";
-import { Input, message, Modal } from "antd";
+import { IPhoto, IProject } from "@/models/project.model";
+import { addProject } from "@/services/project.service";
+import { DeleteOutlined, UploadOutlined } from "@ant-design/icons";
+import { Button, Image, Input, message, Modal, Upload } from "antd";
 import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 
@@ -18,6 +18,8 @@ const AddProjects = ({
   setProjects,
 }: IAddProjectModalProps) => {
   const [loading, setLoading] = useState(false);
+  const [photos, setPhotos] = useState<IPhoto[]>([]);
+
   const {
     handleSubmit,
     control,
@@ -25,15 +27,29 @@ const AddProjects = ({
     formState: { errors },
   } = useForm<IProject>();
 
-  const [imageData, setImageData] = useState<File | null>(null);
-  const [imageB64, setImageB64] = useState<string | null>(null);
+  const handlePhotoUpload = (file: File) => {
+    if (photos.length >= 10) {
+      message.error("You can only upload a maximum of 10 photos.");
+      return false;
+    }
 
-  const onFileChange = (file: File | null) => {
-    setImageData(file);
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const newPhoto: IPhoto = {
+        file,
+        url: e.target!.result as string,
+      };
+      setPhotos([...photos, newPhoto]);
+    };
+    reader.readAsDataURL(file);
+
+    return false;
   };
 
-  const onLoadEnd = (image: string) => {
-    setImageB64(image);
+  const handleRemovePhoto = (index: number) => {
+    const newPhotos = [...photos];
+    newPhotos.splice(index, 1);
+    setPhotos(newPhotos);
   };
 
   const onSubmit = async (data: IProject) => {
@@ -54,11 +70,12 @@ const AddProjects = ({
       if (data.keyFeatures) formData.append("keyFeatures", data.keyFeatures);
       if (data.outcome) formData.append("outcome", data.outcome);
 
-      if (imageData) {
-        formData.append("feature_image", imageData);
-      }
+      photos.forEach((file) => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        formData.append(`projectImages`, file?.file as any);
+      });
 
-      const response = await createProject(formData);
+      const response = await addProject(formData);
       setProjects(response);
       message.success("Project added successfully!");
       reset();
@@ -71,23 +88,33 @@ const AddProjects = ({
     }
   };
 
+  const onCancelClick = () => {
+    reset();
+    setPhotos([]);
+    setIsModalOpen(false);
+  };
+
   return (
     <Modal
       key="add project"
       title="Add Project"
       open={isModalOpen}
-      onCancel={() => setIsModalOpen(false)}
+      onCancel={() => onCancelClick()}
       footer={null}
     >
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div style={{ marginBottom: "15px" }}>
-          <label>Name</label>
+        <div className={"general-input-wrapper"}>
+          <label className={"general-label"}>Name</label>
           <Controller
             name="name"
             control={control}
             rules={{ required: "Name is required" }}
             render={({ field }) => (
-              <Input {...field} placeholder="Enter project name" />
+              <Input
+                {...field}
+                placeholder="Enter project name"
+                className={"general-input"}
+              />
             )}
           />
           {errors.name && (
@@ -97,14 +124,18 @@ const AddProjects = ({
           )}
         </div>
 
-        <div style={{ marginBottom: "15px" }}>
-          <label>Details</label>
+        <div className={"general-input-wrapper"}>
+          <label className={"general-label"}>Details</label>
           <Controller
             name="details"
             control={control}
             rules={{ required: "Details are required" }}
             render={({ field }) => (
-              <Input.TextArea {...field} placeholder="Enter project details" />
+              <Input.TextArea
+                {...field}
+                placeholder="Enter project details"
+                className={"general-input"}
+              />
             )}
           />
           {errors.details && (
@@ -114,14 +145,18 @@ const AddProjects = ({
           )}
         </div>
 
-        <div style={{ marginBottom: "15px" }}>
-          <label>Service Type</label>
+        <div className={"general-input-wrapper"}>
+          <label className={"general-label"}>Service Type</label>
           <Controller
             name="serviceType"
             control={control}
             rules={{ required: "Service type is required" }}
             render={({ field }) => (
-              <Input {...field} placeholder="Enter service type" />
+              <Input
+                {...field}
+                placeholder="Enter service type"
+                className={"general-input"}
+              />
             )}
           />
           {errors.serviceType && (
@@ -131,14 +166,18 @@ const AddProjects = ({
           )}
         </div>
 
-        <div style={{ marginBottom: "15px" }}>
-          <label>Category</label>
+        <div className={"general-input-wrapper"}>
+          <label className={"general-label"}>Category</label>
           <Controller
             name="category"
             control={control}
             rules={{ required: "Category is required" }}
             render={({ field }) => (
-              <Input {...field} placeholder="Enter category" />
+              <Input
+                {...field}
+                placeholder="Enter category"
+                className={"general-input"}
+              />
             )}
           />
           {errors.category && (
@@ -148,14 +187,145 @@ const AddProjects = ({
           )}
         </div>
 
-        <div style={{ marginBottom: "15px" }}>
-          <label>Feature Image</label>
-          <CoreImageUploader
-            buttonText="Upload Image"
-            onFileChange={onFileChange}
-            onLoadEnd={onLoadEnd}
-            imageB64={imageB64 || ""}
+        <div className={"general-input-wrapper"}>
+          <label className={"general-label"}>Area</label>
+          <Controller
+            name="area"
+            control={control}
+            render={({ field }) => (
+              <Input
+                {...field}
+                placeholder="Enter area"
+                className={"general-input"}
+              />
+            )}
           />
+        </div>
+
+        <div className={"general-input-wrapper"}>
+          <label className={"general-label"}>Project Year</label>
+          <Controller
+            name="projectYear"
+            control={control}
+            render={({ field }) => (
+              <Input
+                {...field}
+                placeholder="Enter project year"
+                className={"general-input"}
+              />
+            )}
+          />
+        </div>
+
+        <div className={"general-input-wrapper"}>
+          <label className={"general-label"}>Designer</label>
+          <Controller
+            name="designer"
+            control={control}
+            render={({ field }) => (
+              <Input
+                {...field}
+                placeholder="Enter designer name"
+                className={"general-input"}
+              />
+            )}
+          />
+        </div>
+
+        <div className={"general-input-wrapper"}>
+          <label className={"general-label"}>Location</label>
+          <Controller
+            name="location"
+            control={control}
+            render={({ field }) => (
+              <Input
+                {...field}
+                placeholder="Enter location"
+                className={"general-input"}
+              />
+            )}
+          />
+        </div>
+
+        <div className={"general-input-wrapper"}>
+          <label className={"general-label"}>Project Overview</label>
+          <Controller
+            name="projectOverview"
+            control={control}
+            render={({ field }) => (
+              <Input.TextArea
+                {...field}
+                placeholder="Enter project overview"
+                className={"general-input"}
+              />
+            )}
+          />
+        </div>
+
+        <div className={"general-input-wrapper"}>
+          <label className={"general-label"}>Key Features</label>
+          <Controller
+            name="keyFeatures"
+            control={control}
+            render={({ field }) => (
+              <Input.TextArea
+                {...field}
+                placeholder="Enter key features"
+                className={"general-input"}
+              />
+            )}
+          />
+        </div>
+
+        <div className={"general-input-wrapper"}>
+          <label className={"general-label"}>Outcome</label>
+          <Controller
+            name="outcome"
+            control={control}
+            render={({ field }) => (
+              <Input.TextArea
+                {...field}
+                placeholder="Enter outcome"
+                className={"general-input"}
+              />
+            )}
+          />
+        </div>
+
+        <div>
+          <div className={"photo-input-wrapper"}>
+            <label className={"general-label"}>Project Images</label>
+            <Upload
+              beforeUpload={handlePhotoUpload}
+              showUploadList={false}
+              accept="image/*"
+            >
+              {photos.length < 10 && (
+                <Button type="primary" icon={<UploadOutlined />} size="small" />
+              )}
+            </Upload>
+          </div>
+
+          {photos.map((photo, index) => (
+            <div key={index + 1} className={"photo-upload-wrapper"}>
+              <Image
+                src={photo.url}
+                alt={`Photo ${index + 1}`}
+                width={100}
+                height={100}
+                preview={true}
+                className="margin-bottom-16"
+              />
+
+              <Button
+                type="primary"
+                danger
+                icon={<DeleteOutlined />}
+                size="small"
+                onClick={() => handleRemovePhoto(index)}
+              />
+            </div>
+          ))}
         </div>
 
         <CoreButton

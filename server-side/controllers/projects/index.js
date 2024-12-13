@@ -60,7 +60,7 @@ const addProject = asyncHandler(async (req, res) => {
     projectImages,
   };
 
-  console.log(project_data, "data");
+  console.log(project_data, "data in be");
 
   const { message, projects, statusCode } = await projectService.addProject(
     project_data

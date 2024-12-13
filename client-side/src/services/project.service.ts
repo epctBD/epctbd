@@ -2,15 +2,12 @@ import { IProject, IProjectResponse } from "@/models/project.model";
 import AXIOS_INSTANCE from "./axiosInstance";
 
 export const getProjects = async (): Promise<IProject[]> => {
-  const response = await AXIOS_INSTANCE.get<IProjectResponse>("projects");
+  const response = await AXIOS_INSTANCE.get<IProjectResponse>("project");
   return response?.data?.data;
 };
 
-export const createProject = async (data: FormData): Promise<IProject[]> => {
-  const response = await AXIOS_INSTANCE.post<IProjectResponse>(
-    "projects",
-    data
-  );
+export const addProject = async (data: FormData): Promise<IProject[]> => {
+  const response = await AXIOS_INSTANCE.post<IProjectResponse>("project", data);
   return response?.data?.data;
 };
 

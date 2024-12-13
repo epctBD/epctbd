@@ -47,3 +47,17 @@
     color: $primary-text-color !important;
   }
 }
+
+.photo-input-wrapper {
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.photo-upload-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}

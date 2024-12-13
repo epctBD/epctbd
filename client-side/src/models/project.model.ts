@@ -1,3 +1,7 @@
+export interface IPhoto {
+  file?: File;
+  url?: string;
+}
 export interface IProject {
   _id: string;
   projectSlug?: string;
@@ -12,7 +16,7 @@ export interface IProject {
   projectOverview?: string;
   keyFeatures?: string;
   outcome?: string;
-  projectImages?: string[];
+  projectImages?: IPhoto[];
 }
 
 export interface IProjectResponse {
