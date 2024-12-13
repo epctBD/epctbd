@@ -17,10 +17,11 @@
   }
   @media (max-width: 576px) {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     flex-direction: column-reverse;
-    min-height: 157px;
+    min-height: 194px;
+    padding: 16px;
   }
 
   .feedbackImageWrapper {
