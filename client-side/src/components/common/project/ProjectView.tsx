@@ -42,7 +42,7 @@ const ProjectView = ({ projectList, setProjectList }: IProjectViewProps) => {
     if (selectedCategory) {
       getFilteredProjects();
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedCategory]);
 
   const items: TabsProps["items"] = [
