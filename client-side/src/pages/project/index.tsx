@@ -41,7 +41,7 @@ const Project = ({ projects }: IProjectProps) => {
 
 export const getServerSideProps: GetServerSideProps = async () => {
   try {
-    const response = await getProjects("Ongoing Projects");
+    const response = await getProjects("OngoingProjects");
     return {
       props: {
         projects: response,
