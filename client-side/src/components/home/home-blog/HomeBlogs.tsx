@@ -15,7 +15,6 @@ const HomeBlogs = () => {
         {blogData.map((blog) => (
           <div key={blog.id}>
             <BlogCard
-              id={blog.id}
               title={blog.title}
               description={blog.description}
               image={blog.image}
