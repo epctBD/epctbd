@@ -35,6 +35,7 @@ const HomeProjects = () => {
               imageSrc={project.imageSrc}
               type={project.type}
               imageHeight={heights[index % heights.length]}
+              slug={project.projectSlug || ""}
             />
           </Col>
         ))}
