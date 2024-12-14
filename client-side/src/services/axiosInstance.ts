@@ -1,7 +1,8 @@
 // services/apiService.ts
 import Axios from "axios";
 
-const baseURL = process.env.NEXT_PUBLIC_API_URL;
+const baseURL = "https://epct-production.up.railway.app/api/";
+// const baseURL = "http://localhost:5000/api/";
 
 const AXIOS_INSTANCE = Axios.create({
   baseURL,
