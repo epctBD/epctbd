@@ -8,6 +8,12 @@ export const getProjects = async (category: string): Promise<IProject[]> => {
   return response?.data?.data;
 };
 
+export const getProject = async (slug: string): Promise<IProject[]> => {
+  const url = `project${processQuery({ slug: slug })}`;
+  const response = await AXIOS_INSTANCE.get<IProjectResponse>(url);
+  return response?.data?.data;
+};
+
 export const addProject = async (data: FormData): Promise<IProject[]> => {
   const response = await AXIOS_INSTANCE.post<IProjectResponse>("project", data);
   return response?.data?.data;
