@@ -1,5 +1,5 @@
 import { IProject } from "@/models/project.model";
-import { Image, Table } from "antd";
+import { Image, message, Table } from "antd";
 import React, { useState } from "react";
 
 import CoreButton from "@/components/common/core-components/core-button/CoreButton";
@@ -7,6 +7,7 @@ import AddProject from "../add-projects/AddProjects";
 import { DeleteFilled, EditFilled } from "@ant-design/icons";
 import UpdateProject from "../update-project/UpdateProject";
 import DeleteModal from "@/components/common/delete-modal/DeleteModal";
+import { deleteProject } from "@/services/project.service";
 
 interface IProjectListProps {
   projects: IProject[];
@@ -18,9 +19,24 @@ const ProjectList = ({ projects, setProjects }: IProjectListProps) => {
   const [updateModalOpen, setUpdateModalOpen] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<IProject>();
+  const [loading, setLoading] = useState(false);
 
   const onDeleteClick = async () => {
     if (!selectedItem) return;
+
+    setLoading(true);
+    try {
+      const response = await deleteProject(selectedItem._id);
+      setProjects(response);
+
+      message.success("Team member deleted successfully!");
+      setDeleteModalOpen(false);
+    } catch (error) {
+      console.error("Error deleting project:", error);
+      message.error("Failed to delete project. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const columns = [
@@ -122,7 +138,7 @@ const ProjectList = ({ projects, setProjects }: IProjectListProps) => {
             isModalOpen={deleteModalOpen}
             setIsModalOpen={setDeleteModalOpen}
             onDeleteClick={onDeleteClick}
-            isLoading={false}
+            isLoading={loading}
           />
         )}
       </div>
