@@ -3,6 +3,14 @@
 .feedbackWrapper {
   padding-bottom: 160px;
 
+  @media (max-width: 992px) {
+    padding-bottom: 120px;
+  }
+
+  @media (max-width: 768px) {
+    padding-bottom: 80px;
+  }
+
   .feedbackCardContainer {
     display: flex;
     justify-content: center;
@@ -16,8 +24,8 @@
     }
 
     :global(.slick-prev) {
-      top: 111% !important;
-      left: 43% !important;
+      top: 110% !important;
+      left: 42% !important;
       width: 24px !important;
       height: 24px !important;
       z-index: 100;
@@ -28,11 +36,30 @@
       border: 1px solid #27282a !important;
       padding: 16px !important;
       border-radius: 50% !important;
+
+      @media (max-width: 1024px) {
+        width: 18px !important;
+        height: 18px !important;
+        top: 111% !important;
+        left: 38% !important;
+      }
+
+      @media (max-width: 768px) {
+        width: 12px !important;
+        height: 12px !important;
+        top: 112% !important;
+        left: 34% !important;
+      }
+
+      @media (max-width: 575px) {
+        top: 112% !important;
+        left: 30% !important;
+      }
     }
 
     :global(.slick-next) {
-      top: 111% !important;
-      left: 55% !important;
+      top: 110% !important;
+      left: 56% !important;
       width: 24px !important;
       height: 24px !important;
       z-index: 100;
@@ -43,6 +70,25 @@
       border: 1px solid #27282a !important;
       padding: 16px !important;
       border-radius: 50% !important;
+
+      @media (max-width: 1024px) {
+        width: 18px !important;
+        height: 18px !important;
+        top: 111% !important;
+        left: 59% !important;
+      }
+
+      @media (max-width: 768px) {
+        width: 12px !important;
+        height: 12px !important;
+        top: 112% !important;
+        left: 61% !important;
+      }
+
+      @media (max-width: 575px) {
+        top: 112% !important;
+        left: 65% !important;
+      }
     }
 
     :global(.slick-prev:before),
@@ -66,8 +112,6 @@
     :global(.slick-dots) {
       position: absolute !important;
       top: 105%;
-      // left: 0;
-      // width: 40%;
     }
 
     :global(.slick-dots li) {
