@@ -26,12 +26,6 @@ const ProjectView = ({ projectList, setProjectList }: IProjectViewProps) => {
   const [isLoading] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("");
 
-  useEffect(() => {
-    if (selectedCategory) {
-      getFilteredProjects();
-    }
-  }, [selectedCategory]);
-
   const getFilteredProjects = async () => {
     try {
       const response = await getProjects(selectedCategory);
@@ -43,6 +37,13 @@ const ProjectView = ({ projectList, setProjectList }: IProjectViewProps) => {
       //   setLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (selectedCategory) {
+      getFilteredProjects();
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedCategory]);
 
   const items: TabsProps["items"] = [
     {

@@ -8,6 +8,7 @@ import img4 from "../../../../public/Carousel/4.jpeg";
 import styles from "./ServiceDetails.module.scss";
 import { services } from "@/components/services/constant";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 const ServiceDetails = () => {
   const router = useRouter();
@@ -30,9 +31,9 @@ const ServiceDetails = () => {
             items={[
               {
                 title: (
-                  <a href="/services" style={{ color: "#0077EE" }}>
+                  <Link href="/services" style={{ color: "#0077EE" }}>
                     Services
-                  </a>
+                  </Link>
                 ),
               },
               {

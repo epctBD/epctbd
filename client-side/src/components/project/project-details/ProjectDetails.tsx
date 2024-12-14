@@ -5,6 +5,7 @@ import Lighting from "@/components/common/svg/Lighting";
 import MapIcons from "@/components/common/svg/MapIcons";
 import ProjectDetailsCarousel from "@/components/common/project/projectDetails/ProjectDetailsCarousel";
 import { IProject } from "@/models/project.model";
+import Link from "next/link";
 
 export interface IProjectDetailsProps {
   project: IProject;
@@ -43,9 +44,9 @@ const ProjectDetailsComponent = ({ project }: IProjectDetailsProps) => {
               items={[
                 {
                   title: (
-                    <a href="/services" style={{ color: "#0077EE" }}>
+                    <Link href="/services" style={{ color: "#0077EE" }}>
                       Projects
-                    </a>
+                    </Link>
                   ),
                 },
                 {

@@ -5,6 +5,7 @@ import img1 from "../../../../public/Carousel/1.png";
 import img2 from "../../../../public/Carousel/2.png";
 import img3 from "../../../../public/Carousel/3.png";
 import { CalendarOutlined } from "@ant-design/icons";
+import Link from "next/link";
 
 const blogData = [
   {
@@ -68,9 +69,9 @@ const BlogDetails = () => {
                 items={[
                   {
                     title: (
-                      <a href="/Blogs" style={{ color: "#0077EE" }}>
+                      <Link href="/Blogs" style={{ color: "#0077EE" }}>
                         Blogs
-                      </a>
+                      </Link>
                     ),
                   },
                   {
