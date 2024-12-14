@@ -4,6 +4,7 @@ import Image from "next/image";
 import img1 from "../../../../public/Carousel/1.png";
 import img2 from "../../../../public/Carousel/2.png";
 import img3 from "../../../../public/Carousel/3.png";
+import { CalendarOutlined } from "@ant-design/icons";
 
 const blogData = [
   {
@@ -82,7 +83,10 @@ const BlogDetails = () => {
               <p className={styles.blogDetailsTitle}>{blog.title}</p>
               <div className={styles.blogTypeWrapper}>
                 <p className={styles.blogDetailType}>{blog.type}</p>
-                <div className={styles.blogTimestamp}>{blog.date}</div>
+                <div className={styles.blogTimestamp}>
+                  <CalendarOutlined />
+                  <p>{blog.date}</p>
+                </div>
               </div>
             </div>
             <div className={styles.blogDetailImageWrapper}>
