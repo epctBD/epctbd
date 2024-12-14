@@ -1,7 +1,7 @@
 import LayoutWrapper from "@/components/layout/layout-wrapper/LayoutWrapper";
 import "../styles/global.scss";
 import type { AppProps } from "next/app";
-import theme from "./theme/themeConfig";
+import theme from "../theme/themeConfig";
 import { ConfigProvider } from "antd";
 import { Inter } from "@next/font/google";
 
