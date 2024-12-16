@@ -10,7 +10,7 @@ const ContactUs = () => {
     <div className={styles.contactWrapper}>
       <div className={styles.contactLayout}>
         <Row gutter={[24, 24]}>
-          <Col xs={24} lg={8}>
+          <Col xs={24} lg={10}>
             <p className={styles.getInTouch}>Get In Touch</p>
             <p className={styles.title}>
               CONTACT US FOR RELIABLE EXPERT SOLUTIONS
@@ -41,7 +41,7 @@ const ContactUs = () => {
               </div>
             </div>
           </Col>
-          <Col xs={24} lg={16}>
+          <Col xs={24} lg={14}>
             <ContactUsForm />
           </Col>
         </Row>

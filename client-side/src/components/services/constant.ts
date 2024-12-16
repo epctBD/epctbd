@@ -21,31 +21,31 @@ export const services: IService[] = [
         name: "Architectural Planning & Detailing (Multi storied)",
         brief: "We will edit this section.",
         photo:
-          "https://res.cloudinary.com/dpx6xtelq/image/upload/v1733483186/uploaded_images/image%20%282%29.png",
+          "https://res.cloudinary.com/dpx6xtelq/image/upload/v1734378596/Architectural_Planning_Detailing-Multi_storied_bnbiit.png",
       },
       {
         name: "Architectural Planning & Detailing (Duplex/Resorts)",
         brief: "We will edit this section.",
         photo:
-          "https://res.cloudinary.com/dpx6xtelq/image/upload/v1733483186/uploaded_images/image%20%282%29.png",
+          "https://res.cloudinary.com/dpx6xtelq/image/upload/v1734378600/Architectural_Planning_Detailing_DuplexResorts_zbpbwe.jpg",
       },
       {
         name: "Landscaping",
         brief: "We will edit this section.",
         photo:
-          "https://res.cloudinary.com/dpx6xtelq/image/upload/v1733483186/uploaded_images/image%20%282%29.png",
+          "https://res.cloudinary.com/dpx6xtelq/image/upload/v1734378809/Landscaping_ahjgtu.jpg",
       },
       {
         name: "3D Visualization (Exterior)",
         brief: "We will edit this section.",
         photo:
-          "https://res.cloudinary.com/dpx6xtelq/image/upload/v1733483186/uploaded_images/image%20%282%29.png",
+          "https://res.cloudinary.com/dpx6xtelq/image/upload/v1734378615/3d_Visualization_exterior_nfy2gl.jpg",
       },
       {
         name: "3D Visualization (Interior)",
         brief: "We will edit this section.",
         photo:
-          "https://res.cloudinary.com/dpx6xtelq/image/upload/v1733483186/uploaded_images/image%20%282%29.png",
+          "https://res.cloudinary.com/dpx6xtelq/image/upload/v1734378597/3d_Visualization_interior_zf0q0c.jpg",
       },
     ],
   },
