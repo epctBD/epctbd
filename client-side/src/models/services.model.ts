@@ -5,4 +5,11 @@ export interface IService {
   description: string;
   slug: string;
   image: StaticImageData;
+  service_type: IServiceType[];
+}
+
+export interface IServiceType {
+  name: string;
+  photo: string;
+  brief: string;
 }
