@@ -1,7 +1,8 @@
 import { Controller, useForm } from "react-hook-form";
 import styles from "./ContactUs.module.scss";
-import { Col, Input, Row } from "antd";
+import { Col, Input, message, Row } from "antd";
 import CoreButton from "../common/core-components/core-button/CoreButton";
+import { sendMessage } from "@/services/contactUs.service";
 
 const { TextArea } = Input;
 
@@ -19,8 +20,17 @@ const ContactUsForm = () => {
     handleSubmit,
   } = useForm<IContactUsPayload>({ mode: "onTouched" });
 
-  const onSubmit = (data: IContactUsPayload) => {
+  const onSubmit = async (data: IContactUsPayload) => {
     console.log(data);
+    try {
+      // Make a POST request to your backend
+      const response = await sendMessage(data);
+      console.log(response, "response");
+      message.success("Message sent");
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      message.error("An error occurred. Please try again later.");
+    }
   };
 
   return (
@@ -111,7 +121,12 @@ const ContactUsForm = () => {
           )}
         </div>
 
-        <CoreButton text="Contact Us" type="primary" isFullWidth={true} />
+        <CoreButton
+          text="Contact Us"
+          type="primary"
+          htmlType="submit"
+          isFullWidth={true}
+        />
       </form>
     </div>
   );

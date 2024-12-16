@@ -3,6 +3,7 @@ const routes = {
   "/api/team-member": require("./team"),
   "/api/portfolio": require("./portfolio"),
   "/api/admin": require("./admin"),
+  "/api/contact-us": require("./contact-us"),
 };
 
 module.exports.registerApplicationRoutes = function (app) {
