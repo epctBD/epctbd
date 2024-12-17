@@ -1,5 +1,5 @@
 import CoreButton from "@/components/common/core-components/core-button/CoreButton";
-import { Breadcrumb, Col, Row } from "antd";
+import { Breadcrumb, Col, Grid, Row } from "antd";
 import Image from "next/image";
 import img1 from "../../../../public/Carousel/1.png";
 import img2 from "../../../../public/Carousel/2.png";
@@ -9,12 +9,14 @@ import styles from "./ServiceDetailsView.module.scss";
 import Link from "next/link";
 import { IService } from "@/models/services.model";
 
+const { useBreakpoint } = Grid;
+
 interface ServiceDetailsViewProps {
   service: IService;
 }
 
 const ServiceDetailsView = ({ service }: ServiceDetailsViewProps) => {
-  console.log(service);
+  const screens = useBreakpoint();
 
   return (
     <div className={styles.serviceDetailWrapper}>
@@ -46,29 +48,37 @@ const ServiceDetailsView = ({ service }: ServiceDetailsViewProps) => {
           </div>
         </div>
         <div className={styles.detailHeaderImageWrapper}>
-          <div className={styles.detailHeaderRow1}>
-            <Image
-              src={img1}
-              alt="img1"
-              className={styles.serviceHeaderImage}
-            />
-            <Image
-              src={img2}
-              alt="img1"
-              className={styles.serviceHeaderImage}
-            />
+          <div className={styles.detailHeaderRow}>
+            <div className={styles.serviceHeaderImageWrapper}>
+              <Image
+                src={img1}
+                alt="img1"
+                className={styles.serviceHeaderImage}
+              />
+            </div>
+            <div className={styles.serviceHeaderImageWrapper}>
+              <Image
+                src={img2}
+                alt="img1"
+                className={styles.serviceHeaderImage}
+              />
+            </div>
           </div>
-          <div className={styles.detailHeaderRow2}>
-            <Image
-              src={img3}
-              alt="img1"
-              className={styles.serviceHeaderImage}
-            />
-            <Image
-              src={img4}
-              alt="img1"
-              className={styles.serviceHeaderImage}
-            />
+          <div className={`${styles.detailHeaderRow} ${styles.padding}`}>
+            <div className={styles.serviceHeaderImageWrapper}>
+              <Image
+                src={img3}
+                alt="img1"
+                className={styles.serviceHeaderImage}
+              />
+            </div>
+            <div className={styles.serviceHeaderImageWrapper}>
+              <Image
+                src={img4}
+                alt="img1"
+                className={styles.serviceHeaderImage}
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -76,12 +86,16 @@ const ServiceDetailsView = ({ service }: ServiceDetailsViewProps) => {
         {service.service_type.map((type, index) => (
           <div key={index} className={styles.serviceDetailInnerWrapper}>
             <Row
-              gutter={[80, 40]}
+              gutter={[24, 24]}
               justify="center"
               align="middle"
               style={{ margin: "40px 0" }}
             >
-              <Col xs={24} lg={12} order={index % 2 === 0 ? 1 : 2}>
+              <Col
+                xs={24}
+                lg={12}
+                order={screens.lg ? (index % 2 === 0 ? 1 : 2) : 1}
+              >
                 <div className={styles.serviceDetailImageWrapper}>
                   <Image
                     src={type.photo}
@@ -92,7 +106,11 @@ const ServiceDetailsView = ({ service }: ServiceDetailsViewProps) => {
                   />
                 </div>
               </Col>
-              <Col xs={24} lg={12} order={index % 2 === 0 ? 2 : 1}>
+              <Col
+                xs={24}
+                lg={12}
+                order={screens.lg ? (index % 2 === 0 ? 2 : 1) : 2}
+              >
                 <div className={styles.serviceDetailTextWrapper}>
                   <div className={styles.serviceDetailTextInnerWrapper}>
                     <p className={styles.serviceDetailTitle}>{type.name}</p>
