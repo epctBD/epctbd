@@ -18,12 +18,14 @@ export const createPortfolio = async (
 
 export const updatePortfolio = async (
   id: string,
-  data: Partial<IPortfolio>
-): Promise<IPortfolio> => {
+  data: FormData
+): Promise<IPortfolio[]> => {
   const response = await AXIOS_INSTANCE.put(`/portfolio/${id}`, data);
   return response.data;
 };
 
-export const deletePortfolio = async (id: string): Promise<void> => {
-  await AXIOS_INSTANCE.delete(`/portfolio/${id}`);
+export const deletePortfolio = async (id: string): Promise<IPortfolio[]> => {
+  const response = await AXIOS_INSTANCE.delete(`/portfolio/${id}`);
+
+  return response?.data?.data;
 };
