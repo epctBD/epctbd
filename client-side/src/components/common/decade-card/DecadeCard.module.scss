@@ -1,0 +1,52 @@
+.decadeCardWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  padding: 24px;
+  border-radius: 16px;
+  background-color: #1b1b1f;
+  border: 1px solid #27282a;
+  max-width: 500px;
+
+  .HomeIconWrapper {
+    height: 48px;
+    width: 48px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    // padding: 12px;
+    border-radius: 50%;
+    background-color: #202127;
+    border: 1px solid #27282a;
+  }
+
+  .decadeCardInnerWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    .decadeYear {
+      font-size: 16px;
+      font-weight: 600;
+      color: #a3a6aa;
+    }
+
+    .decadeTitle {
+      font-size: 28px;
+      font-weight: 600;
+      padding-bottom: 4px;
+      background: linear-gradient(180deg, #ffffff 12.23%, #9b9b9b 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .decadeCardDescription {
+      font-size: 16px;
+      font-weight: 500;
+      color: #a3a6aa;
+    }
+  }
+}
