@@ -5,7 +5,7 @@ const projectSchema = new Schema(
   {
     projectSlug: {
       type: String,
-      required: false,
+      required: true, // Slug should always be generated
       unique: true,
     },
     name: {
@@ -60,26 +60,36 @@ const projectSchema = new Schema(
   { versionKey: false }
 );
 
+// Ensure `projectSlug` is set before saving
 projectSchema.pre("save", function (next) {
-  // Slugify the category name
-  const categorySlug = slugify(this.category, {
-    lower: true,
-    remove: /[*+~.()'"!?:@]/g,
-  });
+  try {
+    if (
+      !this.projectSlug ||
+      this.isModified("name") ||
+      this.isModified("category")
+    ) {
+      // Slugify the category
+      const categorySlug = slugify(this.category || "", {
+        lower: true,
+        remove: /[*+~.()'"!?:@]/g,
+      });
 
-  // Slugify the project name
-  const nameSlug = slugify(this.name, {
-    lower: true,
-    remove: /[*+~.()'"!?:@]/g,
-  });
+      // Slugify the name
+      const nameSlug = slugify(this.name || "", {
+        lower: true,
+        remove: /[*+~.()'"!?:@]/g,
+      });
 
-  // Combine all parts to create the final slug
-  this.projectSlug = `${categorySlug}-${nameSlug}`;
-
-  next();
+      // Combine to create the final slug
+      this.projectSlug = `${categorySlug}-${nameSlug}`;
+    }
+    next();
+  } catch (error) {
+    next(error);
+  }
 });
 
-// Create an index on the projectSlug field
+// Ensure the index is created once and only in the schema definition
 projectSchema.index({ projectSlug: 1 }, { unique: true });
 
 module.exports = model("Project", projectSchema);
