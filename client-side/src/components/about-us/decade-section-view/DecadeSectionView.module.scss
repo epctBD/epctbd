@@ -1,0 +1,33 @@
+@import "@/styles/global-scss/variable.scss";
+
+.decadeSectionViewWrapper {
+  .startTag {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    .divider {
+      height: 1px;
+      width: 35px;
+      background-color: white;
+    }
+    .tagText {
+      margin: 0;
+      color: $primary-color;
+      font-size: 20px;
+      font-weight: 600;
+    }
+  }
+
+  .marqueeWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 40px;
+
+    .marqueeItem {
+      padding: 6px 24px;
+    }
+  }
+}
