@@ -5,7 +5,6 @@ const projectSchema = new Schema(
   {
     projectSlug: {
       type: String,
-      required: true, // Slug should always be generated
       unique: true,
     },
     name: {
@@ -90,6 +89,6 @@ projectSchema.pre("save", function (next) {
 });
 
 // Ensure the index is created once and only in the schema definition
-projectSchema.index({ projectSlug: 1 }, { unique: true });
+// projectSchema.index({ projectSlug: 1 }, { unique: true });
 
 module.exports = model("Project", projectSchema);
