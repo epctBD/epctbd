@@ -111,6 +111,7 @@ const AdminLayout = ({ children }: AdminLayoutLayoutProps) => {
   return (
     <div className={styles.adminMenuWrapper}>
       <div className={styles.adminMenuInnerWrapper}>
+        <p className={styles.deshboardTitle}>Admin Dashboard</p>
         <Menu
           mode="inline"
           defaultSelectedKeys={[""]}
@@ -119,7 +120,7 @@ const AdminLayout = ({ children }: AdminLayoutLayoutProps) => {
           className="admin-menu"
           style={{
             height: "100%",
-            background: "#a3a6aa",
+            background: "#FFFFFF",
             padding: "25px 0",
           }}
         />

@@ -12,9 +12,17 @@
   display: flex;
 
   .adminMenuInnerWrapper {
-    border-right: 1px solid $gray-color-700;
-    width: 210px !important;
+    // border-right: 1px solid $gray-color-700;
+    width: 296px !important;
     display: flex;
     flex-direction: column;
+
+    .deshboardTitle {
+      margin-top: 40px;
+      font-size: 28px;
+      font-weight: 600;
+      text-align: center !important;
+      letter-spacing: -2px;
+    }
   }
 }
