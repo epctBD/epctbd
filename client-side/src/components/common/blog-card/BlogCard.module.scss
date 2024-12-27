@@ -6,7 +6,7 @@
 
   .blogImageWrapper {
     height: 252px;
-    width: 411px;
+    width: auto;
     border-radius: 16px;
 
     .blogImage {
@@ -20,7 +20,7 @@
     display: flex;
     flex-direction: column;
     align-items: start;
-    gap: 24px;
+    gap: 12px;
     padding: 16px;
 
     .blogTypeWrapper {
@@ -47,11 +47,27 @@
         background: linear-gradient(180deg, #ffffff 12.23%, #9b9b9b 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: normal;
       }
 
       .blogDescription {
         font-size: 14px;
         color: #a3a6aa;
+
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: normal;
       }
     }
   }
