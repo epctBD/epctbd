@@ -43,7 +43,12 @@ const ResourcePageView = () => {
   return (
     <div className={styles.tabsWrapper}>
       <div className={styles.tabsContainer}>
-        <Tabs defaultActiveKey="1" items={items} onChange={onTabChange} />
+        <Tabs
+          defaultActiveKey="1"
+          items={items}
+          style={{ maxWidth: "250px" }}
+          onChange={onTabChange}
+        />
       </div>
       <div className={styles.tabContent}>{renderContent()}</div>
     </div>
