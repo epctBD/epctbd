@@ -4,6 +4,7 @@ const routes = {
   "/api/portfolio": require("./portfolio"),
   "/api/admin": require("./admin"),
   "/api/contact-us": require("./contact-us"),
+  "/api/blog": require("./blogs"),
 };
 
 module.exports.registerApplicationRoutes = function (app) {
