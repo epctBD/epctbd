@@ -1,0 +1,206 @@
+import CoreButton from "@/components/common/core-components/core-button/CoreButton";
+import CoreImageUploader from "@/components/common/core-components/core-image-uploader/CoreImageUploader";
+import { IAddBlog, IBlog } from "@/models/blog.model";
+import { updateBlog } from "@/services/blog.service";
+import { Input, message, Modal } from "antd";
+import React, { useState } from "react";
+import { Controller, useForm } from "react-hook-form";
+
+interface IUpdateBlogModalProps {
+  isModalOpen: boolean;
+  setIsModalOpen: (value: boolean) => void;
+  blog: IBlog | null;
+  setBlogs: React.Dispatch<React.SetStateAction<IBlog[]>>;
+}
+
+const UpdateBlog = ({
+  isModalOpen,
+  setIsModalOpen,
+  blog,
+  setBlogs,
+}: IUpdateBlogModalProps) => {
+  const [loading, setLoading] = useState(false);
+  const {
+    handleSubmit,
+    control,
+    reset,
+    setValue,
+    formState: { errors },
+  } = useForm<IAddBlog>();
+
+  const [imageData, setImageData] = useState<File | null>(null);
+  const [imageB64, setImageB64] = useState<string | null>(
+    blog?.thumbnail || null
+  );
+
+  // Prefill form with existing blog data
+  React.useEffect(() => {
+    if (blog) {
+      setValue("title", blog.title);
+      setValue("content", blog.content);
+      setValue("author", blog.author);
+      setValue("tag", blog.tag);
+    }
+  }, [blog, setValue]);
+
+  const onFileChange = (file: File | null) => {
+    setImageData(file);
+  };
+
+  const onLoadEnd = (image: string) => {
+    setImageB64(image);
+  };
+
+  const onSubmit = async (data: IAddBlog) => {
+    if (!blog) return;
+    setLoading(true);
+    try {
+      const formData = new FormData();
+      formData.append("title", data.title);
+      formData.append("content", data.content);
+      formData.append("author", data.author);
+      formData.append("tag", data.tag);
+
+      if (imageData) {
+        formData.append("thumbnail", imageData);
+      } else {
+        formData.append("thumbnail", blog.thumbnail);
+      }
+
+      const response = await updateBlog(blog.slug, formData);
+      setBlogs(response);
+
+      message.success("Blog updated successfully!");
+      reset();
+      setIsModalOpen(false);
+    } catch (error) {
+      console.error("Error updating blog:", error);
+      message.error("Failed to update blog. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <Modal
+      key="update blog"
+      title="Update Blog"
+      open={isModalOpen}
+      onCancel={() => setIsModalOpen(false)}
+      footer={null}
+    >
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div className={"general-input-wrapper"}>
+          <label className={"general-label"}>Title</label>
+          <Controller
+            name="title"
+            control={control}
+            rules={{ required: "Title is required" }}
+            render={({ field }) => (
+              <Input
+                {...field}
+                placeholder="Enter blog title"
+                className={"general-input"}
+              />
+            )}
+          />
+          {errors.title && (
+            <p style={{ color: "red", marginTop: "5px" }}>
+              {errors.title.message}
+            </p>
+          )}
+        </div>
+
+        <div className={"general-input-wrapper"}>
+          <label className={"general-label"}>Content</label>
+          <Controller
+            name="content"
+            control={control}
+            rules={{ required: "Content is required" }}
+            render={({ field }) => (
+              <Input.TextArea
+                {...field}
+                placeholder="Enter blog content"
+                rows={4}
+                className={"general-input"}
+              />
+            )}
+          />
+          {errors.content && (
+            <p style={{ color: "red", marginTop: "5px" }}>
+              {errors.content.message}
+            </p>
+          )}
+        </div>
+
+        <div className={"general-input-wrapper"}>
+          <label className={"general-label"}>Tag</label>
+          <Controller
+            name="tag"
+            control={control}
+            rules={{ required: "Tag is required" }}
+            render={({ field }) => (
+              <Input
+                {...field}
+                placeholder="Enter blog tag"
+                className={"general-input"}
+              />
+            )}
+          />
+          {errors.tag && (
+            <p style={{ color: "red", marginTop: "5px" }}>
+              {errors.tag.message}
+            </p>
+          )}
+        </div>
+
+        <div className={"general-input-wrapper"}>
+          <label className={"general-label"}>Author</label>
+          <Controller
+            name="author"
+            control={control}
+            rules={{ required: "Author name is required" }}
+            render={({ field }) => (
+              <Input
+                {...field}
+                placeholder="Enter author name"
+                className={"general-input"}
+              />
+            )}
+          />
+          {errors.author && (
+            <p style={{ color: "red", marginTop: "5px" }}>
+              {errors.author.message}
+            </p>
+          )}
+        </div>
+
+        <div className={"general-input-wrapper"}>
+          <label className={"general-label"}>Cover Image</label>
+          <CoreImageUploader
+            buttonText="Upload Cover Image"
+            onFileChange={onFileChange}
+            onLoadEnd={onLoadEnd}
+            imageB64={imageB64 || ""}
+          />
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "end",
+          }}
+        >
+          <CoreButton
+            text="Update Blog"
+            type="primary"
+            htmlType="submit"
+            loading={loading}
+          />
+        </div>
+      </form>
+    </Modal>
+  );
+};
+
+export default UpdateBlog;

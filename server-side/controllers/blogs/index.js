@@ -6,7 +6,7 @@ const { singleUpload } = require("../../utils/cloudinary");
 
 // Add Blog
 const addBlog = asyncHandler(async (req, res) => {
-  const { title, content, author, tags } = req.body;
+  const { title, content, author, tag } = req.body;
 
   if (!title || !content || !author) {
     throw new apiError(400, "Please provide all required fields");
@@ -24,7 +24,7 @@ const addBlog = asyncHandler(async (req, res) => {
     return new apiError(400, "Feature image is required");
   }
 
-  const blogData = { title, content, author, tags, thumbnail };
+  const blogData = { title, content, author, tag, thumbnail };
 
   const { message, blogs, statusCode } = await blogService.addBlog(blogData);
 
@@ -52,13 +52,13 @@ const getBlogBySlug = asyncHandler(async (req, res) => {
 // Update Blog
 const updateBlog = asyncHandler(async (req, res) => {
   const { slug } = req.params;
-  const { title, content, author, category, tags, thumbnail } = req.body;
+  const { title, content, author, tag, thumbnail } = req.body;
 
   if (!slug) {
     throw new apiError(400, "Slug is required");
   }
 
-  if (!title && !content && !author && !tags && !thumbnail) {
+  if (!title && !content && !author && !tag && !thumbnail) {
     throw new apiError(400, "Please provide at least one field to update");
   }
 
@@ -78,11 +78,9 @@ const updateBlog = asyncHandler(async (req, res) => {
     title,
     content,
     author,
-    tags,
+    tag,
     thumbnail: newThumbnail,
   };
-
-  console.log(updates, "updates");
 
   const { message, blogs, statusCode } = await blogService.updateBlog(
     slug,

@@ -82,29 +82,15 @@ const AdminLayout = ({ children }: AdminLayoutLayoutProps) => {
       <Tooltip
         placement="right"
         trigger={["hover", "click"]}
-        title={`${isMobile ? "Category List" : ""}`}
-        className="tool-tip-container"
-      >
-        <Link href="/admin/category-list" className={styles.adminGetItem}>
-          <AppstoreAddOutlined className="admin-list-icon" />
-          <p className="admin-list-name">Category List</p>
-        </Link>
-      </Tooltip>,
-      "category-list"
-    ),
-    getItem(
-      <Tooltip
-        placement="right"
-        trigger={["hover", "click"]}
         title={`${isMobile ? "Blog List" : ""}`}
         className="tool-tip-container"
       >
-        <Link href="/admin/category-list" className={styles.adminGetItem}>
+        <Link href="/admin/blogs" className={styles.adminGetItem}>
           <AppstoreAddOutlined className="admin-list-icon" />
           <p className="admin-list-name">Blog List</p>
         </Link>
       </Tooltip>,
-      "blog-list"
+      "blogs"
     ),
   ];
 

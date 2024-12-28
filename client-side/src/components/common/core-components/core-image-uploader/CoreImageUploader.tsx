@@ -69,10 +69,10 @@ const CoreImageUploader: React.FC<ImageUploaderProps> = ({
       return;
     }
 
-    const dimensionsValid = await isValidDimensions(fileObj);
-    if (!dimensionsValid) {
-      return;
-    }
+    // const dimensionsValid = await isValidDimensions(fileObj);
+    // if (!dimensionsValid) {
+    //   return;
+    // }
 
     setImage(fileObj);
     onFileChange(fileObj);
