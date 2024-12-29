@@ -8,6 +8,8 @@ import { deleteBlog } from "@/services/blog.service";
 import DeleteModal from "@/components/common/delete-modal/DeleteModal";
 import AddBlog from "../add-blogs/AddBlogs";
 import UpdateBlog from "../update-blog/UpdateBlog";
+import PenIcon from "@/components/common/svg/PenIcon";
+import TrashBinIcon from "@/components/common/svg/TrashBinIcon";
 
 interface IBlogListProps {
   blogs: IBlog[];
@@ -70,22 +72,38 @@ const BlogList = ({ blogs, setBlogs }: IBlogListProps) => {
       render: (slug: string, item: IBlog) => (
         <div style={{ display: "flex", gap: "12px" }}>
           <div
-            style={{ cursor: "pointer" }}
+            style={{
+              cursor: "pointer",
+              padding: "7px",
+              border: "1px solid #D1F4DB",
+              backgroundColor: "#E8FAED",
+              borderRadius: "50%",
+              height: "24px",
+              width: "24px",
+            }}
             onClick={() => {
               setUpdateModalOpen(true);
               setSelectedItem(item);
             }}
           >
-            <EditFilled />
+            <PenIcon />
           </div>
           <div
-            style={{ cursor: "pointer" }}
+            style={{
+              cursor: "pointer",
+              padding: "7px",
+              border: "1px solid #FDD0D5",
+              backgroundColor: "#FEE7EA",
+              borderRadius: "50%",
+              height: "24px",
+              width: "24px",
+            }}
             onClick={() => {
               setDeleteModalOpen(true);
               setSelectedItem(item);
             }}
           >
-            <DeleteFilled />
+            <TrashBinIcon />
           </div>
         </div>
       ),
@@ -102,7 +120,7 @@ const BlogList = ({ blogs, setBlogs }: IBlogListProps) => {
           marginBottom: "20px",
         }}
       >
-        <h1>Blogs</h1>
+        <h1 style={{ fontSize: "20px" }}>Blogs</h1>
         <CoreButton
           text="Add Blog"
           type="primary"
