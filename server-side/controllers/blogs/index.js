@@ -4,7 +4,6 @@ const { apiResponse } = require("../../utils/apiResponse");
 const { asyncHandler } = require("../../utils/asyncHandler");
 const { singleUpload } = require("../../utils/cloudinary");
 
-// Add Blog
 const addBlog = asyncHandler(async (req, res) => {
   const { title, content, author, tag } = req.body;
 
@@ -31,13 +30,11 @@ const addBlog = asyncHandler(async (req, res) => {
   new apiResponse(res, statusCode, message, blogs);
 });
 
-// Get All Blogs
 const getAllBlogs = asyncHandler(async (req, res) => {
   const { message, blogs, statusCode } = await blogService.getAllBlogs();
   new apiResponse(res, statusCode, message, blogs);
 });
 
-// Get Blog by Slug
 const getBlogBySlug = asyncHandler(async (req, res) => {
   const { slug } = req.params;
 
@@ -49,7 +46,6 @@ const getBlogBySlug = asyncHandler(async (req, res) => {
   new apiResponse(res, statusCode, message, blog);
 });
 
-// Update Blog
 const updateBlog = asyncHandler(async (req, res) => {
   const { slug } = req.params;
   const { title, content, author, tag, thumbnail } = req.body;
@@ -90,7 +86,6 @@ const updateBlog = asyncHandler(async (req, res) => {
   new apiResponse(res, statusCode, message, blogs);
 });
 
-// Delete Blog
 const deleteBlog = asyncHandler(async (req, res) => {
   const { slug } = req.params;
 
