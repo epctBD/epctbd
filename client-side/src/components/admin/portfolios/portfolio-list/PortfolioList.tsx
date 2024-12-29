@@ -4,9 +4,11 @@ import React, { useState } from "react";
 
 import CoreButton from "@/components/common/core-components/core-button/CoreButton";
 import AddPortfolio from "../add-portfolio/AddPortfolio";
-import { DeleteFilled, EditFilled } from "@ant-design/icons";
+import { PlusOutlined } from "@ant-design/icons";
 import { deletePortfolio } from "@/services/portfolio.service";
 import DeleteModal from "@/components/common/delete-modal/DeleteModal";
+import PenIcon from "@/components/common/svg/PenIcon";
+import TrashBinIcon from "@/components/common/svg/TrashBinIcon";
 
 interface IPortfolioListProps {
   portfolios: IPortfolio[];
@@ -28,11 +30,11 @@ const PortfolioList = ({ portfolios, setPortfolios }: IPortfolioListProps) => {
       const response = await deletePortfolio(selectedItem._id);
       setPortfolios(response);
 
-      message.success("Portfoliodeleted successfully!");
+      message.success("Portfolio deleted successfully!");
       setDeleteModalOpen(false);
     } catch (error) {
-      console.error("Error deleting project:", error);
-      message.error("Failed to delete project. Please try again.");
+      console.error("Error deleting Portfolio:", error);
+      message.error("Failed to delete Portfolio. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -64,22 +66,38 @@ const PortfolioList = ({ portfolios, setPortfolios }: IPortfolioListProps) => {
       render: (id: string, item: IPortfolio) => (
         <div style={{ display: "flex", gap: "12px" }}>
           <div
-            style={{ cursor: "pointer" }}
+            style={{
+              cursor: "pointer",
+              padding: "7px",
+              border: "1px solid #D1F4DB",
+              backgroundColor: "#E8FAED",
+              borderRadius: "50%",
+              height: "24px",
+              width: "24px",
+            }}
             onClick={() => {
               // setUpdateModalOpen(true);
               setSelectedItem(item);
             }}
           >
-            <EditFilled />
+            <PenIcon />
           </div>
           <div
-            style={{ cursor: "pointer" }}
+            style={{
+              cursor: "pointer",
+              padding: "7px",
+              border: "1px solid #FDD0D5",
+              backgroundColor: "#FEE7EA",
+              borderRadius: "50%",
+              height: "24px",
+              width: "24px",
+            }}
             onClick={() => {
               setDeleteModalOpen(true);
               setSelectedItem(item);
             }}
           >
-            <DeleteFilled />
+            <TrashBinIcon />
           </div>
         </div>
       ),
@@ -96,14 +114,19 @@ const PortfolioList = ({ portfolios, setPortfolios }: IPortfolioListProps) => {
           marginBottom: "20px",
         }}
       >
-        <h1>Portfolios</h1>
+        <h1 style={{ fontSize: "20px" }}>Portfolios</h1>
         <CoreButton
           text="Add Portfolio"
+          icon={<PlusOutlined />}
           type="primary"
           onClick={() => setIsModalOpen(true)}
         />
       </div>
-      <div style={{ marginTop: "24px" }}>
+      <div
+        style={{
+          marginTop: "24px",
+        }}
+      >
         <Table
           dataSource={portfolios}
           columns={columns}

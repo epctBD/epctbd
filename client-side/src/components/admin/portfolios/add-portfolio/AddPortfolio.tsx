@@ -114,7 +114,7 @@ const AddPortfolio = ({
         </div>
 
         <CoreButton
-          text="Add Portfolio"
+          text="+ Addgfg Portfolio"
           type="primary"
           htmlType="submit"
           loading={loading}

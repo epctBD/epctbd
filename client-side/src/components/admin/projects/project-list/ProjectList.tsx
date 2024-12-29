@@ -4,10 +4,12 @@ import React, { useState } from "react";
 
 import CoreButton from "@/components/common/core-components/core-button/CoreButton";
 import AddProject from "../add-projects/AddProjects";
-import { DeleteFilled, EditFilled } from "@ant-design/icons";
 import UpdateProject from "../update-project/UpdateProject";
 import DeleteModal from "@/components/common/delete-modal/DeleteModal";
 import { deleteProject } from "@/services/project.service";
+import PenIcon from "@/components/common/svg/PenIcon";
+import TrashBinIcon from "@/components/common/svg/TrashBinIcon";
+import { PlusOutlined } from "@ant-design/icons";
 
 interface IProjectListProps {
   projects: IProject[];
@@ -70,22 +72,38 @@ const ProjectList = ({ projects, setProjects }: IProjectListProps) => {
       render: (id: string, item: IProject) => (
         <div style={{ display: "flex", gap: "12px" }}>
           <div
-            style={{ cursor: "pointer" }}
+            style={{
+              cursor: "pointer",
+              padding: "7px",
+              border: "1px solid #D1F4DB",
+              backgroundColor: "#E8FAED",
+              borderRadius: "50%",
+              height: "24px",
+              width: "24px",
+            }}
             onClick={() => {
               setUpdateModalOpen(true);
               setSelectedItem(item);
             }}
           >
-            <EditFilled />
+            <PenIcon />
           </div>
           <div
-            style={{ cursor: "pointer" }}
+            style={{
+              cursor: "pointer",
+              padding: "7px",
+              border: "1px solid #FDD0D5",
+              backgroundColor: "#FEE7EA",
+              borderRadius: "50%",
+              height: "24px",
+              width: "24px",
+            }}
             onClick={() => {
               setDeleteModalOpen(true);
               setSelectedItem(item);
             }}
           >
-            <DeleteFilled />
+            <TrashBinIcon />
           </div>
         </div>
       ),
@@ -102,9 +120,10 @@ const ProjectList = ({ projects, setProjects }: IProjectListProps) => {
           marginBottom: "20px",
         }}
       >
-        <h1>Projects</h1>
+        <h1 style={{ fontSize: "20px" }}>Projects</h1>
         <CoreButton
           text="Add Project"
+          icon={<PlusOutlined />}
           type="primary"
           onClick={() => setIsModalOpen(true)}
         />

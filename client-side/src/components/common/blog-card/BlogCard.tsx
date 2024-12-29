@@ -29,7 +29,17 @@ const BlogCard: React.FC<BlogCardProps> = ({
           <p className={styles.blogTitle}>{title}</p>
           <p className={styles.blogDescription}>{description}</p>
         </div>
-        <Button type="primary" variant="text">
+        <Button
+          variant="text"
+          style={{
+            color: "#0077EE",
+            backgroundColor: "transparent",
+            border: "none",
+            paddingLeft: "0px",
+            fontSize: "18px",
+            fontWeight: "600",
+          }}
+        >
           Read More
         </Button>
       </div>
