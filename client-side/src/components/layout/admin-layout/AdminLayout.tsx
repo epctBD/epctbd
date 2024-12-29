@@ -127,7 +127,7 @@ const AdminLayout = ({ children }: AdminLayoutLayoutProps) => {
           overflow: "auto",
           width: "100%",
           backgroundColor: "#F5F7FA",
-          padding: "20px",
+          padding: "60px 40px",
         }}
       >
         {children}

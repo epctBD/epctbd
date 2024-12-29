@@ -2,19 +2,6 @@ import Image, { StaticImageData } from "next/image";
 import styles from "./BlogCard.module.scss";
 import { Button } from "antd";
 
-const truncateByWordCount = (text: string, wordLimit: number): string => {
-  if (!text || typeof text !== "string") {
-    return "";
-  }
-
-  const words = text.split(" ");
-  if (words.length > wordLimit) {
-    return `${words.slice(0, wordLimit).join(" ")}...`;
-  }
-  return text;
-};
-
-// BlogCardProps now properly uses destructuring
 export interface BlogCardProps {
   // id: number;
   title: string;
@@ -39,12 +26,20 @@ const BlogCard: React.FC<BlogCardProps> = ({
           <p className={styles.blogType}>{type}</p>
         </div>
         <div className={styles.blogTexts}>
-          <p className={styles.blogTitle}>{truncateByWordCount(title, 7)}</p>
-          <p className={styles.blogDescription}>
-            {truncateByWordCount(description, 16)}
-          </p>
+          <p className={styles.blogTitle}>{title}</p>
+          <p className={styles.blogDescription}>{description}</p>
         </div>
-        <Button type="primary" variant="text">
+        <Button
+          variant="text"
+          style={{
+            color: "#0077EE",
+            backgroundColor: "transparent",
+            border: "none",
+            paddingLeft: "0px",
+            fontSize: "18px",
+            fontWeight: "600",
+          }}
+        >
           Read More
         </Button>
       </div>

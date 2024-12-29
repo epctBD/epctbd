@@ -7,7 +7,7 @@ const BlogsView = () => {
   return (
     <Row gutter={[24, 24]}>
       {blogData.map((blog) => (
-        <Col span={8} xs={24} sm={12} md={8} key={blog.id}>
+        <Col span={8} xs={24} sm={12} md={12} xl={8} key={blog.id}>
           <div className={styles.blogsCardWrapper}>
             <BlogCard
               title={blog.title}

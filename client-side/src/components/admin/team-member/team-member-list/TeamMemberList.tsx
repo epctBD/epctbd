@@ -7,6 +7,8 @@ import { DeleteFilled, EditFilled } from "@ant-design/icons";
 import UpdateTeamMember from "../update-team-member/UpdateTeamMember";
 import DeleteModal from "@/components/common/delete-modal/DeleteModal";
 import { deleteTeamMember } from "@/services/teamMember.service";
+import TrashBinIcon from "@/components/common/svg/TrashBinIcon";
+import PenIcon from "@/components/common/svg/PenIcon";
 
 interface ITeamMemberListProps {
   teamMembers: ITeamMemberList[];
@@ -55,22 +57,38 @@ const TeamMemberList = ({
       render: (id: string, item: ITeamMemberList) => (
         <div style={{ display: "flex", gap: "12px" }}>
           <div
-            style={{ cursor: "pointer" }}
+            style={{
+              cursor: "pointer",
+              padding: "7px",
+              border: "1px solid #D1F4DB",
+              backgroundColor: "#E8FAED",
+              borderRadius: "50%",
+              height: "24px",
+              width: "24px",
+            }}
             onClick={() => {
               setUpdateModalOpen(true);
               setSelectedItem(item);
             }}
           >
-            <EditFilled />
+            <PenIcon />
           </div>
           <div
-            style={{ cursor: "pointer" }}
+            style={{
+              cursor: "pointer",
+              padding: "7px",
+              border: "1px solid #FDD0D5",
+              backgroundColor: "#FEE7EA",
+              borderRadius: "50%",
+              height: "24px",
+              width: "24px",
+            }}
             onClick={() => {
               setDeleteModalOpen(true);
               setSelectedItem(item);
             }}
           >
-            <DeleteFilled />
+            <TrashBinIcon />
           </div>
         </div>
       ),
@@ -105,7 +123,7 @@ const TeamMemberList = ({
           marginBottom: "20px",
         }}
       >
-        <h1>Team Members</h1>
+        <h1 style={{ fontSize: "20px" }}>Team Members</h1>
         <CoreButton
           text="Add Team Member"
           type="primary"
