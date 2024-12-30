@@ -3,7 +3,7 @@ import { Image, message, Table } from "antd";
 import React, { useState } from "react";
 
 import CoreButton from "@/components/common/core-components/core-button/CoreButton";
-import { DeleteFilled, EditFilled } from "@ant-design/icons";
+import { DeleteFilled, EditFilled, PlusOutlined } from "@ant-design/icons";
 import { deleteBlog } from "@/services/blog.service";
 import DeleteModal from "@/components/common/delete-modal/DeleteModal";
 import AddBlog from "../add-blogs/AddBlogs";
@@ -122,6 +122,7 @@ const BlogList = ({ blogs, setBlogs }: IBlogListProps) => {
       >
         <h1 style={{ fontSize: "20px" }}>Blogs</h1>
         <CoreButton
+          icon={<PlusOutlined />}
           text="Add Blog"
           type="primary"
           onClick={() => setIsModalOpen(true)}
