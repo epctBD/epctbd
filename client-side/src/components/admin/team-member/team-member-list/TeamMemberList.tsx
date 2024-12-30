@@ -3,7 +3,7 @@ import { Image, message, Table } from "antd";
 import React, { useState } from "react";
 import AddTeamMember from "../add-team-member/AddTeamMember";
 import CoreButton from "@/components/common/core-components/core-button/CoreButton";
-import { DeleteFilled, EditFilled } from "@ant-design/icons";
+import { DeleteFilled, EditFilled, PlusOutlined } from "@ant-design/icons";
 import UpdateTeamMember from "../update-team-member/UpdateTeamMember";
 import DeleteModal from "@/components/common/delete-modal/DeleteModal";
 import { deleteTeamMember } from "@/services/teamMember.service";
@@ -125,6 +125,7 @@ const TeamMemberList = ({
       >
         <h1 style={{ fontSize: "20px" }}>Team Members</h1>
         <CoreButton
+          icon={<PlusOutlined />}
           text="Add Team Member"
           type="primary"
           onClick={() => setIsModalOpen(true)}
