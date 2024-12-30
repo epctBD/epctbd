@@ -1,16 +1,17 @@
 import { IBlog } from "@/models/blog.model";
 import BlogDetailsView from "@/components/resources/blog-details/BlogDetailsView";
-import { getBlogBySlug } from "@/services/blog.service";
+import { getBlogBySlug, getBlogs } from "@/services/blog.service";
 import { GetServerSideProps } from "next";
 
 interface IBlogDetailsProps {
   blog: IBlog;
+  blogs: IBlog[];
 }
 
-const BlogDetails = ({ blog }: IBlogDetailsProps) => {
+const BlogDetails = ({ blog, blogs }: IBlogDetailsProps) => {
   return (
-    <div>
-      <BlogDetailsView blog={blog} />
+    <div className={"container-wrapper"}>
+      <BlogDetailsView blog={blog} blogs={blogs} />
     </div>
   );
 };
@@ -25,18 +26,21 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
 
   try {
-    const response = await getBlogBySlug(blogSlug);
+    // Fetch the specific blog using its slug
+    const blog = await getBlogBySlug(blogSlug);
+    // Fetch all blogs for the related blogs section
+    const blogs = await getBlogs();
+
     return {
       props: {
-        blog: response,
+        blog,
+        blogs,
       },
     };
   } catch (error) {
-    console.error("Error fetching projects:", error);
+    console.error("Error fetching blog details or blogs:", error);
     return {
-      props: {
-        blog: [],
-      },
+      notFound: true,
     };
   }
 };
