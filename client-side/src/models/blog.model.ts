@@ -5,6 +5,7 @@ export interface IBlog {
   tag: string;
   thumbnail: string;
   slug: string;
+  createdAt: string;
 }
 
 export interface IBlogResponse {

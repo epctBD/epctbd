@@ -5,6 +5,7 @@ import { addBlog } from "@/services/blog.service";
 import { Input, message, Modal } from "antd";
 import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
+import TextEditor from "./TextEditor";
 
 interface IAddBlogModalProps {
   isModalOpen: boolean;
@@ -27,6 +28,7 @@ const AddBlog = ({
 
   const [imageData, setImageData] = useState<File | null>(null);
   const [imageB64, setImageB64] = useState<string | null>(null);
+  const [textEditorValue, setTextEditorValue] = useState("");
 
   const onFileChange = (file: File | null) => {
     setImageData(file);
@@ -41,7 +43,7 @@ const AddBlog = ({
     try {
       const formData = new FormData();
       formData.append("title", data.title);
-      formData.append("content", data.content);
+      formData.append("content", textEditorValue);
       formData.append("author", data.author);
       formData.append("tag", data.tag);
 
@@ -93,24 +95,10 @@ const AddBlog = ({
 
         <div className={"general-input-wrapper"}>
           <label className={"general-label"}>Content</label>
-          <Controller
-            name="content"
-            control={control}
-            rules={{ required: "Content is required" }}
-            render={({ field }) => (
-              <Input.TextArea
-                {...field}
-                placeholder="Enter blog content"
-                rows={4}
-                className={"general-input"}
-              />
-            )}
+          <TextEditor
+            textEditorValue={textEditorValue}
+            setTextEditorValue={setTextEditorValue}
           />
-          {errors.content && (
-            <p style={{ color: "red", marginTop: "5px" }}>
-              {errors.content.message}
-            </p>
-          )}
         </div>
 
         <div className={"general-input-wrapper"}>

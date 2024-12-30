@@ -4,8 +4,13 @@ import BlogsView from "./blogs-view/BlogsView";
 import BooksView from "./books-view/BooksView";
 import PodcastsView from "./podcast-view/PodcastView";
 import styles from "./ResourcePageView.module.scss";
+import { IBlog } from "@/models/blog.model";
 
-const ResourcePageView = () => {
+interface IResourcePageViewProps {
+  blogs: IBlog[];
+}
+
+const ResourcePageView = ({ blogs }: IResourcePageViewProps) => {
   const [activeTabKey, setActiveTabKey] = useState("1");
 
   const items: TabsProps["items"] = [
@@ -30,7 +35,7 @@ const ResourcePageView = () => {
   const renderContent = () => {
     switch (activeTabKey) {
       case "1":
-        return <BlogsView />;
+        return <BlogsView blogs={blogs} />;
       case "2":
         return <BooksView />;
       case "3":

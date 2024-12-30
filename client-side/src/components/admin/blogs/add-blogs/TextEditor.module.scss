@@ -1,0 +1,10 @@
+.textEditorWrapper {
+  border-radius: 26px;
+  font-size: 14px;
+  color: black;
+  background-color: white;
+
+  &::placeholder {
+    color: #858585;
+  }
+}

@@ -1,37 +1,13 @@
 import { Breadcrumb, Col, Row } from "antd";
-import styles from "./BlogDetails.module.scss";
 import Image from "next/image";
 import img1 from "../../../../public/Carousel/1.png";
 import img2 from "../../../../public/Carousel/2.png";
 import img3 from "../../../../public/Carousel/3.png";
 import { CalendarOutlined } from "@ant-design/icons";
 import Link from "next/link";
-
-const blogData = [
-  {
-    id: "123",
-    type: "Blog",
-    title: "Tolstoy provides an authentic interaction",
-    category: "Architectural Design",
-    date: "24 Aug 2024",
-    image: img1,
-    content: `
-    Consistency ensures that all elements of your design work
-    together harmoniously. This means:
-    - Uniform Visuals: Use consistent colors, fonts, and icons.
-    - Standardized Interactions: Ensure similar actions result in similar outcomes.
-    - Predictable Layouts: Keep the layout familiar across different sections.
-    
-    A consistent design helps users know what to expect, making their
-    interactions more efficient. By incorporating these five UX
-    design principles—simplicity, consistency, accessibility, feedback,
-    and responsiveness—you can create a more engaging and user-friendly product.
-    
-    Enhancing the user experience not only increases satisfaction but
-    also boosts retention and overall success.
-  `,
-  },
-];
+import { IBlog } from "@/models/blog.model";
+import styles from "./BlogDetailsView.module.scss";
+import { UtcToLocalDate } from "@/utils/formatDate";
 
 const relatedBlogs = [
   {
@@ -54,10 +30,12 @@ const relatedBlogs = [
   },
 ];
 
-const BlogDetails = () => {
-  // Extract the blog data (assuming you are using the first blog in the array)
-  const blog = blogData[0];
+interface IBlogDetailsProps {
+  blog: IBlog;
+}
 
+const BlogDetailsView = ({ blog }: IBlogDetailsProps) => {
+  console.log(blog, "blog details");
   return (
     <div className={styles.blogDetailsWrapper}>
       <Row gutter={20}>
@@ -76,23 +54,23 @@ const BlogDetails = () => {
                   },
                   {
                     title: (
-                      <span style={{ color: "#A3A6AA" }}>{blog.category}</span>
+                      <span style={{ color: "#A3A6AA" }}>{blog.title}</span>
                     ),
                   },
                 ]}
               />
               <p className={styles.blogDetailsTitle}>{blog.title}</p>
               <div className={styles.blogTypeWrapper}>
-                <p className={styles.blogDetailType}>{blog.type}</p>
+                <p className={styles.blogDetailType}>{blog.tag}</p>
                 <div className={styles.blogTimestamp}>
                   <CalendarOutlined />
-                  <p>{blog.date}</p>
+                  <p>{UtcToLocalDate(blog.createdAt)}</p>
                 </div>
               </div>
             </div>
             <div className={styles.blogDetailImageWrapper}>
               <Image
-                src={blog.image}
+                src={blog.thumbnail}
                 alt={blog.title}
                 className={styles.blogDetailImage}
                 width={800}
@@ -100,7 +78,12 @@ const BlogDetails = () => {
               />
             </div>
             <div className={styles.blogDetailTextWrapper}>
-              <p className={styles.blogDetailText}>{blog.content}</p>
+              <p
+                className={styles.blogDetailText}
+                dangerouslySetInnerHTML={{
+                  __html: blog?.content ?? "",
+                }}
+              ></p>
             </div>
           </div>
         </Col>
@@ -126,4 +109,4 @@ const BlogDetails = () => {
   );
 };
 
-export default BlogDetails;
+export default BlogDetailsView;

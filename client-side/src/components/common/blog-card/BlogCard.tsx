@@ -1,33 +1,40 @@
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import styles from "./BlogCard.module.scss";
 import { Button } from "antd";
+import { useRouter } from "next/router";
 
-export interface BlogCardProps {
-  // id: number;
+export interface IBlogCardProps {
+  slug: string;
   title: string;
-  description: string;
-  image: StaticImageData;
-  type: string;
+  content: string;
+  image: string;
+  tag: string;
 }
 
-const BlogCard: React.FC<BlogCardProps> = ({
-  title,
-  description,
-  image,
-  type,
-}) => {
+const BlogCard = ({ slug, title, content, image, tag }: IBlogCardProps) => {
+  const router = useRouter();
+  const goToDetails = () => {
+    router.push(`resources/blog/${slug}`);
+  };
+
   return (
     <div className={styles.blogCardWrapper}>
       <div className={styles.blogImageWrapper}>
-        <Image src={image} alt="blog-image" className={styles.blogImage} />
+        <Image
+          src={image}
+          alt="blog-image"
+          className={styles.blogImage}
+          width={411}
+          height={252}
+        />
       </div>
       <div className={styles.blogContent}>
         <div className={styles.blogTypeWrapper}>
-          <p className={styles.blogType}>{type}</p>
+          <p className={styles.blogType}>{tag}</p>
         </div>
         <div className={styles.blogTexts}>
           <p className={styles.blogTitle}>{title}</p>
-          <p className={styles.blogDescription}>{description}</p>
+          <p className={styles.blogcontent}>{content}</p>
         </div>
         <Button
           variant="text"
@@ -39,6 +46,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
             fontSize: "18px",
             fontWeight: "600",
           }}
+          onClick={goToDetails}
         >
           Read More
         </Button>

@@ -1,19 +1,24 @@
 import BlogCard from "@/components/common/blog-card/BlogCard";
-import { blogData } from "@/components/home/home-blog/HomeBlogData";
 import { Row, Col } from "antd";
 import styles from "./blogsView.module.scss";
+import { IBlog } from "@/models/blog.model";
 
-const BlogsView = () => {
+interface IBlogsViewProps {
+  blogs: IBlog[];
+}
+
+const BlogsView = ({ blogs }: IBlogsViewProps) => {
   return (
     <Row gutter={[24, 24]}>
-      {blogData.map((blog) => (
-        <Col span={8} xs={24} sm={12} md={12} xl={8} key={blog.id}>
+      {blogs?.map((blog) => (
+        <Col span={8} xs={24} sm={12} md={12} xl={8} key={blog.slug}>
           <div className={styles.blogsCardWrapper}>
             <BlogCard
               title={blog.title}
-              description={blog.description}
-              image={blog.image}
-              type={blog.type}
+              content={blog.content}
+              image={blog.thumbnail}
+              tag={blog.tag}
+              slug={blog.slug}
             />
           </div>
         </Col>
