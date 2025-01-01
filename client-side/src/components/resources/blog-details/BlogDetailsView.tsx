@@ -1,8 +1,5 @@
 import { Breadcrumb, Col, Row } from "antd";
 import Image from "next/image";
-import img1 from "../../../../public/Carousel/1.png";
-import img2 from "../../../../public/Carousel/2.png";
-import img3 from "../../../../public/Carousel/3.png";
 import { CalendarOutlined } from "@ant-design/icons";
 import Link from "next/link";
 import { IBlog } from "@/models/blog.model";
@@ -29,18 +26,34 @@ const BlogDetailsView = ({ blog, blogs }: IBlogDetailsProps) => {
           <div className={styles.blogDetailsInnerWrapper}>
             <div className={styles.blogDetailsHeader}>
               <Breadcrumb
-                separator={<span style={{ color: "#A3A6AA" }}>/</span>}
+                separator={
+                  <span
+                    style={{ color: "#A3A6AA" }}
+                    className={styles.breadcrumbSeparator}
+                  >
+                    /
+                  </span>
+                }
                 items={[
                   {
                     title: (
-                      <Link href="/Blogs" style={{ color: "#0077EE" }}>
+                      <Link
+                        href="/resources"
+                        style={{ color: "#0077EE" }}
+                        className={styles.breadcrumbLink}
+                      >
                         Blogs
                       </Link>
                     ),
                   },
                   {
                     title: (
-                      <span style={{ color: "#A3A6AA" }}>{blog.title}</span>
+                      <span
+                        style={{ color: "#A3A6AA" }}
+                        className={styles.breadcrumbLink}
+                      >
+                        {blog.title}
+                      </span>
                     ),
                   },
                 ]}
@@ -73,7 +86,7 @@ const BlogDetailsView = ({ blog, blogs }: IBlogDetailsProps) => {
             </div>
           </div>
         </Col>
-        <Col xl={7} md={12}>
+        <Col xl={7} md={12} sm={12} xs={24}>
           <div className={styles.relatedBlogWraper}>
             <p className={styles.relatedBlogHeader}>Related Blogs</p>
             <div className={styles.relatedBlogInnerWrapper}>

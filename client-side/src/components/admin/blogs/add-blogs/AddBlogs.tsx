@@ -13,8 +13,6 @@ interface IAddBlogModalProps {
   setBlogs: React.Dispatch<React.SetStateAction<IBlog[]>>;
 }
 
-//add blog
-
 const AddBlog = ({
   isModalOpen,
   setIsModalOpen,
