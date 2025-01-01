@@ -10,7 +10,7 @@ interface IBlogDetailsProps {
 
 const BlogDetails = ({ blog, blogs }: IBlogDetailsProps) => {
   return (
-    <div>
+    <div className={"container-wrapper"}>
       <BlogDetailsView blog={blog} blogs={blogs} />
     </div>
   );
@@ -26,21 +26,21 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
 
   try {
-    const response = await getBlogBySlug(blogSlug);
+    // Fetch the specific blog using its slug
+    const blog = await getBlogBySlug(blogSlug);
+    // Fetch all blogs for the related blogs section
     const blogs = await getBlogs();
+
     return {
       props: {
-        blog: response,
-        blogs: blogs,
+        blog,
+        blogs,
       },
     };
   } catch (error) {
-    console.error("Error fetching projects:", error);
+    console.error("Error fetching blog details or blogs:", error);
     return {
-      props: {
-        blog: [],
-        blogs: [],
-      },
+      notFound: true,
     };
   }
 };

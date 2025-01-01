@@ -13,17 +13,16 @@ interface IBlogDetailsProps {
 }
 
 const BlogDetailsView = ({ blog, blogs }: IBlogDetailsProps) => {
+  console.log(blog, "blog details");
   const router = useRouter();
-  const gotToDetails = (slug: string) => {
+  const goToDetails = (slug: string) => {
     router.push(`/resources/blog/${slug}`);
   };
-
-  const currentSlug = blog?.slug;
 
   return (
     <div className={styles.blogDetailsWrapper}>
       <Row gutter={20}>
-        <Col span={17}>
+        <Col xl={17} md={24}>
           <div className={styles.blogDetailsInnerWrapper}>
             <div className={styles.blogDetailsHeader}>
               <Breadcrumb
@@ -71,29 +70,32 @@ const BlogDetailsView = ({ blog, blogs }: IBlogDetailsProps) => {
             </div>
           </div>
         </Col>
-        <Col span={6}>
+        <Col xl={7} md={12}>
           <div className={styles.relatedBlogWraper}>
             <p className={styles.relatedBlogHeader}>Blogs You Might Like</p>
             <div className={styles.relatedBlogInnerWrapper}>
-              {blogs
-                .filter((blog) => blog.slug !== currentSlug)
-                .slice(0, 3)
-                .map((blog) => (
-                  <div
-                    key={blog.slug}
-                    className={styles.relatedBlogCardWrapper}
-                    onClick={() => gotToDetails(blog.slug)}
-                  >
-                    <Image
-                      src={blog.thumbnail}
-                      alt={blog.title}
-                      width={48}
-                      height={48}
-                      className={styles.relatedBlogImage}
-                    />
-                    <p className={styles.relatedBlogTitle}>{blog.title}</p>
-                  </div>
-                ))}
+              {blogs &&
+                blogs
+                  .filter((relatedBlog) => relatedBlog.slug !== blog.slug)
+                  .slice(0, 3)
+                  .map((relatedBlog) => (
+                    <div
+                      key={relatedBlog.slug}
+                      className={styles.relatedBlogCardWrapper}
+                      onClick={() => goToDetails(relatedBlog.slug)}
+                    >
+                      <Image
+                        src={relatedBlog.thumbnail}
+                        alt={relatedBlog.title}
+                        className={styles.relatedBlogImage}
+                        width={150}
+                        height={100}
+                      />
+                      <p className={styles.relatedBlogTitle}>
+                        {relatedBlog.title}
+                      </p>
+                    </div>
+                  ))}
             </div>
           </div>
         </Col>

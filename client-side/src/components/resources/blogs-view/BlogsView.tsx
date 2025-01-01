@@ -11,7 +11,7 @@ const BlogsView = ({ blogs }: IBlogsViewProps) => {
   return (
     <Row gutter={[24, 24]}>
       {blogs?.map((blog) => (
-        <Col span={8} xs={24} sm={12} md={12} xl={8} key={blog.slug}>
+        <Col xs={24} sm={12} md={12} xl={8} key={blog.slug}>
           <div className={styles.blogsCardWrapper}>
             <BlogCard
               title={blog.title}
