@@ -8,38 +8,24 @@ import Link from "next/link";
 import { IBlog } from "@/models/blog.model";
 import styles from "./BlogDetailsView.module.scss";
 import { UtcToLocalDate } from "@/utils/formatDate";
-
-const relatedBlogs = [
-  {
-    id: 1,
-    image: img1,
-    title: "Enhance User Engagement with These 5 UX Design Tips",
-    link: "/blog/ux-design-tips",
-  },
-  {
-    id: 2,
-    image: img2,
-    title: "Top 10 Tools for Efficient Web Development in 2024",
-    link: "/blog/web-development-tools",
-  },
-  {
-    id: 3,
-    image: img3,
-    title: "Understanding React Server Components",
-    link: "/blog/react-server-components",
-  },
-];
+import { useRouter } from "next/router";
 
 interface IBlogDetailsProps {
   blog: IBlog;
+  blogs: IBlog[];
 }
 
-const BlogDetailsView = ({ blog }: IBlogDetailsProps) => {
+const BlogDetailsView = ({ blog, blogs }: IBlogDetailsProps) => {
   console.log(blog, "blog details");
+  const router = useRouter();
+  const goToDetails = (slug: string) => {
+    router.push(`/resources/blog/${slug}`);
+  };
+
   return (
     <div className={styles.blogDetailsWrapper}>
       <Row gutter={20}>
-        <Col span={17}>
+        <Col xl={17} md={24}>
           <div className={styles.blogDetailsInnerWrapper}>
             <div className={styles.blogDetailsHeader}>
               <Breadcrumb
@@ -87,20 +73,32 @@ const BlogDetailsView = ({ blog }: IBlogDetailsProps) => {
             </div>
           </div>
         </Col>
-        <Col span={6}>
+        <Col xl={7} md={12}>
           <div className={styles.relatedBlogWraper}>
             <p className={styles.relatedBlogHeader}>Related Blogs</p>
             <div className={styles.relatedBlogInnerWrapper}>
-              {relatedBlogs.map((blog) => (
-                <div key={blog.id} className={styles.relatedBlogCardWrapper}>
-                  <Image
-                    src={blog.image}
-                    alt={blog.title}
-                    className={styles.relatedBlogImage}
-                  />
-                  <p className={styles.relatedBlogTitle}>{blog.title}</p>
-                </div>
-              ))}
+              {blogs &&
+                blogs
+                  .filter((relatedBlog) => relatedBlog.slug !== blog.slug)
+                  .slice(0, 3)
+                  .map((relatedBlog) => (
+                    <div
+                      key={relatedBlog.slug}
+                      className={styles.relatedBlogCardWrapper}
+                      onClick={() => goToDetails(relatedBlog.slug)}
+                    >
+                      <Image
+                        src={relatedBlog.thumbnail}
+                        alt={relatedBlog.title}
+                        className={styles.relatedBlogImage}
+                        width={150}
+                        height={100}
+                      />
+                      <p className={styles.relatedBlogTitle}>
+                        {relatedBlog.title}
+                      </p>
+                    </div>
+                  ))}
             </div>
           </div>
         </Col>

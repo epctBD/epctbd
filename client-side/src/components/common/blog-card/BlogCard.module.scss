@@ -5,14 +5,12 @@
   max-width: 411px;
 
   .blogImageWrapper {
-    height: 252px;
-    width: auto;
-    border-radius: 16px;
-
     .blogImage {
       width: 100%;
       height: 100%;
       border-radius: 16px;
+      border: 1px solid red;
+      aspect-ratio: 411 / 252;
     }
   }
 
