@@ -1,16 +1,17 @@
 import { IBlog } from "@/models/blog.model";
 import BlogDetailsView from "@/components/resources/blog-details/BlogDetailsView";
-import { getBlogBySlug } from "@/services/blog.service";
+import { getBlogBySlug, getBlogs } from "@/services/blog.service";
 import { GetServerSideProps } from "next";
 
 interface IBlogDetailsProps {
   blog: IBlog;
+  blogs: IBlog[];
 }
 
-const BlogDetails = ({ blog }: IBlogDetailsProps) => {
+const BlogDetails = ({ blog, blogs }: IBlogDetailsProps) => {
   return (
     <div>
-      <BlogDetailsView blog={blog} />
+      <BlogDetailsView blog={blog} blogs={blogs} />
     </div>
   );
 };
@@ -26,9 +27,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   try {
     const response = await getBlogBySlug(blogSlug);
+    const blogs = await getBlogs();
     return {
       props: {
         blog: response,
+        blogs: blogs,
       },
     };
   } catch (error) {
@@ -36,6 +39,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     return {
       props: {
         blog: [],
+        blogs: [],
       },
     };
   }
