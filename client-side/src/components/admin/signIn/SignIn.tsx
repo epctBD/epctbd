@@ -4,8 +4,8 @@ import { Controller, useForm } from "react-hook-form";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import styles from "./SignIn.module.scss";
-import logo from "../../../public/images/epct_logo.png";
-import CoreButton from "../common/core-components/core-button/CoreButton";
+import logo from "../../../../public/images/epct_logo.png";
+import CoreButton from "@/components/common/core-components/core-button/CoreButton";
 
 interface ISignInForm {
   email: string;
@@ -25,7 +25,6 @@ const SignIn = () => {
   const onSubmit = (data: ISignInForm) => {
     setIsButtonLoading(true);
 
-    // Simulating a login request (replace this with your actual logic)
     new Promise((resolve, reject) => {
       setTimeout(() => {
         if (
@@ -51,15 +50,21 @@ const SignIn = () => {
   return (
     <div className={styles.signInWrapper}>
       <div className={styles.signInInnerWrapper}>
-        <Image src={logo} alt="epct-logo" />
+        <div className={styles.signInTextWrapper}>
+          <Image src={logo} alt="epct-logo" />
+          <p className={styles.signInTitle}>Management Portal</p>
+          <p className={styles.signInText}>
+            Create your account to manage your data
+          </p>
+        </div>
 
         <div className={styles.signInFormWrapper}>
-          <p className={styles.signInText}>Sign In</p>
           <form
             className={styles.signInFormInnerWrapper}
             onSubmit={handleSubmit(onSubmit)}
           >
             <div className={styles.adminInputWrapper}>
+              <p className={styles.inputTitle}>Your Email*</p>
               <Controller
                 name="email"
                 control={control}
@@ -73,7 +78,7 @@ const SignIn = () => {
                 render={({ field }) => (
                   <Input
                     {...field}
-                    placeholder="Email"
+                    placeholder="admin@example.com"
                     className={styles.adminInput}
                   />
                 )}
@@ -83,10 +88,8 @@ const SignIn = () => {
               )}
             </div>
 
-            <div
-              className={styles.adminInputWrapper}
-              style={{ width: "500px" }}
-            >
+            <div className={styles.adminInputWrapper}>
+              <p className={styles.inputTitle}>Password*</p>
               <Controller
                 name="password"
                 control={control}
@@ -96,7 +99,7 @@ const SignIn = () => {
                 render={({ field }) => (
                   <Input.Password
                     {...field}
-                    placeholder="Password"
+                    placeholder="........"
                     className={styles.adminInput}
                   />
                 )}
