@@ -2,8 +2,9 @@ import CoreButton from "@/components/common/core-components/core-button/CoreButt
 import ImageUploadIcon from "@/components/common/svg/ImageUploadIcon";
 import { IPhoto, IProject } from "@/models/project.model";
 import { addProject } from "@/services/project.service";
-import { DeleteOutlined, UploadOutlined } from "@ant-design/icons";
+import { MinusCircleOutlined } from "@ant-design/icons";
 import { Button, Image, Input, message, Modal, Upload } from "antd";
+import { div } from "motion/react-client";
 import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 
@@ -295,40 +296,40 @@ const AddProjects = ({
 
         <div>
           <div className={"photo-input-wrapper"}>
-            {/* <label className={"general-label"}>Project Images</label> */}
-            <p className={"general-label"}>Project Images</p>
-            <Upload
-              beforeUpload={handlePhotoUpload}
-              showUploadList={false}
-              accept="image/*"
-            >
-              {photos.length < 10 && (
-                // <Button type="primary" icon={<UploadOutlined />} size="small" />
-                <ImageUploadIcon />
-              )}
-            </Upload>
-          </div>
+            <label className={"general-label"}>Project Images</label>
 
-          {photos.map((photo, index) => (
-            <div key={index + 1} className={"photo-upload-wrapper"}>
-              <Image
-                src={photo.url}
-                alt={`Photo ${index + 1}`}
-                width={100}
-                height={100}
-                preview={true}
-                className="margin-bottom-16"
-              />
-
-              <Button
-                type="primary"
-                danger
-                icon={<DeleteOutlined />}
-                size="small"
-                onClick={() => handleRemovePhoto(index)}
-              />
+            <div className={"photo-outer-upload-wrapper"}>
+              {photos.map((photo, index) => (
+                <div key={index + 1} className="photo-upload-wrapper">
+                  <Image
+                    src={photo.url}
+                    alt={`Photo ${index + 1}`}
+                    width={76}
+                    height={76}
+                    preview={true}
+                    className="margin-bottom-16"
+                  />
+                  <div
+                    onClick={() => handleRemovePhoto(index)}
+                    className="photo-delete-icon"
+                  >
+                    <MinusCircleOutlined />
+                  </div>
+                </div>
+              ))}
+              <Upload
+                beforeUpload={handlePhotoUpload}
+                showUploadList={false}
+                accept="image/*"
+              >
+                {photos.length < 10 && (
+                  <div style={{ padding: "8px" }}>
+                    <ImageUploadIcon />
+                  </div>
+                )}
+              </Upload>
             </div>
-          ))}
+          </div>
         </div>
 
         <CoreButton
