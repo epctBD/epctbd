@@ -1,4 +1,5 @@
 import CoreButton from "@/components/common/core-components/core-button/CoreButton";
+import ImageUploadIcon from "@/components/common/svg/ImageUploadIcon";
 import { IPhoto, IProject } from "@/models/project.model";
 import { addProject } from "@/services/project.service";
 import { DeleteOutlined, UploadOutlined } from "@ant-design/icons";
@@ -294,14 +295,16 @@ const AddProjects = ({
 
         <div>
           <div className={"photo-input-wrapper"}>
-            <label className={"general-label"}>Project Images</label>
+            {/* <label className={"general-label"}>Project Images</label> */}
+            <p className={"general-label"}>Project Images</p>
             <Upload
               beforeUpload={handlePhotoUpload}
               showUploadList={false}
               accept="image/*"
             >
               {photos.length < 10 && (
-                <Button type="primary" icon={<UploadOutlined />} size="small" />
+                // <Button type="primary" icon={<UploadOutlined />} size="small" />
+                <ImageUploadIcon />
               )}
             </Upload>
           </div>
