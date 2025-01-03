@@ -2,7 +2,7 @@ import CoreButton from "@/components/common/core-components/core-button/CoreButt
 import ImageUploadIcon from "@/components/common/svg/ImageUploadIcon";
 import { IPhoto, IProject } from "@/models/project.model";
 import { addProject } from "@/services/project.service";
-import { MinusCircleOutlined } from "@ant-design/icons";
+import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
 import { Button, Image, Input, message, Modal, Upload } from "antd";
 import { div } from "motion/react-client";
 import React, { useState } from "react";
@@ -335,6 +335,7 @@ const AddProjects = ({
         <CoreButton
           text="Add Project"
           type="primary"
+          icon={<PlusOutlined />}
           htmlType="submit"
           loading={loading}
         />
