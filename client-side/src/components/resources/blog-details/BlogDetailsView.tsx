@@ -26,18 +26,34 @@ const BlogDetailsView = ({ blog, blogs }: IBlogDetailsProps) => {
           <div className={styles.blogDetailsInnerWrapper}>
             <div className={styles.blogDetailsHeader}>
               <Breadcrumb
-                separator={<span style={{ color: "#A3A6AA" }}>/</span>}
+                separator={
+                  <span
+                    style={{ color: "#A3A6AA" }}
+                    className={styles.breadcrumbSeparator}
+                  >
+                    /
+                  </span>
+                }
                 items={[
                   {
                     title: (
-                      <Link href="/Blogs" style={{ color: "#0077EE" }}>
+                      <Link
+                        href="/resources"
+                        style={{ color: "#0077EE" }}
+                        className={styles.breadcrumbLink}
+                      >
                         Blogs
                       </Link>
                     ),
                   },
                   {
                     title: (
-                      <span style={{ color: "#A3A6AA" }}>{blog.title}</span>
+                      <span
+                        style={{ color: "#A3A6AA" }}
+                        className={styles.breadcrumbLink}
+                      >
+                        {blog.title}
+                      </span>
                     ),
                   },
                 ]}
@@ -70,7 +86,7 @@ const BlogDetailsView = ({ blog, blogs }: IBlogDetailsProps) => {
             </div>
           </div>
         </Col>
-        <Col xl={7} md={12}>
+        <Col xl={7} md={12} sm={12} xs={24}>
           <div className={styles.relatedBlogWraper}>
             <p className={styles.relatedBlogHeader}>Blogs You Might Like</p>
             <div className={styles.relatedBlogInnerWrapper}>
