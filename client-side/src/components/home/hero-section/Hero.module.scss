@@ -54,6 +54,14 @@
       bottom: 35px;
     }
 
+    @media (max-width: 550px) {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      align-items: start;
+      padding: 0 0 0 16px;
+    }
+
     .heroContent {
       width: 40%;
       padding-left: 80px;
@@ -78,6 +86,11 @@
       @media (max-width: 900px) {
         padding-left: 25px;
         width: 60%;
+      }
+
+      @media (max-width: 550px) {
+        padding-left: 0px;
+        width: 70%;
       }
 
       .heroProjectTypeWrapper {
@@ -177,6 +190,26 @@
 
       @media (max-width: 900px) {
         width: 40%;
+      }
+
+      @media (max-width: 767px) {
+        width: 32%;
+      }
+
+      @media (max-width: 650px) {
+        width: 38%;
+      }
+
+      @media (max-width: 550px) {
+        width: 45%;
+      }
+
+      @media (max-width: 470px) {
+        width: 53%;
+      }
+
+      @media (max-width: 400px) {
+        width: 60%;
       }
     }
   }
