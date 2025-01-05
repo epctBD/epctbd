@@ -3,11 +3,12 @@ import {
   ProfileOutlined,
   UnorderedListOutlined,
   UsergroupAddOutlined,
+  LogoutOutlined,
 } from "@ant-design/icons";
-import { Menu, MenuProps, Tooltip } from "antd";
+import { Menu, MenuProps, Tooltip, Button } from "antd";
 import Link from "next/link";
 import React, { ReactNode, useState } from "react";
-
+import { signOut } from "next-auth/react";
 import styles from "./AdminLayout.module.scss";
 
 type MenuItem = Required<MenuProps>["items"][number];
@@ -94,6 +95,13 @@ const AdminLayout = ({ children }: AdminLayoutLayoutProps) => {
     ),
   ];
 
+  const handleLogout = () => {
+    signOut({
+      callbackUrl: "/",
+      redirect: false,
+    });
+  };
+
   return (
     <div className={styles.adminMenuWrapper}>
       <div className={styles.adminMenuInnerWrapper}>
@@ -110,16 +118,10 @@ const AdminLayout = ({ children }: AdminLayoutLayoutProps) => {
             padding: "25px 0",
           }}
         />
-        {/* <Menu
-          mode="inline"
-          defaultSelectedKeys={[""]}
-          defaultOpenKeys={[]}
-          items={bottomItems}
-          className="admin-menu admin-menu-bottom"
-          style={{
-            background: "#1a1a1a",
-          }}
-        /> */}
+        {/* Logout button placed below the menu */}
+        <Button type="primary" icon={<LogoutOutlined />} onClick={handleLogout}>
+          Logout
+        </Button>
       </div>
       <div
         style={{
