@@ -34,7 +34,6 @@ const BlogCard = ({ slug, title, content, image, tag }: IBlogCardProps) => {
         </div>
         <div className={styles.blogTexts}>
           <p className={styles.blogTitle}>{title}</p>
-          {/* <p className={styles.blogcontent}>{content}</p> */}
           <p
             className={styles.blogDescription}
             dangerouslySetInnerHTML={{

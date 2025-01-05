@@ -30,7 +30,7 @@ const HomeFeedback = () => {
       {
         breakpoint: 992,
         settings: {
-          centerPadding: "120px",
+          centerPadding: "80px",
         },
       },
       {
