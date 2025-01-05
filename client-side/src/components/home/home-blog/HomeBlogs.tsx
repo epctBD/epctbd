@@ -1,7 +1,5 @@
 import CoreTitles from "@/components/common/core-titles/CoreTitles";
 import styles from "./HomeBlogs.module.scss";
-import BlogCard from "@/components/common/blog-card/BlogCard";
-import { blogData } from "./HomeBlogData";
 
 const HomeBlogs = () => {
   return (
@@ -11,7 +9,7 @@ const HomeBlogs = () => {
         title="Blogs"
         intro="Blogs Blogs Blogs Blogs"
       />
-      <div className={styles.blogsContainer}>
+      {/* <div className={styles.blogsContainer}>
         {blogData.map((blog) => (
           <div key={blog.id}>
             <BlogCard
@@ -22,7 +20,7 @@ const HomeBlogs = () => {
             />
           </div>
         ))}
-      </div>
+      </div> */}
     </div>
   );
 };
