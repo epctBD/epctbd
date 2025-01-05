@@ -19,7 +19,6 @@ interface ITeamMemberProps {
 
 const TeamMember = ({ team }: ITeamMemberProps) => {
   const [teamMembers, setTeamMembers] = useState<ITeamMemberList[]>(team);
-  console.log(typeof teamMembers, "type of teamMembers");
   return (
     <AdminLayout>
       <TeamMemberList

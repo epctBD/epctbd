@@ -13,6 +13,8 @@ const nextConfig = {
   images: {
     domains: ["res.cloudinary.com"],
   },
+  source: "/api/:path*",
+  destination: "/api/:path*",
 };
 
 export default nextConfig;

@@ -3,6 +3,7 @@ import { Input, message } from "antd";
 import { Controller, useForm } from "react-hook-form";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import { signIn } from "next-auth/react";
 import styles from "./SignIn.module.scss";
 import logo from "../../../../public/images/epct_logo.png";
 import CoreButton from "@/components/common/core-components/core-button/CoreButton";
@@ -22,29 +23,26 @@ const SignIn = () => {
   const [isButtonLoading, setIsButtonLoading] = useState<boolean>(false);
   const router = useRouter();
 
-  const onSubmit = (data: ISignInForm) => {
+  const onSubmit = async (data: ISignInForm) => {
     setIsButtonLoading(true);
 
-    new Promise((resolve, reject) => {
-      setTimeout(() => {
-        if (
-          data.email === "admin@example.com" &&
-          data.password === "password"
-        ) {
-          resolve("Success");
-        } else {
-          reject(new Error("Invalid credentials"));
-        }
-      }, 1000);
-    })
-      .then(() => {
-        message.success("Logged in successfully");
-        router.push("/admin/dashboard");
-      })
-      .catch((error) => {
-        message.error("Login failed: " + error.message);
-        setIsButtonLoading(false);
+    try {
+      const res = await signIn("credentials", {
+        redirect: false,
+        email: data.email,
+        password: data.password,
       });
+
+      if (res?.error) {
+        throw new Error(res.error);
+      }
+
+      message.success("Logged in successfully");
+      router.push("/admin/team-member"); // Redirect to dashboard
+    } catch (error) {
+      message.error("Login failed: ");
+      setIsButtonLoading(false);
+    }
   };
 
   return (
