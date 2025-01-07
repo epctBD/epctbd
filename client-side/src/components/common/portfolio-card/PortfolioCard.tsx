@@ -28,11 +28,12 @@ const PortfolioCard = ({
             width: "100%",
             maxHeight: "600px",
             objectFit: "cover",
+            borderRadius: "20px",
           }}
         />
       </div>
 
-       <div
+      <div
         className={`${styles.cardWrapper} ${
           position === "right" ? styles.cardRight : styles.cardLeft
         }`}
@@ -45,7 +46,7 @@ const PortfolioCard = ({
           <CoreButton text="See PDF" type="primary" />
           <CoreButton text="See Details" type="secondary" />
         </div>
-      </div> 
+      </div>
     </div>
   );
 };

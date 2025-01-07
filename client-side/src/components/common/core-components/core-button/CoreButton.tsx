@@ -1,4 +1,4 @@
-import { Button, ButtonProps } from "antd";
+import { Button, ButtonProps, Grid } from "antd";
 import styles from "./CoreButton.module.scss";
 
 interface ICoreButtonProps
@@ -18,6 +18,8 @@ interface ICoreButtonProps
   isFullWidth?: boolean;
 }
 
+const { useBreakpoint } = Grid;
+
 const CoreButton = (props: ICoreButtonProps) => {
   const {
     type = "",
@@ -29,6 +31,8 @@ const CoreButton = (props: ICoreButtonProps) => {
     ...others
   } = props;
 
+  const screens = useBreakpoint();
+
   return (
     <Button
       type={antType}
@@ -36,7 +40,7 @@ const CoreButton = (props: ICoreButtonProps) => {
         isFullWidth ? styles["full-width"] : ""
       }`}
       {...others}
-      size={size}
+      size={screens.xs ? "small" : size}
       htmlType={htmlType}
     >
       {text}
