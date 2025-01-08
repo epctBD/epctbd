@@ -9,9 +9,9 @@ const HomeBlogs = () => {
   return (
     <div className={styles.HomeBlogWrapper}>
       <CoreTitles
-        subTitle="Read our Blogs"
+        subTitle="Articles"
         title="Blogs"
-        intro="Blogs Blogs Blogs Blogs"
+        intro="Dive into our collection of insightful articles, industry trends, and expert opinions."
       />
 
       <Row gutter={[16, 16]} className={styles.blogsContainer}>
