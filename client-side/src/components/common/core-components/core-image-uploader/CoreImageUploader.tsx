@@ -1,104 +1,104 @@
-import React, { useRef, ChangeEvent, useState } from "react";
-import { Image, message } from "antd";
-import CoreButton from "../core-button/CoreButton";
+import React, { useState, useEffect } from "react";
+import { Upload } from "antd";
+import { MinusCircleOutlined } from "@ant-design/icons";
+import Image from "next/image";
+import ImageUploadIcon from "../../svg/ImageUploadIcon";
 
-interface ImageUploaderProps {
-  buttonText: string;
-  imageWidth?: number;
-  imageHeight?: number;
-  onFileChange: (file: File | null) => void;
-  exsistingFile?: string;
-  onLoadEnd: (image: string) => void;
-  imageB64: string;
+interface CoreImageUploaderProps {
+  onImageUpload: (image: File | null) => void;
+  existingImage?: string | "";
 }
 
-const CoreImageUploader: React.FC<ImageUploaderProps> = ({
-  buttonText,
-  imageWidth = 100,
-  imageHeight = 100,
-  onFileChange,
-  exsistingFile,
-  onLoadEnd,
-  imageB64,
+const CoreImageUploader: React.FC<CoreImageUploaderProps> = ({
+  onImageUpload,
+  existingImage,
 }) => {
-  const inputRef = useRef<HTMLInputElement | null>(null);
-  const [image, setImage] = useState<File | null>(null);
+  const [image, setImage] = useState<File | string>("");
 
-  const isValidImage = (file: File): boolean => {
-    const validTypes = ["image/jpeg", "image/png", "image/gif"];
-    if (!validTypes.includes(file.type)) {
-      message.error(
-        "Invalid image type. Please upload a JPG, JPEG, or PNG image."
-      );
-      return false;
-    }
-    return true;
-  };
+  useEffect(() => {
+    setImage(existingImage || "");
+  }, [existingImage]);
 
-  const handleFileChange = async (event: ChangeEvent<HTMLInputElement>) => {
-    const fileObj = event.target.files && event.target.files[0];
-    if (!fileObj || !isValidImage(fileObj)) {
-      return;
-    }
-
-    setImage(fileObj);
-    onFileChange(fileObj);
-
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      onLoadEnd(reader.result as string);
-    };
-
-    reader.readAsDataURL(fileObj);
-    event.target.value = ""; // Clear input value to allow re-upload
+  const handleFileChange = (file: File) => {
+    setImage(file);
+    onImageUpload(file);
   };
 
   const handleRemoveImage = () => {
-    setImage(null);
-    onFileChange(null);
+    setImage("");
+    onImageUpload(null);
   };
 
-  const handleUploadClick = () => {
-    if (inputRef.current) {
-      inputRef.current.click();
+  const getImageSrc = () => {
+    // If the image is a string (base64 or URL), use it directly
+    if (typeof image === "string") {
+      return image;
     }
+    // If the image is a File, create a temporary URL for it
+    if (image instanceof File) {
+      return URL.createObjectURL(image);
+    }
+    return "";
   };
 
   return (
     <div style={{ display: "flex", alignItems: "center" }}>
-      {!image && !imageB64 && (
-        <CoreButton
-          type="primary"
-          text={buttonText}
-          onClick={handleUploadClick}
-        />
+      {!image && (
+        <Upload
+          beforeUpload={(file) => {
+            handleFileChange(file);
+            return false;
+          }}
+          showUploadList={false}
+          accept="image/*"
+        >
+          <div style={{ padding: "8px" }}>
+            <ImageUploadIcon />
+          </div>
+        </Upload>
       )}
 
-      <input
-        ref={inputRef}
-        style={{ display: "none" }}
-        type="file"
-        accept="image/*"
-        onChange={handleFileChange}
-      />
-
-      {(imageB64 || image) && (
+      {image && (
         <div
           style={{ display: "flex", alignItems: "center", marginLeft: "16px" }}
         >
-          <Image
-            width={imageWidth}
-            height={imageHeight}
-            src={imageB64 || URL.createObjectURL(image!)}
-            alt="Uploaded Image"
-            style={{ marginRight: "8px" }}
-          />
-          <CoreButton
-            // type="text"
-            text="Remove"
-            onClick={handleRemoveImage}
-            // style={{ color: "red" }}
-          />
+          <div
+            className="photo-upload-wrapper"
+            style={{ position: "relative" }}
+          >
+            <Image
+              src={getImageSrc()} // Use the helper function to get the correct src
+              alt="Uploaded Photo"
+              width={76}
+              height={76}
+              style={{
+                borderRadius: "8px",
+                objectFit: "cover",
+                border: "1px solid #d9d9d9",
+              }}
+            />
+            <div
+              onClick={handleRemoveImage}
+              className="photo-delete-icon"
+              style={{
+                position: "absolute",
+                top: "-8px",
+                right: "-8px",
+                cursor: "pointer",
+                color: "#ff4d4f",
+                background: "#fff",
+                borderRadius: "50%",
+                border: "1px solid #d9d9d9",
+                width: "20px",
+                height: "20px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <MinusCircleOutlined />
+            </div>
+          </div>
         </div>
       )}
     </div>

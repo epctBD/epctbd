@@ -9,6 +9,7 @@ import { deletePortfolio } from "@/services/portfolio.service";
 import DeleteModal from "@/components/common/delete-modal/DeleteModal";
 import PenIcon from "@/components/common/svg/PenIcon";
 import TrashBinIcon from "@/components/common/svg/TrashBinIcon";
+import UpdatePortfolio from "../update-portfolio/UpdatePortfolio";
 
 interface IPortfolioListProps {
   portfolios: IPortfolio[];
@@ -17,7 +18,7 @@ interface IPortfolioListProps {
 
 const PortfolioList = ({ portfolios, setPortfolios }: IPortfolioListProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  // const [updateModalOpen, setUpdateModalOpen] = useState(false);
+  const [updateModalOpen, setUpdateModalOpen] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<IPortfolio>();
   const [loading, setLoading] = useState(false);
@@ -76,7 +77,7 @@ const PortfolioList = ({ portfolios, setPortfolios }: IPortfolioListProps) => {
               width: "24px",
             }}
             onClick={() => {
-              // setUpdateModalOpen(true);
+              setUpdateModalOpen(true);
               setSelectedItem(item);
             }}
           >
@@ -135,20 +136,22 @@ const PortfolioList = ({ portfolios, setPortfolios }: IPortfolioListProps) => {
           pagination={{ pageSize: 10 }}
         />
 
-        <AddPortfolio
-          isModalOpen={isModalOpen}
-          setIsModalOpen={setIsModalOpen}
-          setPortfolios={setPortfolios}
-        />
+        {isModalOpen && (
+          <AddPortfolio
+            isModalOpen={isModalOpen}
+            setIsModalOpen={setIsModalOpen}
+            setPortfolios={setPortfolios}
+          />
+        )}
 
-        {/* {updateModalOpen && (
+        {updateModalOpen && (
           <UpdatePortfolio
             isModalOpen={updateModalOpen}
             setIsModalOpen={setUpdateModalOpen}
-            project={selectedItem || null}
-            setProjects={setProjects}
+            portfolio={selectedItem || null}
+            setPortfolios={setPortfolios}
           />
-        )} */}
+        )}
 
         {deleteModalOpen && (
           <DeleteModal

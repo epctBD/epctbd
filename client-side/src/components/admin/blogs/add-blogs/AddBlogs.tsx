@@ -27,15 +27,10 @@ const AddBlog = ({
   } = useForm<IAddBlog>();
 
   const [imageData, setImageData] = useState<File | null>(null);
-  const [imageB64, setImageB64] = useState<string | null>(null);
   const [textEditorValue, setTextEditorValue] = useState("");
 
-  const onFileChange = (file: File | null) => {
-    setImageData(file);
-  };
-
-  const onLoadEnd = (image: string) => {
-    setImageB64(image);
+  const handleImageUpload = (image: string | File | null) => {
+    setImageData(image as File);
   };
 
   const onSubmit = async (data: IAddBlog) => {
@@ -145,12 +140,7 @@ const AddBlog = ({
 
         <div className={"general-input-wrapper"}>
           <label className={"general-label"}>Cover Image</label>
-          <CoreImageUploader
-            buttonText="Upload Cover Image"
-            onFileChange={onFileChange}
-            onLoadEnd={onLoadEnd}
-            imageB64={imageB64 || ""}
-          />
+          <CoreImageUploader onImageUpload={handleImageUpload} />
         </div>
 
         <div

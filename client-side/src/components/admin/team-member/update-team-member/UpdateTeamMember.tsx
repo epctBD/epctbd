@@ -45,12 +45,9 @@ const UpdateTeamMember = ({
     }
   }, [currentTeam, reset]);
 
-  const onFileChange = (file: File | null) => {
-    setImageData(file);
-  };
-
-  const onLoadEnd = (image: string) => {
-    setImageB64(image);
+  const handleImageUpload = (image: string | File | null) => {
+    setImageB64(typeof image === "string" ? image : null);
+    setImageData(image as File);
   };
 
   const onSubmit = async (data: ITeamMember) => {
@@ -137,10 +134,8 @@ const UpdateTeamMember = ({
         <div className={"general-input-wrapper"}>
           <label className="general-label">Member Image</label>
           <CoreImageUploader
-            buttonText="Update Image"
-            onFileChange={onFileChange}
-            onLoadEnd={onLoadEnd}
-            imageB64={imageB64 || ""}
+            onImageUpload={handleImageUpload}
+            imageB64={imageB64}
           />
         </div>
 

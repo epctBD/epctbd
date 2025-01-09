@@ -27,14 +27,9 @@ const AddTeamMember = ({
   } = useForm<ITeamMember>();
 
   const [imageData, setImageData] = useState<File | null>(null);
-  const [imageB64, setImageB64] = useState<string | null>(null);
 
-  const onFileChange = (file: File | null) => {
-    setImageData(file);
-  };
-
-  const onLoadEnd = (image: string) => {
-    setImageB64(image);
+  const handleImageUpload = (image: string | File | null) => {
+    setImageData(image as File);
   };
 
   const onSubmit = async (data: ITeamMember) => {
@@ -120,12 +115,7 @@ const AddTeamMember = ({
 
         <div className={"general-input-wrapper"}>
           <label className="general-label">Member Image</label>
-          <CoreImageUploader
-            buttonText="Upload Image"
-            onFileChange={onFileChange}
-            onLoadEnd={onLoadEnd}
-            imageB64={imageB64 || ""}
-          />
+          <CoreImageUploader onImageUpload={handleImageUpload} />
         </div>
 
         <div

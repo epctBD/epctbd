@@ -9,19 +9,19 @@ import { Controller, useForm } from "react-hook-form";
 interface IUpdatePortfolioModalProps {
   isModalOpen: boolean;
   setIsModalOpen: (value: boolean) => void;
-  setPortfolios: React.Dispatch<React.SetStateAction<IPortfolio[]>>;
   portfolio: IPortfolio | null;
+  setPortfolios: React.Dispatch<React.SetStateAction<IPortfolio[]>>;
 }
 
 const UpdatePortfolio = ({
   isModalOpen,
   setIsModalOpen,
-  setPortfolios,
   portfolio,
+  setPortfolios,
 }: IUpdatePortfolioModalProps) => {
   const [loading, setLoading] = useState(false);
   const [imageData, setImageData] = useState<File | null>(null);
-  const [imageB64, setImageB64] = useState<string | null>(
+  const [existingImage] = useState<string | null>(
     portfolio?.feature_image || null
   );
 
@@ -34,12 +34,8 @@ const UpdatePortfolio = ({
     defaultValues: { ...portfolio },
   });
 
-  const onFileChange = (file: File | null) => {
-    setImageData(file);
-  };
-
-  const onLoadEnd = (image: string) => {
-    setImageB64(image);
+  const handleImageUpload = (image: string | File | null) => {
+    setImageData(image as File);
   };
 
   const onSubmit = async (data: IPortfolio) => {
@@ -51,6 +47,8 @@ const UpdatePortfolio = ({
 
       if (imageData) {
         formData.append("feature_image", imageData);
+      } else {
+        formData.append("existing_image_link", existingImage || "");
       }
 
       const response = await updatePortfolio(portfolio?._id || "", formData);
@@ -117,10 +115,8 @@ const UpdatePortfolio = ({
         <div style={{ marginBottom: "15px" }}>
           <label className="general-label">Feature Image</label>
           <CoreImageUploader
-            buttonText="Upload Image"
-            onFileChange={onFileChange}
-            onLoadEnd={onLoadEnd}
-            imageB64={imageB64 || ""}
+            onImageUpload={handleImageUpload}
+            existingImage={existingImage || ""}
           />
         </div>
 

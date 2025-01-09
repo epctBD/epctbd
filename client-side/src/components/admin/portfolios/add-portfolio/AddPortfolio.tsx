@@ -26,14 +26,10 @@ const AddPortfolio = ({
   } = useForm<IPortfolio>();
 
   const [imageData, setImageData] = useState<File | null>(null);
-  const [imageB64, setImageB64] = useState<string | null>(null);
 
-  const onFileChange = (file: File | null) => {
-    setImageData(file);
-  };
-
-  const onLoadEnd = (image: string) => {
-    setImageB64(image);
+  const handleImageUpload = (image: string | File | null) => {
+    console.log(typeof image);
+    setImageData(image as File);
   };
 
   const onSubmit = async (data: IPortfolio) => {
@@ -42,10 +38,13 @@ const AddPortfolio = ({
       const formData = new FormData();
       formData.append("title", data.title);
       formData.append("subtitle", data.subtitle);
+      // console.log(formData, "formData");
 
       if (imageData) {
         formData.append("feature_image", imageData);
       }
+
+      // console.log(imageData, "imageData");
 
       const response = await createPortfolio(formData);
       setPortfolios(response);
@@ -105,16 +104,11 @@ const AddPortfolio = ({
 
         <div style={{ marginBottom: "15px" }}>
           <label className="general-label">Feature Image</label>
-          <CoreImageUploader
-            buttonText="Upload Image"
-            onFileChange={onFileChange}
-            onLoadEnd={onLoadEnd}
-            imageB64={imageB64 || ""}
-          />
+          <CoreImageUploader onImageUpload={handleImageUpload} />
         </div>
 
         <CoreButton
-          text="+ Addgfg Portfolio"
+          text="+ Add Portfolio"
           type="primary"
           htmlType="submit"
           loading={loading}

@@ -20,7 +20,7 @@ export const updatePortfolio = async (
   id: string,
   data: FormData
 ): Promise<IPortfolio[]> => {
-  const response = await AXIOS_INSTANCE.put(`/portfolio/${id}`, data);
+  const response = await AXIOS_INSTANCE.patch(`/portfolio/${id}`, data);
   return response.data;
 };
 
