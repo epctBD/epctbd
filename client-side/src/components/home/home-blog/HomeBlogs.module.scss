@@ -1,3 +1,16 @@
 .HomeBlogWrapper {
   padding: 80px 0;
+
+  .ButtonSeeMoreWrapper {
+    display: flex;
+    justify-content: end;
+  }
+
+  .blogsContainer {
+    .blogsInnerContainer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
 }
