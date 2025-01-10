@@ -44,4 +44,12 @@ export const blogData: Blog[] = [
     image: blogImg.src,
     type: "Social Media",
   },
+  {
+    id: 5,
+    title: "The Impact of Social Media on Moderness",
+    description:
+      "Social media has transformed how busiith their audiences. From influencer marketing to targeted advertising, platforms like Instagram and TikTok are key tools for business growth.",
+    image: blogImg.src,
+    type: "Social Media",
+  },
 ];

@@ -7,6 +7,13 @@ import Cta from "@/components/cta/Cta";
 import HomeService from "@/components/home/home-service/HomeService";
 import HomeProjects from "@/components/home/home-projects/HomeProjects";
 import HomeBlogs from "@/components/home/home-blog/HomeBlogs";
+import { GetServerSideProps } from "next";
+import { getBlogs } from "@/services/blog.service";
+import { IBlog } from "@/models/blog.model";
+
+interface HomeProps {
+  blogs: IBlog[];
+}
 
 const DynamicHeroSection = dynamic(
   () => import("@/components/home/hero-section/Hero"),
@@ -14,7 +21,8 @@ const DynamicHeroSection = dynamic(
     ssr: false,
   }
 );
-export default function Home() {
+
+export default function Home({ blogs }: HomeProps) {
   return (
     <>
       <Head>
@@ -32,10 +40,28 @@ export default function Home() {
           <Cta />
           <HomeProjects />
           <HomeFeedback />
-          <HomeBlogs />
+          <HomeBlogs blogs={blogs} />
           <GetInTouch />
         </div>
       </div>
     </>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  try {
+    const response = await getBlogs();
+    return {
+      props: {
+        blogs: response,
+      },
+    };
+  } catch (error) {
+    console.error("Error fetching projects:", error);
+    return {
+      props: {
+        blogs: [],
+      },
+    };
+  }
+};

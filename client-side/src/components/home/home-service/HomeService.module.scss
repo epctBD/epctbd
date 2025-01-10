@@ -6,24 +6,4 @@
   @media (max-width: 768px) {
     padding: 40px 0;
   }
-
-  .textWrapper {
-    text-align: center;
-    margin-bottom: 40px;
-
-    .title {
-      margin: 0;
-      font-size: 48px;
-      font-weight: 700;
-      background: $title-color;
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .subtitle {
-      margin: 0;
-      color: $gray-color-400;
-    }
-  }
 }

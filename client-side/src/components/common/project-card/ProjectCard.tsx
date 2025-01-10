@@ -9,7 +9,7 @@ export interface IProjectCardProps {
   location: string;
   imageSrc: string;
   type: string;
-  imageHeight: number;
+  // imageHeight: number;
   slug: string;
 }
 
@@ -18,7 +18,7 @@ const ProjectCard = ({
   location,
   imageSrc,
   type,
-  imageHeight = 460,
+  // imageHeight = 460,
   slug,
 }: IProjectCardProps) => {
   const router = useRouter();
@@ -28,10 +28,7 @@ const ProjectCard = ({
 
   return (
     <div className={styles.projectCardWrapper} onClick={goToDetails}>
-      <div
-        className={styles.proejectImageWrapper}
-        style={{ height: `${imageHeight}px` }}
-      >
+      <div className={styles.proejectImageWrapper} style={{ height: "460px" }}>
         <Image
           className={styles.projectImage}
           src={imageSrc}
