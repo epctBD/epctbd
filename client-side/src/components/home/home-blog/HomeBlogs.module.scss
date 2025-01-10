@@ -1,12 +1,12 @@
 .HomeBlogWrapper {
   padding: 80px 0;
 
-  .ButtonSeeMoreWrapper {
-    display: flex;
-    justify-content: end;
-  }
-
   .blogsContainer {
+    .ButtonSeeMoreWrapper {
+      display: flex;
+      justify-content: end;
+    }
+
     .blogsInnerContainer {
       display: flex;
       justify-content: center;
