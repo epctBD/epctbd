@@ -5,17 +5,17 @@ import ProjectCard from "../project-card/ProjectCard";
 import { getProjects } from "@/services/project.service";
 import styles from "./ProjectView.module.scss";
 
-export const heights = [
-  480,
-  560,
-  435, // Row 1
-  512,
-  480,
-  480, // Row 2
-  435,
-  480,
-  435, // Row 3
-];
+// export const heights = [
+//   480,
+//   560,
+//   435, // Row 1
+//   512,
+//   480,
+//   480, // Row 2
+//   435,
+//   480,
+//   435, // Row 3
+// ];
 
 interface IProjectViewProps {
   projectList: IProject[];
@@ -90,7 +90,7 @@ const ProjectView = ({ projectList, setProjectList }: IProjectViewProps) => {
                 location={project.location || ""}
                 imageSrc={project.projectImages?.[0] || ""}
                 type={project.serviceType}
-                imageHeight={heights[index % heights.length]}
+                // imageHeight={heights[index % heights.length]}
                 slug={project.projectSlug || ""}
               />
             </Col>

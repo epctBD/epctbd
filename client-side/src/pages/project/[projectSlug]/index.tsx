@@ -9,7 +9,7 @@ interface ProjectDetailsProps {
 
 const ProjectDetails = ({ project }: ProjectDetailsProps) => {
   return (
-    <div>
+    <div className={"container-wrapper"}>
       <ProjectDetailsComponent project={project} />
     </div>
   );
@@ -17,7 +17,6 @@ const ProjectDetails = ({ project }: ProjectDetailsProps) => {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { projectSlug } = context.query;
-
   if (typeof projectSlug !== "string") {
     return {
       notFound: true,
@@ -26,8 +25,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   try {
     const response = await getProject(projectSlug);
-
     console.log(response);
+
     return {
       props: {
         project: response,

@@ -10,7 +10,7 @@ export const getProjects = async (category: string): Promise<IProject[]> => {
 };
 
 export const getProject = async (slug: string): Promise<IProject[]> => {
-  const url = `project${processQuery({ slug: slug })}`;
+  const url = `project/${slug}`;
   const response = await AXIOS_INSTANCE.get<IProjectResponse>(url);
   return response?.data?.data;
 };

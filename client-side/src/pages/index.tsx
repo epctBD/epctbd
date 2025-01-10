@@ -10,9 +10,12 @@ import HomeBlogs from "@/components/home/home-blog/HomeBlogs";
 import { GetServerSideProps } from "next";
 import { getBlogs } from "@/services/blog.service";
 import { IBlog } from "@/models/blog.model";
+import { IProject } from "@/models/project.model";
+import { getProjects } from "@/services/project.service";
 
 interface HomeProps {
   blogs: IBlog[];
+  projects: IProject[];
 }
 
 const DynamicHeroSection = dynamic(
@@ -22,7 +25,7 @@ const DynamicHeroSection = dynamic(
   }
 );
 
-export default function Home({ blogs }: HomeProps) {
+export default function Home({ blogs, projects }: HomeProps) {
   return (
     <>
       <Head>
@@ -38,7 +41,7 @@ export default function Home({ blogs }: HomeProps) {
           <HomeAbout />
           <HomeService />
           <Cta />
-          <HomeProjects />
+          <HomeProjects projects={projects} />
           <HomeFeedback />
           <HomeBlogs blogs={blogs} />
           <GetInTouch />
@@ -50,17 +53,23 @@ export default function Home({ blogs }: HomeProps) {
 
 export const getServerSideProps: GetServerSideProps = async () => {
   try {
-    const response = await getBlogs();
+    const [blogsResponse, projectsResponse] = await Promise.all([
+      getBlogs(),
+      getProjects("Ongoing Projects"),
+    ]);
+
     return {
       props: {
-        blogs: response,
+        blogs: blogsResponse,
+        projects: projectsResponse,
       },
     };
   } catch (error) {
-    console.error("Error fetching projects:", error);
+    console.error("Error fetching data:", error);
     return {
       props: {
         blogs: [],
+        projects: [],
       },
     };
   }

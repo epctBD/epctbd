@@ -37,6 +37,7 @@ const ProjectDetailsComponent = ({ project }: IProjectDetailsProps) => {
   return (
     <div className={styles.projectDetailsWrapper}>
       <Row gutter={32}>
+        {/* Project Header */}
         <Col span={12}>
           <div className={styles.projectDetailsHeader}>
             <Breadcrumb
@@ -110,6 +111,8 @@ const ProjectDetailsComponent = ({ project }: IProjectDetailsProps) => {
             </div>
           </div>
         </Col>
+
+        {/* Project Carousel */}
         <Col span={12}>
           <div className={styles.carouselSection}>
             <ProjectDetailsCarousel data={project.projectImages || []} />
@@ -117,6 +120,7 @@ const ProjectDetailsComponent = ({ project }: IProjectDetailsProps) => {
         </Col>
       </Row>
 
+      {/* Project Tabs */}
       <Row>
         <Col span={14}>
           <div className={styles.projectTabWrapper}>
