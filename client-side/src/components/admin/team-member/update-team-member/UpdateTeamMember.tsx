@@ -29,7 +29,9 @@ const UpdateTeamMember = ({
   } = useForm<ITeamMember>();
 
   const [imageData, setImageData] = useState<File | null>(null);
-  const [imageB64, setImageB64] = useState<string | null>(null);
+  const [existingImage] = useState<string | null>(
+    currentTeam?.display_picture || null
+  );
 
   useEffect(() => {
     if (currentTeam) {
@@ -41,12 +43,10 @@ const UpdateTeamMember = ({
         twitter: currentTeam.twitter,
         linkedin: currentTeam.linkedin,
       });
-      setImageB64(currentTeam.display_picture || null);
     }
   }, [currentTeam, reset]);
 
   const handleImageUpload = (image: string | File | null) => {
-    setImageB64(typeof image === "string" ? image : null);
     setImageData(image as File);
   };
 
@@ -135,7 +135,7 @@ const UpdateTeamMember = ({
           <label className="general-label">Member Image</label>
           <CoreImageUploader
             onImageUpload={handleImageUpload}
-            imageB64={imageB64}
+            existingImage={existingImage || ""}
           />
         </div>
 

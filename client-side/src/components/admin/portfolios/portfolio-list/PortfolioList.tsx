@@ -133,7 +133,7 @@ const PortfolioList = ({ portfolios, setPortfolios }: IPortfolioListProps) => {
           columns={columns}
           rowKey="_id"
           bordered
-          pagination={{ pageSize: 10 }}
+          pagination={false}
         />
 
         {isModalOpen && (

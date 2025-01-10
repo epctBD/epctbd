@@ -3,8 +3,9 @@ import CoreImageUploader from "@/components/common/core-components/core-image-up
 import { IAddBlog, IBlog } from "@/models/blog.model";
 import { updateBlog } from "@/services/blog.service";
 import { Input, message, Modal } from "antd";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
+import TextEditor from "../add-blogs/TextEditor";
 
 interface IUpdateBlogModalProps {
   isModalOpen: boolean;
@@ -29,26 +30,22 @@ const UpdateBlog = ({
   } = useForm<IAddBlog>();
 
   const [imageData, setImageData] = useState<File | null>(null);
-  const [imageB64, setImageB64] = useState<string | null>(
-    blog?.thumbnail || null
-  );
+  const [existingImage] = useState<string | null>(blog?.thumbnail || null);
+  const [textEditorValue, setTextEditorValue] = useState("");
 
-  // Prefill form with existing blog data
-  React.useEffect(() => {
+  useEffect(() => {
     if (blog) {
-      setValue("title", blog.title);
-      setValue("content", blog.content);
-      setValue("author", blog.author);
-      setValue("tag", blog.tag);
+      setValue("title", blog?.title);
+      setValue("content", blog?.content);
+      setValue("author", blog?.author);
+      setValue("tag", blog?.tag);
+      setValue("tag", blog?.tag);
+      setTextEditorValue(blog?.content);
     }
   }, [blog, setValue]);
 
-  const onFileChange = (file: File | null) => {
-    setImageData(file);
-  };
-
-  const onLoadEnd = (image: string) => {
-    setImageB64(image);
+  const handleImageUpload = (image: string | File | null) => {
+    setImageData(image as File);
   };
 
   const onSubmit = async (data: IAddBlog) => {
@@ -113,18 +110,9 @@ const UpdateBlog = ({
 
         <div className={"general-input-wrapper"}>
           <label className={"general-label"}>Content</label>
-          <Controller
-            name="content"
-            control={control}
-            rules={{ required: "Content is required" }}
-            render={({ field }) => (
-              <Input.TextArea
-                {...field}
-                placeholder="Enter blog content"
-                rows={4}
-                className={"general-input"}
-              />
-            )}
+          <TextEditor
+            textEditorValue={textEditorValue}
+            setTextEditorValue={setTextEditorValue}
           />
           {errors.content && (
             <p style={{ color: "red", marginTop: "5px" }}>
@@ -178,10 +166,8 @@ const UpdateBlog = ({
         <div className={"general-input-wrapper"}>
           <label className={"general-label"}>Cover Image</label>
           <CoreImageUploader
-            buttonText="Upload Cover Image"
-            onFileChange={onFileChange}
-            onLoadEnd={onLoadEnd}
-            imageB64={imageB64 || ""}
+            onImageUpload={handleImageUpload}
+            existingImage={existingImage || ""}
           />
         </div>
 

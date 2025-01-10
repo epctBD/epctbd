@@ -3,7 +3,7 @@ import ImageUploadIcon from "@/components/common/svg/ImageUploadIcon";
 import { IPhoto, IProject } from "@/models/project.model";
 import { updateProject } from "@/services/project.service";
 import { MinusCircleOutlined } from "@ant-design/icons";
-import { Image, Input, message, Modal, Upload } from "antd";
+import { Image, Input, message, Modal, Select, Upload } from "antd";
 import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 
@@ -168,10 +168,32 @@ const UpdateProject = ({
             control={control}
             rules={{ required: "Service type is required" }}
             render={({ field }) => (
-              <Input
+              <Select
                 {...field}
-                placeholder="Enter service type"
-                className={"general-input"}
+                placeholder="Select a service type"
+                className={"general-select"}
+                allowClear
+                options={[
+                  {
+                    value: "Architecture Design",
+                    label: "Architecture Design",
+                  },
+                  {
+                    value: "Civil Engineering Design",
+                    label: "Civil Engineering Design",
+                  },
+                  {
+                    value: "Electrical Engineering Design",
+                    label: "Electrical Engineering Design",
+                  },
+                  {
+                    value: "Plumbing Engineering Design",
+                    label: "Plumbing Engineering Design",
+                  },
+                  { value: "Planning", label: "Planning" },
+                  { value: "Management", label: "Management" },
+                  { value: "Land Acquisition", label: "Land Acquisition" },
+                ]}
               />
             )}
           />
@@ -189,10 +211,23 @@ const UpdateProject = ({
             control={control}
             rules={{ required: "Category is required" }}
             render={({ field }) => (
-              <Input
+              <Select
                 {...field}
-                placeholder="Enter category"
-                className={"general-input"}
+                className={"general-select"}
+                placeholder="Select a project category"
+                options={[
+                  { value: "Ongoing Projects", label: "Ongoing Projects" },
+                  {
+                    value: "Government Projects",
+                    label: "Government Projects",
+                  },
+                  { value: "Private Projects", label: "Private Projects" },
+                  {
+                    value: "Highlighted Projects",
+                    label: "Highlighted Projects",
+                  },
+                ]}
+                allowClear
               />
             )}
           />

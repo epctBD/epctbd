@@ -49,8 +49,11 @@ const updatePortfolio = async (portfolio_id, portfolio_data) => {
     new: true,
   });
 
+  const portfolios = await Portfolio.find();
+
   return {
     message: "Portfolio Updated Successfully",
+    portfolios,
     statusCode: statusCodes.SUCCESSFUL.CREATED,
   };
 };
@@ -66,9 +69,11 @@ const deletePortfolio = async (portfolio_id) => {
   }
 
   await Portfolio.findByIdAndDelete(portfolio_id);
+  const portfolios = await Portfolio.find();
 
   return {
     message: "Portfolio deleted successfully",
+    portfolios,
     statusCode: statusCodes.SUCCESSFUL.SUCCESS,
   };
 };

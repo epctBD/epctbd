@@ -134,7 +134,7 @@ const ProjectList = ({ projects, setProjects }: IProjectListProps) => {
           columns={columns}
           rowKey="_id"
           bordered
-          pagination={{ pageSize: 10 }}
+          pagination={false}
         />
 
         <AddProject

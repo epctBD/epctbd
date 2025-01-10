@@ -132,17 +132,20 @@ export const services: IService[] = [
       {
         name: "House wiring design",
         brief: "We will edit this section",
-        photo: "will add later",
+        photo:
+          "https://res.cloudinary.com/dpx6xtelq/image/upload/v1733483186/uploaded_images/image%20%282%29.png",
       },
       {
         name: "Consumer Census",
         brief: "We will edit this section",
-        photo: "will add later",
+        photo:
+          "https://res.cloudinary.com/dpx6xtelq/image/upload/v1733483186/uploaded_images/image%20%282%29.png",
       },
       {
         name: "Line work design",
         brief: "We will edit this section.",
-        photo: "will add later",
+        photo:
+          "https://res.cloudinary.com/dpx6xtelq/image/upload/v1733483186/uploaded_images/image%20%282%29.png",
       },
     ],
   },
@@ -219,22 +222,26 @@ export const services: IService[] = [
       {
         name: "Land Use Survey",
         brief: "We will edit this section.",
-        photo: "will add later",
+        photo:
+          "https://res.cloudinary.com/dpx6xtelq/image/upload/v1733483186/uploaded_images/image%20%282%29.png",
       },
       {
         name: "Topo-graphical Survey",
         brief: "We will edit this section.",
-        photo: "will add later",
+        photo:
+          "https://res.cloudinary.com/dpx6xtelq/image/upload/v1733483186/uploaded_images/image%20%282%29.png",
       },
       {
         name: "Contour Survey",
         brief: "We will edit this section.",
-        photo: "will add later",
+        photo:
+          "https://res.cloudinary.com/dpx6xtelq/image/upload/v1733483186/uploaded_images/image%20%282%29.png",
       },
       {
         name: "Route Survey",
         brief: "We will edit this section.",
-        photo: "will add later",
+        photo:
+          "https://res.cloudinary.com/dpx6xtelq/image/upload/v1733483186/uploaded_images/image%20%282%29.png",
       },
     ],
   },

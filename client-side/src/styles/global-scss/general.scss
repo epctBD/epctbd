@@ -48,6 +48,31 @@
   }
 }
 
+.general-select {
+  width: 100%;
+  height: 44px;
+  background-color: transparent;
+
+  .ant-select-selector {
+    border: 1px solid $gray-color-400 !important;
+    color: $gray-color-800 !important;
+
+    &:hover {
+      background-color: transparent;
+    }
+
+    &:focus {
+      border-color: $primary-color;
+      background-color: transparent;
+      outline: none;
+    }
+
+    &::placeholder {
+      color: $primary-text-color !important;
+    }
+  }
+}
+
 .photo-input-wrapper {
   margin-bottom: 12px;
   display: flex;

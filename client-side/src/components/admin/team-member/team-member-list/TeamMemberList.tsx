@@ -137,7 +137,7 @@ const TeamMemberList = ({
           columns={columns}
           rowKey="_id"
           bordered
-          pagination={{ pageSize: 10 }}
+          pagination={false}
         />
 
         <AddTeamMember
