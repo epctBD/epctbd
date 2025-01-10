@@ -16,7 +16,7 @@ const ProjectDetailsCarousel = ({ data }: ProjectDetailsCarouselProps) => {
   const settings: Settings = {
     dots: true,
     infinite: true,
-    slidesToShow: 4,
+    slidesToShow: data.length < 4 ? data.length : 4,
     slidesToScroll: 1,
     autoplay: true,
     speed: 500,
@@ -31,7 +31,7 @@ const ProjectDetailsCarousel = ({ data }: ProjectDetailsCarouselProps) => {
       {
         breakpoint: 900,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: data.length < 2 ? data.length : 2,
           slidesToScroll: 1,
         },
       },
@@ -55,22 +55,24 @@ const ProjectDetailsCarousel = ({ data }: ProjectDetailsCarouselProps) => {
       </div>
 
       {/* Carousel  */}
-      <Slider {...settings}>
-        {data.map((item, index) => (
-          <div key={index} className={styles.carouselContainer}>
-            <div className={styles.carouselImageWrapper}>
-              <Image
-                src={item}
-                alt="project-image"
-                className={styles.carouselImage}
-                objectFit="cover"
-                width={140}
-                height={108}
-              />
+      {data.length > 1 && (
+        <Slider {...settings}>
+          {data.map((item, index) => (
+            <div key={index} className={styles.carouselContainer}>
+              <div className={styles.carouselImageWrapper}>
+                <Image
+                  src={item}
+                  alt="project-image"
+                  className={styles.carouselImage}
+                  objectFit="cover"
+                  width={140}
+                  height={108}
+                />
+              </div>
             </div>
-          </div>
-        ))}
-      </Slider>
+          ))}
+        </Slider>
+      )}
     </div>
   );
 };
