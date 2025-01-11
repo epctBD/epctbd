@@ -27,15 +27,15 @@ const ProjectDetailsCarousel = ({ data }: ProjectDetailsCarouselProps) => {
       const newSelectedItem = data[newIndex % data.length];
       setSelectedItem(newSelectedItem);
     },
-    responsive: [
-      {
-        breakpoint: 900,
-        settings: {
-          slidesToShow: data.length < 2 ? data.length : 2,
-          slidesToScroll: 1,
-        },
-      },
-    ],
+    // responsive: [
+    //   {
+    //     breakpoint: 900,
+    //     settings: {
+    //       slidesToShow: data.length < 3 ? data.length : 3,
+    //       slidesToScroll: 1,
+    //     },
+    //   },
+    // ],
   };
 
   return (
