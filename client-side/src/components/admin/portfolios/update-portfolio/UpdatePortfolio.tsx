@@ -121,7 +121,7 @@ const UpdatePortfolio = ({
         </div>
 
         <CoreButton
-          text="Update Portfolio"
+          text="Update"
           type="primary"
           htmlType="submit"
           loading={loading}

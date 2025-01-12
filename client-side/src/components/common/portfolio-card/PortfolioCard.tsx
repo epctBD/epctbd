@@ -4,6 +4,7 @@ import CoreButton from "../core-components/core-button/CoreButton";
 
 interface IPortfolioCardProps {
   imageSrc: string;
+  pdfSrc: string;
   title: string;
   subTitle: string;
   position?: "left" | "right";
@@ -11,6 +12,7 @@ interface IPortfolioCardProps {
 
 const PortfolioCard = ({
   imageSrc,
+  pdfSrc,
   title,
   subTitle,
   position = "left",
@@ -43,7 +45,11 @@ const PortfolioCard = ({
           <p className={styles.subTitle}>{subTitle}</p>
         </div>
         <div className={styles.actions}>
-          <CoreButton text="See PDF" type="primary" />
+          <CoreButton
+            text="See PDF"
+            type="primary"
+            onClick={() => window.open(pdfSrc, "_blank")}
+          />
           <CoreButton text="See Details" type="secondary" />
         </div>
       </div>

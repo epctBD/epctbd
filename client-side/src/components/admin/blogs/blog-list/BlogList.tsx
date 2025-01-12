@@ -123,7 +123,7 @@ const BlogList = ({ blogs, setBlogs }: IBlogListProps) => {
         <h1 style={{ fontSize: "20px" }}>Blogs</h1>
         <CoreButton
           icon={<PlusOutlined />}
-          text="Add Blog"
+          text="Blog"
           type="primary"
           onClick={() => setIsModalOpen(true)}
         />

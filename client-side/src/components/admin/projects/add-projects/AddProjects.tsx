@@ -368,9 +368,8 @@ const AddProjects = ({
         </div>
 
         <CoreButton
-          text="Add Project"
+          text="Add"
           type="primary"
-          icon={<PlusOutlined />}
           htmlType="submit"
           loading={loading}
         />

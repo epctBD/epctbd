@@ -3,6 +3,11 @@
 .homeAboutWrapper {
   position: relative;
   margin: 44px 0 104px 0;
+
+  @media (max-width: 768px) {
+    margin: 40px 0;
+  }
+
   .homeAboutImageWrapper {
     @media (max-width: 768px) {
       height: 400px;
@@ -101,7 +106,7 @@
 
     @media (max-width: 1125px) {
       margin-top: 0;
-      bottom: -30px;
+      bottom: 5px;
     }
 
     @media (max-width: 768px) {
@@ -146,8 +151,12 @@
         font-size: 56px;
         color: $white-color;
 
-        @media (max-width: 996px) {
+        @media (max-width: 1024px) {
           font-size: 40px;
+        }
+
+        @media (max-width: 996px) {
+          font-size: 32px;
         }
       }
       .text {

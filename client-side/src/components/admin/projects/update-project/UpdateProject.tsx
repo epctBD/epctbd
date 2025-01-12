@@ -382,7 +382,7 @@ const UpdateProject = ({
         </div>
 
         <CoreButton
-          text="Update Project"
+          text="Update"
           type="primary"
           htmlType="submit"
           loading={loading}

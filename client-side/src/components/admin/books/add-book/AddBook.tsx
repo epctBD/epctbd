@@ -1,115 +1,116 @@
 import CoreButton from "@/components/common/core-components/core-button/CoreButton";
 import CoreImageUploader from "@/components/common/core-components/core-image-uploader/CoreImageUploader";
-import { IPortfolio } from "@/models/portfolio.model";
-import { createPortfolio } from "@/services/portfolio.service";
+import { IAddBook, IBook } from "@/models/book.model";
+import { addBook } from "@/services/book.service";
 import { UploadOutlined } from "@ant-design/icons";
 import { Input, message, Modal, Upload } from "antd";
 import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 
-interface IAddPortfolioModalProps {
+interface IAddBookModalProps {
   isModalOpen: boolean;
   setIsModalOpen: (value: boolean) => void;
-  setPortfolios: React.Dispatch<React.SetStateAction<IPortfolio[]>>;
+  setBooks: React.Dispatch<React.SetStateAction<IBook[]>>;
 }
 
-const AddPortfolio = ({
+const AddBook = ({
   isModalOpen,
   setIsModalOpen,
-  setPortfolios,
-}: IAddPortfolioModalProps) => {
+  setBooks,
+}: IAddBookModalProps) => {
   const [loading, setLoading] = useState(false);
   const {
     handleSubmit,
     control,
     reset,
     formState: { errors },
-  } = useForm<IPortfolio>();
+  } = useForm<IAddBook>();
 
   const [imageData, setImageData] = useState<File | null>(null);
   const [pdfData, setPdfData] = useState<File | null>(null);
 
-  const handleImageUpload = (image: string | File | null) => {
-    setImageData(image as File);
-  };
-
-  const onSubmit = async (data: IPortfolio) => {
+  const onSubmit = async (data: IBook) => {
     setLoading(true);
     try {
       const formData = new FormData();
-      formData.append("title", data.title);
-      formData.append("subtitle", data.subtitle);
-
-      if (imageData) {
-        formData.append("feature_image", imageData);
-      }
+      formData.append("book_name", data.book_name);
+      formData.append("author_name", data.author_name);
 
       if (pdfData) {
         formData.append("pdf_file", pdfData);
       } else {
-        message.error("no pdf");
+        message.error("No PDF file uploaded.");
+        return;
       }
 
-      const response = await createPortfolio(formData);
-      setPortfolios(response);
-      message.success("Portfolio added successfully!");
+      if (imageData) {
+        formData.append("cover_image", imageData);
+      }
+
+      const response = await addBook(formData);
+      setBooks(response);
+      message.success("Book added successfully!");
       reset();
       setIsModalOpen(false);
     } catch (error) {
-      console.error("Error adding portfolio:", error);
-      message.error("Failed to add portfolio. Please try again.");
+      console.error("Error adding book:", error);
+      message.error("Failed to add book. Please try again.");
     } finally {
       setLoading(false);
     }
   };
 
+  const handleImageUpload = (image: string | File | null) => {
+    setImageData(image as File);
+  };
+
   return (
     <Modal
-      key="add portfolio"
-      title="Add Portfolio"
+      key="add book"
+      title="Add Book"
       open={isModalOpen}
       onCancel={() => setIsModalOpen(false)}
       footer={null}
     >
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={"general-input-wrapper"}>
-          <label className={"general-label"}>Title</label>
+          <label className={"general-label"}>Book Name</label>
           <Controller
-            name="title"
+            name="book_name"
             control={control}
-            rules={{ required: "Title is required" }}
+            rules={{ required: "Book name is required" }}
             render={({ field }) => (
               <Input
                 {...field}
-                placeholder="Enter title"
+                placeholder="Enter book name"
                 className={"general-input"}
               />
             )}
           />
-          {errors.title && (
+          {errors.book_name && (
             <p style={{ color: "red", marginTop: "5px" }}>
-              {errors.title.message}
+              {errors.book_name.message}
             </p>
           )}
         </div>
 
         <div className={"general-input-wrapper"}>
-          <label className={"general-label"}>Subtitle</label>
+          <label className={"general-label"}>Author Name</label>
           <Controller
-            name="subtitle"
+            name="author_name"
             control={control}
-            rules={{ required: "Subtitle is required" }}
+            rules={{ required: "Author name is required" }}
             render={({ field }) => (
               <Input
                 {...field}
-                placeholder="Enter subtitle"
+                placeholder="Enter author name"
                 className={"general-input"}
               />
             )}
           />
-          {errors.subtitle && (
+          {errors.author_name && (
             <p style={{ color: "red", marginTop: "5px" }}>
-              {errors.subtitle.message}
+              {errors.author_name.message}
             </p>
           )}
         </div>
@@ -129,7 +130,6 @@ const AddPortfolio = ({
                 return Upload.LIST_IGNORE;
               }
               setPdfData(file);
-              console.log("Before upload file set:", file);
               return false;
             }}
             onRemove={() => setPdfData(null)}
@@ -157,4 +157,4 @@ const AddPortfolio = ({
   );
 };
 
-export default AddPortfolio;
+export default AddBook;

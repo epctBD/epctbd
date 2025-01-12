@@ -2,7 +2,7 @@ const portfolioService = require("../../services/portfolio");
 const { apiError } = require("../../utils/apiError");
 const { apiResponse } = require("../../utils/apiResponse");
 const { asyncHandler } = require("../../utils/asyncHandler");
-const { singleUpload } = require("../../utils/cloudinary");
+const { singleUpload, pdfUpload } = require("../../utils/cloudinary");
 
 const addPortfolio = asyncHandler(async (req, res) => {
   const { title, subtitle } = req.body;
@@ -12,22 +12,34 @@ const addPortfolio = asyncHandler(async (req, res) => {
   }
 
   let feature_image = null;
+  let pdf_file = null;
 
-  if (req.file) {
+  if (req.files) {
     try {
-      feature_image = await singleUpload(req.file);
+      if (req.files.feature_image) {
+        feature_image = await singleUpload(req.files.feature_image[0]);
+      } else {
+        throw new apiError(400, "Feature image is required");
+      }
+
+      if (req.files.pdf_file) {
+        pdf_file = await pdfUpload(req.files.pdf_file[0]);
+      }
     } catch (error) {
-      return new apiError(500, "Image upload failed");
+      throw new apiError(500, "File upload failed");
     }
   } else {
-    return new apiError(400, "Feature image is required");
+    throw new apiError(400, "Feature image is required");
   }
 
   const portfolio_data = {
     title,
     subtitle,
     feature_image,
+    pdf_file,
   };
+
+  console.log(portfolio_data, "portfolio_data");
 
   const { message, portfolios, statusCode } =
     await portfolioService.addPortfolio(portfolio_data);
@@ -70,12 +82,10 @@ const updatePortfolio = asyncHandler(async (req, res) => {
     feature_image,
   };
 
-  const { message, statusCode } = await portfolioService.updatePortfolio(
-    id,
-    portfolio_data
-  );
+  const { message, portfolios, statusCode } =
+    await portfolioService.updatePortfolio(id, portfolio_data);
 
-  new apiResponse(res, statusCode, message);
+  new apiResponse(res, statusCode, message, portfolios);
 });
 
 const deletePortfolio = asyncHandler(async (req, res) => {
@@ -85,9 +95,10 @@ const deletePortfolio = asyncHandler(async (req, res) => {
     new apiError(400, "Please provide a portfolio id");
   }
 
-  const { message, statusCode } = await portfolioService.deletePortfolio(id);
+  const { message, portfolios, statusCode } =
+    await portfolioService.deletePortfolio(id);
 
-  new apiResponse(res, statusCode, message);
+  new apiResponse(res, statusCode, message, portfolios);
 });
 
 module.exports = {

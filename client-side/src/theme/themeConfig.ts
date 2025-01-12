@@ -5,6 +5,7 @@ const theme: ThemeConfig = {
     colorPrimary: "#3395F7",
     fontSize: 16,
     borderRadius: 8,
+    screenMD: 769,
   },
 };
 

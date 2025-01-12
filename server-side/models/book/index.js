@@ -1,16 +1,12 @@
 const mongoose = require("mongoose");
 
-const portfolioSchema = new mongoose.Schema(
+const BookSchema = new mongoose.Schema(
   {
-    title: {
+    book_name: {
       type: String,
       required: true,
     },
-    subtitle: {
-      type: String,
-      required: true,
-    },
-    feature_image: {
+    author_name: {
       type: String,
       required: true,
     },
@@ -18,8 +14,12 @@ const portfolioSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    cover_image: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Portfolio", portfolioSchema);
+module.exports = mongoose.model("Book", BookSchema);

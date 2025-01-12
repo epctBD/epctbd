@@ -122,7 +122,7 @@ const ProjectList = ({ projects, setProjects }: IProjectListProps) => {
       >
         <h1 style={{ fontSize: "20px" }}>Projects</h1>
         <CoreButton
-          text="Add Project"
+          text="Project"
           icon={<PlusOutlined />}
           type="primary"
           onClick={() => setIsModalOpen(true)}

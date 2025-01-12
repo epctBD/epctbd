@@ -41,6 +41,38 @@ async function singleUpload(file) {
   }
 }
 
+async function pdfUpload(file) {
+  try {
+    const uploadResult = await new Promise((resolve, reject) => {
+      const uploadStream = cloudinary.uploader.upload_stream(
+        {
+          resource_type: "auto",
+          folder: "uploaded_book",
+          public_id: file.originalname.split(".")[0],
+        },
+        (error, result) => {
+          if (error) {
+            console.error("Error during pdf upload:", error);
+            return reject(error);
+          }
+
+          resolve(result.secure_url);
+        }
+      );
+
+      // Pipe the file buffer to Cloudinary
+      const bufferStream = new stream.PassThrough();
+      bufferStream.end(file.buffer);
+      bufferStream.pipe(uploadStream);
+    });
+
+    return uploadResult;
+  } catch (error) {
+    console.error("Error during single upload:", error);
+    throw error;
+  }
+}
+
 async function multipleUpload(files) {
   try {
     if (!Array.isArray(files)) {
@@ -82,4 +114,4 @@ async function multipleUpload(files) {
   }
 }
 
-module.exports = { singleUpload, multipleUpload };
+module.exports = { singleUpload, multipleUpload, pdfUpload };

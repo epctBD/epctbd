@@ -4,6 +4,7 @@ import {
   UnorderedListOutlined,
   UsergroupAddOutlined,
   LogoutOutlined,
+  BookOutlined,
 } from "@ant-design/icons";
 import { Menu, MenuProps, Tooltip, Button } from "antd";
 import Link from "next/link";
@@ -89,6 +90,20 @@ const AdminLayout = ({ children }: AdminLayoutLayoutProps) => {
         <Link href="/admin/blogs" className={styles.adminGetItem}>
           <AppstoreAddOutlined className="admin-list-icon" />
           <p className="admin-list-name">Blog List</p>
+        </Link>
+      </Tooltip>,
+      "blogs"
+    ),
+    getItem(
+      <Tooltip
+        placement="right"
+        trigger={["hover", "click"]}
+        title={`${isMobile ? "Blog List" : ""}`}
+        className="tool-tip-container"
+      >
+        <Link href="/admin/books" className={styles.adminGetItem}>
+          <BookOutlined className="admin-list-icon" />
+          <p className="admin-list-name">Book List</p>
         </Link>
       </Tooltip>,
       "blogs"

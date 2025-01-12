@@ -150,7 +150,7 @@ const AddBlog = ({
           }}
         >
           <CoreButton
-            text="Add Blog"
+            text="Add"
             type="primary"
             htmlType="submit"
             loading={loading}

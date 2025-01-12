@@ -28,6 +28,7 @@ const PortfolioView = ({ portfolios }: IPortfolioViewProps) => {
           <div key={portfolio?._id} style={{ marginTop: "80px" }}>
             <PortfolioCard
               imageSrc={portfolio?.feature_image}
+              pdfSrc={portfolio?.pdf_file}
               title={portfolio?.title}
               subTitle={portfolio?.subtitle}
               position={index % 2 === 0 ? "left" : "right"}

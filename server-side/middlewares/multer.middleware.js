@@ -11,7 +11,6 @@ const diskStorage = multer.diskStorage({
   },
 });
 
-// Memory storage configuration
 const memoryStorage = multer.memoryStorage();
 
 const upload = multer({
@@ -20,7 +19,12 @@ const upload = multer({
     fileSize: 5 * 1024 * 1024,
   },
   fileFilter: function (req, file, cb) {
-    const allowedMimeTypes = ["image/jpeg", "image/png", "image/webp"];
+    const allowedMimeTypes = [
+      "image/jpeg",
+      "image/png",
+      "image/webp",
+      "application/pdf",
+    ];
     if (allowedMimeTypes.includes(file.mimetype)) {
       cb(null, true);
     } else {

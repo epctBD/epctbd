@@ -3,6 +3,7 @@ export interface IPortfolio {
   title: string;
   subtitle: string;
   feature_image: string;
+  pdf_file: string;
   createdAt: string;
   updatedAt: string;
 }

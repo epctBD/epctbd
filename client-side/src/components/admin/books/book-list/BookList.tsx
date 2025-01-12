@@ -1,26 +1,25 @@
-import { IPortfolio } from "@/models/portfolio.model";
-import { Image, message, Table } from "antd";
+import { message, Table } from "antd";
 import React, { useState } from "react";
-
 import CoreButton from "@/components/common/core-components/core-button/CoreButton";
-import AddPortfolio from "../add-portfolio/AddPortfolio";
+// import AddBook from "../add-portfolio/AddBook";
 import { PlusOutlined } from "@ant-design/icons";
-import { deletePortfolio } from "@/services/portfolio.service";
 import DeleteModal from "@/components/common/delete-modal/DeleteModal";
 import PenIcon from "@/components/common/svg/PenIcon";
 import TrashBinIcon from "@/components/common/svg/TrashBinIcon";
-import UpdatePortfolio from "../update-portfolio/UpdatePortfolio";
+import { IBook } from "@/models/book.model";
+import { deleteBook } from "@/services/book.service";
+import AddBook from "../add-book/AddBook";
 
-interface IPortfolioListProps {
-  portfolios: IPortfolio[];
-  setPortfolios: React.Dispatch<React.SetStateAction<IPortfolio[]>>;
+interface IBookListProps {
+  books: IBook[];
+  setBooks: React.Dispatch<React.SetStateAction<IBook[]>>;
 }
 
-const PortfolioList = ({ portfolios, setPortfolios }: IPortfolioListProps) => {
+const BookList = ({ books, setBooks }: IBookListProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [updateModalOpen, setUpdateModalOpen] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
-  const [selectedItem, setSelectedItem] = useState<IPortfolio>();
+  const [selectedItem, setSelectedItem] = useState<IBook>();
   const [loading, setLoading] = useState(false);
 
   const onDeleteClick = async () => {
@@ -28,14 +27,14 @@ const PortfolioList = ({ portfolios, setPortfolios }: IPortfolioListProps) => {
 
     setLoading(true);
     try {
-      const response = await deletePortfolio(selectedItem._id);
-      setPortfolios(response);
+      const response = await deleteBook(selectedItem._id);
+      setBooks(response);
 
-      message.success("Portfolio deleted successfully!");
+      message.success("Book deleted successfully!");
       setDeleteModalOpen(false);
     } catch (error) {
-      console.error("Error deleting Portfolio:", error);
-      message.error("Failed to delete Portfolio. Please try again.");
+      console.error("Error deleting Book:", error);
+      message.error("Failed to delete Book. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -43,28 +42,30 @@ const PortfolioList = ({ portfolios, setPortfolios }: IPortfolioListProps) => {
 
   const columns = [
     {
-      title: "Title",
-      dataIndex: "title",
-      key: "title",
+      title: "Book Name",
+      dataIndex: "book_name",
+      key: "book_name",
     },
     {
-      title: "Subtitle",
-      dataIndex: "subtitle",
-      key: "subtitle",
+      title: "Author Name",
+      dataIndex: "author_name",
+      key: "author_name",
     },
     {
-      title: "Feature Image",
-      dataIndex: "feature_image",
-      key: "feature_image",
+      title: "PDF",
+      dataIndex: "pdf_file",
+      key: "pdf_file",
       render: (src: string) => (
-        <Image src={src} alt="Feature Image" width={80} height={80} />
+        <a href={src} target="_blank" rel="noopener noreferrer">
+          Click to open
+        </a>
       ),
     },
     {
       title: "Actions",
       dataIndex: "_id",
       key: "display_picture",
-      render: (id: string, item: IPortfolio) => (
+      render: (id: string, item: IBook) => (
         <div style={{ display: "flex", gap: "12px" }}>
           <div
             style={{
@@ -115,9 +116,9 @@ const PortfolioList = ({ portfolios, setPortfolios }: IPortfolioListProps) => {
           marginBottom: "20px",
         }}
       >
-        <h1 style={{ fontSize: "20px" }}>Portfolios</h1>
+        <h1 style={{ fontSize: "20px" }}>Books</h1>
         <CoreButton
-          text="Portfolio"
+          text="Book"
           icon={<PlusOutlined />}
           type="primary"
           onClick={() => setIsModalOpen(true)}
@@ -129,7 +130,7 @@ const PortfolioList = ({ portfolios, setPortfolios }: IPortfolioListProps) => {
         }}
       >
         <Table
-          dataSource={portfolios}
+          dataSource={books}
           columns={columns}
           rowKey="_id"
           bordered
@@ -137,21 +138,21 @@ const PortfolioList = ({ portfolios, setPortfolios }: IPortfolioListProps) => {
         />
 
         {isModalOpen && (
-          <AddPortfolio
+          <AddBook
             isModalOpen={isModalOpen}
             setIsModalOpen={setIsModalOpen}
-            setPortfolios={setPortfolios}
+            setBooks={setBooks}
           />
         )}
 
-        {updateModalOpen && (
-          <UpdatePortfolio
+        {/*{updateModalOpen && (
+          <UpdateBook
             isModalOpen={updateModalOpen}
             setIsModalOpen={setUpdateModalOpen}
             portfolio={selectedItem || null}
-            setPortfolios={setPortfolios}
+            setBooks={setBooks}
           />
-        )}
+        )} */}
 
         {deleteModalOpen && (
           <DeleteModal
@@ -166,4 +167,4 @@ const PortfolioList = ({ portfolios, setPortfolios }: IPortfolioListProps) => {
   );
 };
 
-export default PortfolioList;
+export default BookList;

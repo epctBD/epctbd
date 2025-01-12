@@ -1,14 +1,17 @@
 import CoreBanner from "@/components/common/core-components/core-banner/CoreBanner";
 import ResourcePageView from "@/components/resources/ResourcePageView";
 import { IBlog } from "@/models/blog.model";
+import { IBook } from "@/models/book.model";
 import { getBlogs } from "@/services/blog.service";
+import { getBooks } from "@/services/book.service";
 import { GetServerSideProps } from "next";
 
 interface IResourcesProps {
   blogs: IBlog[];
+  books: IBook[];
 }
 
-const Resources = ({ blogs }: IResourcesProps) => {
+const Resources = ({ blogs, books }: IResourcesProps) => {
   return (
     <div>
       <CoreBanner
@@ -19,7 +22,7 @@ const Resources = ({ blogs }: IResourcesProps) => {
       />
 
       <div className={"container-wrapper"}>
-        <ResourcePageView blogs={blogs} />
+        <ResourcePageView blogs={blogs} books={books} />
       </div>
     </div>
   );
@@ -28,9 +31,11 @@ const Resources = ({ blogs }: IResourcesProps) => {
 export const getServerSideProps: GetServerSideProps = async () => {
   try {
     const response = await getBlogs();
+    const books = await getBooks();
     return {
       props: {
         blogs: response,
+        books: books,
       },
     };
   } catch (error) {
@@ -38,6 +43,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
     return {
       props: {
         blogs: [],
+        books: [],
       },
     };
   }

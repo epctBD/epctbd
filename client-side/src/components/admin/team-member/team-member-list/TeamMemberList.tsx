@@ -126,7 +126,7 @@ const TeamMemberList = ({
         <h1 style={{ fontSize: "20px" }}>Team Members</h1>
         <CoreButton
           icon={<PlusOutlined />}
-          text="Add Team Member"
+          text="Team Member"
           type="primary"
           onClick={() => setIsModalOpen(true)}
         />

@@ -178,7 +178,7 @@ const UpdateBlog = ({
           }}
         >
           <CoreButton
-            text="Update Blog"
+            text="Update"
             type="primary"
             htmlType="submit"
             loading={loading}

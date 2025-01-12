@@ -1,16 +1,25 @@
-import { Col, Row } from "antd";
+import { Col, Grid, Row } from "antd";
 import styles from "./HomeAbout.module.scss";
 import home_about from "@/assets/images/home-about.png";
+import home_full from "@/assets/images/hero_image_2.jpeg";
 import Image from "next/image";
 import CoreButton from "@/components/common/core-components/core-button/CoreButton";
 
+const { useBreakpoint } = Grid;
+
 const HomeAbout = () => {
+  const screens = useBreakpoint();
+
   return (
     <div className={styles.homeAboutWrapper}>
       <Row gutter={[24, 24]}>
         <Col xs={24} md={12}>
           <div className={styles.homeAboutImageWrapper}>
-            <Image src={home_about} alt="Landing Page's About Us" />
+            {screens.md ? (
+              <Image src={home_about} alt="Landing Page's About Us" />
+            ) : (
+              <Image src={home_full} alt="Landing Page's About Us" />
+            )}
           </div>
         </Col>
         <Col xs={24} md={12}>
