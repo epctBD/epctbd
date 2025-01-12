@@ -1,10 +1,14 @@
 import CoreTitles from "@/components/common/core-titles/CoreTitles";
 import styles from "./HomeProjects.module.scss";
 import ProjectCard from "@/components/common/project-card/ProjectCard";
-import { ProjectData } from "./ProjectData";
 import { Row, Col } from "antd";
+import { IProject } from "@/models/project.model";
 
-const HomeProjects = () => {
+interface HomeProjectsProps {
+  projects: IProject[];
+}
+
+const HomeProjects = ({ projects }: HomeProjectsProps) => {
   // const heights = [
   //   480,
   //   560,
@@ -26,14 +30,14 @@ const HomeProjects = () => {
       />
 
       <Row gutter={[16, 16]} justify="center">
-        {ProjectData.map((project, index) => (
-          <Col key={project.id} xs={24} sm={24} md={12} lg={8} xl={8}>
+        {projects.slice(0, 6).map((project, index) => (
+          <Col key={project.projectSlug} xs={24} sm={24} md={12} lg={8} xl={8}>
             <ProjectCard
-              id={project.id}
-              title={project.title}
-              location={project.location}
-              imageSrc={project.imageSrc}
-              type={project.type}
+              id={project._id}
+              title={project.name}
+              location={project.location || ""}
+              imageSrc={project.projectImages?.[0] || ""}
+              type={project.serviceType}
               // imageHeight={heights[index % heights.length]}
               slug={project.projectSlug || ""}
             />
