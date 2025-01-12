@@ -37,7 +37,7 @@ const ProjectDetailsComponent = ({ project }: IProjectDetailsProps) => {
   return (
     <div className={styles.projectDetailsWrapper}>
       <Row gutter={[15, 15]}>
-        <Col xl={12} md={24}>
+        <Col lg={{ order: 1, span: 12 }} md={{ order: 1, span: 24 }}>
           <div className={styles.projectDetailsHeader}>
             <Breadcrumb
               separator={<span style={{ color: "#A3A6AA" }}>/</span>}
@@ -111,15 +111,20 @@ const ProjectDetailsComponent = ({ project }: IProjectDetailsProps) => {
           </div>
         </Col>
 
-        <Col xl={12} md={24}>
+        <Col
+          lg={{ order: 2, span: 12 }}
+          md={{ order: 3, span: 24 }}
+          sm={{ order: 3, span: 24 }}
+        >
           <div className={styles.carouselSection}>
             <ProjectDetailsCarousel data={project.projectImages || []} />
           </div>
         </Col>
-      </Row>
-
-      <Row>
-        <Col xl={14} md={20} sm={24}>
+        <Col
+          lg={{ order: 3, span: 14 }}
+          md={{ order: 2, span: 24 }}
+          sm={{ order: 2, span: 24 }}
+        >
           <div className={styles.projectTabWrapper}>
             <div className={styles.projectTabInnerWrapper}>
               <Tabs defaultActiveKey="1" items={items} centered={true} />
