@@ -11,7 +11,7 @@ const BooksView = ({ books }: IBooksViewProps) => {
   return (
     <Row gutter={[24, 24]}>
       {books?.map((book) => (
-        <Col xs={12} sm={12} md={8} lg={8} xl={6} key={book._id}>
+        <Col xs={24} sm={12} md={8} lg={8} xl={6} key={book._id}>
           <BookCard
             _id={book._id}
             cover_image={book.cover_image}

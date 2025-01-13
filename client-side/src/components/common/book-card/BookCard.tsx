@@ -30,8 +30,8 @@ const BookCard = ({
           src={cover_image}
           alt={`${book_name} Cover`}
           className={styles.bookImage}
-          width={160}
-          height={240}
+          width={100}
+          height={140}
         />
       </div>
       <div className={styles.bookContent}>
