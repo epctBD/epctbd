@@ -11,16 +11,16 @@ export const addBook = async (data: FormData): Promise<IBook[]> => {
   return response?.data?.data;
 };
 
-export const updateBook = async (
-  id: string,
-  data: FormData
-): Promise<IBook[]> => {
-  const response = await AXIOS_INSTANCE.patch<IBookResponse>(
-    `/book/${id}`,
-    data
-  );
-  return response?.data?.data;
-};
+// export const updateBook = async (
+//   id: string,
+//   data: FormData
+// ): Promise<IBook[]> => {
+//   const response = await AXIOS_INSTANCE.patch<IBookResponse>(
+//     `/book/${id}`,
+//     data
+//   );
+//   return response?.data?.data;
+// };
 
 export const deleteBook = async (id: string): Promise<IBook[]> => {
   const response = await AXIOS_INSTANCE.delete<IBookResponse>(`/book/${id}`);

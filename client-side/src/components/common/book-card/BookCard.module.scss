@@ -1,0 +1,47 @@
+.bookCardWrapper {
+  display: flex;
+  flex-direction: column;
+
+  .bookImageWrapper {
+    .bookImage {
+      width: 100%;
+      height: 100%;
+      border-radius: 16px;
+      aspect-ratio: 100 / 140;
+    }
+  }
+
+  .bookContent {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 8px;
+    padding: 16px;
+
+    .bookAuthor {
+      font-size: 14px;
+      padding: 4px 16px;
+      background-color: #18191b;
+      color: #0077ee;
+      border: 1px solid #27282a;
+      border-radius: 14px;
+    }
+
+    .bookTitle {
+      font-size: 20px;
+      font-weight: 600;
+      background: linear-gradient(180deg, #ffffff 12.23%, #9b9b9b 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: normal;
+    }
+  }
+}

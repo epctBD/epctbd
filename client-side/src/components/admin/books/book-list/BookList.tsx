@@ -1,7 +1,6 @@
 import { message, Table } from "antd";
 import React, { useState } from "react";
 import CoreButton from "@/components/common/core-components/core-button/CoreButton";
-// import AddBook from "../add-portfolio/AddBook";
 import { PlusOutlined } from "@ant-design/icons";
 import DeleteModal from "@/components/common/delete-modal/DeleteModal";
 import PenIcon from "@/components/common/svg/PenIcon";
@@ -9,6 +8,7 @@ import TrashBinIcon from "@/components/common/svg/TrashBinIcon";
 import { IBook } from "@/models/book.model";
 import { deleteBook } from "@/services/book.service";
 import AddBook from "../add-book/AddBook";
+import Image from "next/image";
 
 interface IBookListProps {
   books: IBook[];
@@ -17,7 +17,7 @@ interface IBookListProps {
 
 const BookList = ({ books, setBooks }: IBookListProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [updateModalOpen, setUpdateModalOpen] = useState(false);
+  // const [updateModalOpen, setUpdateModalOpen] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<IBook>();
   const [loading, setLoading] = useState(false);
@@ -62,28 +62,19 @@ const BookList = ({ books, setBooks }: IBookListProps) => {
       ),
     },
     {
+      title: "Book Cover",
+      dataIndex: "cover_image",
+      key: "cover_image",
+      render: (src: string) => (
+        <Image src={src} alt="cover_image" width={80} height={80} />
+      ),
+    },
+    {
       title: "Actions",
       dataIndex: "_id",
       key: "display_picture",
       render: (id: string, item: IBook) => (
-        <div style={{ display: "flex", gap: "12px" }}>
-          <div
-            style={{
-              cursor: "pointer",
-              padding: "7px",
-              border: "1px solid #D1F4DB",
-              backgroundColor: "#E8FAED",
-              borderRadius: "50%",
-              height: "24px",
-              width: "24px",
-            }}
-            onClick={() => {
-              setUpdateModalOpen(true);
-              setSelectedItem(item);
-            }}
-          >
-            <PenIcon />
-          </div>
+        <div style={{ display: "flex" }}>
           <div
             style={{
               cursor: "pointer",
