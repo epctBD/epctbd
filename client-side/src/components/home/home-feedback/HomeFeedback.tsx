@@ -52,8 +52,8 @@ const HomeFeedback = () => {
     <div className={styles.feedbackWrapper}>
       <CoreTitles
         subTitle="Client Feedback"
-        title="Hear from Our Clients"
-        intro="Genuine experiences shared by our clients about working with our team."
+        title="Our Client's Define Our Excellence"
+        intro="Hear real stories of the people whose ideas we helped turn into results"
       />
       <Slider {...settings} className={styles.feedbackCardContainer}>
         {feedbackData.map((feedback, index) => (

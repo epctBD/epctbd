@@ -5,18 +5,6 @@ import ProjectCard from "../project-card/ProjectCard";
 import { getProjects } from "@/services/project.service";
 import styles from "./ProjectView.module.scss";
 
-// export const heights = [
-//   480,
-//   560,
-//   435, // Row 1
-//   512,
-//   480,
-//   480, // Row 2
-//   435,
-//   480,
-//   435, // Row 3
-// ];
-
 interface IProjectViewProps {
   projectList: IProject[];
   setProjectList: React.Dispatch<React.SetStateAction<IProject[]>>;

@@ -1,14 +1,12 @@
 import { IService } from "@/models/services.model";
 import image from "./architectural_design.png";
 import electrical_design from "@/assets/images/electrical_design.png";
-import environmental_study from "@/assets/images/environmental_study.png";
 import land_acquisition from "@/assets/images/land_acquistion.png";
 import planning_management from "@/assets/images/planning_management.png";
 import plumbing_design from "@/assets/images/plumbing_design.png";
-import road_infrastructure from "@/assets/images/road_infrastructure.png";
-import soil_test from "@/assets/images/soil_test.png";
-import structural_design from "@/assets/images/structural_design.png";
+import civil_engg from "@/assets/images/civil_engg.png";
 import surveying from "@/assets/images/surveying.png";
+import management from "@/assets/images/management.png";
 
 export const services: IService[] = [
   {
@@ -53,7 +51,7 @@ export const services: IService[] = [
     title: "Civil Engineering",
     description: "How we ensure quality and efficiency in every project.",
     serviceSlug: "civil-engineering-design",
-    image: image,
+    image: civil_engg,
     service_type: [
       {
         name: "Structural Design (RCC – Multi storied)",
@@ -250,7 +248,7 @@ export const services: IService[] = [
     title: "Management",
     description: "Overseeing project execution and resource Management.",
     serviceSlug: "management",
-    image: planning_management,
+    image: management,
     service_type: [
       {
         name: "Project Supervision. (Construction)",
