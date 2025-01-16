@@ -44,9 +44,9 @@ const BookCard = ({
             color: "#0077EE",
             backgroundColor: "transparent",
             border: "none",
-            paddingLeft: "0px",
-            fontSize: "18px",
-            fontWeight: "600",
+            padding: "0px",
+            fontSize: "16px",
+            fontWeight: "500",
           }}
           className={styles.bookButton}
           onClick={(e) => {

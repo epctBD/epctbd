@@ -44,37 +44,14 @@ const getBooks = asyncHandler(async (req, res) => {
   new apiResponse(res, statusCode, message, books);
 });
 
-const updateBook = asyncHandler(async (req, res) => {
-  const { id } = req.params;
-  const { book_name, author_name } = req.body;
-
-  let pdf_file = null;
-  if (req.files && req.files.pdf_file) {
-    try {
-      pdf_file = await singleUpload(req.files.pdf_file[0]);
-    } catch (error) {
-      throw new apiError(500, "PDF upload failed");
-    }
-  }
-
-  const book_data = { book_name, author_name, ...(pdf_file && { pdf_file }) };
-
-  const { message, book, statusCode } = await bookService.updateBook(
-    id,
-    book_data
-  );
-  new apiResponse(res, statusCode, message, book);
-});
-
 const deleteBook = asyncHandler(async (req, res) => {
   const { id } = req.params;
-  const { message, statusCode } = await bookService.deleteBook(id);
-  new apiResponse(res, statusCode, message);
+  const { message, books, statusCode } = await bookService.deleteBook(id);
+  new apiResponse(res, statusCode, message, books);
 });
 
 module.exports = {
   addBook,
   getBooks,
-  updateBook,
   deleteBook,
 };

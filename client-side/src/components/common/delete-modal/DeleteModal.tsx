@@ -17,8 +17,8 @@ const DeleteModal = ({
 }: IDeleteModalProps) => {
   return (
     <Modal
-      key="update team member"
-      title="Update Team Member"
+      key="Delete"
+      title="Delete"
       open={isModalOpen}
       onCancel={() => setIsModalOpen(false)}
       footer={null}

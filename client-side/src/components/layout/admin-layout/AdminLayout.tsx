@@ -11,6 +11,7 @@ import Link from "next/link";
 import React, { ReactNode, useState } from "react";
 import { signOut } from "next-auth/react";
 import styles from "./AdminLayout.module.scss";
+import CoreButton from "@/components/common/core-components/core-button/CoreButton";
 
 type MenuItem = Required<MenuProps>["items"][number];
 
@@ -106,7 +107,7 @@ const AdminLayout = ({ children }: AdminLayoutLayoutProps) => {
           <p className="admin-list-name">Book List</p>
         </Link>
       </Tooltip>,
-      "blogs"
+      "books"
     ),
   ];
 
@@ -133,10 +134,21 @@ const AdminLayout = ({ children }: AdminLayoutLayoutProps) => {
             padding: "25px 0",
           }}
         />
-        {/* Logout button placed below the menu */}
-        <Button type="primary" icon={<LogoutOutlined />} onClick={handleLogout}>
-          Logout
-        </Button>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            padding: "25px 0",
+          }}
+        >
+          <CoreButton
+            text="Logout"
+            type="primary"
+            icon={<LogoutOutlined />}
+            onClick={handleLogout}
+            size="small"
+          />
+        </div>
       </div>
       <div
         style={{

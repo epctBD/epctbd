@@ -18,6 +18,7 @@ const ContactUsForm = () => {
     control,
     formState: { errors },
     handleSubmit,
+    reset,
   } = useForm<IContactUsPayload>({ mode: "onTouched" });
 
   const onSubmit = async (data: IContactUsPayload) => {
@@ -26,7 +27,8 @@ const ContactUsForm = () => {
       // Make a POST request to your backend
       const response = await sendMessage(data);
       console.log(response, "response");
-      message.success("Message sent");
+      message.success("Message is sent, please wait for the response form us");
+      reset();
     } catch (error) {
       console.error("Error submitting form:", error);
       message.error("An error occurred. Please try again later.");

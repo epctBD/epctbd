@@ -146,12 +146,19 @@ const AddPortfolio = ({
           <CoreImageUploader onImageUpload={handleImageUpload} />
         </div>
 
-        <CoreButton
-          text="Add"
-          type="primary"
-          htmlType="submit"
-          loading={loading}
-        />
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "end",
+          }}
+        >
+          <CoreButton
+            text="Add"
+            type="primary"
+            htmlType="submit"
+            loading={loading}
+          />
+        </div>
       </form>
     </Modal>
   );

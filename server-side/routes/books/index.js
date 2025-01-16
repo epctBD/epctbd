@@ -12,11 +12,6 @@ router.post(
   ]),
   controller.addBook
 );
-// router.patch(
-//   "/:id",
-//   upload.single("feature_image"),
-//   controller.updatePortfolio
-// );
-// router.delete("/:id", controller.deletePortfolio);
+router.delete("/:id", controller.deleteBook);
 
 module.exports = router;
