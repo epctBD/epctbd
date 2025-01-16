@@ -1,5 +1,4 @@
 import AboutUsView from "@/components/about-us/about-us-view/AboutUsView";
-import DecadeSectionView from "@/components/about-us/decade-section-view/DecadeSectionView";
 import CoreBanner from "@/components/common/core-components/core-banner/CoreBanner";
 import { ITeamMemberList } from "@/models/teamMember.model";
 import { getTeamMembers } from "@/services/teamMember.service";
@@ -20,7 +19,6 @@ const AboutUs = ({ team }: IAboutUsProps) => {
       />
       <div className={"container-wrapper"}>
         <AboutUsView team={team} />
-        <DecadeSectionView />
       </div>
     </div>
   );

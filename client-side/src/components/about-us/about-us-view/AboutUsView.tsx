@@ -7,6 +7,7 @@ import ValueCard from "../value-card/ValueCard";
 import FounderSection from "../founder-section/FounderSection";
 import { ITeamMemberList } from "@/models/teamMember.model";
 import TeamCard from "@/components/common/team-card/TeamCard";
+import DecadeSectionView from "../decade-section-view/DecadeSectionView";
 
 interface IAboutUsViewProps {
   team: ITeamMemberList[];
@@ -15,7 +16,7 @@ interface IAboutUsViewProps {
 const AboutUsView = ({ team }: IAboutUsViewProps) => {
   return (
     <div className={styles.aboutUsWrapper}>
-      <Row gutter={[48, 24]} align="middle">
+      <Row gutter={[24, 24]} align="middle">
         <Col xs={24} lg={11}>
           <div className={styles.leftSide}>
             <div className={styles.imageWrapper}>
@@ -83,6 +84,8 @@ const AboutUsView = ({ team }: IAboutUsViewProps) => {
         <FounderSection />
       </div>
 
+      <DecadeSectionView />
+
       <div className={styles.teamSection}>
         <div className={styles.teamHeader}>
           <p className={styles.title}>Meet Our Team</p>
@@ -95,15 +98,17 @@ const AboutUsView = ({ team }: IAboutUsViewProps) => {
             .filter((member) => !member.isExTeam)
             .map((member) => (
               <Col xs={24} sm={12} md={8} lg={6} key={member?._id}>
-                <TeamCard
-                  imageSrc={member?.display_picture}
-                  name={member.name}
-                  position={member.position}
-                  facebook={member.facebook}
-                  twitter={member.twitter}
-                  linkedin={member.linkedin}
-                  exTeamMember={member.isExTeam}
-                />
+                <div className={styles.teamCol}>
+                  <TeamCard
+                    imageSrc={member?.display_picture}
+                    name={member.name}
+                    position={member.position}
+                    facebook={member.facebook}
+                    twitter={member.twitter}
+                    linkedin={member.linkedin}
+                    exTeamMember={member.isExTeam}
+                  />
+                </div>
               </Col>
             ))}
         </Row>
@@ -121,15 +126,17 @@ const AboutUsView = ({ team }: IAboutUsViewProps) => {
             .filter((member) => member.isExTeam)
             .map((member) => (
               <Col xs={24} sm={12} md={8} lg={6} key={member?._id}>
-                <TeamCard
-                  imageSrc={member?.display_picture}
-                  name={member.name}
-                  position={member.position}
-                  facebook={member.facebook}
-                  twitter={member.twitter}
-                  linkedin={member.linkedin}
-                  exTeamMember={member.isExTeam}
-                />
+                <div className={styles.teamCol}>
+                  <TeamCard
+                    imageSrc={member?.display_picture}
+                    name={member.name}
+                    position={member.position}
+                    facebook={member.facebook}
+                    twitter={member.twitter}
+                    linkedin={member.linkedin}
+                    exTeamMember={member.isExTeam}
+                  />
+                </div>
               </Col>
             ))}
         </Row>

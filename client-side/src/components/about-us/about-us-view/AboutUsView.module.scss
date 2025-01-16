@@ -155,6 +155,15 @@
     flex-direction: column;
     gap: 120px;
 
+    .teamCol {
+      display: block;
+
+      @media (max-width: 567px) {
+        display: flex !important;
+        justify-content: center !important;
+      }
+    }
+
     .teamHeader {
       display: flex;
       flex-direction: column;

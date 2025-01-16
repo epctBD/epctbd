@@ -1,5 +1,37 @@
 @import "@/styles/global-scss/variable.scss";
 
+.founderTitle {
+  margin: 0;
+  font-size: 48px;
+  font-weight: 700;
+  background: $title-color;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  text-align: center;
+
+  @media (max-width: 1024px) {
+    font-size: 36px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 28px;
+  }
+
+  @media (max-width: 576px) {
+    font-size: 24px;
+  }
+}
+
+.founderDetails {
+  margin-top: 40px;
+
+  @media (max-width: 768px) {
+    margin-top: 0px;
+  }
+}
+
 .founderImageSection {
   display: flex;
   align-items: center;
