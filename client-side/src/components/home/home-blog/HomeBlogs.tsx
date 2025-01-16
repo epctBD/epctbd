@@ -21,8 +21,8 @@ const HomeBlogs = ({ blogs }: IHomeBlogsProps) => {
     <div className={styles.HomeBlogWrapper}>
       <CoreTitles
         subTitle="Articles"
-        title="Blogs"
-        intro="Dive into our collection of insightful articles, industry trends, and expert opinions."
+        title="Our Latest Update"
+        intro="Catch up on the latest trends and news happening around us"
       />
 
       <Row gutter={[16, 16]} className={styles.blogsContainer}>

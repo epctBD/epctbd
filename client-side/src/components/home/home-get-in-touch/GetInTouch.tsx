@@ -10,8 +10,8 @@ const GetInTouch = () => {
     <div className={styles.homeGetInTouchWrapper}>
       <CoreTitles
         subTitle="CONTACT US"
-        title="Get In Touch With Us"
-        intro="Celebrating our success in completing great projects together"
+        title="We’re Here For You"
+        intro="Looking for a solution? Tell us a bit, we can help"
       />
       <div className={styles.getInTouchWrapper}>
         <div className={styles.getInTouchInnerWrapper}>

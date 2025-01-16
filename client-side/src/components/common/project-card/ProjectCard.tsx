@@ -23,7 +23,7 @@ const ProjectCard = ({
 }: IProjectCardProps) => {
   const router = useRouter();
   const goToDetails = () => {
-    router.push(`project/${slug}`);
+    router.push(`projects/${slug}`);
   };
 
   return (

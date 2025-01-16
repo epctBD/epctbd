@@ -3,23 +3,17 @@ import styles from "./HomeProjects.module.scss";
 import ProjectCard from "@/components/common/project-card/ProjectCard";
 import { Row, Col, Button } from "antd";
 import { IProject } from "@/models/project.model";
+import { useRouter } from "next/router";
 
 interface HomeProjectsProps {
   projects: IProject[];
 }
 
 const HomeProjects = ({ projects }: HomeProjectsProps) => {
-  // const heights = [
-  //   480,
-  //   560,
-  //   435, // Row 1
-  //   512,
-  //   480,
-  //   480, // Row 2
-  //   435,
-  //   480,
-  //   435, // Row 3
-  // ];
+  const router = useRouter();
+  const goToAboutUs = () => {
+    router.push("about-us");
+  };
 
   return (
     <div className={styles.projectsWrapper}>
@@ -41,9 +35,9 @@ const HomeProjects = ({ projects }: HomeProjectsProps) => {
                 fontSize: "18px",
                 fontWeight: "600",
               }}
-              // onClick={goToResources}
+              onClick={goToAboutUs}
             >
-              See More
+              Explore More
             </Button>
           </div>
         </Col>

@@ -11,7 +11,7 @@ const { useBreakpoint } = Grid;
 const HomeAbout = () => {
   const screens = useBreakpoint();
   const router = useRouter();
-  const goToAboutUS = () => {
+  const goToAboutUs = () => {
     router.push("about-us");
   };
 
@@ -54,7 +54,7 @@ const HomeAbout = () => {
             </ul>
           </div>
 
-          <CoreButton text="About Us" type="secondary" onClick={goToAboutUS} />
+          <CoreButton text="About Us" type="secondary" onClick={goToAboutUs} />
         </Col>
       </Row>
 
