@@ -4,11 +4,16 @@ import home_about from "@/assets/images/home-about.png";
 import home_full from "@/assets/images/hero_image_2.jpeg";
 import Image from "next/image";
 import CoreButton from "@/components/common/core-components/core-button/CoreButton";
+import { useRouter } from "next/router";
 
 const { useBreakpoint } = Grid;
 
 const HomeAbout = () => {
   const screens = useBreakpoint();
+  const router = useRouter();
+  const goToAboutUS = () => {
+    router.push("about-us");
+  };
 
   return (
     <div className={styles.homeAboutWrapper}>
@@ -25,15 +30,18 @@ const HomeAbout = () => {
         <Col xs={24} md={12}>
           <div className={styles.sinceText}>
             <div className={styles.divider} />
-            <p>Since 19992</p>
+            <p> Who We Are</p>
           </div>
-          <p className={styles.title}>ARCHITECTURE PLANNING & DESIGN</p>
+          <p className={styles.title}>
+            Sylhet’s Leading Consulting Firm Since 1992
+          </p>
           <p className={styles.subtitle}>
-            This 9-story center integrates labs, consultation rooms, and
-            offices, providing a streamlined space for high-quality healthcare
-            services. This 9-story center integrates labs, consultation rooms,
-            and offices, providing a streamlined space for high-quality
-            healthcare services.
+            At EPCT, we’re architects, engineers, advisors, and planners
+            designing a sustainable future. With over 32 years of experience, we
+            provide smart, forward-thinking solutions in Sylhet. From essential
+            infrastructure to advanced manufacturing, we worked with
+            governments, private clients, and communities to create solutions
+            that pass the test of time and meet today’s challenges.
           </p>
           <div className={styles.bulletPoints}>
             <ul className={styles.bulletList}>
@@ -46,7 +54,7 @@ const HomeAbout = () => {
             </ul>
           </div>
 
-          <CoreButton text="See More" type="secondary" />
+          <CoreButton text="About Us" type="secondary" onClick={goToAboutUS} />
         </Col>
       </Row>
 

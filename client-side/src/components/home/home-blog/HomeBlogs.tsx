@@ -13,7 +13,7 @@ interface IHomeBlogsProps {
 const HomeBlogs = ({ blogs }: IHomeBlogsProps) => {
   const router = useRouter();
 
-  const goToDetails = () => {
+  const goToResources = () => {
     router.push("resources");
   };
 
@@ -37,7 +37,7 @@ const HomeBlogs = ({ blogs }: IHomeBlogsProps) => {
                 fontSize: "18px",
                 fontWeight: "600",
               }}
-              onClick={goToDetails}
+              onClick={goToResources}
             >
               See More
             </Button>

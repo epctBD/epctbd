@@ -16,7 +16,7 @@ interface IProjectProps {
   projects: IProject[];
 }
 
-const Project = ({ projects }: IProjectProps) => {
+const Projects = ({ projects }: IProjectProps) => {
   const [projectList, setProjectList] = useState<IProject[]>(projects);
 
   return (
@@ -57,4 +57,4 @@ export const getServerSideProps: GetServerSideProps = async () => {
   }
 };
 
-export default Project;
+export default Projects;

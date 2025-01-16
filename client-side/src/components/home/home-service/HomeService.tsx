@@ -8,10 +8,9 @@ const HomeService = () => {
   return (
     <div className={styles.homeServiceWrapper}>
       <CoreTitles
-        title="Complete Project Solutions"
+        title="Explore Where We Specialize"
         subTitle="Our Services"
-        intro="Explore Our Range of Services Find the right services for every
-          project need."
+        intro="A trusted hub for a wide range of solutions ready to meet your needs"
       />
       <Row gutter={[24, 24]} justify="center" align="middle">
         {services.map((service) => (

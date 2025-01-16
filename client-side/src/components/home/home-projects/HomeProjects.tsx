@@ -1,7 +1,7 @@
 import CoreTitles from "@/components/common/core-titles/CoreTitles";
 import styles from "./HomeProjects.module.scss";
 import ProjectCard from "@/components/common/project-card/ProjectCard";
-import { Row, Col } from "antd";
+import { Row, Col, Button } from "antd";
 import { IProject } from "@/models/project.model";
 
 interface HomeProjectsProps {
@@ -25,11 +25,28 @@ const HomeProjects = ({ projects }: HomeProjectsProps) => {
     <div className={styles.projectsWrapper}>
       <CoreTitles
         subTitle="Our Projects"
-        title="Explore Our Work"
-        intro="A showcase of innovative solutions and impactful projects delivered by our team."
+        title="In the Spotlight: Our Featured Projects"
+        intro="Explore the key projects that represent the best of what we do"
       />
 
       <Row gutter={[16, 16]} justify="center">
+        <Col span={24}>
+          <div className={styles.ButtonSeeMoreWrapper}>
+            <Button
+              variant="text"
+              style={{
+                color: "#0077EE",
+                backgroundColor: "transparent",
+                border: "none",
+                fontSize: "18px",
+                fontWeight: "600",
+              }}
+              // onClick={goToResources}
+            >
+              See More
+            </Button>
+          </div>
+        </Col>
         {projects.slice(0, 6).map((project, index) => (
           <Col key={project.projectSlug} xs={24} sm={24} md={12} lg={8} xl={8}>
             <ProjectCard
