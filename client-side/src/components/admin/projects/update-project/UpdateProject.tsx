@@ -3,7 +3,16 @@ import ImageUploadIcon from "@/components/common/svg/ImageUploadIcon";
 import { IPhoto, IProject } from "@/models/project.model";
 import { updateProject } from "@/services/project.service";
 import { MinusCircleOutlined } from "@ant-design/icons";
-import { Image, Input, message, Modal, Select, Upload } from "antd";
+import {
+  Checkbox,
+  Image,
+  Input,
+  message,
+  Modal,
+  Radio,
+  Select,
+  Upload,
+} from "antd";
 import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 
@@ -74,6 +83,7 @@ const UpdateProject = ({
       formData.append("details", data.details);
       formData.append("serviceType", data.serviceType);
       formData.append("category", data.category);
+      formData.append("isFeature", data.isFeature ? "true" : "false");
 
       if (data.area) formData.append("area", data.area);
       if (data.projectYear) formData.append("projectYear", data.projectYear);
@@ -157,6 +167,35 @@ const UpdateProject = ({
           {errors.details && (
             <p style={{ color: "red", marginTop: "5px" }}>
               {errors.details.message}
+            </p>
+          )}
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            marginBottom: "12px",
+          }}
+        >
+          <label className={"general-label"}>Is it a Feature Project?</label>
+          <Controller
+            name="isFeature"
+            control={control}
+            render={({ field }) => (
+              <Radio.Group {...field}>
+                <Radio value={true}>Yes</Radio>
+                <Radio value={false}>No</Radio>
+              </Radio.Group>
+            )}
+            rules={{
+              validate: (value) =>
+                value !== undefined || "Ex Team member is required",
+            }}
+          />
+          {errors.isFeature && (
+            <p style={{ color: "red", marginTop: "5px" }}>
+              {errors.isFeature.message}
             </p>
           )}
         </div>
