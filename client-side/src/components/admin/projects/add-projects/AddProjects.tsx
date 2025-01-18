@@ -5,6 +5,7 @@ import { addProject } from "@/services/project.service";
 import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
 import { Button, Image, Input, message, Modal, Select, Upload } from "antd";
 import { div } from "motion/react-client";
+import { Radio } from "antd";
 import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 
@@ -125,7 +126,6 @@ const AddProjects = ({
             </p>
           )}
         </div>
-
         <div className={"general-input-wrapper"}>
           <label className={"general-label"}>Details</label>
           <Controller
@@ -147,6 +147,35 @@ const AddProjects = ({
           )}
         </div>
 
+        <div className={"general-input-wrapper"}>
+          <label className={"general-label"}>Is Feature?</label>
+          <Controller
+            name="isFeature"
+            control={control}
+            rules={{ required: "Please select Yes or No" }}
+            render={({ field }) => (
+              <Radio.Group
+                {...field}
+                onChange={(e) => field.onChange(e.target.value)}
+                value={field.value}
+                className={"circle-radio-group"}
+                style={{ marginTop: "10px" }}
+              >
+                <Radio.Button value={true} className={"circle-radio"}>
+                  Yes
+                </Radio.Button>
+                <Radio.Button value={false} className={"circle-radio"}>
+                  No
+                </Radio.Button>
+              </Radio.Group>
+            )}
+          />
+          {errors.isFeature && (
+            <p style={{ color: "red", marginTop: "5px" }}>
+              {errors.isFeature.message}
+            </p>
+          )}
+        </div>
         <div className={"general-input-wrapper"}>
           <label className={"general-label"}>Service Type</label>
           <Controller
@@ -189,7 +218,6 @@ const AddProjects = ({
             </p>
           )}
         </div>
-
         <div className={"general-input-wrapper"}>
           <label className={"general-label"}>Category</label>
           <Controller
@@ -223,7 +251,6 @@ const AddProjects = ({
             </p>
           )}
         </div>
-
         <div className={"general-input-wrapper"}>
           <label className={"general-label"}>Area</label>
           <Controller
@@ -238,7 +265,6 @@ const AddProjects = ({
             )}
           />
         </div>
-
         <div className={"general-input-wrapper"}>
           <label className={"general-label"}>Project Year</label>
           <Controller
@@ -253,7 +279,6 @@ const AddProjects = ({
             )}
           />
         </div>
-
         <div className={"general-input-wrapper"}>
           <label className={"general-label"}>Designer</label>
           <Controller
@@ -268,7 +293,6 @@ const AddProjects = ({
             )}
           />
         </div>
-
         <div className={"general-input-wrapper"}>
           <label className={"general-label"}>Location</label>
           <Controller
@@ -283,7 +307,6 @@ const AddProjects = ({
             )}
           />
         </div>
-
         <div className={"general-input-wrapper"}>
           <label className={"general-label"}>Project Overview</label>
           <Controller
@@ -298,7 +321,6 @@ const AddProjects = ({
             )}
           />
         </div>
-
         <div className={"general-input-wrapper"}>
           <label className={"general-label"}>Key Features</label>
           <Controller
@@ -313,7 +335,6 @@ const AddProjects = ({
             )}
           />
         </div>
-
         <div className={"general-input-wrapper"}>
           <label className={"general-label"}>Outcome</label>
           <Controller
@@ -328,7 +349,6 @@ const AddProjects = ({
             )}
           />
         </div>
-
         <div>
           <div className={"photo-input-wrapper"}>
             <label className={"general-label"}>Project Images</label>
@@ -366,7 +386,6 @@ const AddProjects = ({
             </div>
           </div>
         </div>
-
         <div
           style={{
             display: "flex",
