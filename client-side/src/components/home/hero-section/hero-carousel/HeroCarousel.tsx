@@ -4,26 +4,19 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import styles from "./HeroCarousel.module.scss";
 
-import Image, { StaticImageData } from "next/image";
-import { carouselData } from "./CarouselData";
-
-interface CarouselItem {
-  id: number;
-  imageId: StaticImageData;
-  title: string;
-  projectType: string;
-  projectIntro: string;
-}
+import Image from "next/image";
+import { IProject } from "@/models/project.model";
 
 interface HeroCarouselProps {
-  updateBackground: (item: CarouselItem) => void; // Updated type
+  projects: IProject[];
+  updateBackground: (project: IProject) => void;
 }
 
-const HeroCarousel = ({ updateBackground }: HeroCarouselProps) => {
+const HeroCarousel = ({ projects, updateBackground }: HeroCarouselProps) => {
   const settings: Settings = {
     dots: true,
     infinite: true,
-    slidesToShow: 3,
+    slidesToShow: projects.length < 3 ? projects.length : 3,
     slidesToScroll: 1,
     autoplay: true,
     speed: 500,
@@ -31,7 +24,7 @@ const HeroCarousel = ({ updateBackground }: HeroCarouselProps) => {
     autoplaySpeed: 3000,
     cssEase: "linear",
     beforeChange: (oldIndex: number, newIndex: number) => {
-      const newBackgroundData = carouselData[newIndex % carouselData.length];
+      const newBackgroundData = projects[newIndex % projects.length];
       updateBackground(newBackgroundData);
     },
     responsive: [
@@ -48,13 +41,19 @@ const HeroCarousel = ({ updateBackground }: HeroCarouselProps) => {
   return (
     <div className={`slider-container carousel-wrapper ${styles.heroCarousel}`}>
       <Slider {...settings}>
-        {carouselData.map((item) => (
-          <div key={item.id} className={styles.carouselContainer}>
+        {projects.map((project) => (
+          <div key={project._id} className={styles.carouselContainer}>
             <Image
-              src={item.imageId}
-              alt={item.title}
+              src={project.projectImages?.[0] || "/fallback-image.png"}
+              alt={project.name}
               className={styles.carouselImage}
+              width={500}
+              height={300}
             />
+            <div className={styles.carouselContent}>
+              <h3 className={styles.projectName}>{project.name}</h3>
+              <p className={styles.projectType}>{project.serviceType}</p>
+            </div>
           </div>
         ))}
       </Slider>

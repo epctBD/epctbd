@@ -11,7 +11,7 @@ import { GetServerSideProps } from "next";
 import { getBlogs } from "@/services/blog.service";
 import { IBlog } from "@/models/blog.model";
 import { IProject } from "@/models/project.model";
-import { getAllProjects } from "@/services/project.service";
+import { getProjects } from "@/services/project.service";
 
 interface HomeProps {
   blogs: IBlog[];
@@ -38,7 +38,7 @@ export default function Home({ blogs, projects }: HomeProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div>
-        <DynamicHeroSection />
+        <DynamicHeroSection projects={projects} />
 
         <div className={"container-wrapper"}>
           <HomeAbout />
@@ -58,7 +58,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
   try {
     const [blogsResponse, projectsResponse] = await Promise.all([
       getBlogs(),
-      getAllProjects(),
+      getProjects(""),
     ]);
 
     return {

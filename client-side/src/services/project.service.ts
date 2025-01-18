@@ -2,12 +2,6 @@ import { IProject, IProjectResponse } from "@/models/project.model";
 import AXIOS_INSTANCE from "./axiosInstance";
 import { processQuery } from "@/utils/ProcessQuery";
 
-export const getAllProjects = async (): Promise<IProject[]> => {
-  const url = "project";
-  const response = await AXIOS_INSTANCE.get<IProjectResponse>(url);
-  return response?.data?.data;
-};
-
 export const getProjects = async (category: string): Promise<IProject[]> => {
   const url = `project${processQuery({ category: category })}`;
   const response = await AXIOS_INSTANCE.get<IProjectResponse>(url);

@@ -6,28 +6,29 @@ import styles from "./Hero.module.scss";
 import CoreButton from "@/components/common/core-components/core-button/CoreButton";
 import { motion } from "framer-motion";
 import { useRouter } from "next/router";
+import { IProject } from "@/models/project.model";
 
-interface CarouselItem {
-  id: number;
-  imageId: StaticImageData;
-  projectType: string;
-  title: string;
-  projectIntro: string;
+interface HeroSectionProps {
+  projects: IProject[];
 }
 
-const HeroSection = () => {
+const HeroSection = ({ projects }: HeroSectionProps) => {
   const router = useRouter();
 
-  const [backgroundData, setBackgroundData] = useState<CarouselItem>({
-    id: 1,
-    imageId: demo_img,
-    title: "Baytus Salam Jame Mosque, Beanibazar",
-    projectType: "Healthcare Industry",
-    projectIntro:
+  const featuredProjects = projects.filter((project) => project.isFeature);
+
+  const [backgroundData, setBackgroundData] = useState<IProject>({
+    _id: "1",
+    name: "Baytus Salam Jame Mosque, Beanibazar",
+    details:
       "This 9-story center integrates labs, consultation rooms, and offices, providing a streamlined space for high-quality healthcare services.",
+    serviceType: "Healthcare Industry",
+    category: "Architecture",
+    isFeature: true,
+    projectImages: [demo_img.src],
   });
 
-  const updateBackground = (newData: CarouselItem) => {
+  const updateBackground = (newData: IProject) => {
     setBackgroundData(newData);
   };
 
@@ -35,9 +36,11 @@ const HeroSection = () => {
     <div className={styles.heroSection}>
       <div className={styles.backgroundImageWrapper}>
         <Image
-          src={backgroundData.imageId}
+          src={backgroundData.projectImages?.[0] || demo_img}
           alt="backgroundImage"
           className={styles.backgroundImage}
+          width={1000}
+          height={1000}
         />
       </div>
       <div className={styles.heroContentWrapper}>
@@ -45,26 +48,26 @@ const HeroSection = () => {
           <div className={styles.heroProjectTypeWrapper}>
             <motion.p
               className={styles.heroProjectType}
-              key={backgroundData.projectType}
+              key={backgroundData._id}
               initial={{ opacity: 0, y: -50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
             >
-              {backgroundData.projectType}
+              {backgroundData.serviceType}
             </motion.p>
           </div>
           <motion.p
             className={styles.heroTitle}
-            key={backgroundData.title}
+            key={backgroundData.name}
             initial={{ opacity: 0, x: -100 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
           >
-            {backgroundData.title}
+            {backgroundData.name}
           </motion.p>
           <motion.p
             className={styles.heroIntro}
-            key={backgroundData.projectIntro}
+            key={backgroundData._id}
             initial={{ clipPath: "inset(0 50% 0 50%)", opacity: 0 }}
             animate={{
               clipPath: "inset(0 0% 0 0%)",
@@ -75,7 +78,7 @@ const HeroSection = () => {
               },
             }}
           >
-            {backgroundData.projectIntro}
+            {backgroundData.details}
           </motion.p>
 
           <div className={styles.heroButtonWrapper}>
@@ -102,7 +105,10 @@ const HeroSection = () => {
           </div>
         </div>
         <div className={styles.carouselContent}>
-          <HeroCarousel updateBackground={updateBackground} />
+          <HeroCarousel
+            updateBackground={updateBackground}
+            projects={featuredProjects}
+          />
         </div>
       </div>
     </div>
