@@ -26,9 +26,10 @@ const addProject = asyncHandler(async (req, res) => {
     projectOverview,
     keyFeatures,
     outcome,
+    isFeature,
   } = req.body;
 
-  if (!name || !details || !category) {
+  if (!name || !details || !category || !serviceType || !isFeature) {
     throw new apiError(400, "Please provide all required information");
   }
 
@@ -55,7 +56,14 @@ const addProject = asyncHandler(async (req, res) => {
     keyFeatures,
     outcome,
     projectImages,
+    isFeature,
   };
+
+  if (!projectImages) {
+    throw new apiError(400, "Please provide project images");
+  }
+
+  console.log(projectImages);
 
   const { message, projects, statusCode } = await projectService.addProject(
     project_data
@@ -93,10 +101,15 @@ const updateProject = asyncHandler(async (req, res) => {
     keyFeatures,
     outcome,
     existing_image_links,
+    isFeature,
   } = req.body;
 
   if (!id) {
     throw new apiError(400, "Project ID is required");
+  }
+
+  if (!name || !details || !category || !serviceType || !isFeature) {
+    throw new apiError(400, "Please provide all required information");
   }
 
   let newProjectImageLinks = [];
@@ -137,8 +150,13 @@ const updateProject = asyncHandler(async (req, res) => {
     projectOverview,
     keyFeatures,
     outcome,
+    isFeature,
     projectImages: [...validExistingImageLinks, ...validNewProjectImageLinks],
   };
+
+  if (!projectImages) {
+    throw new apiError(400, "Please provide project images");
+  }
 
   const { message, projects, statusCode } = await projectService.updateProject(
     id,

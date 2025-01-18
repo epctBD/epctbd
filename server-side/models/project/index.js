@@ -47,6 +47,10 @@ const projectSchema = new Schema(
       type: String,
       required: false,
     },
+    isFeature: {
+      type: Boolean,
+      required: true,
+    },
     outcome: {
       type: String,
       required: false,
