@@ -7,8 +7,11 @@ import PhoneIcon from "@/components/common/svg/PhoneIcon";
 import MessageIcon from "@/components/common/svg/MessageIcon";
 import MapIcons from "@/components/common/svg/MapIcons";
 import FacebookIcon from "@/components/common/svg/FacebookIcon";
+import { useRouter } from "next/router";
 
 const Footer = () => {
+  const router = useRouter();
+
   return (
     <div className={styles.footerWrapper}>
       <Row gutter={[24, 24]}>
@@ -21,10 +24,10 @@ const Footer = () => {
           <div className={styles.listWrapepr}>
             <h4 className={styles.heading}>Company</h4>
             <ul className={styles.list}>
-              <li>About</li>
-              <li>FAQs</li>
-              <li>Blog</li>
-              <li>Service</li>
+              <li onClick={() => router.push("about-us")}>About</li>
+              <li onClick={() => router.push("resources")}>Blogs</li>
+              <li onClick={() => router.push("resources")}>Books</li>
+              <li onClick={() => router.push("services")}>Service</li>
             </ul>
           </div>
         </Col>
@@ -79,7 +82,10 @@ const Footer = () => {
 
       <div className={styles.footerBottom}>
         <p className={styles.creditText}>
-          Design & Development by <span>VINT SOLUTION</span>
+          Design & Development by{" "}
+          <a href="vintsolution.com" target="_blank">
+            VINT SOLUTION
+          </a>
         </p>
         <p className={styles.reservedText}>
           © 2024 All Rights Reserved by EpctBd.Com

@@ -5,6 +5,7 @@ import HeroCarousel from "./hero-carousel/HeroCarousel";
 import styles from "./Hero.module.scss";
 import CoreButton from "@/components/common/core-components/core-button/CoreButton";
 import { motion } from "framer-motion";
+import { useRouter } from "next/router";
 
 interface CarouselItem {
   id: number;
@@ -15,6 +16,8 @@ interface CarouselItem {
 }
 
 const HeroSection = () => {
+  const router = useRouter();
+
   const [backgroundData, setBackgroundData] = useState<CarouselItem>({
     id: 1,
     imageId: demo_img,
@@ -89,7 +92,12 @@ const HeroSection = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
             >
-              <CoreButton text="Contact Us" type="primaryHover" size="large" />
+              <CoreButton
+                text="Contact Us"
+                type="primaryHover"
+                size="large"
+                onClick={() => router.push("contact-us")}
+              />
             </motion.div>
           </div>
         </div>

@@ -8,12 +8,15 @@ import FounderSection from "../founder-section/FounderSection";
 import { ITeamMemberList } from "@/models/teamMember.model";
 import TeamCard from "@/components/common/team-card/TeamCard";
 import DecadeSectionView from "../decade-section-view/DecadeSectionView";
+import { useRouter } from "next/router";
 
 interface IAboutUsViewProps {
   team: ITeamMemberList[];
 }
 
 const AboutUsView = ({ team }: IAboutUsViewProps) => {
+  const router = useRouter();
+
   return (
     <div className={styles.aboutUsWrapper}>
       <Row gutter={[24, 24]} align="middle">
@@ -50,6 +53,7 @@ const AboutUsView = ({ team }: IAboutUsViewProps) => {
                 isFullWidth={false}
                 text="Contact Us"
                 type="primary"
+                onClick={() => router.push("contact-us")}
               />
             </div>
           </div>

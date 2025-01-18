@@ -10,6 +10,8 @@
   max-width: 350px;
   min-height: 200px;
 
+  cursor: pointer;
+
   @media (max-width: 992px) {
     padding: 16px;
     max-width: 270px;
@@ -72,6 +74,7 @@
       padding-bottom: 4px;
       background: linear-gradient(180deg, #ffffff 12.23%, #9b9b9b 100%);
       -webkit-background-clip: text;
+      background-clip: text;
       -webkit-text-fill-color: transparent;
 
       @media (max-width: 992px) {

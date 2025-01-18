@@ -50,6 +50,10 @@
       display: flex;
       flex-direction: column;
       gap: 12px;
+
+      li {
+        cursor: pointer;
+      }
     }
   }
 
@@ -93,8 +97,13 @@
       font-size: 14px;
       color: $gray-color-400;
 
-      span {
-        font-weight: 600;
+      a {
+        color: $gray-color-400;
+        text-decoration: none;
+
+        &:hover {
+          color: $primary-color;
+        }
       }
     }
 

@@ -9,7 +9,7 @@ const Cta = () => {
   };
 
   const goToProjects = () => {
-    router.push("project");
+    router.push("projects");
   };
 
   return (
@@ -18,11 +18,6 @@ const Cta = () => {
         <p className={styles.title}>
           Have Questions in Mind? Let Us Understand Your Needs
         </p>
-        {/* <p className={styles.subTitle}>
-          This 9-story center integrates labs, consultation rooms, and offices,
-          providing a-quality healthcare services. This 9-story center
-          integrates labs.
-        </p> */}
       </div>
       <div className={styles.ctaActions}>
         <CoreButton text="Contact Us" type="primary" onClick={goToContactUs} />

@@ -6,10 +6,12 @@ import Image from "next/image";
 import epct_logo from "/public/images/epct_logo.png";
 import { MenuOutlined } from "@ant-design/icons";
 import useGetMenuKey from "@/hooks/useGetMenuKey";
+import { useRouter } from "next/router";
 
 const { Header } = Layout;
 
 const Navbar = () => {
+  const router = useRouter();
   const selectedKey = useGetMenuKey();
 
   type MenuItem = Required<React.ComponentProps<typeof Menu>>["items"][number];
@@ -51,8 +53,7 @@ const Navbar = () => {
   };
 
   const goToHome = () => {
-    // Implement navigation logic
-    console.log("Go to home");
+    router.push("/");
   };
 
   return (
