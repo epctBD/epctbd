@@ -11,7 +11,7 @@ import { GetServerSideProps } from "next";
 import { getBlogs } from "@/services/blog.service";
 import { IBlog } from "@/models/blog.model";
 import { IProject } from "@/models/project.model";
-import { getProjects } from "@/services/project.service";
+import { getAllProjects } from "@/services/project.service";
 
 interface HomeProps {
   blogs: IBlog[];
@@ -58,7 +58,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
   try {
     const [blogsResponse, projectsResponse] = await Promise.all([
       getBlogs(),
-      getProjects("Ongoing Projects"),
+      getAllProjects(),
     ]);
 
     return {
