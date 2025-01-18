@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import ProjectCard from "../project-card/ProjectCard";
 import { getProjects } from "@/services/project.service";
 import styles from "./ProjectView.module.scss";
+import { useRouter } from "next/router";
 
 interface IProjectViewProps {
   projectList: IProject[];
@@ -11,16 +12,27 @@ interface IProjectViewProps {
 }
 
 const ProjectView = ({ projectList, setProjectList }: IProjectViewProps) => {
+  const router = useRouter();
   const [isLoading] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("");
+
+  const { tab } = router.query;
+
+  const [activeKey, setActiveKey] = useState("Ongoing Projects");
+
+  useEffect(() => {
+    if (tab) {
+      setActiveKey(tab as any);
+      setSelectedCategory(tab as any);
+    }
+  }, [tab]);
 
   const getFilteredProjects = async () => {
     try {
       const response = await getProjects(selectedCategory);
       setProjectList(response);
     } catch (error) {
-      console.error("Error adding portfolio:", error);
-      message.error("Failed to add portfolio. Please try again.");
+      message.error(`Error getting projects: ${error}`);
     } finally {
       //   setLoading(false);
     }
@@ -35,19 +47,19 @@ const ProjectView = ({ projectList, setProjectList }: IProjectViewProps) => {
 
   const items: TabsProps["items"] = [
     {
-      key: "1",
+      key: "Ongoing Projects",
       label: "Ongoing Projects",
     },
     {
-      key: "2",
+      key: "Government Projects",
       label: "Government Projects",
     },
     {
-      key: "3",
+      key: "Private Projects",
       label: "Private Projects",
     },
     {
-      key: "4",
+      key: "Highlighted Projects",
       label: "Highlighted Projects",
     },
   ];
@@ -55,6 +67,7 @@ const ProjectView = ({ projectList, setProjectList }: IProjectViewProps) => {
   const onTabChange = (key: string) => {
     const selectedTab = items?.find((item) => item.key === key);
     if (selectedTab) {
+      setActiveKey(selectedTab?.key as any);
       setSelectedCategory(selectedTab?.label as string);
     }
   };
@@ -62,7 +75,12 @@ const ProjectView = ({ projectList, setProjectList }: IProjectViewProps) => {
   return (
     <div className={styles.projectViewWrapper}>
       <div className={styles.projectTabWrapper}>
-        <Tabs defaultActiveKey="1" items={items} onChange={onTabChange} />
+        <Tabs
+          defaultActiveKey="1"
+          activeKey={activeKey}
+          items={items}
+          onChange={onTabChange}
+        />
       </div>
       <Row justify="center" gutter={[24, 24]}>
         {isLoading ? (

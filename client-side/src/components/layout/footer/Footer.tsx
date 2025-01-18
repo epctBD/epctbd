@@ -12,6 +12,13 @@ import { useRouter } from "next/router";
 const Footer = () => {
   const router = useRouter();
 
+  const handelProjectRouting = (path: string) => {
+    router.push({
+      pathname: "/projects",
+      query: { tab: path },
+    });
+  };
+
   return (
     <div className={styles.footerWrapper}>
       <Row gutter={[24, 24]}>
@@ -35,10 +42,18 @@ const Footer = () => {
           <div className={styles.listWrapepr}>
             <h4 className={styles.heading}>Projects</h4>
             <ul className={styles.list}>
-              <li>Government Projects</li>
-              <li>Private Projects</li>
-              <li>Highlighted Projects</li>
-              <li>Ongoing Projects</li>
+              <li onClick={() => handelProjectRouting("Ongoing Projects")}>
+                Ongoing Projects
+              </li>
+              <li onClick={() => handelProjectRouting("Government Projects")}>
+                Government Projects
+              </li>
+              <li onClick={() => handelProjectRouting("Private Projects")}>
+                Private Projects
+              </li>
+              <li onClick={() => handelProjectRouting("Highlighted Projects")}>
+                Highlighted Projects
+              </li>
             </ul>
           </div>
         </Col>
