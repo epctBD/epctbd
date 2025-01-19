@@ -29,7 +29,7 @@ export default function Home({ blogs, projects }: HomeProps) {
   return (
     <>
       <Head>
-        <title>EPCT</title>
+        <title>EPCT - Engineering Planning Consultancy Team</title>
         <meta
           name="description"
           content="ENGINEERING PLANNING CONSULTANCY TEAM"
