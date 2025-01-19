@@ -44,7 +44,7 @@ const ProjectDetailsComponent = ({ project }: IProjectDetailsProps) => {
               items={[
                 {
                   title: (
-                    <Link href="/services" style={{ color: "#0077EE" }}>
+                    <Link href="/projects" style={{ color: "#0077EE" }}>
                       Projects
                     </Link>
                   ),

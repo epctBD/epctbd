@@ -16,16 +16,16 @@ const HeroSection = ({ projects }: HeroSectionProps) => {
   const router = useRouter();
 
   const featuredProjects = projects.filter((project) => project.isFeature);
+  const length = featuredProjects.length;
 
   const [backgroundData, setBackgroundData] = useState<IProject>({
-    _id: "1",
-    name: "Baytus Salam Jame Mosque, Beanibazar",
-    details:
-      "This 9-story center integrates labs, consultation rooms, and offices, providing a streamlined space for high-quality healthcare services.",
-    serviceType: "Healthcare Industry",
-    category: "Architecture",
-    isFeature: true,
-    projectImages: [demo_img.src],
+    _id: featuredProjects[length - 1]._id,
+    name: featuredProjects[length - 1].name,
+    details: featuredProjects[length - 1].details,
+    serviceType: featuredProjects[length - 1].serviceType,
+    category: featuredProjects[length - 1].category,
+    isFeature: featuredProjects[length - 1].isFeature,
+    projectImages: featuredProjects[length - 1].projectImages,
   });
 
   const updateBackground = (newData: IProject) => {
@@ -87,7 +87,13 @@ const HeroSection = ({ projects }: HeroSectionProps) => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
             >
-              <CoreButton text="See Projects" type="primary" />
+              <CoreButton
+                text="See Projects"
+                type="primary"
+                onClick={() =>
+                  router.push(`projects/${backgroundData.projectSlug}`)
+                }
+              />
             </motion.div>
 
             <motion.div
