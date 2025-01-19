@@ -38,7 +38,7 @@ export default function Home({ blogs, projects }: HomeProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div>
-        <DynamicHeroSection />
+        <DynamicHeroSection projects={projects} />
 
         <div className={"container-wrapper"}>
           <HomeAbout />
@@ -58,7 +58,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
   try {
     const [blogsResponse, projectsResponse] = await Promise.all([
       getBlogs(),
-      getProjects("Ongoing Projects"),
+      getProjects(""),
     ]);
 
     return {

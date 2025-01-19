@@ -3,8 +3,17 @@ import ImageUploadIcon from "@/components/common/svg/ImageUploadIcon";
 import { IPhoto, IProject } from "@/models/project.model";
 import { addProject } from "@/services/project.service";
 import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
-import { Button, Image, Input, message, Modal, Select, Upload } from "antd";
-import { div } from "motion/react-client";
+import {
+  Button,
+  Checkbox,
+  Image,
+  Input,
+  message,
+  Modal,
+  Radio,
+  Select,
+  Upload,
+} from "antd";
 import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 
@@ -62,6 +71,7 @@ const AddProjects = ({
       formData.append("details", data.details);
       formData.append("serviceType", data.serviceType);
       formData.append("category", data.category);
+      formData.append("isFeature", data.isFeature ? "true" : "false");
 
       if (data.area) formData.append("area", data.area);
       if (data.projectYear) formData.append("projectYear", data.projectYear);
@@ -125,7 +135,6 @@ const AddProjects = ({
             </p>
           )}
         </div>
-
         <div className={"general-input-wrapper"}>
           <label className={"general-label"}>Details</label>
           <Controller
@@ -143,6 +152,34 @@ const AddProjects = ({
           {errors.details && (
             <p style={{ color: "red", marginTop: "5px" }}>
               {errors.details.message}
+            </p>
+          )}
+        </div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            marginBottom: "12px",
+          }}
+        >
+          <label className={"general-label"}>Is it a Feature Project?</label>
+          <Controller
+            name="isFeature"
+            control={control}
+            render={({ field }) => (
+              <Radio.Group {...field}>
+                <Radio value={true}>Yes</Radio>
+                <Radio value={false}>No</Radio>
+              </Radio.Group>
+            )}
+            rules={{
+              validate: (value) =>
+                value !== undefined || "Ex Team member is required",
+            }}
+          />
+          {errors.isFeature && (
+            <p style={{ color: "red", marginTop: "5px" }}>
+              {errors.isFeature.message}
             </p>
           )}
         </div>
@@ -189,7 +226,6 @@ const AddProjects = ({
             </p>
           )}
         </div>
-
         <div className={"general-input-wrapper"}>
           <label className={"general-label"}>Category</label>
           <Controller
@@ -223,7 +259,6 @@ const AddProjects = ({
             </p>
           )}
         </div>
-
         <div className={"general-input-wrapper"}>
           <label className={"general-label"}>Area</label>
           <Controller
@@ -238,7 +273,6 @@ const AddProjects = ({
             )}
           />
         </div>
-
         <div className={"general-input-wrapper"}>
           <label className={"general-label"}>Project Year</label>
           <Controller
@@ -253,7 +287,6 @@ const AddProjects = ({
             )}
           />
         </div>
-
         <div className={"general-input-wrapper"}>
           <label className={"general-label"}>Designer</label>
           <Controller
@@ -268,7 +301,6 @@ const AddProjects = ({
             )}
           />
         </div>
-
         <div className={"general-input-wrapper"}>
           <label className={"general-label"}>Location</label>
           <Controller
@@ -283,7 +315,6 @@ const AddProjects = ({
             )}
           />
         </div>
-
         <div className={"general-input-wrapper"}>
           <label className={"general-label"}>Project Overview</label>
           <Controller
@@ -298,7 +329,6 @@ const AddProjects = ({
             )}
           />
         </div>
-
         <div className={"general-input-wrapper"}>
           <label className={"general-label"}>Key Features</label>
           <Controller
@@ -313,7 +343,6 @@ const AddProjects = ({
             )}
           />
         </div>
-
         <div className={"general-input-wrapper"}>
           <label className={"general-label"}>Outcome</label>
           <Controller
@@ -328,7 +357,6 @@ const AddProjects = ({
             )}
           />
         </div>
-
         <div>
           <div className={"photo-input-wrapper"}>
             <label className={"general-label"}>Project Images</label>
@@ -366,7 +394,6 @@ const AddProjects = ({
             </div>
           </div>
         </div>
-
         <div
           style={{
             display: "flex",

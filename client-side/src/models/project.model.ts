@@ -17,6 +17,7 @@ export interface IProject {
   keyFeatures?: string;
   outcome?: string;
   projectImages?: string[];
+  isFeature: boolean;
 }
 
 export interface IProjectResponse {
