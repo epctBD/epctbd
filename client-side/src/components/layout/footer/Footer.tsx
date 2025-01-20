@@ -13,6 +13,7 @@ const Footer = () => {
   const router = useRouter();
 
   const handelProjectRouting = (path: string) => {
+    console.log(path);
     router.push({
       pathname: "/projects",
       query: { tab: path },
