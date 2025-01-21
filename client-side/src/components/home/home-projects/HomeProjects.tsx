@@ -15,8 +15,6 @@ const HomeProjects = ({ projects }: HomeProjectsProps) => {
     router.push("about-us");
   };
 
-  console.log("All Projects", projects);
-
   return (
     <div className={styles.projectsWrapper}>
       <CoreTitles

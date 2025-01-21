@@ -58,7 +58,6 @@ router.post("/send-message", async (req, res) => {
       },
     });
 
-    console.log("Message sent successfully:", response.data);
     res
       .status(200)
       .json({ success: true, message: "Message sent successfully!" });
@@ -69,7 +68,6 @@ router.post("/send-message", async (req, res) => {
     );
 
     if (error.response?.status === 401) {
-      console.log("Token expired, refreshing...");
       try {
         WHATS_APP_TOKEN = await refreshToken();
         // Retry after refreshing the token

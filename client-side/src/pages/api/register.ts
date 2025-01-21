@@ -14,9 +14,6 @@ export default async function handler(
   try {
     await connectToDatabase();
 
-    // Log the raw request body
-    console.log("Raw request body:", req.body);
-
     // Ensure the body is parsed correctly
     let body;
     try {

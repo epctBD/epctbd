@@ -13,7 +13,6 @@ class apiError extends customError {
     if (process.env.NODE_ENV === "development") {
       return [{ message: this.message, field: this.stack }];
     }
-    console.log("in the api error");
     return [{ message: this.message }];
   }
 }

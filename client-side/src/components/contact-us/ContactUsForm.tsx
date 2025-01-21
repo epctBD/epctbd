@@ -22,7 +22,6 @@ const ContactUsForm = () => {
   } = useForm<IContactUsPayload>({ mode: "onTouched" });
 
   const onSubmit = async (data: IContactUsPayload) => {
-    console.log(data);
     try {
       // Make a POST request to your backend
       const response = await sendMessage(data);

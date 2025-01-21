@@ -129,7 +129,6 @@ const AddPortfolio = ({
                 return Upload.LIST_IGNORE;
               }
               setPdfData(file);
-              console.log("Before upload file set:", file);
               return false;
             }}
             onRemove={() => setPdfData(null)}

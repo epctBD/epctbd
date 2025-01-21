@@ -27,8 +27,6 @@ const AboutUs = ({ team }: IAboutUsProps) => {
 export const getServerSideProps: GetServerSideProps = async () => {
   try {
     const response = await getTeamMembers();
-
-    console.log(response);
     return {
       props: {
         team: response,

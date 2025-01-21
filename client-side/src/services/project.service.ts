@@ -5,7 +5,6 @@ import { processQuery } from "@/utils/ProcessQuery";
 export const getProjects = async (category: string): Promise<IProject[]> => {
   const url = `project${processQuery({ category: category })}`;
   const response = await AXIOS_INSTANCE.get<IProjectResponse>(url);
-  console.log(response, "responseresponse");
   return response?.data?.data;
 };
 

@@ -63,8 +63,6 @@ const addProject = asyncHandler(async (req, res) => {
     throw new apiError(400, "Please provide project images");
   }
 
-  console.log(projectImages);
-
   const { message, projects, statusCode } = await projectService.addProject(
     project_data
   );
@@ -102,6 +100,7 @@ const updateProject = asyncHandler(async (req, res) => {
     outcome,
     existing_image_links,
     isFeature,
+    serviceType,
   } = req.body;
 
   if (!id) {
@@ -120,8 +119,6 @@ const updateProject = asyncHandler(async (req, res) => {
     } catch (error) {
       return new apiError(500, "Image upload failed");
     }
-  } else {
-    return new apiError(400, "Feature image is required");
   }
 
   const validNewProjectImageLinks = Array.isArray(newProjectImageLinks)
@@ -151,10 +148,11 @@ const updateProject = asyncHandler(async (req, res) => {
     keyFeatures,
     outcome,
     isFeature,
+    serviceType,
     projectImages: [...validExistingImageLinks, ...validNewProjectImageLinks],
   };
 
-  if (!projectImages) {
+  if (!update_Data?.projectImages) {
     throw new apiError(400, "Please provide project images");
   }
 

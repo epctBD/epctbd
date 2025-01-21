@@ -1,6 +1,6 @@
 import CoreButton from "@/components/common/core-components/core-button/CoreButton";
 import ImageUploadIcon from "@/components/common/svg/ImageUploadIcon";
-import { IPhoto, IProject } from "@/models/project.model";
+import type { IPhoto, IProject } from "@/models/project.model";
 import { updateProject } from "@/services/project.service";
 import { MinusCircleOutlined } from "@ant-design/icons";
 import {
@@ -13,7 +13,8 @@ import {
   Select,
   Upload,
 } from "antd";
-import React, { useState } from "react";
+import type React from "react";
+import { useState, useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
 
 interface IUpdateProjectModalProps {
@@ -31,9 +32,13 @@ const UpdateProject = ({
 }: IUpdateProjectModalProps) => {
   const [loading, setLoading] = useState(false);
   const [photos, setPhotos] = useState<IPhoto[]>([]);
-  const [existingImageLinks, setExistingImageLinks] = useState<string[]>(
-    project?.projectImages || []
-  );
+  const [existingImageLinks, setExistingImageLinks] = useState<string[]>([]);
+
+  useEffect(() => {
+    if (project?.projectImages) {
+      setExistingImageLinks(project.projectImages);
+    }
+  }, [project]);
 
   const {
     handleSubmit,
@@ -70,9 +75,9 @@ const UpdateProject = ({
   };
 
   const handleRemoveExistingImage = (index: number) => {
-    const newExistingImageLinks = [...existingImageLinks];
-    newExistingImageLinks.splice(index, 1);
-    setExistingImageLinks(newExistingImageLinks);
+    setExistingImageLinks((prevLinks) =>
+      prevLinks.filter((_, i) => i !== index)
+    );
   };
 
   const onSubmit = async (data: IProject) => {
@@ -94,11 +99,16 @@ const UpdateProject = ({
       if (data.keyFeatures) formData.append("keyFeatures", data.keyFeatures);
       if (data.outcome) formData.append("outcome", data.outcome);
 
-      photos.forEach((file, index) => {
-        if (file.file) {
-          formData.append("projectImages", file.file);
+      console.log(photos, "photos");
+
+      photos.forEach((photo) => {
+        if (photo.file) {
+          formData.append("projectImages", photo.file);
         }
-        formData.append("existing_image_links", existingImageLinks[index]);
+      });
+
+      existingImageLinks.forEach((link) => {
+        formData.append("existing_image_links", link);
       });
 
       const response = await updateProject(project?._id || "", formData);
@@ -384,13 +394,36 @@ const UpdateProject = ({
 
         <div>
           <div className={"photo-input-wrapper"}>
+            <label className={"general-label"}>Existing Project Images</label>
+            <div className={"photo-outer-upload-wrapper"}>
+              {existingImageLinks.map((link, index) => (
+                <div key={`existing-${index}`} className="photo-upload-wrapper">
+                  <Image
+                    src={link || "/placeholder.svg"}
+                    alt={`Existing Photo ${index + 1}`}
+                    width={76}
+                    height={76}
+                    preview={true}
+                    className="margin-bottom-16"
+                  />
+                  <div
+                    onClick={() => handleRemoveExistingImage(index)}
+                    className="photo-delete-icon"
+                  >
+                    <MinusCircleOutlined />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className={"photo-input-wrapper"}>
             <label className={"general-label"}>Project Images</label>
 
             <div className={"photo-outer-upload-wrapper"}>
               {photos.map((photo, index) => (
                 <div key={index + 1} className="photo-upload-wrapper">
                   <Image
-                    src={photo.url}
+                    src={photo.url || "/placeholder.svg"}
                     alt={`Photo ${index + 1}`}
                     width={76}
                     height={76}
@@ -410,7 +443,7 @@ const UpdateProject = ({
                 showUploadList={false}
                 accept="image/*"
               >
-                {photos.length < 10 && (
+                {photos.length + existingImageLinks.length < 10 && (
                   <div style={{ padding: "8px" }}>
                     <ImageUploadIcon />
                   </div>

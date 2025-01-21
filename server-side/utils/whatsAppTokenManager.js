@@ -10,7 +10,6 @@ const refreshToken = async () => {
     );
 
     const newToken = response.data.access_token;
-    console.log("New token generated:", newToken);
 
     // Update the token in the .env file
     const updatedEnv = Object.entries(process.env)
