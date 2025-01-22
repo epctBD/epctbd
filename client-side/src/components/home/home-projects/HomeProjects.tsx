@@ -43,15 +43,17 @@ const HomeProjects = ({ projects }: HomeProjectsProps) => {
         </Col>
         {projects.slice(0, 6).map((project, index) => (
           <Col key={project.projectSlug} xs={24} sm={24} md={12} lg={8} xl={8}>
-            <ProjectCard
-              id={project._id}
-              title={project.name}
-              location={project.location || ""}
-              imageSrc={project.projectImages?.[0] || ""}
-              type={project.serviceType}
-              // imageHeight={heights[index % heights.length]}
-              slug={project.projectSlug || ""}
-            />
+            <div className={styles.projectCardWrapper}>
+              <ProjectCard
+                id={project._id}
+                title={project.name}
+                location={project.location || ""}
+                imageSrc={project.projectImages?.[0] || ""}
+                type={project.serviceType}
+                // imageHeight={heights[index % heights.length]}
+                slug={project.projectSlug || ""}
+              />
+            </div>
           </Col>
         ))}
       </Row>

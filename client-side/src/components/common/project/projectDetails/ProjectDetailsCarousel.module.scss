@@ -47,7 +47,7 @@
 
   :global(.slick-prev) {
     top: 120% !important;
-    left: 72% !important;
+    left: 60% !important;
     width: 24px !important;
     height: 24px !important;
     z-index: 100;
@@ -95,8 +95,8 @@
   // Custom dot styles
   :global(.slick-dots) {
     position: absolute !important;
-    top: 105%;
-    left: 66%;
+    top: 107%;
+    left: 60%;
     width: 40%;
   }
 

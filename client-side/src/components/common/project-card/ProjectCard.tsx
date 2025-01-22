@@ -28,13 +28,15 @@ const ProjectCard = ({
 
   return (
     <div className={styles.projectCardWrapper} onClick={goToDetails}>
-      <div className={styles.proejectImageWrapper} style={{ height: "460px" }}>
+      <div className={styles.proejectImageWrapper}>
         <Image
           className={styles.projectImage}
           src={imageSrc}
           alt={title}
-          layout="fill"
+          // layout="fill"
           // objectFit="cover"
+          height={435}
+          width={410}
         />
       </div>
       <div className={styles.projectDetailsWrapper}>

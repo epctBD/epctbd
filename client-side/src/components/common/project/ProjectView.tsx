@@ -90,15 +90,17 @@ const ProjectView = ({ projectList, setProjectList }: IProjectViewProps) => {
         ) : (
           projectList?.map((project: IProject, index) => (
             <Col span={8} xs={24} sm={24} md={12} lg={8} key={project?._id}>
-              <ProjectCard
-                id={project._id}
-                title={project.name}
-                location={project.location || ""}
-                imageSrc={project.projectImages?.[0] || ""}
-                type={project.serviceType}
-                // imageHeight={heights[index % heights.length]}
-                slug={project.projectSlug || ""}
-              />
+              <div className={styles.projectCardWrapper}>
+                <ProjectCard
+                  id={project._id}
+                  title={project.name}
+                  location={project.location || ""}
+                  imageSrc={project.projectImages?.[0] || ""}
+                  type={project.serviceType}
+                  // imageHeight={heights[index % heights.length]}
+                  slug={project.projectSlug || ""}
+                />
+              </div>
             </Col>
           ))
         )}
