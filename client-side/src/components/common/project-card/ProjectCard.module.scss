@@ -5,13 +5,16 @@
   cursor: pointer;
 
   .proejectImageWrapper {
-    // width: 410px;
+    max-width: 410px;
     // height: 480px;
     position: relative;
 
     .projectImage {
       border-radius: 16px;
       border: 1px solid #27282a;
+      aspect-ratio: 410 / 435;
+      height: 100%;
+      width: 100%;
     }
   }
 
