@@ -30,16 +30,17 @@ const Resources = ({ blogs, books }: IResourcesProps) => {
 
 export const getServerSideProps: GetServerSideProps = async () => {
   try {
-    const response = await getBlogs();
-    const books = await getBooks();
+    const blogsResponse = await getBlogs();
+    console.log("Blogs fetched successfully:", blogsResponse);
+
     return {
       props: {
-        blogs: response,
-        books: books,
+        blogs: blogsResponse,
+        books: [],
       },
     };
   } catch (error) {
-    console.error("Error fetching projects:", error);
+    console.error("Error in Resources getServerSideProps:", error);
     return {
       props: {
         blogs: [],
