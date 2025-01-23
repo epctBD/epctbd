@@ -20,7 +20,7 @@ const Portfolio = ({ portfolios }: IPortfolioProps) => {
     <div>
       <CoreBanner
         title="Portfolio"
-        subtitle="Portfolio"
+        subtitle="A Glimpse Into Our Creative Journey"
         crumbOne="Home"
         crumbTwo="Portfolio"
       />

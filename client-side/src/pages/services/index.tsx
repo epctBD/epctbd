@@ -6,7 +6,7 @@ const Services = () => {
     <div>
       <CoreBanner
         title="Our Services"
-        subtitle="Services"
+        subtitle="Explore Where We Specialize"
         crumbOne="Home"
         crumbTwo="Services"
       />

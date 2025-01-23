@@ -16,7 +16,7 @@ const Resources = ({ blogs, books }: IResourcesProps) => {
     <div>
       <CoreBanner
         title="Resources"
-        subtitle="Read all our latest blogs and articles at one place"
+        subtitle="Our Latest Update"
         crumbOne="Home"
         crumbTwo="Resources"
       />

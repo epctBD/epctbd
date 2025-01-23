@@ -22,10 +22,10 @@ const Projects = ({ projects }: IProjectProps) => {
   return (
     <div>
       <CoreBanner
-        title="Our Works"
-        subtitle="WOrks"
+        title="Our Projects"
+        subtitle="Showcasing Our Dedication and Innovation"
         crumbOne="Home"
-        crumbTwo="Project"
+        crumbTwo="Projects"
       />
       <div className={"container-wrapper"}>
         <ProjectView

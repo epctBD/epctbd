@@ -13,7 +13,7 @@ const AboutUs = ({ team }: IAboutUsProps) => {
     <div>
       <CoreBanner
         title="About Us"
-        subtitle="About Us"
+        subtitle="Discover Who We Are and What We Stand For"
         crumbOne="Home"
         crumbTwo="About Us"
       />
