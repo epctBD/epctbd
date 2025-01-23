@@ -26,6 +26,7 @@ const HeroSection = ({ projects }: HeroSectionProps) => {
     category: featuredProjects[length - 1].category,
     isFeature: featuredProjects[length - 1].isFeature,
     projectImages: featuredProjects[length - 1].projectImages,
+    projectSlug: featuredProjects[length - 1].projectSlug,
   });
 
   const updateBackground = (newData: IProject) => {

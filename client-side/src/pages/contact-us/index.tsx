@@ -18,7 +18,7 @@ const Contact = () => {
       <div className="">
         <CoreBanner
           title="Contact Us"
-          subtitle="Contact us"
+          subtitle="We’re Here to Connect and Collaborate"
           crumbOne="Home"
           crumbTwo="Contact Us"
         />
