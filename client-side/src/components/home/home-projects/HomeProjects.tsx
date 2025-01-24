@@ -4,6 +4,7 @@ import ProjectCard from "@/components/common/project-card/ProjectCard";
 import { Row, Col, Button } from "antd";
 import { IProject } from "@/models/project.model";
 import { useRouter } from "next/router";
+import { RightOutlined } from "@ant-design/icons";
 
 interface HomeProjectsProps {
   projects: IProject[];
@@ -27,21 +28,24 @@ const HomeProjects = ({ projects }: HomeProjectsProps) => {
         <Col span={24}>
           <div className={styles.ButtonSeeMoreWrapper}>
             <Button
-              variant="text"
               style={{
                 color: "#0077EE",
-                backgroundColor: "transparent",
-                border: "none",
                 fontSize: "18px",
                 fontWeight: "600",
+
+                display: "flex",
+                flexDirection: "row-reverse",
+                alignItems: "center",
               }}
+              type="text"
               onClick={goToAboutUs}
+              icon={<RightOutlined style={{ fontSize: "20px" }} />}
             >
               Explore More
             </Button>
           </div>
         </Col>
-        {projects.slice(0, 6).map((project, index) => (
+        {projects?.slice(0, 3)?.map((project) => (
           <Col key={project.projectSlug} xs={24} sm={24} md={12} lg={8} xl={8}>
             <div className={styles.projectCardWrapper}>
               <ProjectCard
@@ -50,7 +54,6 @@ const HomeProjects = ({ projects }: HomeProjectsProps) => {
                 location={project.location || ""}
                 imageSrc={project.projectImages?.[0] || ""}
                 type={project.serviceType}
-                // imageHeight={heights[index % heights.length]}
                 slug={project.projectSlug || ""}
               />
             </div>

@@ -5,6 +5,7 @@ import BlogCard from "@/components/common/blog-card/BlogCard";
 import styles from "./HomeBlogs.module.scss";
 import { useRouter } from "next/router";
 import { IBlog } from "@/models/blog.model";
+import { RightOutlined } from "@ant-design/icons";
 
 interface IHomeBlogsProps {
   blogs: IBlog[];
@@ -29,21 +30,24 @@ const HomeBlogs = ({ blogs }: IHomeBlogsProps) => {
         <Col span={24}>
           <div className={styles.ButtonSeeMoreWrapper}>
             <Button
-              variant="text"
               style={{
                 color: "#0077EE",
-                backgroundColor: "transparent",
-                border: "none",
                 fontSize: "18px",
                 fontWeight: "600",
+
+                display: "flex",
+                flexDirection: "row-reverse",
+                alignItems: "center",
               }}
+              type="text"
               onClick={goToResources}
+              icon={<RightOutlined style={{ fontSize: "20px" }} />}
             >
               See More
             </Button>
           </div>
         </Col>
-        {blogs.slice(0, 3).map((blog) => (
+        {blogs?.slice(0, 3)?.map((blog) => (
           <Col key={blog.slug} xs={24} sm={12} md={12} xl={8}>
             <div className={styles.blogsInnerContainer}>
               <BlogCard

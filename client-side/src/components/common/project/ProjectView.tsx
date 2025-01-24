@@ -97,7 +97,6 @@ const ProjectView = ({ projectList, setProjectList }: IProjectViewProps) => {
                   location={project.location || ""}
                   imageSrc={project.projectImages?.[0] || ""}
                   type={project.serviceType}
-                  // imageHeight={heights[index % heights.length]}
                   slug={project.projectSlug || ""}
                 />
               </div>
