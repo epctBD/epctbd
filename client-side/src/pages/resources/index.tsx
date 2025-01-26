@@ -30,12 +30,15 @@ const Resources = ({ blogs, books }: IResourcesProps) => {
 
 export const getServerSideProps: GetServerSideProps = async () => {
   try {
-    const blogsResponse = await getBlogs();
+    const [blogsResponse, booksResponse] = await Promise.all([
+      getBlogs(),
+      getBooks(),
+    ]);
 
     return {
       props: {
         blogs: blogsResponse,
-        books: [],
+        books: booksResponse,
       },
     };
   } catch (error) {
