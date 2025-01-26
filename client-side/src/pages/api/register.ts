@@ -25,14 +25,6 @@ export default async function handler(
 
     const { name, email, password, isAdmin } = body;
 
-    // Log the parsed data for debugging
-    console.log("Parsed registration data:", {
-      name,
-      email,
-      password: "******",
-      isAdmin,
-    });
-
     // Check if all required fields are provided
     if (!name || !email || !password) {
       return res.status(400).json({ message: "Missing required fields" });

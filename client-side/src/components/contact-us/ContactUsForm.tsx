@@ -25,7 +25,6 @@ const ContactUsForm = () => {
     try {
       // Make a POST request to your backend
       const response = await sendMessage(data);
-      console.log(response, "response");
       message.success("Message is sent, please wait for the response form us");
       reset();
     } catch (error) {

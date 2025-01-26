@@ -45,20 +45,31 @@ const HomeProjects = ({ projects }: HomeProjectsProps) => {
             </Button>
           </div>
         </Col>
-        {projects?.slice(0, 3)?.map((project) => (
-          <Col key={project.projectSlug} xs={24} sm={24} md={12} lg={8} xl={8}>
-            <div className={styles.projectCardWrapper}>
-              <ProjectCard
-                id={project._id}
-                title={project.name}
-                location={project.location || ""}
-                imageSrc={project.projectImages?.[0] || ""}
-                type={project.serviceType}
-                slug={project.projectSlug || ""}
-              />
-            </div>
-          </Col>
-        ))}
+        {projects.length <= 0 ? (
+          <div className="no-data">No Project Available</div>
+        ) : (
+          projects?.slice(0, 3)?.map((project) => (
+            <Col
+              key={project.projectSlug}
+              xs={24}
+              sm={24}
+              md={12}
+              lg={8}
+              xl={8}
+            >
+              <div className={styles.projectCardWrapper}>
+                <ProjectCard
+                  id={project._id}
+                  title={project.name}
+                  location={project.location || ""}
+                  imageSrc={project.projectImages?.[0] || ""}
+                  type={project.serviceType}
+                  slug={project.projectSlug || ""}
+                />
+              </div>
+            </Col>
+          ))
+        )}
       </Row>
     </div>
   );

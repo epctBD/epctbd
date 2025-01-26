@@ -13,7 +13,7 @@ interface IBlogDetailsProps {
 }
 
 const BlogDetailsView = ({ blog, blogs }: IBlogDetailsProps) => {
-  console.log(blog, "blog details");
+
   const router = useRouter();
   const goToDetails = (slug: string) => {
     router.push(`/resources/blog/${slug}`);

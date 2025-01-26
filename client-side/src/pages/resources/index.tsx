@@ -31,7 +31,6 @@ const Resources = ({ blogs, books }: IResourcesProps) => {
 export const getServerSideProps: GetServerSideProps = async () => {
   try {
     const blogsResponse = await getBlogs();
-    console.log("Blogs fetched successfully:", blogsResponse);
 
     return {
       props: {

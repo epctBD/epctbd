@@ -4,8 +4,16 @@ import ContactPhone from "../common/svg/ContactPhone";
 import ContactEmail from "../common/svg/ContactEmail";
 import ContactLocation from "../common/svg/ContactLocation";
 import ContactUsForm from "./ContactUsForm";
+import Image from "next/image";
+import map_img from "@/assets/images/EPCT-MAP.jpg";
 
 const ContactUs = () => {
+  const handleMapClick = () => {
+    const address = "1600 Amphitheatre Parkway, Mountain View, CA";
+    const mapUrl = "https://maps.app.goo.gl/JmUdSSeqGDr4SRha8";
+    window.open(mapUrl, "_blank");
+  };
+
   return (
     <div className={styles.contactWrapper}>
       <div className={styles.contactLayout}>
@@ -45,6 +53,27 @@ const ContactUs = () => {
             <ContactUsForm />
           </Col>
         </Row>
+        <div className={styles.mapImageWrapper} onClick={handleMapClick}>
+          <div className={styles.mapTextWrapper}>
+            <div className={styles.singleSection}>
+              <ContactLocation />
+              <div className={styles.textSection}>
+                <p className={styles.type}>Visit our office</p>
+                <p className={styles.value}>
+                  Sunday - Thursday{" "}
+                  <span style={{ color: "gray" }}>(9:00 am - 5.00 pm)</span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <Image
+            src={map_img}
+            alt="Map Image"
+            className={styles.mapImage}
+            width={1248}
+            height={400}
+          />
+        </div>
       </div>
     </div>
   );

@@ -84,9 +84,9 @@ const ProjectView = ({ projectList, setProjectList }: IProjectViewProps) => {
       </div>
       <Row justify="center" gutter={[24, 24]}>
         {isLoading ? (
-          <div className="project-card-loader">loading</div>
+          <div className="project-card-loader">add a spin</div>
         ) : projectList?.length <= 0 ? (
-          <div className="no-data">No data</div>
+          <div className="no-data">No Project Available</div>
         ) : (
           projectList?.map((project: IProject, index) => (
             <Col span={8} xs={24} sm={24} md={12} lg={8} key={project?._id}>

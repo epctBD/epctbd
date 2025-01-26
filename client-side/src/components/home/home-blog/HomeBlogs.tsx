@@ -47,19 +47,23 @@ const HomeBlogs = ({ blogs }: IHomeBlogsProps) => {
             </Button>
           </div>
         </Col>
-        {blogs?.slice(0, 3)?.map((blog) => (
-          <Col key={blog.slug} xs={24} sm={12} md={12} xl={8}>
-            <div className={styles.blogsInnerContainer}>
-              <BlogCard
-                slug={blog.slug}
-                title={blog.title}
-                content={blog.content}
-                image={blog.thumbnail}
-                tag={blog.tag}
-              />
-            </div>
-          </Col>
-        ))}
+        {blogs?.length <= 0 ? (
+          <div className="no-data">No Blog Available</div>
+        ) : (
+          blogs?.slice(0, 3)?.map((blog) => (
+            <Col key={blog.slug} xs={24} sm={12} md={12} xl={8}>
+              <div className={styles.blogsInnerContainer}>
+                <BlogCard
+                  slug={blog.slug}
+                  title={blog.title}
+                  content={blog.content}
+                  image={blog.thumbnail}
+                  tag={blog.tag}
+                />
+              </div>
+            </Col>
+          ))
+        )}
       </Row>
     </div>
   );

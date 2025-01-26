@@ -78,6 +78,63 @@
     }
   }
 
+  .mapImageWrapper {
+    cursor: pointer;
+    margin-top: 80px;
+    position: relative;
+
+    .mapTextWrapper {
+      position: absolute;
+      top: 36px;
+      left: 36px;
+
+      background-color: $content-background-color;
+      padding: 32px;
+      border-radius: 16px;
+
+      .singleSection {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+
+        @media (max-width: 576px) {
+          gap: 8px;
+        }
+
+        .textSection {
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+
+          .type {
+            margin: 0;
+            color: $gray-color-300;
+
+            @media (max-width: 576px) {
+              font-size: 14px;
+            }
+          }
+
+          .value {
+            margin: 0;
+            font-weight: 600;
+            color: $white-color;
+
+            @media (max-width: 576px) {
+              font-size: 16px;
+            }
+          }
+        }
+      }
+    }
+
+    .mapImage {
+      width: 100%;
+      height: 100%;
+      border-radius: 16px;
+    }
+  }
+
   .contactUsForn {
     border: 1px solid $gray-color-800;
     border-radius: 16px;

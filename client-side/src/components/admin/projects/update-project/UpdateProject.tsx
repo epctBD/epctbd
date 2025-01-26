@@ -99,7 +99,6 @@ const UpdateProject = ({
       if (data.keyFeatures) formData.append("keyFeatures", data.keyFeatures);
       if (data.outcome) formData.append("outcome", data.outcome);
 
-      console.log(photos, "photos");
 
       photos.forEach((photo) => {
         if (photo.file) {

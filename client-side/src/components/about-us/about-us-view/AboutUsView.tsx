@@ -98,23 +98,27 @@ const AboutUsView = ({ team }: IAboutUsViewProps) => {
           </p>
         </div>
         <Row gutter={[24, 100]}>
-          {team
-            .filter((member) => !member.isExTeam)
-            .map((member) => (
-              <Col xs={24} sm={12} md={8} lg={6} key={member?._id}>
-                <div className={styles.teamCol}>
-                  <TeamCard
-                    imageSrc={member?.display_picture}
-                    name={member.name}
-                    position={member.position}
-                    facebook={member.facebook}
-                    twitter={member.twitter}
-                    linkedin={member.linkedin}
-                    exTeamMember={member.isExTeam}
-                  />
-                </div>
-              </Col>
-            ))}
+          {team.filter((member) => !member.isExTeam).length > 0 ? (
+            team
+              .filter((member) => !member.isExTeam)
+              .map((member) => (
+                <Col xs={24} sm={12} md={8} lg={6} key={member?._id}>
+                  <div className={styles.teamCol}>
+                    <TeamCard
+                      imageSrc={member?.display_picture}
+                      name={member.name}
+                      position={member.position}
+                      facebook={member.facebook}
+                      twitter={member.twitter}
+                      linkedin={member.linkedin}
+                      exTeamMember={member.isExTeam}
+                    />
+                  </div>
+                </Col>
+              ))
+          ) : (
+            <div className="no-data">No Team Member Available</div>
+          )}
         </Row>
       </div>
 
@@ -126,23 +130,27 @@ const AboutUsView = ({ team }: IAboutUsViewProps) => {
           </p>
         </div>
         <Row gutter={[24, 100]}>
-          {team
-            .filter((member) => member.isExTeam)
-            .map((member) => (
-              <Col xs={24} sm={12} md={8} lg={6} key={member?._id}>
-                <div className={styles.teamCol}>
-                  <TeamCard
-                    imageSrc={member?.display_picture}
-                    name={member.name}
-                    position={member.position}
-                    facebook={member.facebook}
-                    twitter={member.twitter}
-                    linkedin={member.linkedin}
-                    exTeamMember={member.isExTeam}
-                  />
-                </div>
-              </Col>
-            ))}
+          {team.filter((member) => member.isExTeam).length > 0 ? (
+            team
+              .filter((member) => member.isExTeam)
+              .map((member) => (
+                <Col xs={24} sm={12} md={8} lg={6} key={member?._id}>
+                  <div className={styles.teamCol}>
+                    <TeamCard
+                      imageSrc={member?.display_picture}
+                      name={member.name}
+                      position={member.position}
+                      facebook={member.facebook}
+                      twitter={member.twitter}
+                      linkedin={member.linkedin}
+                      exTeamMember={member.isExTeam}
+                    />
+                  </div>
+                </Col>
+              ))
+          ) : (
+            <div className="no-data">No Ex-Team Member Available</div>
+          )}
         </Row>
       </div>
     </div>
