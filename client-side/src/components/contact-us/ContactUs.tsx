@@ -56,13 +56,13 @@ const ContactUs = () => {
         <div className={styles.mapImageWrapper} onClick={handleMapClick}>
           <div className={styles.mapTextWrapper}>
             <div className={styles.singleSection}>
-              <ContactLocation />
+              <div className={styles.iconSection}>
+                <ContactLocation />
+              </div>
               <div className={styles.textSection}>
                 <p className={styles.type}>Visit our office</p>
-                <p className={styles.value}>
-                  Sunday - Thursday{" "}
-                  <span style={{ color: "gray" }}>(9:00 am - 5.00 pm)</span>
-                </p>
+                <p className={styles.value}>Sunday - Thursday </p>
+                <p className={styles.valueTime}>(9:00 am - 5.00 pm)</p>
               </div>
             </div>
           </div>
