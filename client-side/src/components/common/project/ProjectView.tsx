@@ -89,7 +89,7 @@ const ProjectView = ({ projectList, setProjectList }: IProjectViewProps) => {
             <Spin indicator={<LoadingOutlined spin />} size="large" />
           </div>
         ) : projectList?.length <= 0 ? (
-          <div className="no-data">No Project Available</div>
+          <div className={styles.noData}>No Project Available</div>
         ) : (
           projectList?.map((project: IProject, index) => (
             <Col span={8} xs={24} sm={24} md={12} lg={8} key={project?._id}>

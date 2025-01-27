@@ -1,4 +1,4 @@
-import { Tabs, TabsProps } from "antd";
+import { Tabs, TabsProps, Spin } from "antd";
 import React, { useState } from "react";
 import BlogsView from "./blogs-view/BlogsView";
 import BooksView from "./books-view/BooksView";
@@ -6,13 +6,19 @@ import PodcastsView from "./podcast-view/PodcastView";
 import styles from "./ResourcePageView.module.scss";
 import { IBlog } from "@/models/blog.model";
 import { IBook } from "@/models/book.model";
+import { LoadingOutlined } from "@ant-design/icons";
 
 interface IResourcePageViewProps {
   blogs: IBlog[];
   books: IBook[];
+  isLoading?: boolean;
 }
 
-const ResourcePageView = ({ blogs, books }: IResourcePageViewProps) => {
+const ResourcePageView = ({
+  blogs,
+  books,
+  isLoading = false,
+}: IResourcePageViewProps) => {
   const [activeTabKey, setActiveTabKey] = useState("1");
 
   const items: TabsProps["items"] = [
@@ -37,9 +43,17 @@ const ResourcePageView = ({ blogs, books }: IResourcePageViewProps) => {
   const renderContent = () => {
     switch (activeTabKey) {
       case "1":
-        return <BlogsView blogs={blogs} />;
+        return blogs?.length <= 0 ? (
+          <div className={styles.noData}>No Blogs Available</div>
+        ) : (
+          <BlogsView blogs={blogs} />
+        );
       case "2":
-        return <BooksView books={books} />;
+        return books?.length <= 0 ? (
+          <div className={styles.noData}>No Books Available</div>
+        ) : (
+          <BooksView books={books} />
+        );
       case "3":
         return <PodcastsView />;
       default:
@@ -57,7 +71,15 @@ const ResourcePageView = ({ blogs, books }: IResourcePageViewProps) => {
           onChange={onTabChange}
         />
       </div>
-      <div className={styles.tabContent}>{renderContent()}</div>
+      <div className={styles.tabContent}>
+        {isLoading ? (
+          <div className={styles.loaderContainer}>
+            <Spin indicator={<LoadingOutlined spin />} size="large" />
+          </div>
+        ) : (
+          renderContent()
+        )}
+      </div>
     </div>
   );
 };
