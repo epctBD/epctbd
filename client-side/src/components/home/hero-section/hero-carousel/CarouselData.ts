@@ -1,14 +1,6 @@
-import { StaticImageData } from "next/image";
-import img1 from "../../../../../public/Carousel/1.png";
-import img2 from "../../../../../public/Carousel/2.png";
-import img3 from "../../../../../public/Carousel/3.png";
-import img4 from "../../../../../public/Carousel/4.jpeg";
-import img5 from "../../../../../public/Carousel/5.webp";
-import img6 from "../../../../../public/Carousel/6.jpeg";
-
 interface CarouselItem {
   id: number;
-  imageId: StaticImageData;
+  imageId: string;
   title: string;
   projectType: string;
   projectIntro: string;
@@ -17,7 +9,8 @@ interface CarouselItem {
 export const carouselData: CarouselItem[] = [
   {
     id: 1,
-    imageId: img1,
+    imageId:
+      "https://res.cloudinary.com/dv5lxcotq/image/upload/v1736888970/services_image/Urban_Planning.jpg",
     title: "Baytus Salam Jame Mosque, Beanibazar",
     projectType: "Religious Center",
     projectIntro:
@@ -25,7 +18,8 @@ export const carouselData: CarouselItem[] = [
   },
   {
     id: 2,
-    imageId: img2,
+    imageId:
+      "https://res.cloudinary.com/dv5lxcotq/image/upload/v1736888970/services_image/Urban_Planning.jpg",
     title: "Lion's Hospital, Kumarpara, Sylhet",
     projectType: "Healthcare Facility",
     projectIntro:
@@ -33,7 +27,8 @@ export const carouselData: CarouselItem[] = [
   },
   {
     id: 6,
-    imageId: img6,
+    imageId:
+      "https://res.cloudinary.com/dv5lxcotq/image/upload/v1736888970/services_image/Urban_Planning.jpg",
     title: "Gemini 2040 Tower, Sylhet",
     projectType: "Feature Architect",
     projectIntro:
@@ -41,7 +36,8 @@ export const carouselData: CarouselItem[] = [
   },
   {
     id: 3,
-    imageId: img3,
+    imageId:
+      "https://res.cloudinary.com/dv5lxcotq/image/upload/v1736888970/services_image/Urban_Planning.jpg",
     title: "Popular Diagnostic Centre, Sylhet",
     projectType: "Diagnostic Center",
     projectIntro:
@@ -49,7 +45,8 @@ export const carouselData: CarouselItem[] = [
   },
   {
     id: 4,
-    imageId: img4,
+    imageId:
+      "https://res.cloudinary.com/dv5lxcotq/image/upload/v1736888970/services_image/Urban_Planning.jpg",
     title: "Futuristic AI Imagine Building, Sylhet",
     projectType: "Innovation Hub",
     projectIntro:
@@ -57,7 +54,8 @@ export const carouselData: CarouselItem[] = [
   },
   {
     id: 5,
-    imageId: img5,
+    imageId:
+      "https://res.cloudinary.com/dv5lxcotq/image/upload/v1736888970/services_image/Urban_Planning.jpg",
     title: "DALL-E AI Estate Tower, Sylhet",
     projectType: "Commercial Tower",
     projectIntro:

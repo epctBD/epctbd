@@ -1,10 +1,6 @@
 import CoreButton from "@/components/common/core-components/core-button/CoreButton";
 import { Breadcrumb, Col, Grid, Row } from "antd";
 import Image from "next/image";
-import img1 from "../../../../public/Carousel/1.png";
-import img2 from "../../../../public/Carousel/2.png";
-import img3 from "../../../../public/Carousel/3.png";
-import img4 from "../../../../public/Carousel/4.jpeg";
 import styles from "./ServiceDetailsView.module.scss";
 import Link from "next/link";
 import { IService } from "@/models/services.model";
@@ -51,14 +47,14 @@ const ServiceDetailsView = ({ service }: ServiceDetailsViewProps) => {
           <div className={styles.detailHeaderRow}>
             <div className={styles.serviceHeaderImageWrapper}>
               <Image
-                src={img1}
+                src="https://res.cloudinary.com/dv5lxcotq/image/upload/v1736888970/services_image/Urban_Planning.jpg"
                 alt="img1"
                 className={styles.serviceHeaderImage}
               />
             </div>
             <div className={styles.serviceHeaderImageWrapper}>
               <Image
-                src={img2}
+                src="https://res.cloudinary.com/dv5lxcotq/image/upload/v1736888970/services_image/Urban_Planning.jpg"
                 alt="img1"
                 className={styles.serviceHeaderImage}
               />
@@ -67,14 +63,14 @@ const ServiceDetailsView = ({ service }: ServiceDetailsViewProps) => {
           <div className={`${styles.detailHeaderRow} ${styles.padding}`}>
             <div className={styles.serviceHeaderImageWrapper}>
               <Image
-                src={img3}
+                src="https://res.cloudinary.com/dv5lxcotq/image/upload/v1736888970/services_image/Urban_Planning.jpg"
                 alt="img1"
                 className={styles.serviceHeaderImage}
               />
             </div>
             <div className={styles.serviceHeaderImageWrapper}>
               <Image
-                src={img4}
+                src="https://res.cloudinary.com/dv5lxcotq/image/upload/v1736888970/services_image/Urban_Planning.jpg"
                 alt="img1"
                 className={styles.serviceHeaderImage}
               />
