@@ -1,10 +1,11 @@
 import { IProject } from "@/models/project.model";
-import { Col, message, Row, Tabs, TabsProps } from "antd";
+import { Col, message, Row, Spin, Tabs, TabsProps } from "antd";
 import React, { useEffect, useState } from "react";
 import ProjectCard from "../project-card/ProjectCard";
 import { getProjects } from "@/services/project.service";
 import styles from "./ProjectView.module.scss";
 import { useRouter } from "next/router";
+import { LoadingOutlined } from "@ant-design/icons";
 
 interface IProjectViewProps {
   projectList: IProject[];
@@ -84,7 +85,9 @@ const ProjectView = ({ projectList, setProjectList }: IProjectViewProps) => {
       </div>
       <Row justify="center" gutter={[24, 24]}>
         {isLoading ? (
-          <div className="project-card-loader">add a spin</div>
+          <div className="project-card-loader">
+            <Spin indicator={<LoadingOutlined spin />} size="large" />
+          </div>
         ) : projectList?.length <= 0 ? (
           <div className="no-data">No Project Available</div>
         ) : (
