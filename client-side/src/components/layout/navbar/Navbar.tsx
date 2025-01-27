@@ -3,7 +3,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import styles from "./Navbar.module.scss";
 import Image from "next/image";
-import epct_logo from "/public/images/epct_logo.png";
+import epct_logo from "@/assets/images/epct-main-logo.png";
 import { MenuOutlined } from "@ant-design/icons";
 import useGetMenuKey from "@/hooks/useGetMenuKey";
 import { useRouter } from "next/router";

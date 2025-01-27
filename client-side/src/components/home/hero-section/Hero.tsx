@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import Image, { StaticImageData } from "next/image";
-import demo_img from "../../../../public/Carousel/demo.png";
+import Image from "next/image";
 import HeroCarousel from "./hero-carousel/HeroCarousel";
 import styles from "./Hero.module.scss";
 import CoreButton from "@/components/common/core-components/core-button/CoreButton";
@@ -37,7 +36,7 @@ const HeroSection = ({ projects }: HeroSectionProps) => {
     <div className={styles.heroSection}>
       <div className={styles.backgroundImageWrapper}>
         <Image
-          src={backgroundData.projectImages?.[0] || demo_img}
+          src={backgroundData.projectImages?.[0] || ""}
           alt="backgroundImage"
           className={styles.backgroundImage}
           width={1000}

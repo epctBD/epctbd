@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Footer.module.scss";
-import logo from "../../../../public/images/epct_logo.png";
+import logo from "@/assets/images/epct-main-logo.png";
 import { Col, Divider, Row } from "antd";
 import Image from "next/image";
 import PhoneIcon from "@/components/common/svg/PhoneIcon";

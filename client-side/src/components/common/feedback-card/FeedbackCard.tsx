@@ -1,10 +1,10 @@
 import React from "react";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import styles from "./FeedbackCard.module.scss";
-import qouteImg from "../../../../public/images/quote.png";
+import qouteImg from "@/assets/images/quote.png";
 
 export interface FeedbackCardProps {
-  profileImage: StaticImageData;
+  profileImage: string;
   name: string;
   designation: string;
   feedback: string;
@@ -23,6 +23,8 @@ const FeedbackCard = ({
           src={profileImage}
           alt={`${name}-profile`}
           className={styles.feedbackImage}
+          width={260}
+          height={280}
         />
         <div>
           <p className={styles.feedbackCardName}>{name}</p>

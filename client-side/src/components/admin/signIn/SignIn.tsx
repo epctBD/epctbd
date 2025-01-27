@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import { signIn } from "next-auth/react";
 import styles from "./SignIn.module.scss";
-import logo from "../../../../public/images/epct_logo.png";
+import logo from "@/assets/images/epct-main-logo.png";
 import CoreButton from "@/components/common/core-components/core-button/CoreButton";
 
 interface ISignInForm {
