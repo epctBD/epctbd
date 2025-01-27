@@ -1,0 +1,33 @@
+.notFoundWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  .notFoundContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 16px;
+    margin-top: 1rem;
+
+    .errorNumber {
+      margin-top: 1rem;
+      font-size: 3rem;
+      color: #7f8c8d;
+    }
+
+    .errorText {
+      font-size: 1.5rem;
+      color: #7f8c8d;
+    }
+
+    .errorDescription {
+      font-size: 1rem;
+      color: #7f8c8d;
+    }
+  }
+}

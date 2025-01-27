@@ -50,6 +50,8 @@ const ServiceDetailsView = ({ service }: ServiceDetailsViewProps) => {
                 src="https://res.cloudinary.com/dv5lxcotq/image/upload/v1736888970/services_image/Urban_Planning.jpg"
                 alt="img1"
                 className={styles.serviceHeaderImage}
+                width={220}
+                height={136}
               />
             </div>
             <div className={styles.serviceHeaderImageWrapper}>
@@ -57,6 +59,8 @@ const ServiceDetailsView = ({ service }: ServiceDetailsViewProps) => {
                 src="https://res.cloudinary.com/dv5lxcotq/image/upload/v1736888970/services_image/Urban_Planning.jpg"
                 alt="img1"
                 className={styles.serviceHeaderImage}
+                width={220}
+                height={136}
               />
             </div>
           </div>
@@ -66,6 +70,8 @@ const ServiceDetailsView = ({ service }: ServiceDetailsViewProps) => {
                 src="https://res.cloudinary.com/dv5lxcotq/image/upload/v1736888970/services_image/Urban_Planning.jpg"
                 alt="img1"
                 className={styles.serviceHeaderImage}
+                width={220}
+                height={136}
               />
             </div>
             <div className={styles.serviceHeaderImageWrapper}>
@@ -73,6 +79,8 @@ const ServiceDetailsView = ({ service }: ServiceDetailsViewProps) => {
                 src="https://res.cloudinary.com/dv5lxcotq/image/upload/v1736888970/services_image/Urban_Planning.jpg"
                 alt="img1"
                 className={styles.serviceHeaderImage}
+                width={220}
+                height={136}
               />
             </div>
           </div>
