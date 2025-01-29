@@ -1,7 +1,7 @@
 // services/apiService.ts
 import Axios from "axios";
 
-const baseURL = "https://epct-production.up.railway.app/api/";
+const baseURL = "https://epctbd-production.up.railway.app/api/";
 // const baseURL = "http://localhost:5000/api/";
 
 const AXIOS_INSTANCE = Axios.create({
