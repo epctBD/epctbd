@@ -11,15 +11,15 @@ const FounderSection = () => {
     <div>
       <p className={styles.founderTitle}>Our Founder</p>
       <div className={styles.founderDetails}>
-        <Row gutter={[24, 24]} justify="center">
-          <Col xs={20} lg={10}>
+        <Row gutter={[30, 24]} justify="center">
+          <Col xs={24} lg={12}>
             <div className={styles.founderImageSection}>
               <div className={styles.founderImageWrapper}>
-                <Image src={img} alt="About us image" />
+                <Image src={img} alt="About us image" className={styles.img} />
               </div>
             </div>
           </Col>
-          <Col xs={24} lg={14}>
+          <Col xs={24} lg={12}>
             <div className={styles.founderDetails}>
               <p className={styles.title}>
                 Our mission has always been to transform challenges into

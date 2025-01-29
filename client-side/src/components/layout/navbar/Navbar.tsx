@@ -70,7 +70,7 @@ const Navbar = () => {
         >
           <div className={styles["navbar-inner-wrapper"]}>
             <div className={styles["header-logo-wrapper"]} onClick={goToHome}>
-              <Image src={epct_logo} alt="Picture of the logo" />
+              <Image width={110} height={40} src={epct_logo} alt="epct-logo" />
             </div>
 
             <Menu
