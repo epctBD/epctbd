@@ -5,6 +5,7 @@ import {
   UsergroupAddOutlined,
   LogoutOutlined,
   BookOutlined,
+  HomeOutlined,
 } from "@ant-design/icons";
 import { Menu, MenuProps, Tooltip, Button } from "antd";
 import Link from "next/link";
@@ -12,6 +13,8 @@ import React, { ReactNode, useState } from "react";
 import { signOut } from "next-auth/react";
 import styles from "./AdminLayout.module.scss";
 import CoreButton from "@/components/common/core-components/core-button/CoreButton";
+import { useRouter } from "next/router";
+import useGetMenuKey from "@/hooks/useGetMenuKey";
 
 type MenuItem = Required<MenuProps>["items"][number];
 
@@ -21,6 +24,11 @@ type AdminLayoutLayoutProps = {
 
 const AdminLayout = ({ children }: AdminLayoutLayoutProps) => {
   const [isMobile] = useState(false);
+  const selectedKey = useGetMenuKey();
+  const router = useRouter();
+  const goToHome = () => {
+    router.push("/");
+  };
 
   function getItem(
     label: React.ReactNode,
@@ -125,6 +133,7 @@ const AdminLayout = ({ children }: AdminLayoutLayoutProps) => {
         <Menu
           mode="inline"
           defaultSelectedKeys={[""]}
+          selectedKeys={selectedKey}
           defaultOpenKeys={[]}
           items={items}
           className="admin-menu"
@@ -146,6 +155,13 @@ const AdminLayout = ({ children }: AdminLayoutLayoutProps) => {
             type="primary"
             icon={<LogoutOutlined />}
             onClick={handleLogout}
+            size="small"
+          />
+          <CoreButton
+            text="Back to Home"
+            type="primary"
+            icon={<HomeOutlined />}
+            onClick={goToHome}
             size="small"
           />
         </div>
