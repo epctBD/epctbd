@@ -91,6 +91,7 @@ const AddProjects = ({
       setProjects(response);
       message.success("Project added successfully!");
       reset();
+      setPhotos([]);
       setIsModalOpen(false);
     } catch (error) {
       console.error("Error adding project:", error);
@@ -386,7 +387,7 @@ const AddProjects = ({
                 accept="image/*"
               >
                 {photos.length < 10 && (
-                  <div style={{ padding: "8px" }}>
+                  <div style={{ padding: "8px", cursor: "pointer" }}>
                     <ImageUploadIcon />
                   </div>
                 )}

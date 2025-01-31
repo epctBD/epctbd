@@ -9,26 +9,33 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_SECRET_KEY,
 });
 
+// Function to sanitize public_id by replacing invalid characters
+const sanitizePublicId = (filename) => {
+  return filename.replace(/[^a-zA-Z0-9-_]/g, "_"); // Replace spaces & special chars with underscores
+};
+
 async function singleUpload(file) {
   try {
     const uploadResult = await new Promise((resolve, reject) => {
+      const sanitizedPublicId = sanitizePublicId(
+        file.originalname.split(".")[0]
+      );
+
       const uploadStream = cloudinary.uploader.upload_stream(
         {
           resource_type: "auto",
           folder: "uploaded_images",
-          public_id: file.originalname.split(".")[0], // Use the name without extension
+          public_id: sanitizedPublicId,
         },
         (error, result) => {
           if (error) {
             console.error("Error during single upload:", error);
             return reject(error);
           }
-
           resolve(result.secure_url);
         }
       );
 
-      // Pipe the file buffer to Cloudinary
       const bufferStream = new stream.PassThrough();
       bufferStream.end(file.buffer);
       bufferStream.pipe(uploadStream);
@@ -44,23 +51,25 @@ async function singleUpload(file) {
 async function pdfUpload(file) {
   try {
     const uploadResult = await new Promise((resolve, reject) => {
+      const sanitizedPublicId = sanitizePublicId(
+        file.originalname.split(".")[0]
+      );
+
       const uploadStream = cloudinary.uploader.upload_stream(
         {
           resource_type: "auto",
           folder: "uploaded_book",
-          public_id: file.originalname.split(".")[0],
+          public_id: sanitizedPublicId,
         },
         (error, result) => {
           if (error) {
-            console.error("Error during pdf upload:", error);
+            console.error("Error during PDF upload:", error);
             return reject(error);
           }
-
           resolve(result.secure_url);
         }
       );
 
-      // Pipe the file buffer to Cloudinary
       const bufferStream = new stream.PassThrough();
       bufferStream.end(file.buffer);
       bufferStream.pipe(uploadStream);
@@ -68,7 +77,7 @@ async function pdfUpload(file) {
 
     return uploadResult;
   } catch (error) {
-    console.error("Error during single upload:", error);
+    console.error("Error during PDF upload:", error);
     throw error;
   }
 }
@@ -83,23 +92,25 @@ async function multipleUpload(files) {
       files.map(
         (file) =>
           new Promise((resolve, reject) => {
+            const sanitizedPublicId = sanitizePublicId(
+              file.originalname.split(".")[0]
+            );
+
             const uploadStream = cloudinary.uploader.upload_stream(
               {
                 resource_type: "auto",
                 folder: "uploaded_images",
-                public_id: file.originalname.split(".")[0], // Use the name without extension
+                public_id: sanitizedPublicId,
               },
               (error, result) => {
                 if (error) {
                   console.error("Error during multiple upload:", error);
                   return reject(error);
                 }
-
                 resolve(result.secure_url);
               }
             );
 
-            // Pipe the file buffer to Cloudinary
             const bufferStream = new stream.PassThrough();
             bufferStream.end(file.buffer);
             bufferStream.pipe(uploadStream);

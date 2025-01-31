@@ -99,7 +99,6 @@ const UpdateProject = ({
       if (data.keyFeatures) formData.append("keyFeatures", data.keyFeatures);
       if (data.outcome) formData.append("outcome", data.outcome);
 
-
       photos.forEach((photo) => {
         if (photo.file) {
           formData.append("projectImages", photo.file);
@@ -443,7 +442,7 @@ const UpdateProject = ({
                 accept="image/*"
               >
                 {photos.length + existingImageLinks.length < 10 && (
-                  <div style={{ padding: "8px" }}>
+                  <div style={{ padding: "8px", cursor: "pointer" }}>
                     <ImageUploadIcon />
                   </div>
                 )}
