@@ -7,8 +7,7 @@ import { Inter } from "@next/font/google";
 import { SessionProvider, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import Lottie from "lottie-react";
-import loadingAnimation from "../assets/Animation.json";
+import LoaderAnimation from "@/components/common/loader/LoaderAnimation";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -21,24 +20,8 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
 
   if (status === "loading")
     return (
-      <div
-        style={{
-          backgroundColor: "#1b1b1f",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          zIndex: 1000,
-          height: "100vh",
-        }}
-      >
-        <Lottie
-          animationData={loadingAnimation}
-          loop
-          style={{
-            width: "200px",
-            height: "200px",
-          }}
-        />
+      <div>
+        <LoaderAnimation />
       </div>
     );
 
