@@ -5,6 +5,7 @@ import {
   UsergroupAddOutlined,
   LogoutOutlined,
   BookOutlined,
+  HomeOutlined,
 } from "@ant-design/icons";
 import { Menu, MenuProps, Tooltip, Button } from "antd";
 import Link from "next/link";
@@ -12,6 +13,9 @@ import React, { ReactNode, useState } from "react";
 import { signOut } from "next-auth/react";
 import styles from "./AdminLayout.module.scss";
 import CoreButton from "@/components/common/core-components/core-button/CoreButton";
+import { useRouter } from "next/router";
+import useGetMenuKey from "@/hooks/useGetMenuKey";
+import { usePathname } from "next/navigation";
 
 type MenuItem = Required<MenuProps>["items"][number];
 
@@ -21,6 +25,19 @@ type AdminLayoutLayoutProps = {
 
 const AdminLayout = ({ children }: AdminLayoutLayoutProps) => {
   const [isMobile] = useState(false);
+
+  const GetMenuKey = () => {
+    const pathname = usePathname();
+    return pathname.split("/").pop() || "";
+  };
+
+  const selectedKey = GetMenuKey();
+  console.log(selectedKey);
+
+  const router = useRouter();
+  const goToHome = () => {
+    router.push("/");
+  };
 
   function getItem(
     label: React.ReactNode,
@@ -51,13 +68,13 @@ const AdminLayout = ({ children }: AdminLayoutLayoutProps) => {
           <p className="admin-list-name">Project List</p>
         </Link>
       </Tooltip>,
-      "project-list"
+      "projects"
     ),
     getItem(
       <Tooltip
         placement="right"
         trigger={["hover", "click"]}
-        title={`${isMobile ? "Project List" : ""}`}
+        title={`${isMobile ? "Portfolio List" : ""}`}
         className="tool-tip-container"
       >
         <Link href="/admin/portfolio" className={styles.adminGetItem}>
@@ -65,7 +82,7 @@ const AdminLayout = ({ children }: AdminLayoutLayoutProps) => {
           <p className="admin-list-name">Portfolio List</p>
         </Link>
       </Tooltip>,
-      "portfolio-list"
+      "portfolio"
     ),
     getItem(
       <Tooltip
@@ -79,7 +96,7 @@ const AdminLayout = ({ children }: AdminLayoutLayoutProps) => {
           <p className="admin-list-name">Team Members</p>
         </Link>
       </Tooltip>,
-      "team-members"
+      "team-member"
     ),
     getItem(
       <Tooltip
@@ -125,9 +142,10 @@ const AdminLayout = ({ children }: AdminLayoutLayoutProps) => {
         <Menu
           mode="inline"
           defaultSelectedKeys={[""]}
+          selectedKeys={[selectedKey]}
           defaultOpenKeys={[]}
           items={items}
-          className="admin-menu"
+          className={styles.adminMenu}
           style={{
             height: "100%",
             background: "#FFFFFF",
@@ -137,10 +155,19 @@ const AdminLayout = ({ children }: AdminLayoutLayoutProps) => {
         <div
           style={{
             display: "flex",
+            flexDirection: "column",
             justifyContent: "center",
-            padding: "25px 0",
+            gap: "10px",
+            padding: "25px 10px",
           }}
         >
+          <CoreButton
+            text="Home"
+            type="primary"
+            icon={<HomeOutlined />}
+            onClick={goToHome}
+            size="small"
+          />
           <CoreButton
             text="Logout"
             type="primary"
