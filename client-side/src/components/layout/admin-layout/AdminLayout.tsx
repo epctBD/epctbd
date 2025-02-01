@@ -65,7 +65,7 @@ const AdminLayout = ({ children }: AdminLayoutLayoutProps) => {
       <Tooltip
         placement="right"
         trigger={["hover", "click"]}
-        title={`${isMobile ? "Project List" : ""}`}
+        title={`${isMobile ? "Portfolio List" : ""}`}
         className="tool-tip-container"
       >
         <Link href="/admin/portfolio" className={styles.adminGetItem}>
@@ -146,22 +146,24 @@ const AdminLayout = ({ children }: AdminLayoutLayoutProps) => {
         <div
           style={{
             display: "flex",
+            flexDirection: "column",
             justifyContent: "center",
-            padding: "25px 0",
+            gap: "10px",
+            padding: "25px 10px",
           }}
         >
+          <CoreButton
+            text="Home"
+            type="primary"
+            icon={<HomeOutlined />}
+            onClick={goToHome}
+            size="small"
+          />
           <CoreButton
             text="Logout"
             type="primary"
             icon={<LogoutOutlined />}
             onClick={handleLogout}
-            size="small"
-          />
-          <CoreButton
-            text="Back to Home"
-            type="primary"
-            icon={<HomeOutlined />}
-            onClick={goToHome}
             size="small"
           />
         </div>
