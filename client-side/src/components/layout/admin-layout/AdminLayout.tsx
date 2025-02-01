@@ -15,6 +15,7 @@ import styles from "./AdminLayout.module.scss";
 import CoreButton from "@/components/common/core-components/core-button/CoreButton";
 import { useRouter } from "next/router";
 import useGetMenuKey from "@/hooks/useGetMenuKey";
+import { usePathname } from "next/navigation";
 
 type MenuItem = Required<MenuProps>["items"][number];
 
@@ -24,7 +25,15 @@ type AdminLayoutLayoutProps = {
 
 const AdminLayout = ({ children }: AdminLayoutLayoutProps) => {
   const [isMobile] = useState(false);
-  const selectedKey = useGetMenuKey();
+
+  const GetMenuKey = () => {
+    const pathname = usePathname();
+    return pathname.split("/").pop() || "";
+  };
+
+  const selectedKey = GetMenuKey();
+  console.log(selectedKey);
+
   const router = useRouter();
   const goToHome = () => {
     router.push("/");
@@ -59,7 +68,7 @@ const AdminLayout = ({ children }: AdminLayoutLayoutProps) => {
           <p className="admin-list-name">Project List</p>
         </Link>
       </Tooltip>,
-      "project-list"
+      "projects"
     ),
     getItem(
       <Tooltip
@@ -73,7 +82,7 @@ const AdminLayout = ({ children }: AdminLayoutLayoutProps) => {
           <p className="admin-list-name">Portfolio List</p>
         </Link>
       </Tooltip>,
-      "portfolio-list"
+      "portfolio"
     ),
     getItem(
       <Tooltip
@@ -87,7 +96,7 @@ const AdminLayout = ({ children }: AdminLayoutLayoutProps) => {
           <p className="admin-list-name">Team Members</p>
         </Link>
       </Tooltip>,
-      "team-members"
+      "team-member"
     ),
     getItem(
       <Tooltip
@@ -133,10 +142,10 @@ const AdminLayout = ({ children }: AdminLayoutLayoutProps) => {
         <Menu
           mode="inline"
           defaultSelectedKeys={[""]}
-          selectedKeys={selectedKey}
+          selectedKeys={[selectedKey]}
           defaultOpenKeys={[]}
           items={items}
-          className="admin-menu"
+          className={styles.adminMenu}
           style={{
             height: "100%",
             background: "#FFFFFF",

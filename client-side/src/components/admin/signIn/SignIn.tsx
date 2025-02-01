@@ -34,13 +34,14 @@ const SignIn = () => {
       });
 
       if (res?.error) {
+        message.error(res.error);
         throw new Error(res.error);
       }
 
       message.success("Logged in successfully");
-      router.push("/admin/team-member"); // Redirect to dashboard
-    } catch (error) {
-      message.error("Login failed: ");
+      router.push("/admin/projects");
+    } catch (error: any) {
+      message.error(`Login failed: ${error.message || "Invalid credentials"}`);
       setIsButtonLoading(false);
     }
   };
@@ -69,8 +70,8 @@ const SignIn = () => {
                 rules={{
                   required: "Email is required",
                   pattern: {
-                    value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                    message: "Invalid email format",
+                    value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                    message: "Please enter a valid email address",
                   },
                 }}
                 render={({ field }) => (
@@ -93,6 +94,16 @@ const SignIn = () => {
                 control={control}
                 rules={{
                   required: "Password is required",
+                  minLength: {
+                    value: 8,
+                    message: "Password must be at least 8 characters",
+                  },
+                  pattern: {
+                    value:
+                      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/,
+                    message:
+                      "Password must contain at least one uppercase letter, one lowercase letter, one number and one special character",
+                  },
                 }}
                 render={({ field }) => (
                   <Input.Password
