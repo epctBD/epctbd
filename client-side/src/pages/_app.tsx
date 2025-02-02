@@ -6,7 +6,8 @@ import { ConfigProvider } from "antd";
 import { Inter } from "@next/font/google";
 import { SessionProvider, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import LoaderAnimation from "@/components/common/loader/LoaderAnimation";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -17,7 +18,21 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { data: session, status } = useSession();
   const router = useRouter();
 
-  if (status === "loading") return <div>Loading...</div>;
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    if (status !== "loading") {
+      const timer = setTimeout(() => setLoading(false), 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [status]);
+
+  if (loading)
+    return (
+      <div>
+        <LoaderAnimation />
+      </div>
+    );
 
   if (
     !session &&
