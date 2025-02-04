@@ -64,6 +64,7 @@ const HomeProjects = ({ projects }: HomeProjectsProps) => {
                   location={project.location || ""}
                   imageSrc={project.projectImages?.[0] || ""}
                   type={project.serviceType}
+                  category={project.category}
                   slug={project.projectSlug || ""}
                 />
               </div>
