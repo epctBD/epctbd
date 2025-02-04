@@ -117,7 +117,7 @@ const AdminLayout = ({ children }: AdminLayoutLayoutProps) => {
       <Tooltip
         placement="right"
         trigger={["hover", "click"]}
-        title={`${isMobile ? "Blog List" : ""}`}
+        title={`${isMobile ? "Book List" : ""}`}
         className="tool-tip-container"
       >
         <Link href="/admin/books" className={styles.adminGetItem}>
@@ -131,7 +131,7 @@ const AdminLayout = ({ children }: AdminLayoutLayoutProps) => {
       <Tooltip
         placement="right"
         trigger={["hover", "click"]}
-        title={`${isMobile ? "Blog List" : ""}`}
+        title={`${isMobile ? "Podcast List" : ""}`}
         className="tool-tip-container"
       >
         <Link href="/admin/podcasts" className={styles.adminGetItem}>
