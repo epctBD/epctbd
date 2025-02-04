@@ -64,8 +64,8 @@ const ProjectList = ({ projects, setProjects }: IProjectListProps) => {
               : projectImages[0]
           }
           alt="Project Image"
-          width={80}
-          height={80}
+          width={120}
+          height={68}
         />
       ),
     },
