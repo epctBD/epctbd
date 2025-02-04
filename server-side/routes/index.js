@@ -6,6 +6,7 @@ const routes = {
   "/api/contact-us": require("./contact-us"),
   "/api/blog": require("./blogs"),
   "/api/book": require("./books"),
+  "/api/podcast": require("./podcasts"),
 };
 
 module.exports.registerApplicationRoutes = function (app) {

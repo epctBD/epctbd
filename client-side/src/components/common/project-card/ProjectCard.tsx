@@ -9,7 +9,7 @@ export interface IProjectCardProps {
   location: string;
   imageSrc: string;
   type: string;
-  // imageHeight: number;
+  category: string;
   slug: string;
 }
 
@@ -18,7 +18,7 @@ const ProjectCard = ({
   location,
   imageSrc,
   type,
-  // imageHeight = 460,
+  category,
   slug,
 }: IProjectCardProps) => {
   const router = useRouter();
@@ -27,14 +27,15 @@ const ProjectCard = ({
   };
 
   return (
-    <div className={styles.projectCardWrapper} onClick={goToDetails}>
+    <div
+      className={styles.projectCardWrapper}
+      onClick={category === "Government Projects" ? undefined : goToDetails}
+    >
       <div className={styles.proejectImageWrapper}>
         <Image
           className={styles.projectImage}
           src={imageSrc}
           alt={title}
-          // layout="fill"
-          // objectFit="cover"
           height={435}
           width={410}
         />

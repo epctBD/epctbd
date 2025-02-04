@@ -95,16 +95,17 @@ const ProjectView = ({ projectList, setProjectList }: IProjectViewProps) => {
             <Col span={8} xs={24} sm={24} md={12} lg={8} key={project?._id}>
               <div className={styles.projectCardWrapper}>
                 <ProjectCard
-                  id={project._id}
-                  title={project.name}
-                  location={project.location || ""}
+                  id={project?._id}
+                  title={project?.name}
+                  location={project?.location || ""}
                   imageSrc={
                     project?.category === "Government Projects"
                       ? "https://res.cloudinary.com/dv5lxcotq/image/upload/v1736882114/samples/ecommerce/car-interior-design.jpg"
                       : project.projectImages?.[0] || ""
                   }
-                  type={project.serviceType}
-                  slug={project.projectSlug || ""}
+                  type={project?.serviceType}
+                  category={project?.category}
+                  slug={project?.projectSlug || ""}
                 />
               </div>
             </Col>
