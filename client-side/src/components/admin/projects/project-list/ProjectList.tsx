@@ -56,9 +56,13 @@ const ProjectList = ({ projects, setProjects }: IProjectListProps) => {
       title: "Project Image",
       dataIndex: "projectImages",
       key: "projectImages",
-      render: (projectImages: string[]) => (
+      render: (projectImages: string[], project: IProject) => (
         <Image
-          src={projectImages[0]}
+          src={
+            project?.category === "Government Projects"
+              ? "https://res.cloudinary.com/dv5lxcotq/image/upload/v1736882114/samples/ecommerce/car-interior-design.jpg"
+              : projectImages[0]
+          }
           alt="Project Image"
           width={80}
           height={80}

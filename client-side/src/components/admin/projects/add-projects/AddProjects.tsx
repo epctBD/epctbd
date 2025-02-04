@@ -35,6 +35,7 @@ const AddProjects = ({
     handleSubmit,
     control,
     reset,
+    watch,
     formState: { errors },
   } = useForm<IProject>();
 
@@ -106,6 +107,8 @@ const AddProjects = ({
     setPhotos([]);
     setIsModalOpen(false);
   };
+
+  const isGovtProject = watch("category");
 
   return (
     <Modal
@@ -359,41 +362,43 @@ const AddProjects = ({
           />
         </div>
         <div>
-          <div className={"photo-input-wrapper"}>
-            <label className={"general-label"}>Project Images</label>
+          {!isGovtProject ? (
+            <div className={"photo-input-wrapper"}>
+              <label className={"general-label"}>Project Images</label>
 
-            <div className={"photo-outer-upload-wrapper"}>
-              {photos.map((photo, index) => (
-                <div key={index + 1} className="photo-upload-wrapper">
-                  <Image
-                    src={photo.url}
-                    alt={`Photo ${index + 1}`}
-                    width={76}
-                    height={76}
-                    preview={true}
-                    className="margin-bottom-16"
-                  />
-                  <div
-                    onClick={() => handleRemovePhoto(index)}
-                    className="photo-delete-icon"
-                  >
-                    <MinusCircleOutlined />
+              <div className={"photo-outer-upload-wrapper"}>
+                {photos.map((photo, index) => (
+                  <div key={index + 1} className="photo-upload-wrapper">
+                    <Image
+                      src={photo.url}
+                      alt={`Photo ${index + 1}`}
+                      width={76}
+                      height={76}
+                      preview={true}
+                      className="margin-bottom-16"
+                    />
+                    <div
+                      onClick={() => handleRemovePhoto(index)}
+                      className="photo-delete-icon"
+                    >
+                      <MinusCircleOutlined />
+                    </div>
                   </div>
-                </div>
-              ))}
-              <Upload
-                beforeUpload={handlePhotoUpload}
-                showUploadList={false}
-                accept="image/*"
-              >
-                {photos.length < 10 && (
-                  <div style={{ padding: "8px", cursor: "pointer" }}>
-                    <ImageUploadIcon />
-                  </div>
-                )}
-              </Upload>
+                ))}
+                <Upload
+                  beforeUpload={handlePhotoUpload}
+                  showUploadList={false}
+                  accept="image/*"
+                >
+                  {photos.length < 10 && (
+                    <div style={{ padding: "8px", cursor: "pointer" }}>
+                      <ImageUploadIcon />
+                    </div>
+                  )}
+                </Upload>
+              </div>
             </div>
-          </div>
+          ) : null}
         </div>
         <div
           style={{

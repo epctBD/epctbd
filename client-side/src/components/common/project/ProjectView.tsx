@@ -98,7 +98,11 @@ const ProjectView = ({ projectList, setProjectList }: IProjectViewProps) => {
                   id={project._id}
                   title={project.name}
                   location={project.location || ""}
-                  imageSrc={project.projectImages?.[0] || ""}
+                  imageSrc={
+                    project?.category === "Government Projects"
+                      ? "https://res.cloudinary.com/dv5lxcotq/image/upload/v1736882114/samples/ecommerce/car-interior-design.jpg"
+                      : project.projectImages?.[0] || ""
+                  }
                   type={project.serviceType}
                   slug={project.projectSlug || ""}
                 />
