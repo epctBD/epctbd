@@ -1,39 +1,20 @@
 import { Row, Col } from "antd";
 import styles from "./podcastView.module.scss";
 import PodcastCard from "@/components/common/podcast-card/PodcastCard";
+import { IPodcast } from "@/models/podcast.model";
 
-interface IPodcast {
-  id: string;
-  podcast_name: string;
-  podcast_url: string;
+interface IPodcastProps {
+  podcasts: IPodcast[];
 }
 
-const dummyPodcasts: IPodcast[] = [
-  {
-    id: "1",
-    podcast_name: "Getting Started with Web Development",
-    podcast_url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-  },
-  {
-    id: "2",
-    podcast_name: "The Future of AI in Technology",
-    podcast_url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-  },
-  {
-    id: "3",
-    podcast_name: "Career Growth in Tech",
-    podcast_url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-  },
-];
-
-const PodcastView = () => {
+const PodcastView = ({ podcasts }: IPodcastProps) => {
   return (
     <Row gutter={[24, 24]}>
-      {dummyPodcasts.map((podcast) => (
-        <Col xs={24} sm={12} md={12} xl={8} key={podcast.id}>
+      {podcasts.map((podcast) => (
+        <Col xs={24} sm={12} md={12} xl={8} key={podcast._id}>
           <div className={styles.podcastCardWrapper}>
             <PodcastCard
-              id={podcast.id}
+              id={podcast._id}
               podcast_name={podcast.podcast_name}
               podcast_url={podcast.podcast_url}
             />

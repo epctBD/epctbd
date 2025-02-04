@@ -7,10 +7,30 @@ export interface IPodcastCardProps {
 }
 
 const PodcastCard = ({ podcast_name, podcast_url }: IPodcastCardProps) => {
-  // Convert YouTube URL to embed URL
   const getEmbedUrl = (url: string) => {
-    const videoId = url.split("v=")[1]?.split("&")[0];
-    return `https://www.youtube.com/embed/${videoId}`;
+    try {
+      // Handle different YouTube URL formats
+      const urlObj = new URL(url);
+      let videoId = "";
+
+      if (urlObj.hostname.includes("youtube.com")) {
+        // Regular youtube.com URLs
+        videoId = urlObj.searchParams.get("v") || "";
+      } else if (urlObj.hostname.includes("youtu.be")) {
+        // Shortened youtu.be URLs
+        videoId = urlObj.pathname.slice(1);
+      }
+
+      if (!videoId) {
+        console.error("Could not extract YouTube video ID from URL:", url);
+        return "";
+      }
+
+      return `https://www.youtube.com/embed/${videoId}`;
+    } catch (error) {
+      console.error("Invalid URL:", url);
+      return "";
+    }
   };
 
   return (
