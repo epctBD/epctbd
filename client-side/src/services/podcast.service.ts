@@ -6,11 +6,8 @@ export const getPodcasts = async (): Promise<IPodcast[]> => {
   return response?.data?.data;
 };
 
-export const addPodcast = async (data: FormData): Promise<IPodcast[]> => {
-  const response = await AXIOS_INSTANCE.post<IPodcastResponse>("podcast", {
-    podcast_name: data.get("podcast_name"),
-    podcast_url: data.get("podcast_url"),
-  });
+export const addPodcast = async (data: IPodcast): Promise<IPodcast[]> => {
+  const response = await AXIOS_INSTANCE.post<IPodcastResponse>("podcast", data);
   return response?.data?.data;
 };
 

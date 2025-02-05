@@ -27,10 +27,7 @@ const AddPodcast = ({
   const onSubmit = async (data: IAddPodcast) => {
     setLoading(true);
     try {
-      const formData = new FormData();
-      formData.append("podcast_name", data.podcast_name);
-      formData.append("podcast_url", data.podcast_url);
-      const response = await addPodcast(formData);
+      const response = await addPodcast(data);
       setPodcasts(response);
 
       message.success("Podcast added successfully!");
