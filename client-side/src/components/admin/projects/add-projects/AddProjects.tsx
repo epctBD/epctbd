@@ -310,6 +310,7 @@ const AddProjects = ({
           <Controller
             name="location"
             control={control}
+            rules={{ required: "Location is required" }}
             render={({ field }) => (
               <Input
                 {...field}
@@ -318,6 +319,11 @@ const AddProjects = ({
               />
             )}
           />
+          {errors.location && (
+            <p style={{ color: "red", marginTop: "5px" }}>
+              {errors.location.message}
+            </p>
+          )}
         </div>
         <div className={"general-input-wrapper"}>
           <label className={"general-label"}>Project Overview</label>

@@ -4,36 +4,60 @@ import CoreButton from "@/components/common/core-components/core-button/CoreButt
 import { PlusOutlined } from "@ant-design/icons";
 import DeleteModal from "@/components/common/delete-modal/DeleteModal";
 import TrashBinIcon from "@/components/common/svg/TrashBinIcon";
-import { IBook } from "@/models/book.model";
-import { deleteBook } from "@/services/book.service";
-import AddBook from "../add-book/AddBook";
-import Image from "next/image";
+import { IPodcast } from "@/models/podcast.model";
+import { deletePodcast } from "@/services/podcast.service";
+import AddPodcast from "../add-podcast/AddPodcast";
 
-interface IBookListProps {
-  books: IBook[];
-  setBooks: React.Dispatch<React.SetStateAction<IBook[]>>;
+interface IPodcastListProps {
+  podcasts: IPodcast[];
+  setPodcasts: React.Dispatch<React.SetStateAction<IPodcast[]>>;
 }
 
-const BookList = ({ books, setBooks }: IBookListProps) => {
+const PodcastList = ({ podcasts, setPodcasts }: IPodcastListProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  // const [updateModalOpen, setUpdateModalOpen] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
-  const [selectedItem, setSelectedItem] = useState<IBook>();
+  const [selectedItem, setSelectedItem] = useState<IPodcast>();
   const [loading, setLoading] = useState(false);
+
+  const getEmbedUrl = (url: string) => {
+    try {
+      // Handle different YouTube URL formats
+      const urlObj = new URL(url);
+      let videoId = "";
+
+      if (urlObj.hostname.includes("youtube.com")) {
+        // Regular youtube.com URLs
+        videoId = urlObj.searchParams.get("v") || "";
+      } else if (urlObj.hostname.includes("youtu.be")) {
+        // Shortened youtu.be URLs
+        videoId = urlObj.pathname.slice(1);
+      }
+
+      if (!videoId) {
+        console.error("Could not extract YouTube video ID from URL:", url);
+        return "";
+      }
+
+      return `https://www.youtube.com/embed/${videoId}`;
+    } catch (error) {
+      console.error("Invalid URL:", url);
+      return "";
+    }
+  };
 
   const onDeleteClick = async () => {
     if (!selectedItem) return;
 
     setLoading(true);
     try {
-      const response = await deleteBook(selectedItem._id);
-      setBooks(response);
+      const response = await deletePodcast(selectedItem._id);
+      setPodcasts(response);
 
-      message.success("Book deleted successfully!");
+      message.success("Podcast deleted successfully!");
       setDeleteModalOpen(false);
     } catch (error) {
-      console.error("Error deleting Book:", error);
-      message.error("Failed to delete Book. Please try again.");
+      console.error("Error deleting Podcast:", error);
+      message.error("Failed to delete Podcast. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -41,38 +65,34 @@ const BookList = ({ books, setBooks }: IBookListProps) => {
 
   const columns = [
     {
-      title: "Book Name",
-      dataIndex: "book_name",
-      key: "book_name",
+      title: "Podcast Title",
+      dataIndex: "podcast_name",
+      key: "podcast_name",
     },
+
     {
-      title: "Author Name",
-      dataIndex: "author_name",
-      key: "author_name",
+      title: "Podcast URL",
+      dataIndex: "podcast_url",
+      key: "podcast_url",
+      render: (url: string) => {
+        return (
+          <iframe
+            width={200}
+            height={114}
+            src={getEmbedUrl(url)}
+            // title={title}
+            allow=" picture-in-picture"
+            allowFullScreen
+          />
+        );
+      },
     },
-    {
-      title: "PDF",
-      dataIndex: "pdf_file",
-      key: "pdf_file",
-      render: (src: string) => (
-        <a href={src} target="_blank" rel="noopener noreferrer">
-          Click to open
-        </a>
-      ),
-    },
-    {
-      title: "Book Cover",
-      dataIndex: "cover_image",
-      key: "cover_image",
-      render: (src: string) => (
-        <Image src={src} alt="cover_image" width={80} height={80} />
-      ),
-    },
+
     {
       title: "Actions",
       dataIndex: "_id",
-      key: "display_picture",
-      render: (id: string, item: IBook) => (
+      key: "actions",
+      render: (id: string, item: IPodcast) => (
         <div style={{ display: "flex" }}>
           <div
             style={{
@@ -106,9 +126,9 @@ const BookList = ({ books, setBooks }: IBookListProps) => {
           marginBottom: "20px",
         }}
       >
-        <h1 style={{ fontSize: "20px" }}>Books</h1>
+        <h1 style={{ fontSize: "20px" }}>Podcasts</h1>
         <CoreButton
-          text="Book"
+          text="Podcast"
           icon={<PlusOutlined />}
           type="primary"
           onClick={() => setIsModalOpen(true)}
@@ -120,7 +140,7 @@ const BookList = ({ books, setBooks }: IBookListProps) => {
         }}
       >
         <Table
-          dataSource={books}
+          dataSource={podcasts}
           columns={columns}
           rowKey="_id"
           bordered
@@ -128,21 +148,12 @@ const BookList = ({ books, setBooks }: IBookListProps) => {
         />
 
         {isModalOpen && (
-          <AddBook
+          <AddPodcast
             isModalOpen={isModalOpen}
             setIsModalOpen={setIsModalOpen}
-            setBooks={setBooks}
+            setPodcasts={setPodcasts}
           />
         )}
-
-        {/*{updateModalOpen && (
-          <UpdateBook
-            isModalOpen={updateModalOpen}
-            setIsModalOpen={setUpdateModalOpen}
-            portfolio={selectedItem || null}
-            setBooks={setBooks}
-          />
-        )} */}
 
         {deleteModalOpen && (
           <DeleteModal
@@ -157,4 +168,4 @@ const BookList = ({ books, setBooks }: IBookListProps) => {
   );
 };
 
-export default BookList;
+export default PodcastList;

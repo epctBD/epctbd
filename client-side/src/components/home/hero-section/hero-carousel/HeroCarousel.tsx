@@ -42,7 +42,12 @@ const HeroCarousel = ({ projects, updateBackground }: HeroCarouselProps) => {
     <div className={`slider-container carousel-wrapper ${styles.heroCarousel}`}>
       <Slider {...settings}>
         {projects.map((project) => (
-          <div key={project._id} className={styles.carouselContainer}>
+          <div
+            key={project._id}
+            className={styles.carouselContainer}
+            onClick={() => updateBackground(project)}
+            style={{ cursor: "pointer", outline: "none" }}
+          >
             <Image
               src={project.projectImages?.[0] || "/fallback-image.png"}
               alt={project.name}

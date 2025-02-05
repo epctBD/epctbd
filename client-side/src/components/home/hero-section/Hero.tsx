@@ -41,8 +41,10 @@ const HeroSection = ({ projects }: HeroSectionProps) => {
           className={styles.backgroundImage}
           width={1000}
           height={1000}
+          objectFit="cover"
         />
       </div>
+
       <div className={styles.heroContentWrapper}>
         <div className={styles.heroContent}>
           <div className={styles.heroProjectTypeWrapper}>

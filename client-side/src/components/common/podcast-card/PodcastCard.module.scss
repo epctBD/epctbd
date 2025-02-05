@@ -1,0 +1,48 @@
+.podcastCardWrapper {
+  width: 100%;
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.1s ease-in-out;
+
+  &:hover {
+    transform: scale(1.01);
+  }
+}
+
+.podcastImageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+
+.podcastIframe {
+  position: absolute;
+  aspect-ratio: 16 / 9;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 16px;
+}
+
+.podcastDetailsWrapper {
+  padding: 16px;
+}
+
+.podcastTitle {
+  font-size: 20px;
+  font-weight: 600;
+  background: linear-gradient(180deg, #ffffff 12.23%, #9b9b9b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-fill-color: transparent;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+}

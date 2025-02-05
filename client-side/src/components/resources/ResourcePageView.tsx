@@ -7,16 +7,19 @@ import styles from "./ResourcePageView.module.scss";
 import { IBlog } from "@/models/blog.model";
 import { IBook } from "@/models/book.model";
 import { LoadingOutlined } from "@ant-design/icons";
+import { IPodcast } from "@/models/podcast.model";
 
 interface IResourcePageViewProps {
   blogs: IBlog[];
   books: IBook[];
+  podcasts: IPodcast[];
   isLoading?: boolean;
 }
 
 const ResourcePageView = ({
   blogs,
   books,
+  podcasts,
   isLoading = false,
 }: IResourcePageViewProps) => {
   const [activeTabKey, setActiveTabKey] = useState("1");
@@ -55,7 +58,11 @@ const ResourcePageView = ({
           <BooksView books={books} />
         );
       case "3":
-        return <PodcastsView />;
+        return podcasts?.length <= 0 ? (
+          <div className={styles.noData}>No Podcasts Available</div>
+        ) : (
+          <PodcastsView podcasts={podcasts} />
+        );
       default:
         return null;
     }
