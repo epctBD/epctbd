@@ -117,7 +117,9 @@ const AboutUsView = ({ team }: IAboutUsViewProps) => {
                 </Col>
               ))
           ) : (
-            <div className="no-data">No Team Member Available</div>
+            <div className="no-data">
+              <p className="no-data-text">No Team Member Available</p>
+            </div>
           )}
         </Row>
       </div>
@@ -149,7 +151,9 @@ const AboutUsView = ({ team }: IAboutUsViewProps) => {
                 </Col>
               ))
           ) : (
-            <div className="no-data">No Ex-Team Member Available</div>
+            <div className="no-data">
+              <p className="no-data-text">No Ex-Team Member Available</p>
+            </div>
           )}
         </Row>
       </div>
