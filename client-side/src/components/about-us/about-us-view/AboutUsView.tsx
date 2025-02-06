@@ -39,15 +39,22 @@ const AboutUsView = ({ team }: IAboutUsViewProps) => {
                 1991
               </p>
               <p className={styles.subtitle}>
-                ENGINEERING PLANNING CONSULTANCY TEAM (EPCT) offers specialized
-                services in civil engineering, including urban planning,
-                architecture, structural and foundation engineering, water
-                resources, roads and highways, surveying, and soil
-                investigation. Their multidisciplinary approach and commitment
-                to innovation drive EPCT’s team, which aims to transfer
-                technology for societal benefit and environmental improvement.
-                With over 32 years of experience, EPCT has become the largest
-                regional consulting firm in the Sylhet region.
+                ENGINEERING PLANNING CONSULTANCY TEAM (EPCT) is professionally
+                equipped to providing services in Civil Engineering related
+                Projects—Physical planning (Rural & Urban), Architecture,
+                Structural Engineering, Foundation Engineering, Water Resource
+                Engineering, Roads & Highways, Survey, Soil Investigation,
+                Feasibility Study. Team approach is considered the appropriate
+                tool to face the multidisciplinary aspects of the present day
+                need of integrating the specialisation. EPCT has organised
+                itself to cater the need of this approach. ‘FREE LANCER must
+                always think of new ideas & new approaches if he is to keep
+                selling’. This is the inherent driving force for EPCT
+                professionals. Finally EPCT intends to emerge steadily as
+                efficient vehicles for technology transfer to the Society for
+                better environment by using the tool of Social Engineering.
+                EPCT, in last 32 years, has emerged as biggest Regional
+                Consulting Firm in Sylhet region.
               </p>
               <CoreButton
                 isFullWidth={false}

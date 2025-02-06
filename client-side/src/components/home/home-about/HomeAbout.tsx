@@ -33,7 +33,7 @@ const HomeAbout = () => {
             <p> Who We Are</p>
           </div>
           <p className={styles.title}>
-            Sylhet’s Leading Consulting Firm Since 1992
+            Sylhet’s Leading Consulting Firm Since 1991
           </p>
           <p className={styles.subtitle}>
             At EPCT - Engineering Planning Consultancy Team, we’re architects,
