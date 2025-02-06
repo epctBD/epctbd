@@ -46,7 +46,9 @@ const HomeProjects = ({ projects }: HomeProjectsProps) => {
           </div>
         </Col>
         {projects.length <= 0 ? (
-          <div className="no-data">No Project Available</div>
+          <div className="no-data">
+            <p className="no-data-text">No Project Available</p>
+          </div>
         ) : (
           projects?.slice(0, 3)?.map((project) => (
             <Col

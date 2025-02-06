@@ -48,7 +48,9 @@ const HomeBlogs = ({ blogs }: IHomeBlogsProps) => {
           </div>
         </Col>
         {blogs?.length <= 0 ? (
-          <div className="no-data">No Blog Available</div>
+          <div className="no-data">
+            <p className="no-data-text">No Blog Available</p>
+          </div>
         ) : (
           blogs?.slice(0, 3)?.map((blog) => (
             <Col key={blog.slug} xs={24} sm={12} md={12} xl={8}>

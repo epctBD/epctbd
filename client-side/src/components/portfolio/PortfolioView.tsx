@@ -25,7 +25,9 @@ const PortfolioView = ({ portfolios }: IPortfolioViewProps) => {
       </Row>
       <div>
         {portfolios?.length <= 0 ? (
-          <div className="no-data">No Portfolio Available</div>
+          <div className="no-data">
+            <p className="no-data-text">No Portfolio Available</p>
+          </div>
         ) : (
           portfolios?.map((portfolio, index) => (
             <div key={portfolio?._id} style={{ marginTop: "80px" }}>

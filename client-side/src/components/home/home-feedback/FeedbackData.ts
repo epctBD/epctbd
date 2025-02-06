@@ -12,7 +12,7 @@ export const feedbackData: Feedback[] = [
     profileImage:
       "https://res.cloudinary.com/dv5lxcotq/image/upload/v1736882122/samples/man-portrait.jpg",
     feedback:
-      "Tolstoy provides an authentic interaction without actually conversing. It allows us to meet shoppers where they are, show them what they'd like to see, and engage them more with our brand. Tolstoy isn't just a nice-to-have; it's a must-have.",
+      " Tolstoy provides an authentic interaction without actually conversing. It allows us to meet shoppers Tolstoy provides Working with this team has been a game-changer for our marketing strategy. The level of creativity and professionalism they bring is unpar an authentic interaction without actually conversing. It allows us to meet shoppers Tolstoy provides an authentic interaction without actually conversing. It allows us to meet shoppers where they are, show them what they'd like to see, and engage them more with our brand. Tolstoy isn't just a nice-to-have; it's a must-have.",
   },
   {
     name: "Alex Johnson",
