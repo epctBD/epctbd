@@ -17,6 +17,11 @@ import CoreButton from "@/components/common/core-components/core-button/CoreButt
 import { useRouter } from "next/router";
 import useGetMenuKey from "@/hooks/useGetMenuKey";
 import { usePathname } from "next/navigation";
+import ProjectListIcon from "@/components/common/svg/ListIcon";
+import TeamMembersIcon from "@/components/common/svg/TeamMembersIcon";
+import Blogs from "@/components/common/svg/Blogs";
+import BookListIcon from "@/components/common/svg/BookListIcon";
+import PodcastIcon from "@/components/common/svg/PodcastIcon";
 
 type MenuItem = Required<MenuProps>["items"][number];
 
@@ -65,8 +70,10 @@ const AdminLayout = ({ children }: AdminLayoutLayoutProps) => {
         className="tool-tip-container"
       >
         <Link href="/admin/projects" className={styles.adminGetItem}>
-          <UnorderedListOutlined className="admin-list-icon" />
-          <p className="admin-list-name">Project List</p>
+          <div className={styles.adminListIcon}>
+            <ProjectListIcon />
+            <p className={styles.adminListName}>Project List</p>
+          </div>
         </Link>
       </Tooltip>,
       "projects"
@@ -79,8 +86,10 @@ const AdminLayout = ({ children }: AdminLayoutLayoutProps) => {
         className="tool-tip-container"
       >
         <Link href="/admin/portfolio" className={styles.adminGetItem}>
-          <ProfileOutlined className="admin-list-icon" />
-          <p className="admin-list-name">Portfolio List</p>
+          <div className={styles.adminListIcon}>
+            <ProjectListIcon />
+            <p className={styles.adminListName}>Portfolio List</p>
+          </div>
         </Link>
       </Tooltip>,
       "portfolio"
@@ -93,8 +102,10 @@ const AdminLayout = ({ children }: AdminLayoutLayoutProps) => {
         className="tool-tip-container"
       >
         <Link href="/admin/team-member" className={styles.adminGetItem}>
-          <UsergroupAddOutlined className="admin-list-icon" />
-          <p className="admin-list-name">Team Members</p>
+          <div className={styles.adminListIcon}>
+            <TeamMembersIcon />
+            <p className={styles.adminListName}>Team Members</p>
+          </div>
         </Link>
       </Tooltip>,
       "team-member"
@@ -107,8 +118,10 @@ const AdminLayout = ({ children }: AdminLayoutLayoutProps) => {
         className="tool-tip-container"
       >
         <Link href="/admin/blogs" className={styles.adminGetItem}>
-          <AppstoreAddOutlined className="admin-list-icon" />
-          <p className="admin-list-name">Blog List</p>
+          <div className={styles.adminListIcon}>
+            <Blogs />
+            <p className={styles.adminListName}>Blog List</p>
+          </div>
         </Link>
       </Tooltip>,
       "blogs"
@@ -121,8 +134,10 @@ const AdminLayout = ({ children }: AdminLayoutLayoutProps) => {
         className="tool-tip-container"
       >
         <Link href="/admin/books" className={styles.adminGetItem}>
-          <BookOutlined className="admin-list-icon" />
-          <p className="admin-list-name">Book List</p>
+          <div className={styles.adminListIcon}>
+            <BookListIcon />
+            <p className={styles.adminListName}>Book List</p>
+          </div>
         </Link>
       </Tooltip>,
       "books"
@@ -135,8 +150,10 @@ const AdminLayout = ({ children }: AdminLayoutLayoutProps) => {
         className="tool-tip-container"
       >
         <Link href="/admin/podcasts" className={styles.adminGetItem}>
-          <WalletOutlined className="admin-list-icon" />
-          <p className="admin-list-name">Podcast List</p>
+          <div className={styles.adminListIcon}>
+            <PodcastIcon />
+            <p className={styles.adminListName}>Podcast List</p>
+          </div>
         </Link>
       </Tooltip>,
       "podcasts"

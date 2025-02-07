@@ -24,5 +24,18 @@
       text-align: center !important;
       letter-spacing: -2px;
     }
+
+    .adminMenu {
+      .adminListIcon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+
+        .adminListName {
+          font-size: 16px;
+        }
+      }
+    }
   }
 }
