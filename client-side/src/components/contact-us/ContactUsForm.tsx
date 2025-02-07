@@ -3,6 +3,7 @@ import styles from "./ContactUs.module.scss";
 import { Col, Input, message, Row } from "antd";
 import CoreButton from "../common/core-components/core-button/CoreButton";
 import { sendMessage } from "@/services/contactUs.service";
+import { useState } from "react";
 
 const { TextArea } = Input;
 
@@ -14,6 +15,7 @@ interface IContactUsPayload {
 }
 
 const ContactUsForm = () => {
+  const [loading, setLoading] = useState(false);
   const {
     control,
     formState: { errors },
@@ -22,6 +24,7 @@ const ContactUsForm = () => {
   } = useForm<IContactUsPayload>({ mode: "onTouched" });
 
   const onSubmit = async (data: IContactUsPayload) => {
+    setLoading(true);
     try {
       // Make a POST request to your backend
       const response = await sendMessage(data);
@@ -30,6 +33,8 @@ const ContactUsForm = () => {
     } catch (error) {
       console.error("Error submitting form:", error);
       message.error("An error occurred. Please try again later.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -161,6 +166,7 @@ const ContactUsForm = () => {
           type="primary"
           htmlType="submit"
           isFullWidth={true}
+          loading={loading}
         />
       </form>
     </div>
