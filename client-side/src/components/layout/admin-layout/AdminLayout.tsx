@@ -195,14 +195,14 @@ const AdminLayout = ({ children }: AdminLayoutLayoutProps) => {
         >
           <CoreButton
             text="Home"
-            type="primary"
+            antType="text"
             icon={<HomeOutlined />}
             onClick={goToHome}
             size="small"
           />
           <CoreButton
             text="Logout"
-            type="primary"
+            antType="text"
             icon={<LogoutOutlined />}
             onClick={handleLogout}
             size="small"
