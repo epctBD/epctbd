@@ -7,7 +7,6 @@ interface IPortfolioCardProps {
   pdfSrc: string;
   title: string;
   subTitle: string;
-  position?: "left" | "right";
 }
 
 const PortfolioCard = ({
@@ -15,7 +14,6 @@ const PortfolioCard = ({
   pdfSrc,
   title,
   subTitle,
-  position = "left",
 }: IPortfolioCardProps) => {
   return (
     <div className={styles.portfolioWrapper}>
@@ -28,18 +26,14 @@ const PortfolioCard = ({
           height={600}
           style={{
             width: "100%",
-            maxHeight: "600px",
+            maxHeight: "400px",
             objectFit: "cover",
             borderRadius: "20px",
           }}
         />
       </div>
 
-      <div
-        className={`${styles.cardWrapper} ${
-          position === "right" ? styles.cardRight : styles.cardLeft
-        }`}
-      >
+      <div className={styles.cardWrapper}>
         <div>
           <p className={styles.title}>{title}</p>
           <p className={styles.subTitle}>{subTitle}</p>

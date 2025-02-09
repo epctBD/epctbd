@@ -8,6 +8,10 @@
   align-items: center;
   background-color: #aeaeae;
 
+  .errorMessage {
+    color: red;
+  }
+
   .signInInnerWrapper {
     display: flex;
     flex-direction: column;

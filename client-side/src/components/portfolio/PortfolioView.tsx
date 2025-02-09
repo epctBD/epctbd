@@ -23,23 +23,24 @@ const PortfolioView = ({ portfolios }: IPortfolioViewProps) => {
           </p>
         </Col>
       </Row>
-      <div>
+      <div style={{ marginTop: "80px" }}>
         {portfolios?.length <= 0 ? (
           <div className="no-data">
             <p className="no-data-text">No Portfolio Available</p>
           </div>
         ) : (
-          portfolios?.map((portfolio, index) => (
-            <div key={portfolio?._id} style={{ marginTop: "80px" }}>
-              <PortfolioCard
-                imageSrc={portfolio?.feature_image}
-                pdfSrc={portfolio?.pdf_file}
-                title={portfolio?.title}
-                subTitle={portfolio?.subtitle}
-                position={index % 2 === 0 ? "left" : "right"}
-              />
-            </div>
-          ))
+          <Row gutter={[24, 24]}>
+            {portfolios?.map((portfolio, index) => (
+              <Col xs={24} md={12} key={portfolio?._id}>
+                <PortfolioCard
+                  imageSrc={portfolio?.feature_image}
+                  pdfSrc={portfolio?.pdf_file}
+                  title={portfolio?.title}
+                  subTitle={portfolio?.subtitle}
+                />
+              </Col>
+            ))}
+          </Row>
         )}
       </div>
     </div>

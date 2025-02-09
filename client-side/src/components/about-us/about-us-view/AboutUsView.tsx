@@ -41,20 +41,23 @@ const AboutUsView = ({ team }: IAboutUsViewProps) => {
               <p className={styles.subtitle}>
                 ENGINEERING PLANNING CONSULTANCY TEAM (EPCT) is professionally
                 equipped to providing services in Civil Engineering related
-                Projects—Physical planning (Rural & Urban), Architecture,
+                Projects — Physical planning (Rural & Urban), Architecture,
                 Structural Engineering, Foundation Engineering, Water Resource
                 Engineering, Roads & Highways, Survey, Soil Investigation,
-                Feasibility Study. Team approach is considered the appropriate
-                tool to face the multidisciplinary aspects of the present day
-                need of integrating the specialisation. EPCT has organised
-                itself to cater the need of this approach. ‘FREE LANCER must
-                always think of new ideas & new approaches if he is to keep
-                selling’. This is the inherent driving force for EPCT
-                professionals. Finally EPCT intends to emerge steadily as
-                efficient vehicles for technology transfer to the Society for
-                better environment by using the tool of Social Engineering.
-                EPCT, in last 32 years, has emerged as biggest Regional
-                Consulting Firm in Sylhet region.
+                Feasibility Study. <br />
+                <br />
+                Team approach is considered the appropriate tool to face the
+                multidisciplinary aspects of the present day need of integrating
+                the specialisation. EPCT has organised itself to cater the need
+                of this approach. ‘FREE LANCER must always think of new ideas &
+                new approaches if he is to keep selling’. This is the inherent
+                driving force for EPCT professionals. <br />
+                <br />
+                Finally EPCT intends to emerge steadily as efficient vehicles
+                for technology transfer to the Society for better environment by
+                using the tool of Social Engineering. EPCT, in last 32 years,
+                has emerged as biggest Regional Consulting Firm in Sylhet
+                region.
               </p>
               <CoreButton
                 isFullWidth={false}

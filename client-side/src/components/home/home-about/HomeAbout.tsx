@@ -39,10 +39,11 @@ const HomeAbout = () => {
             At EPCT - Engineering Planning Consultancy Team, we’re architects,
             engineers, advisors, and planners designing a sustainable future.
             With over 32 years of experience, we provide smart, forward-thinking
-            solutions in Sylhet. From essential infrastructure to advanced
-            manufacturing, we worked with governments, private clients, and
-            communities to create solutions that pass the test of time and meet
-            today’s challenges.
+            solutions in Sylhet. <br />
+            <br />
+            From essential infrastructure to advanced manufacturing, we worked
+            with governments, private clients, and communities to create
+            solutions that pass the test of time and meet today’s challenges.
           </p>
           <div className={styles.bulletPoints}>
             <ul className={styles.bulletList}>

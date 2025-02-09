@@ -8,13 +8,15 @@
 
   .imageContainer {
     width: 100%;
-    // max-width: 1280px;
     margin: 0 auto;
     border-radius: 20px;
 
     @media (max-width: 576px) {
-      height: 280px;
+      height: 250px;
       overflow: hidden;
+
+      border-bottom-right-radius: 0px;
+      border-bottom-left-radius: 0px;
     }
 
     .img {
@@ -24,28 +26,32 @@
 
       @media (max-width: 576px) {
         aspect-ratio: 6/9;
+        height: 250px;
+        border-bottom-right-radius: 0px;
+        border-bottom-left-radius: 0px;
       }
     }
   }
 
   .cardWrapper {
     position: absolute;
-    bottom: 40px;
-    width: 480px;
+    bottom: 20px;
+    inset: auto 20px 20px 20px;
+    max-width: calc(100% - 40px);
 
-    @media (max-width: 1024px) {
-      width: 400px;
-      bottom: 30px;
-    }
-
-    @media (max-width: 768px) {
-      width: 60%;
+    @media (max-width: 996px) {
+      inset: auto 10px 10px 10px;
+      max-width: calc(100% - 20px);
     }
 
     @media (max-width: 576px) {
       position: static;
-      margin: 8px 0 0px;
       width: calc(100% - 50px);
+
+      border-top-right-radius: 0px;
+      border-top-left-radius: 0px;
+      border-bottom-right-radius: 20px;
+      border-bottom-left-radius: 20px;
     }
 
     background-color: $content-background-color;
@@ -58,27 +64,14 @@
     gap: 20px;
     justify-content: center;
 
-    &.cardLeft {
-      left: 40px;
-
-      @media (max-width: 576px) {
-        left: auto;
-      }
-    }
-
-    &.cardRight {
-      right: 40px;
-
-      @media (max-width: 576px) {
-        right: auto;
-      }
-    }
-
     .title {
       margin: 0;
       color: white;
       font-size: 28px;
       font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
 
       @media (max-width: 576px) {
         font-size: 24px;
@@ -89,6 +82,9 @@
       margin: 8px 0 0 0;
       color: white;
       font-size: 16px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
 
       @media (max-width: 576px) {
         font-size: 14px;
