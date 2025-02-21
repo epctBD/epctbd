@@ -65,21 +65,20 @@ const HomeBlogs = ({ blogs }: IHomeBlogsProps) => {
           blogs?.slice(0, 3)?.map((blog, index) => (
             <Col key={blog.slug} xs={24} sm={12} md={12} xl={8}>
               <motion.div
+                className={styles.blogsInnerContainer}
                 variants={cardVariants}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}
                 custom={index}
               >
-                <div className={styles.blogsInnerContainer}>
-                  <BlogCard
-                    slug={blog.slug}
-                    title={blog.title}
-                    content={blog.content}
-                    image={blog.thumbnail}
-                    tag={blog.tag}
-                  />
-                </div>
+                <BlogCard
+                  slug={blog.slug}
+                  title={blog.title}
+                  content={blog.content}
+                  image={blog.thumbnail}
+                  tag={blog.tag}
+                />
               </motion.div>
             </Col>
           ))

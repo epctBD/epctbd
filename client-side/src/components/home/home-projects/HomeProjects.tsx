@@ -70,23 +70,22 @@ const HomeProjects = ({ projects }: HomeProjectsProps) => {
               xl={8}
             >
               <motion.div
+                className={styles.projectCardWrapper}
                 variants={cardVariants}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.3 }}
                 custom={index}
               >
-                <div className={styles.projectCardWrapper}>
-                  <ProjectCard
-                    id={project._id}
-                    title={project.name}
-                    location={project.location || ""}
-                    imageSrc={project.projectImages?.[0] || ""}
-                    type={project.serviceType}
-                    category={project.category}
-                    slug={project.projectSlug || ""}
-                  />
-                </div>
+                <ProjectCard
+                  id={project._id}
+                  title={project.name}
+                  location={project.location || ""}
+                  imageSrc={project.projectImages?.[0] || ""}
+                  type={project.serviceType}
+                  category={project.category}
+                  slug={project.projectSlug || ""}
+                />
               </motion.div>
             </Col>
           ))
