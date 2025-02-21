@@ -9,7 +9,7 @@ interface CoreTitlesProps {
 }
 
 const containerVariants = {
-  visible: { transition: { staggerChildren: 0.2 } }, // Stagger effect
+  visible: { transition: { staggerChildren: 0.2 } },
 };
 
 const textVariants = {
