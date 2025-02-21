@@ -5,10 +5,20 @@ import { Row, Col, Button } from "antd";
 import { IProject } from "@/models/project.model";
 import { useRouter } from "next/router";
 import { RightOutlined } from "@ant-design/icons";
+import { motion } from "framer-motion";
 
 interface HomeProjectsProps {
   projects: IProject[];
 }
+
+const cardVariants = {
+  hidden: { opacity: 0, y: -30 },
+  visible: (index: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: "easeOut", delay: index * 0.3 },
+  }),
+};
 
 const HomeProjects = ({ projects }: HomeProjectsProps) => {
   const router = useRouter();
@@ -50,7 +60,7 @@ const HomeProjects = ({ projects }: HomeProjectsProps) => {
             <p className="no-data-text">No Project Available</p>
           </div>
         ) : (
-          projects?.slice(0, 3)?.map((project) => (
+          projects?.slice(0, 3)?.map((project, index) => (
             <Col
               key={project.projectSlug}
               xs={24}
@@ -59,17 +69,25 @@ const HomeProjects = ({ projects }: HomeProjectsProps) => {
               lg={8}
               xl={8}
             >
-              <div className={styles.projectCardWrapper}>
-                <ProjectCard
-                  id={project._id}
-                  title={project.name}
-                  location={project.location || ""}
-                  imageSrc={project.projectImages?.[0] || ""}
-                  type={project.serviceType}
-                  category={project.category}
-                  slug={project.projectSlug || ""}
-                />
-              </div>
+              <motion.div
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+                custom={index}
+              >
+                <div className={styles.projectCardWrapper}>
+                  <ProjectCard
+                    id={project._id}
+                    title={project.name}
+                    location={project.location || ""}
+                    imageSrc={project.projectImages?.[0] || ""}
+                    type={project.serviceType}
+                    category={project.category}
+                    slug={project.projectSlug || ""}
+                  />
+                </div>
+              </motion.div>
             </Col>
           ))
         )}
