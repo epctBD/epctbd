@@ -1,6 +1,7 @@
 import Image from "next/image";
 import banner_bg from "./banner.jpeg";
 import styles from "./CoreBanner.module.scss";
+import { motion } from "framer-motion";
 
 interface ICoreBannerProps {
   title: string;
@@ -8,6 +9,15 @@ interface ICoreBannerProps {
   crumbOne: string;
   crumbTwo: string;
 }
+
+const textVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (delay: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut", delay },
+  }),
+};
 
 const CoreBanner = ({
   title,
@@ -24,8 +34,26 @@ const CoreBanner = ({
       />
 
       <div className={styles.bannerTextWrapepr}>
-        <p className={styles.title}>{title}</p>
-        <p className={styles.SubTitle}>{subtitle}</p>
+        <motion.p
+          className={styles.title}
+          variants={textVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.5 }}
+          custom={0}
+        >
+          {title}
+        </motion.p>
+        <motion.p
+          className={styles.SubTitle}
+          variants={textVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.5 }}
+          custom={0.2}
+        >
+          {subtitle}
+        </motion.p>
       </div>
 
       <div className={styles.breadCrumbWrapper}>
