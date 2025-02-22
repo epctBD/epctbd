@@ -6,10 +6,20 @@ import styles from "./HomeBlogs.module.scss";
 import { useRouter } from "next/router";
 import { IBlog } from "@/models/blog.model";
 import { RightOutlined } from "@ant-design/icons";
+import { motion } from "framer-motion";
 
 interface IHomeBlogsProps {
   blogs: IBlog[];
 }
+
+const cardVariants = {
+  hidden: { opacity: 0, y: -30 },
+  visible: (index: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: "easeOut", delay: index * 0.2 },
+  }),
+};
 
 const HomeBlogs = ({ blogs }: IHomeBlogsProps) => {
   const router = useRouter();
@@ -52,9 +62,16 @@ const HomeBlogs = ({ blogs }: IHomeBlogsProps) => {
             <p className="no-data-text">No Blog Available</p>
           </div>
         ) : (
-          blogs?.slice(0, 3)?.map((blog) => (
+          blogs?.slice(0, 3)?.map((blog, index) => (
             <Col key={blog.slug} xs={24} sm={12} md={12} xl={8}>
-              <div className={styles.blogsInnerContainer}>
+              <motion.div
+                className={styles.blogsInnerContainer}
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
+                custom={index}
+              >
                 <BlogCard
                   slug={blog.slug}
                   title={blog.title}
@@ -62,7 +79,7 @@ const HomeBlogs = ({ blogs }: IHomeBlogsProps) => {
                   image={blog.thumbnail}
                   tag={blog.tag}
                 />
-              </div>
+              </motion.div>
             </Col>
           ))
         )}

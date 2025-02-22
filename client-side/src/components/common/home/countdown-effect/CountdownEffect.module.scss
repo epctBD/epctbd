@@ -1,0 +1,16 @@
+@import "@/styles/global-scss/variable.scss";
+
+.number {
+  margin: 0;
+  font-weight: 700;
+  font-size: 56px;
+  color: $white-color;
+
+  @media (max-width: 1024px) {
+    font-size: 40px;
+  }
+
+  @media (max-width: 996px) {
+    font-size: 32px;
+  }
+}
