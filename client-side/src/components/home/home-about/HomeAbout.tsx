@@ -5,6 +5,7 @@ import home_full from "@/assets/images/hero_image_2.jpeg";
 import Image from "next/image";
 import CoreButton from "@/components/common/core-components/core-button/CoreButton";
 import { useRouter } from "next/router";
+import CountdownEffect from "@/components/common/home/countdown-effect/CountdownEffect";
 
 const { useBreakpoint } = Grid;
 
@@ -62,15 +63,15 @@ const HomeAbout = () => {
 
       <div className={styles.statsSection}>
         <div className={styles.singleCard}>
-          <p className={styles.number}>34+</p>
+          <CountdownEffect value={34} />
           <p className={styles.text}>Years of Experience</p>
         </div>
         <div className={styles.singleCard}>
-          <p className={styles.number}>234+</p>
+          <CountdownEffect value={180} />
           <p className={styles.text}>Projects Completed</p>
         </div>
         <div className={styles.singleCard}>
-          <p className={styles.number}>344+</p>
+          <CountdownEffect value={125} />
           <p className={styles.text}>Client Served</p>
         </div>
       </div>
