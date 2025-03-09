@@ -8,7 +8,12 @@ const commonMiddleWare = [
   express.urlencoded({ extended: true }),
   cookieParser(),
   cors({
-    origin: ["http://localhost:3000", "https://epctbd.vercel.app"],
+    origin: [
+      "http://localhost:3000",
+      "https://epctbd.vercel.app",
+      "https://epctbd.com/",
+      "https://www.epctbd.com",
+    ],
     methods: ["HEAD", "GET", "POST", "PUT", "PATCH", "DELETE"],
     credentials: true,
     allowedHeaders: [
