@@ -101,6 +101,7 @@ const Navbar = () => {
                 selectedKeys={selectedKey}
                 items={items}
                 className="menu-wrapper-drawer"
+                onClick={onClose}
                 style={{
                   background: "#FAFAFA",
                 }}
