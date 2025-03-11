@@ -2,7 +2,7 @@ import styles from "./PodcastCard.module.scss";
 
 export interface IPodcastCardProps {
   id: string;
-  podcast_name: string;
+  podcast_name: string | undefined;
   podcast_url: string;
 }
 
@@ -38,8 +38,8 @@ const PodcastCard = ({ podcast_name, podcast_url }: IPodcastCardProps) => {
       <div className={styles.podcastImageWrapper}>
         <iframe
           className={styles.podcastIframe}
-          src={getEmbedUrl(podcast_url)}
-          title={podcast_name}
+          src={getEmbedUrl(podcast_url || "")}
+          title={podcast_name || ""}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
         />

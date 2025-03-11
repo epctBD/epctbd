@@ -87,7 +87,7 @@ const AdminLayout = ({ children }: AdminLayoutLayoutProps) => {
       >
         <Link href="/admin/portfolio" className={styles.adminGetItem}>
           <div className={styles.adminListIcon}>
-            <ProjectListIcon />
+            <ProfileOutlined />
             <p className={styles.adminListName}>Portfolio List</p>
           </div>
         </Link>

@@ -66,7 +66,28 @@
     margin: 104px 0 40px 0;
     padding: 24px;
     // display: flex;
-    min-height: 300px;
+    min-height: 380px;
+
+    .projecttabinnerwrapper {
+      margin-bottom: 40px;
+
+      .customTabContent {
+        .tabItemDescription {
+          font-size: 16px;
+          color: white !important;
+        }
+      }
+    }
+  }
+
+  .projectVideoWrapper {
+    border: 1px solid #27282a;
+    // background-color: #202127;
+    border-radius: 24px;
+    margin: 104px 0 0 0;
+    padding: 24px;
+    // display: flex;
+    min-height: 380px;
 
     .projecttabinnerwrapper {
       margin-bottom: 40px;

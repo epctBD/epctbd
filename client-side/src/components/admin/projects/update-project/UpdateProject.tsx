@@ -94,11 +94,15 @@ const UpdateProject = ({
       if (data.area) formData.append("area", data.area);
       if (data.projectYear) formData.append("projectYear", data.projectYear);
       if (data.designer) formData.append("designer", data.designer);
+      if (data.architect) formData.append("architect", data.architect);
+      if (data.structuralEngineer)
+        formData.append("structuralEngineer", data.structuralEngineer);
       if (data.location) formData.append("location", data.location);
       if (data.projectOverview)
         formData.append("projectOverview", data.projectOverview);
       if (data.keyFeatures) formData.append("keyFeatures", data.keyFeatures);
       if (data.outcome) formData.append("outcome", data.outcome);
+      if (data.projectVideo) formData.append("projectVideo", data.projectVideo);
 
       photos.forEach((photo) => {
         if (photo.file) {
@@ -332,6 +336,34 @@ const UpdateProject = ({
             )}
           />
         </div>
+        <div className={"general-input-wrapper"}>
+          <label className={"general-label"}>Architect</label>
+          <Controller
+            name="architect"
+            control={control}
+            render={({ field }) => (
+              <Input
+                {...field}
+                placeholder="Enter architect name"
+                className={"general-input"}
+              />
+            )}
+          />
+        </div>
+        <div className={"general-input-wrapper"}>
+          <label className={"general-label"}>Structural Engineer</label>
+          <Controller
+            name="structuralEngineer"
+            control={control}
+            render={({ field }) => (
+              <Input
+                {...field}
+                placeholder="Enter structural engineer name"
+                className={"general-input"}
+              />
+            )}
+          />
+        </div>
 
         <div className={"general-input-wrapper"}>
           <label className={"general-label"}>Location</label>
@@ -397,6 +429,32 @@ const UpdateProject = ({
               />
             )}
           />
+        </div>
+
+        <div className={"general-input-wrapper"}>
+          <label className={"general-label"}>YouTube URL</label>
+          <Controller
+            name="projectVideo"
+            control={control}
+            rules={{
+              pattern: {
+                value: /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)\/.+$/,
+                message: "Please enter a valid YouTube URL",
+              },
+            }}
+            render={({ field }) => (
+              <Input
+                {...field}
+                placeholder="Enter YouTube URL"
+                className={"general-input"}
+              />
+            )}
+          />
+          {errors.projectVideo && (
+            <p style={{ color: "red", marginTop: "5px" }}>
+              {errors.projectVideo.message}
+            </p>
+          )}
         </div>
 
         {!isGovtProject ? (

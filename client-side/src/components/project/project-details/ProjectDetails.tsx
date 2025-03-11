@@ -6,6 +6,7 @@ import MapIcons from "@/components/common/svg/MapIcons";
 import ProjectDetailsCarousel from "@/components/common/project/projectDetails/ProjectDetailsCarousel";
 import { IProject } from "@/models/project.model";
 import Link from "next/link";
+import PodcastCard from "@/components/common/podcast-card/PodcastCard";
 
 export interface IProjectDetailsProps {
   project: IProject;
@@ -96,6 +97,30 @@ const ProjectDetailsComponent = ({ project }: IProjectDetailsProps) => {
                   </p>
                 </div>
               )}
+              {project.architect && (
+                <div className={styles.areaWrapper}>
+                  <div className={styles.projectIcon}>
+                    <Lighting />
+                  </div>
+                  <p>
+                    <span className={styles.areaSpan}>Architects: </span>
+                    {project.architect}
+                  </p>
+                </div>
+              )}
+              {project.structuralEngineer && (
+                <div className={styles.areaWrapper}>
+                  <div className={styles.projectIcon}>
+                    <Lighting />
+                  </div>
+                  <p>
+                    <span className={styles.areaSpan}>
+                      Structural Engineer:
+                    </span>
+                    {project.structuralEngineer}
+                  </p>
+                </div>
+              )}
               {project.location && (
                 <div className={styles.areaWrapper}>
                   <div className={styles.projectIcon}>
@@ -116,12 +141,23 @@ const ProjectDetailsComponent = ({ project }: IProjectDetailsProps) => {
             <ProjectDetailsCarousel data={project.projectImages || []} />
           </div>
         </Col>
-        <Col lg={14} md={24} sm={24}>
+        <Col lg={12} md={24} sm={24}>
           <div className={styles.projectTabWrapper}>
             <div className={styles.projectTabInnerWrapper}>
               <Tabs defaultActiveKey="1" items={items} centered={true} />
             </div>
           </div>
+        </Col>
+        <Col lg={12} md={24} sm={24}>
+          {project.projectVideo && (
+            <div className={styles.projectVideoWrapper}>
+              <PodcastCard
+                id={project._id}
+                podcast_name={project.name || ""}
+                podcast_url={project.projectVideo}
+              />
+            </div>
+          )}
         </Col>
       </Row>
     </div>

@@ -12,12 +12,15 @@ export interface IProject {
   area?: string;
   projectYear?: string;
   designer?: string;
+  architect?: string;
+  structuralEngineer?: string;
   location?: string;
   projectOverview?: string;
   keyFeatures?: string;
   outcome?: string;
   projectImages?: string[];
   isFeature: boolean;
+  projectVideo?: string;
 }
 
 export interface IProjectResponse {
