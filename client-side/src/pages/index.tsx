@@ -35,7 +35,7 @@ export default function Home({ blogs, projects }: HomeProps) {
           content="ENGINEERING PLANNING CONSULTANCY TEAM"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="epct-main-logo.png" />
       </Head>
       <div>
         <DynamicHeroSection projects={projects} />
