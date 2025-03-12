@@ -27,6 +27,9 @@ const addProject = asyncHandler(async (req, res) => {
     keyFeatures,
     outcome,
     isFeature,
+    projectVideo,
+    architect,
+    structuralEngineer,
   } = req.body;
 
   if (!name || !details || !category || !serviceType || !isFeature) {
@@ -57,6 +60,9 @@ const addProject = asyncHandler(async (req, res) => {
     outcome,
     projectImages,
     isFeature,
+    projectVideo,
+    architect,
+    structuralEngineer,
   };
 
   if (!projectImages) {
@@ -101,6 +107,9 @@ const updateProject = asyncHandler(async (req, res) => {
     existing_image_links,
     isFeature,
     serviceType,
+    projectVideo,
+    architect,
+    structuralEngineer,
   } = req.body;
 
   if (!id) {
@@ -149,6 +158,9 @@ const updateProject = asyncHandler(async (req, res) => {
     outcome,
     isFeature,
     serviceType,
+    projectVideo,
+    architect,
+    structuralEngineer,
     projectImages: [...validExistingImageLinks, ...validNewProjectImageLinks],
   };
 

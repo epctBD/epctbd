@@ -59,6 +59,18 @@ const projectSchema = new Schema(
       type: [String],
       required: false,
     },
+    projectVideo: {
+      type: String,
+      required: false,
+    },
+    architect: {
+      type: String,
+      required: false,
+    },
+    structuralEngineer: {
+      type: String,
+      required: false,
+    },
   },
   { versionKey: false }
 );
