@@ -3,16 +3,18 @@ import styles from "./projectDetails.module.scss";
 import AreaIcon from "@/components/common/svg/AreaIcon";
 import Lighting from "@/components/common/svg/Lighting";
 import MapIcons from "@/components/common/svg/MapIcons";
+import CalendarIcon from "@/components/common/svg/Calendar";
 import ProjectDetailsCarousel from "@/components/common/project/projectDetails/ProjectDetailsCarousel";
 import { IProject } from "@/models/project.model";
 import Link from "next/link";
-import PodcastCard from "@/components/common/podcast-card/PodcastCard";
-
+import ProjectDetailVideoCard from "@/components/common/project-detail-video-card/ProjectDetailVideoCard";
+import { UserOutlined, VerifiedOutlined } from "@ant-design/icons";
 export interface IProjectDetailsProps {
   project: IProject;
 }
 
 const ProjectDetailsComponent = ({ project }: IProjectDetailsProps) => {
+  console.log(project.projectVideo, "project video");
   if (!project) {
     return <div>No project data available.</div>;
   }
@@ -78,7 +80,7 @@ const ProjectDetailsComponent = ({ project }: IProjectDetailsProps) => {
               {project.projectYear && (
                 <div className={styles.areaWrapper}>
                   <div className={styles.projectIcon}>
-                    <AreaIcon />
+                    <CalendarIcon />
                   </div>
                   <p>
                     <span className={styles.areaSpan}>Year: </span>{" "}
@@ -100,7 +102,7 @@ const ProjectDetailsComponent = ({ project }: IProjectDetailsProps) => {
               {project.architect && (
                 <div className={styles.areaWrapper}>
                   <div className={styles.projectIcon}>
-                    <Lighting />
+                    <UserOutlined />
                   </div>
                   <p>
                     <span className={styles.areaSpan}>Architects: </span>
@@ -111,7 +113,7 @@ const ProjectDetailsComponent = ({ project }: IProjectDetailsProps) => {
               {project.structuralEngineer && (
                 <div className={styles.areaWrapper}>
                   <div className={styles.projectIcon}>
-                    <Lighting />
+                    <VerifiedOutlined />
                   </div>
                   <p>
                     <span className={styles.areaSpan}>
@@ -151,11 +153,7 @@ const ProjectDetailsComponent = ({ project }: IProjectDetailsProps) => {
         <Col lg={12} md={24} sm={24}>
           {project.projectVideo && (
             <div className={styles.projectVideoWrapper}>
-              <PodcastCard
-                id={project._id}
-                podcast_name={project.name || ""}
-                podcast_url={project.projectVideo}
-              />
+              <ProjectDetailVideoCard videoUrl={project.projectVideo} />
             </div>
           )}
         </Col>
