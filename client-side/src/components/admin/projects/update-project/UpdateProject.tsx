@@ -133,7 +133,7 @@ const UpdateProject = ({
     setIsModalOpen(false);
   };
 
-  const isGovtProject = watch("category");
+  const isGovtProject = watch("category") === "Government Projects";
 
   return (
     <Modal

@@ -112,7 +112,8 @@ const AddProjects = ({
     setIsModalOpen(false);
   };
 
-  const isGovtProject = watch("category");
+  const isGovtProject = watch("category") === "Government Projects";
+  console.log(watch("category"));
 
   return (
     <Modal
@@ -245,6 +246,7 @@ const AddProjects = ({
                 {...field}
                 className={"general-select"}
                 placeholder="Select a project category"
+                mode="multiple"
                 options={[
                   { value: "Ongoing Projects", label: "Ongoing Projects" },
                   {

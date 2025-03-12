@@ -39,7 +39,7 @@ const Navbar = () => {
     getItem(<Link href="/services">Services</Link>, "services"),
     getItem(<Link href="/projects">Projects</Link>, "projects"),
     getItem(<Link href="/contact-us">Contact Us</Link>, "contact-us"),
-    getItem(<Link href="resources">Resources</Link>, "resources"),
+    getItem(<Link href="/resources">Resources</Link>, "resources"),
   ];
 
   const [open, setOpen] = useState(false);

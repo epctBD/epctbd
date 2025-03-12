@@ -12,8 +12,6 @@ export interface IProject {
   area?: string;
   projectYear?: string;
   designer?: string;
-  architect?: string;
-  structuralEngineer?: string;
   location?: string;
   projectOverview?: string;
   keyFeatures?: string;
@@ -21,6 +19,8 @@ export interface IProject {
   projectImages?: string[];
   isFeature: boolean;
   projectVideo?: string;
+  architect?: string;
+  structuralEngineer?: string;
 }
 
 export interface IProjectResponse {
