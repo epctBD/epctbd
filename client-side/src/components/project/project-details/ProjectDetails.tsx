@@ -116,7 +116,7 @@ const ProjectDetailsComponent = ({ project }: IProjectDetailsProps) => {
                   </div>
                   <p>
                     <span className={styles.areaSpan}>
-                      Structural Engineer:
+                      Structural Engineer:{" "}
                     </span>
                     {project.structuralEngineer}
                   </p>

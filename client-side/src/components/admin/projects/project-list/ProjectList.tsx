@@ -51,6 +51,7 @@ const ProjectList = ({ projects, setProjects }: IProjectListProps) => {
       title: "Category",
       dataIndex: "category",
       key: "category",
+      render: (category: string[]) => category.join(", "),
     },
     {
       title: "Project Image",

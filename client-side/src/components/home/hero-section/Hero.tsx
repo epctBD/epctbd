@@ -39,16 +39,9 @@ const HeroSection = ({ projects }: HeroSectionProps) => {
           src={backgroundData?.projectImages?.[0] || ""}
           alt="backgroundImage"
           className={styles.backgroundImage}
-          width={1920} /* Use a large enough base width */
-          height={
-            1080
-          } /* Use a base height that matches your image's aspect ratio */
-          style={{
-            width: "100%",
-            height:
-              "auto" /* This is key - allows height to adjust automatically */,
-          }}
-          priority
+          width={1000}
+          height={1000}
+          objectFit="cover"
         />
       </div>
 
@@ -97,9 +90,9 @@ const HeroSection = ({ projects }: HeroSectionProps) => {
               transition={{ duration: 0.6, ease: "easeOut" }}
             >
               <CoreButton
-                size="small"
                 text="See Projects"
                 type="primary"
+                size="small"
                 onClick={() =>
                   router.push(`projects/${backgroundData?.projectSlug}`)
                 }
@@ -110,11 +103,12 @@ const HeroSection = ({ projects }: HeroSectionProps) => {
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+              className={styles.heroButton}
             >
               <CoreButton
                 text="Contact Us"
                 type="primaryHover"
-                size="large"
+                size="small"
                 onClick={() => router.push("contact-us")}
               />
             </motion.div>
