@@ -245,6 +245,9 @@ const AddProjects = ({
               <Select
                 {...field}
                 className={"general-select"}
+                style={{
+                  height: "60px",
+                }}
                 placeholder="Select a project category"
                 mode="multiple"
                 options={[
@@ -428,7 +431,11 @@ const AddProjects = ({
 
             <div className={"photo-outer-upload-wrapper"}>
               {photos.map((photo, index) => (
-                <div key={index + 1} className="photo-upload-wrapper">
+                <div
+                  key={index + 1}
+                  className="photo-upload-wrapper"
+                  style={{ cursor: "pointer" }}
+                >
                   <Image
                     src={photo.url}
                     alt={`Photo ${index + 1}`}

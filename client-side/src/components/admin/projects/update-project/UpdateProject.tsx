@@ -268,6 +268,9 @@ const UpdateProject = ({
               <Select
                 {...field}
                 className={"general-select"}
+                style={{
+                  height: "60px",
+                }}
                 placeholder="Select a project category"
                 mode="multiple"
                 options={[
@@ -459,7 +462,11 @@ const UpdateProject = ({
             <label className={"general-label"}>Existing Project Images</label>
             <div className={"photo-outer-upload-wrapper"}>
               {existingImageLinks.map((link, index) => (
-                <div key={`existing-${index}`} className="photo-upload-wrapper">
+                <div
+                  key={`existing-${index}`}
+                  className="photo-upload-wrapper"
+                  style={{ cursor: "pointer" }}
+                >
                   <Image
                     src={link || "/placeholder.svg"}
                     alt={`Existing Photo ${index + 1}`}
