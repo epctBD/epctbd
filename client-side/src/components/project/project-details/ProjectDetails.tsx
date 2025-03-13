@@ -14,7 +14,6 @@ export interface IProjectDetailsProps {
 }
 
 const ProjectDetailsComponent = ({ project }: IProjectDetailsProps) => {
-  console.log(project.projectVideo, "project video");
   if (!project) {
     return <div>No project data available.</div>;
   }

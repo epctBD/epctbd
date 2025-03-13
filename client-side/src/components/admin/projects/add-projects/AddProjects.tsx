@@ -71,7 +71,10 @@ const AddProjects = ({
       formData.append("name", data.name);
       formData.append("details", data.details);
       formData.append("serviceType", data.serviceType);
-      formData.append("category", data.category);
+      data.category.forEach((cat) => {
+        formData.append("category", cat);
+      });
+
       formData.append("isFeature", data.isFeature ? "true" : "false");
 
       if (data.area) formData.append("area", data.area);
@@ -111,9 +114,6 @@ const AddProjects = ({
     setPhotos([]);
     setIsModalOpen(false);
   };
-
-  const isGovtProject = watch("category") === "Government Projects";
-  console.log(watch("category"));
 
   return (
     <Modal
@@ -249,10 +249,6 @@ const AddProjects = ({
                 mode="multiple"
                 options={[
                   { value: "Ongoing Projects", label: "Ongoing Projects" },
-                  {
-                    value: "Government Projects",
-                    label: "Government Projects",
-                  },
                   { value: "Private Projects", label: "Private Projects" },
                   {
                     value: "Highlighted Projects",
@@ -427,43 +423,41 @@ const AddProjects = ({
           )}
         </div>
         <div>
-          {!isGovtProject ? (
-            <div className={"photo-input-wrapper"}>
-              <label className={"general-label"}>Project Images</label>
+          <div className={"photo-input-wrapper"}>
+            <label className={"general-label"}>Project Images</label>
 
-              <div className={"photo-outer-upload-wrapper"}>
-                {photos.map((photo, index) => (
-                  <div key={index + 1} className="photo-upload-wrapper">
-                    <Image
-                      src={photo.url}
-                      alt={`Photo ${index + 1}`}
-                      width={76}
-                      height={76}
-                      preview={true}
-                      className="margin-bottom-16"
-                    />
-                    <div
-                      onClick={() => handleRemovePhoto(index)}
-                      className="photo-delete-icon"
-                    >
-                      <MinusCircleOutlined />
-                    </div>
+            <div className={"photo-outer-upload-wrapper"}>
+              {photos.map((photo, index) => (
+                <div key={index + 1} className="photo-upload-wrapper">
+                  <Image
+                    src={photo.url}
+                    alt={`Photo ${index + 1}`}
+                    width={76}
+                    height={76}
+                    preview={true}
+                    className="margin-bottom-16"
+                  />
+                  <div
+                    onClick={() => handleRemovePhoto(index)}
+                    className="photo-delete-icon"
+                  >
+                    <MinusCircleOutlined />
                   </div>
-                ))}
-                <Upload
-                  beforeUpload={handlePhotoUpload}
-                  showUploadList={false}
-                  accept="image/*"
-                >
-                  {photos.length < 10 && (
-                    <div style={{ padding: "8px", cursor: "pointer" }}>
-                      <ImageUploadIcon />
-                    </div>
-                  )}
-                </Upload>
-              </div>
+                </div>
+              ))}
+              <Upload
+                beforeUpload={handlePhotoUpload}
+                showUploadList={false}
+                accept="image/*"
+              >
+                {photos.length < 10 && (
+                  <div style={{ padding: "8px", cursor: "pointer" }}>
+                    <ImageUploadIcon />
+                  </div>
+                )}
+              </Upload>
             </div>
-          ) : null}
+          </div>
         </div>
         <div
           style={{

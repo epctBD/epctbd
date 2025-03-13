@@ -38,6 +38,7 @@ const ProjectCard = ({
           alt={title}
           height={435}
           width={410}
+          objectFit="cover"
         />
       </div>
       <div className={styles.projectDetailsWrapper}>

@@ -1,8 +1,5 @@
 import { MongoClient } from "mongodb";
 import mongoose from "mongoose";
-
-console.log("MongoDB URI:", process.env.MONGODB_URI);
-
 declare global {
   var _mongoClientPromise: Promise<MongoClient>;
 }

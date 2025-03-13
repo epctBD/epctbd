@@ -38,7 +38,6 @@ const AdminLayout = ({ children }: AdminLayoutLayoutProps) => {
   };
 
   const selectedKey = GetMenuKey();
-  console.log(selectedKey);
 
   const router = useRouter();
   const goToHome = () => {

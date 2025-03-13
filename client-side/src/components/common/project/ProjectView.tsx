@@ -52,16 +52,16 @@ const ProjectView = ({ projectList, setProjectList }: IProjectViewProps) => {
       label: "Ongoing Projects",
     },
     {
-      key: "Government Projects",
-      label: "Government Projects",
-    },
-    {
       key: "Private Projects",
       label: "Private Projects",
     },
     {
       key: "Highlighted Projects",
       label: "Highlighted Projects",
+    },
+    {
+      key: "Government Projects",
+      label: "Government Projects",
     },
   ];
 

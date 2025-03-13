@@ -54,7 +54,7 @@ const BookCard = ({
             openPDF();
           }}
         >
-          Read PDF
+          Read
         </Button>
       </div>
     </div>

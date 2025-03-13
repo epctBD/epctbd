@@ -88,7 +88,9 @@ const UpdateProject = ({
       formData.append("name", data.name);
       formData.append("details", data.details);
       formData.append("serviceType", data.serviceType);
-      formData.append("category", data.category);
+      data.category.forEach((cat) => {
+        formData.append("category", cat);
+      });
       formData.append("isFeature", data.isFeature ? "true" : "false");
 
       if (data.area) formData.append("area", data.area);
@@ -132,8 +134,6 @@ const UpdateProject = ({
     setPhotos([]);
     setIsModalOpen(false);
   };
-
-  const isGovtProject = watch("category") === "Government Projects";
 
   return (
     <Modal
@@ -269,12 +269,9 @@ const UpdateProject = ({
                 {...field}
                 className={"general-select"}
                 placeholder="Select a project category"
+                mode="multiple"
                 options={[
                   { value: "Ongoing Projects", label: "Ongoing Projects" },
-                  {
-                    value: "Government Projects",
-                    label: "Government Projects",
-                  },
                   { value: "Private Projects", label: "Private Projects" },
                   {
                     value: "Highlighted Projects",
@@ -457,71 +454,66 @@ const UpdateProject = ({
           )}
         </div>
 
-        {!isGovtProject ? (
-          <div>
-            <div className={"photo-input-wrapper"}>
-              <label className={"general-label"}>Existing Project Images</label>
-              <div className={"photo-outer-upload-wrapper"}>
-                {existingImageLinks.map((link, index) => (
+        <div>
+          <div className={"photo-input-wrapper"}>
+            <label className={"general-label"}>Existing Project Images</label>
+            <div className={"photo-outer-upload-wrapper"}>
+              {existingImageLinks.map((link, index) => (
+                <div key={`existing-${index}`} className="photo-upload-wrapper">
+                  <Image
+                    src={link || "/placeholder.svg"}
+                    alt={`Existing Photo ${index + 1}`}
+                    width={76}
+                    height={76}
+                    preview={true}
+                    className="margin-bottom-16"
+                  />
                   <div
-                    key={`existing-${index}`}
-                    className="photo-upload-wrapper"
+                    onClick={() => handleRemoveExistingImage(index)}
+                    className="photo-delete-icon"
                   >
-                    <Image
-                      src={link || "/placeholder.svg"}
-                      alt={`Existing Photo ${index + 1}`}
-                      width={76}
-                      height={76}
-                      preview={true}
-                      className="margin-bottom-16"
-                    />
-                    <div
-                      onClick={() => handleRemoveExistingImage(index)}
-                      className="photo-delete-icon"
-                    >
-                      <MinusCircleOutlined />
-                    </div>
+                    <MinusCircleOutlined />
                   </div>
-                ))}
-              </div>
-            </div>
-
-            <div className={"photo-input-wrapper"}>
-              <label className={"general-label"}>Project Images</label>
-              <div className={"photo-outer-upload-wrapper"}>
-                {photos.map((photo, index) => (
-                  <div key={index + 1} className="photo-upload-wrapper">
-                    <Image
-                      src={photo.url || "/placeholder.svg"}
-                      alt={`Photo ${index + 1}`}
-                      width={76}
-                      height={76}
-                      preview={true}
-                      className="margin-bottom-16"
-                    />
-                    <div
-                      onClick={() => handleRemovePhoto(index)}
-                      className="photo-delete-icon"
-                    >
-                      <MinusCircleOutlined />
-                    </div>
-                  </div>
-                ))}
-                <Upload
-                  beforeUpload={handlePhotoUpload}
-                  showUploadList={false}
-                  accept="image/*"
-                >
-                  {photos.length + existingImageLinks.length < 10 && (
-                    <div style={{ padding: "8px", cursor: "pointer" }}>
-                      <ImageUploadIcon />
-                    </div>
-                  )}
-                </Upload>
-              </div>
+                </div>
+              ))}
             </div>
           </div>
-        ) : null}
+
+          <div className={"photo-input-wrapper"}>
+            <label className={"general-label"}>Project Images</label>
+            <div className={"photo-outer-upload-wrapper"}>
+              {photos.map((photo, index) => (
+                <div key={index + 1} className="photo-upload-wrapper">
+                  <Image
+                    src={photo.url || "/placeholder.svg"}
+                    alt={`Photo ${index + 1}`}
+                    width={76}
+                    height={76}
+                    preview={true}
+                    className="margin-bottom-16"
+                  />
+                  <div
+                    onClick={() => handleRemovePhoto(index)}
+                    className="photo-delete-icon"
+                  >
+                    <MinusCircleOutlined />
+                  </div>
+                </div>
+              ))}
+              <Upload
+                beforeUpload={handlePhotoUpload}
+                showUploadList={false}
+                accept="image/*"
+              >
+                {photos.length + existingImageLinks.length < 10 && (
+                  <div style={{ padding: "8px", cursor: "pointer" }}>
+                    <ImageUploadIcon />
+                  </div>
+                )}
+              </Upload>
+            </div>
+          </div>
+        </div>
 
         <div
           style={{

@@ -8,7 +8,7 @@ export interface IProject {
   name: string;
   details: string;
   serviceType: string;
-  category: string;
+  category: string[];
   area?: string;
   projectYear?: string;
   designer?: string;
