@@ -7,6 +7,10 @@
   font-size: 18px !important;
   border-radius: 1000px !important;
 
+  @media (max-width: 576px) {
+    height: 32px !important;
+  }
+
   &.ant-btn-text {
     color: $white-color !important;
   }

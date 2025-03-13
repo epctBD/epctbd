@@ -39,9 +39,16 @@ const HeroSection = ({ projects }: HeroSectionProps) => {
           src={backgroundData?.projectImages?.[0] || ""}
           alt="backgroundImage"
           className={styles.backgroundImage}
-          width={1000}
-          height={1000}
-          style={{ objectFit: "contain" }}
+          width={1920} /* Use a large enough base width */
+          height={
+            1080
+          } /* Use a base height that matches your image's aspect ratio */
+          style={{
+            width: "100%",
+            height:
+              "auto" /* This is key - allows height to adjust automatically */,
+          }}
+          priority
         />
       </div>
 
@@ -90,6 +97,7 @@ const HeroSection = ({ projects }: HeroSectionProps) => {
               transition={{ duration: 0.6, ease: "easeOut" }}
             >
               <CoreButton
+                size="small"
                 text="See Projects"
                 type="primary"
                 onClick={() =>
