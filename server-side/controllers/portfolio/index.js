@@ -39,8 +39,6 @@ const addPortfolio = asyncHandler(async (req, res) => {
     pdf_file,
   };
 
-  console.log(portfolio_data, "portfolio_data");
-
   const { message, portfolios, statusCode } =
     await portfolioService.addPortfolio(portfolio_data);
 

@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model, mongoose } = require("mongoose");
 const slugify = require("slugify");
 
 const projectSchema = new Schema(
@@ -16,7 +16,7 @@ const projectSchema = new Schema(
       required: true,
     },
     category: {
-      type: String,
+      type: [String],
       required: true,
     },
     serviceType: {
@@ -76,35 +76,34 @@ const projectSchema = new Schema(
 );
 
 // Ensure `projectSlug` is set before saving
-projectSchema.pre("save", function (next) {
+projectSchema.pre("save", async function (next) {
   try {
-    if (
-      !this.projectSlug ||
-      this.isModified("name") ||
-      this.isModified("category")
-    ) {
-      // Slugify the category
-      const categorySlug = slugify(this.category || "", {
+    if (!this.projectSlug || this.isModified("name")) {
+      let nameSlug = slugify(this.name || "", {
         lower: true,
         remove: /[*+~.()'"!?:@]/g,
       });
 
-      // Slugify the name
-      const nameSlug = slugify(this.name || "", {
-        lower: true,
-        remove: /[*+~.()'"!?:@]/g,
-      });
+      // Ensure unique slug
+      let uniqueSlug = nameSlug;
+      let counter = 1;
 
-      // Combine to create the final slug
-      this.projectSlug = `${categorySlug}-${nameSlug}`;
+      // Check if the slug already exists in the database
+      const existingProject = await mongoose
+        .model("Project")
+        .findOne({ projectSlug: uniqueSlug });
+
+      while (existingProject) {
+        uniqueSlug = `${nameSlug}-${counter}`;
+        counter++;
+      }
+
+      this.projectSlug = uniqueSlug;
     }
     next();
   } catch (error) {
     next(error);
   }
 });
-
-// Ensure the index is created once and only in the schema definition
-// projectSchema.index({ projectSlug: 1 }, { unique: true });
 
 module.exports = model("Project", projectSchema);

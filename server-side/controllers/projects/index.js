@@ -36,6 +36,17 @@ const addProject = asyncHandler(async (req, res) => {
     throw new apiError(400, "Please provide all required information");
   }
 
+  if (
+    !category ||
+    (Array.isArray(category) && category.length === 0) ||
+    (typeof category === "string" && !category.trim())
+  ) {
+    throw new apiError(
+      400,
+      "Category must be a non-empty string or an array with at least one item"
+    );
+  }
+
   let projectImages = [];
 
   if (req.files && req.files.length > 0) {
@@ -118,6 +129,18 @@ const updateProject = asyncHandler(async (req, res) => {
 
   if (!name || !details || !category || !serviceType || !isFeature) {
     throw new apiError(400, "Please provide all required information");
+  }
+  console.log(category, "category in be");
+
+  if (
+    !category ||
+    (Array.isArray(category) && category.length === 0) ||
+    (typeof category === "string" && !category.trim())
+  ) {
+    throw new apiError(
+      400,
+      "Category must be a non-empty string or an array with at least one item"
+    );
   }
 
   let newProjectImageLinks = [];
