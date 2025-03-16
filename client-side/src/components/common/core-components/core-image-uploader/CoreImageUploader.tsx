@@ -42,7 +42,7 @@ const CoreImageUploader: React.FC<CoreImageUploaderProps> = ({
   };
 
   return (
-    <div style={{ display: "flex", alignItems: "center" }}>
+    <div style={{ display: "flex", alignItems: "center", cursor: "pointer" }}>
       {!image && (
         <Upload
           beforeUpload={(file) => {

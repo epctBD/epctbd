@@ -115,34 +115,46 @@ const AddPortfolio = ({
         </div>
 
         <div className={"general-input-wrapper"}>
-          <label className="general-label">Upload PDF</label>
-          <Upload
-            accept=".pdf"
-            maxCount={1}
-            beforeUpload={(file) => {
-              if (file.type !== "application/pdf") {
-                message.error("You can only upload PDF files!");
-                return Upload.LIST_IGNORE;
-              }
-              if (file.size / 1024 / 1024 > 5) {
-                message.error("PDF must be smaller than 5MB!");
-                return Upload.LIST_IGNORE;
-              }
-              setPdfData(file);
-              return false;
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "10px",
             }}
-            onRemove={() => setPdfData(null)}
-            fileList={
-              pdfData ? [{ uid: "-1", name: pdfData.name, status: "done" }] : []
-            }
           >
-            <CoreButton text="Click" type="basic" icon={<UploadOutlined />} />
-          </Upload>
+            <label className="general-label">Upload PDF</label>
+            <Upload
+              accept=".pdf"
+              maxCount={1}
+              beforeUpload={(file) => {
+                if (file.type !== "application/pdf") {
+                  message.error("You can only upload PDF files!");
+                  return Upload.LIST_IGNORE;
+                }
+                if (file.size / 1024 / 1024 > 5) {
+                  message.error("PDF must be smaller than 5MB!");
+                  return Upload.LIST_IGNORE;
+                }
+                setPdfData(file);
+                return false;
+              }}
+              onRemove={() => setPdfData(null)}
+              fileList={
+                pdfData
+                  ? [{ uid: "-1", name: pdfData.name, status: "done" }]
+                  : []
+              }
+            >
+              <CoreButton text="Click" type="basic" icon={<UploadOutlined />} />
+            </Upload>
+          </div>
         </div>
 
         <div className={"general-input-wrapper"}>
           <label className="general-label">Feature Image</label>
-          <CoreImageUploader onImageUpload={handleImageUpload} />
+          <div style={{ cursor: "pointer", maxWidth: "76px" }}>
+            <CoreImageUploader onImageUpload={handleImageUpload} />
+          </div>
         </div>
 
         <div

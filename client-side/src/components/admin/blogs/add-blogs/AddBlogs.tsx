@@ -140,7 +140,9 @@ const AddBlog = ({
 
         <div className={"general-input-wrapper"}>
           <label className={"general-label"}>Cover Image</label>
-          <CoreImageUploader onImageUpload={handleImageUpload} />
+          <div style={{ cursor: "pointer", maxWidth: "76px" }}>
+            <CoreImageUploader onImageUpload={handleImageUpload} />
+          </div>
         </div>
 
         <div

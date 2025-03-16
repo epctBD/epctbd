@@ -120,7 +120,7 @@ const BlogList = ({ blogs, setBlogs }: IBlogListProps) => {
           marginBottom: "20px",
         }}
       >
-        <h1 style={{ fontSize: "20px" }}>Blogs</h1>
+        <h1 style={{ fontSize: "20px" }}>BLOGS</h1>
         <CoreButton
           icon={<PlusOutlined />}
           text="Blog"

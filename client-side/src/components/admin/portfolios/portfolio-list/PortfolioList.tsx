@@ -115,7 +115,7 @@ const PortfolioList = ({ portfolios, setPortfolios }: IPortfolioListProps) => {
           marginBottom: "20px",
         }}
       >
-        <h1 style={{ fontSize: "20px" }}>Portfolios</h1>
+        <h1 style={{ fontSize: "20px" }}>PORTFOLIOS</h1>
         <CoreButton
           text="Portfolio"
           icon={<PlusOutlined />}

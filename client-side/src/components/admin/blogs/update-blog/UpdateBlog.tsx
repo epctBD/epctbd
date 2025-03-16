@@ -165,10 +165,12 @@ const UpdateBlog = ({
 
         <div className={"general-input-wrapper"}>
           <label className={"general-label"}>Cover Image</label>
-          <CoreImageUploader
-            onImageUpload={handleImageUpload}
-            existingImage={existingImage || ""}
-          />
+          <div style={{ cursor: "pointer", maxWidth: "76px" }}>
+            <CoreImageUploader
+              onImageUpload={handleImageUpload}
+              existingImage={existingImage || ""}
+            />
+          </div>
         </div>
 
         <div

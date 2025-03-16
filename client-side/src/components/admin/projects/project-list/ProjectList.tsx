@@ -121,7 +121,7 @@ const ProjectList = ({ projects, setProjects }: IProjectListProps) => {
           marginBottom: "20px",
         }}
       >
-        <h1 style={{ fontSize: "20px" }}>Projects</h1>
+        <h1 style={{ fontSize: "20px" }}>PROJECTS</h1>
         <CoreButton
           text="Project"
           icon={<PlusOutlined />}
