@@ -83,7 +83,7 @@ const HomeProjects = ({ projects }: HomeProjectsProps) => {
                   location={project.location || ""}
                   imageSrc={project.projectImages?.[0] || ""}
                   type={project.serviceType}
-                  category={project.category}
+                  category={""}
                   slug={project.projectSlug || ""}
                 />
               </motion.div>

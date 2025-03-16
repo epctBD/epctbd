@@ -29,6 +29,7 @@ const Project = ({ projects }: IProjectProps) => {
 export const getServerSideProps: GetServerSideProps = async () => {
   try {
     const response = await getProjects("");
+    console.log(response, "projects");
     return {
       props: {
         projects: response,

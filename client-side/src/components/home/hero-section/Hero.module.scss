@@ -58,6 +58,7 @@
     }
 
     @media (max-width: 576px) {
+      width: calc(100% - 10px);
       display: flex;
       flex-direction: column;
       gap: 24px;
