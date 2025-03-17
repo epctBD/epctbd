@@ -5,8 +5,6 @@ const getProjects = async (category) => {
   const filter = category ? { category } : {};
   const projects = await Project.find(filter);
 
-  console.log(projects, "projects");
-
   return {
     message: "Project created successfully",
     projects,

@@ -1,9 +1,12 @@
+"use client";
+
 import CoreButton from "@/components/common/core-components/core-button/CoreButton";
 import CoreImageUploader from "@/components/common/core-components/core-image-uploader/CoreImageUploader";
-import { ITeamMember, ITeamMemberList } from "@/models/teamMember.model";
+import type { ITeamMember, ITeamMemberList } from "@/models/teamMember.model";
 import { createTeamMember } from "@/services/teamMember.service";
 import { Input, message, Modal, Radio } from "antd";
-import React, { useState } from "react";
+import type React from "react";
+import { useState, useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
 
 interface IAddTeamMemberModalProps {
@@ -18,6 +21,7 @@ const AddTeamMember = ({
   setTeamMembers,
 }: IAddTeamMemberModalProps) => {
   const [loading, setLoading] = useState(false);
+  const [resetKey, setResetKey] = useState(0);
   const {
     handleSubmit,
     control,
@@ -28,9 +32,13 @@ const AddTeamMember = ({
 
   const [imageData, setImageData] = useState<File | null>(null);
 
-  const handleImageUpload = (image: string | File | null) => {
-    setImageData(image as File);
-  };
+  // Reset the image when the modal opens
+  useEffect(() => {
+    if (isModalOpen) {
+      setImageData(null);
+      setResetKey((prev) => prev + 1);
+    }
+  }, [isModalOpen]);
 
   const onSubmit = async (data: ITeamMember) => {
     setLoading(true);
@@ -50,7 +58,9 @@ const AddTeamMember = ({
       const response = await createTeamMember(formData);
       setTeamMembers(response);
       message.success("Team member added successfully!");
+      setImageData(null);
       reset();
+      setResetKey((prev) => prev + 1);
       setIsModalOpen(false);
     } catch (error) {
       console.error("Error adding team member:", error);
@@ -60,6 +70,10 @@ const AddTeamMember = ({
     }
   };
 
+  const handleImageUpload = (image: File | null) => {
+    setImageData(image);
+  };
+
   const isExMember = watch("isExTeam");
 
   return (
@@ -67,7 +81,12 @@ const AddTeamMember = ({
       key="add team member"
       title="Add Team Member"
       open={isModalOpen}
-      onCancel={() => setIsModalOpen(false)}
+      onCancel={() => {
+        setIsModalOpen(false);
+        setImageData(null);
+        reset();
+        setResetKey((prev) => prev + 1);
+      }}
       footer={null}
     >
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -116,7 +135,11 @@ const AddTeamMember = ({
         <div className={"general-input-wrapper"}>
           <label className="general-label">Member Image</label>
           <div style={{ cursor: "pointer", maxWidth: "76px" }}>
-            <CoreImageUploader onImageUpload={handleImageUpload} />
+            <CoreImageUploader
+              key={`image-uploader-${resetKey}`}
+              onImageUpload={handleImageUpload}
+              existingImage=""
+            />
           </div>
         </div>
 

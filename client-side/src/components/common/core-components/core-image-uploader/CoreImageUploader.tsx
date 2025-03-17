@@ -19,6 +19,10 @@ const CoreImageUploader: React.FC<CoreImageUploaderProps> = ({
     setImage(existingImage || "");
   }, [existingImage]);
 
+  useEffect(() => {
+    if (!existingImage) setImage("");
+  }, [existingImage]);
+
   const handleFileChange = (file: File) => {
     setImage(file);
     onImageUpload(file);

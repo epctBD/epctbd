@@ -115,7 +115,7 @@ const AddBook = ({
           )}
         </div>
 
-        <div className={"general-input-wrapper"}>
+        <div className={"general-pdf-wrapper"}>
           <label className="general-label">Upload PDF</label>
           <Upload
             accept=".pdf"

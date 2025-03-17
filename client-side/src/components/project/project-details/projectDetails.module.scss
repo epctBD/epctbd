@@ -1,5 +1,10 @@
 .projectDetailsWrapper {
   padding-bottom: 80px;
+
+  @media (max-width: 576px) {
+    padding-bottom: 20px;
+  }
+
   .projectDetailsHeader {
     display: flex;
     flex-direction: column;
@@ -10,6 +15,7 @@
       font-weight: 700;
       background: linear-gradient(180deg, #ffffff 12.23%, #9b9b9b 100%);
       -webkit-background-clip: text;
+      background-clip: text;
       -webkit-text-fill-color: transparent;
 
       @media (max-width: 576px) {
@@ -65,8 +71,12 @@
     border-radius: 24px;
     margin: 104px 0 40px 0;
     padding: 24px;
-    // display: flex;
-    min-height: 380px;
+    min-height: 352px;
+
+    @media (max-width: 576px) {
+      margin: 36px 0;
+      min-height: 200px;
+    }
 
     .projecttabinnerwrapper {
       margin-bottom: 40px;
@@ -82,12 +92,13 @@
 
   .projectVideoWrapper {
     border: 1px solid #27282a;
-    // background-color: #202127;
     border-radius: 24px;
     margin: 104px 0 0 0;
     padding: 24px;
-    // display: flex;
-    min-height: 380px;
+
+    @media (max-width: 576px) {
+      margin: 0;
+    }
 
     .projecttabinnerwrapper {
       margin-bottom: 40px;

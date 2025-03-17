@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import styles from "./Navbar.module.scss";
 import Image from "next/image";
 import epct_logo from "@/assets/images/epct-main-logo.png";
-import { MenuOutlined } from "@ant-design/icons";
+import { CloseOutlined, MenuOutlined } from "@ant-design/icons";
 import useGetMenuKey from "@/hooks/useGetMenuKey";
 import { useRouter } from "next/router";
 
@@ -94,6 +94,9 @@ const Navbar = () => {
               onClose={onClose}
               open={open}
               className={styles["drawer-wrapper"]}
+              closeIcon={
+                <CloseOutlined style={{ fontSize: "18px", color: "white" }} />
+              }
             >
               <Menu
                 mode="vertical"

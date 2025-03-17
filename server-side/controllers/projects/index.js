@@ -130,7 +130,6 @@ const updateProject = asyncHandler(async (req, res) => {
   if (!name || !details || !category || !serviceType || !isFeature) {
     throw new apiError(400, "Please provide all required information");
   }
-  console.log(category, "category in be");
 
   if (
     !category ||

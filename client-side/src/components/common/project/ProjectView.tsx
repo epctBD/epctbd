@@ -90,7 +90,6 @@ const ProjectView = ({ projectList, setProjectList }: IProjectViewProps) => {
           <div className={styles.noData}>No Project Available</div>
         ) : (
           projectList.map((project: IProject) => {
-            console.log(project?.category);
             return (
               <Col span={8} xs={24} sm={24} md={12} lg={8} key={project._id}>
                 <div className={styles.projectCardWrapper}>
