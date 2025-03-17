@@ -42,6 +42,7 @@ const HomeFeedback = () => {
       {
         breakpoint: 576,
         settings: {
+          centerMode: false,
           centerPadding: "0px",
         },
       },

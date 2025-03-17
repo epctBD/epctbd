@@ -16,6 +16,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    // border: 1px solid yellow;
+
+    :global(.slick-list) {
+      width: 100% !important;
+    }
 
     :global(.slick-prev),
     :global(.slick-next) {
