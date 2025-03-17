@@ -27,10 +27,24 @@ const addProject = asyncHandler(async (req, res) => {
     keyFeatures,
     outcome,
     isFeature,
+    projectVideo,
+    architect,
+    structuralEngineer,
   } = req.body;
 
   if (!name || !details || !category || !serviceType || !isFeature) {
     throw new apiError(400, "Please provide all required information");
+  }
+
+  if (
+    !category ||
+    (Array.isArray(category) && category.length === 0) ||
+    (typeof category === "string" && !category.trim())
+  ) {
+    throw new apiError(
+      400,
+      "Category must be a non-empty string or an array with at least one item"
+    );
   }
 
   let projectImages = [];
@@ -57,6 +71,9 @@ const addProject = asyncHandler(async (req, res) => {
     outcome,
     projectImages,
     isFeature,
+    projectVideo,
+    architect,
+    structuralEngineer,
   };
 
   if (!projectImages) {
@@ -101,6 +118,9 @@ const updateProject = asyncHandler(async (req, res) => {
     existing_image_links,
     isFeature,
     serviceType,
+    projectVideo,
+    architect,
+    structuralEngineer,
   } = req.body;
 
   if (!id) {
@@ -109,6 +129,17 @@ const updateProject = asyncHandler(async (req, res) => {
 
   if (!name || !details || !category || !serviceType || !isFeature) {
     throw new apiError(400, "Please provide all required information");
+  }
+
+  if (
+    !category ||
+    (Array.isArray(category) && category.length === 0) ||
+    (typeof category === "string" && !category.trim())
+  ) {
+    throw new apiError(
+      400,
+      "Category must be a non-empty string or an array with at least one item"
+    );
   }
 
   let newProjectImageLinks = [];
@@ -149,6 +180,9 @@ const updateProject = asyncHandler(async (req, res) => {
     outcome,
     isFeature,
     serviceType,
+    projectVideo,
+    architect,
+    structuralEngineer,
     projectImages: [...validExistingImageLinks, ...validNewProjectImageLinks],
   };
 

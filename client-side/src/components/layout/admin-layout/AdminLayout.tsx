@@ -38,7 +38,6 @@ const AdminLayout = ({ children }: AdminLayoutLayoutProps) => {
   };
 
   const selectedKey = GetMenuKey();
-  console.log(selectedKey);
 
   const router = useRouter();
   const goToHome = () => {
@@ -86,8 +85,16 @@ const AdminLayout = ({ children }: AdminLayoutLayoutProps) => {
         className="tool-tip-container"
       >
         <Link href="/admin/portfolio" className={styles.adminGetItem}>
-          <div className={styles.adminListIcon}>
-            <ProjectListIcon />
+          <div
+            className={styles.adminListIcon}
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: "16px",
+            }}
+          >
+            <ProfileOutlined style={{ fontSize: "20px" }} />
             <p className={styles.adminListName}>Portfolio List</p>
           </div>
         </Link>

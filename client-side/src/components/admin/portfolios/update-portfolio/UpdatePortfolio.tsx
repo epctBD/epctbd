@@ -114,10 +114,12 @@ const UpdatePortfolio = ({
 
         <div style={{ marginBottom: "15px" }}>
           <label className="general-label">Feature Image</label>
-          <CoreImageUploader
-            onImageUpload={handleImageUpload}
-            existingImage={existingImage || ""}
-          />
+          <div style={{ cursor: "pointer", maxWidth: "76px" }}>
+            <CoreImageUploader
+              onImageUpload={handleImageUpload}
+              existingImage={existingImage || ""}
+            />
+          </div>
         </div>
 
         <div

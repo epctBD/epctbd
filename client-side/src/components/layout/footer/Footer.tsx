@@ -8,6 +8,11 @@ import MessageIcon from "@/components/common/svg/MessageIcon";
 import MapIcons from "@/components/common/svg/MapIcons";
 import FacebookIcon from "@/components/common/svg/FacebookIcon";
 import { useRouter } from "next/router";
+import {
+  FacebookOutlined,
+  InstagramOutlined,
+  LinkedinOutlined,
+} from "@ant-design/icons";
 
 const Footer = () => {
   const router = useRouter();
@@ -85,9 +90,31 @@ const Footer = () => {
           <div className={styles.socialSection}>
             <h4 className={styles.followTitle}>Follow us</h4>
             <div className={styles.iconWrapper}>
-              <FacebookIcon />
-              <FacebookIcon />
-              <FacebookIcon />
+              <a
+                href="https://www.facebook.com/epctbd"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: "gray" }}
+              >
+                <FacebookOutlined style={{ fontSize: "24px" }} />
+              </a>
+              <a
+                href="https://www.instagram.com/epctbd/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: "gray" }}
+              >
+                <InstagramOutlined style={{ fontSize: "24px" }} />
+              </a>
+
+              <a
+                href="https://www.facebook.com/epctbd"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: "gray" }}
+              >
+                <LinkedinOutlined style={{ fontSize: "24px" }} />
+              </a>
             </div>
           </div>
         </Col>

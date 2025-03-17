@@ -123,7 +123,7 @@ const TeamMemberList = ({
           marginBottom: "20px",
         }}
       >
-        <h1 style={{ fontSize: "20px" }}>Team Members</h1>
+        <h1 style={{ fontSize: "20px" }}>TEAM MEMBERS</h1>
         <CoreButton
           icon={<PlusOutlined />}
           text="Team Member"

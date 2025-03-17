@@ -114,7 +114,7 @@ const AddPortfolio = ({
           )}
         </div>
 
-        <div className={"general-input-wrapper"}>
+        <div className={"general-pdf-wrapper"}>
           <label className="general-label">Upload PDF</label>
           <Upload
             accept=".pdf"
@@ -142,7 +142,9 @@ const AddPortfolio = ({
 
         <div className={"general-input-wrapper"}>
           <label className="general-label">Feature Image</label>
-          <CoreImageUploader onImageUpload={handleImageUpload} />
+          <div style={{ cursor: "pointer", maxWidth: "76px" }}>
+            <CoreImageUploader onImageUpload={handleImageUpload} />
+          </div>
         </div>
 
         <div

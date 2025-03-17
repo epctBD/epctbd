@@ -19,6 +19,10 @@ const CoreImageUploader: React.FC<CoreImageUploaderProps> = ({
     setImage(existingImage || "");
   }, [existingImage]);
 
+  useEffect(() => {
+    if (!existingImage) setImage("");
+  }, [existingImage]);
+
   const handleFileChange = (file: File) => {
     setImage(file);
     onImageUpload(file);
@@ -42,7 +46,7 @@ const CoreImageUploader: React.FC<CoreImageUploaderProps> = ({
   };
 
   return (
-    <div style={{ display: "flex", alignItems: "center" }}>
+    <div style={{ display: "flex", alignItems: "center", cursor: "pointer" }}>
       {!image && (
         <Upload
           beforeUpload={(file) => {

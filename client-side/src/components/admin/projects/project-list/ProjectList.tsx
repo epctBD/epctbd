@@ -51,6 +51,7 @@ const ProjectList = ({ projects, setProjects }: IProjectListProps) => {
       title: "Category",
       dataIndex: "category",
       key: "category",
+      render: (category: string[]) => category.join(", "),
     },
     {
       title: "Project Image",
@@ -58,11 +59,7 @@ const ProjectList = ({ projects, setProjects }: IProjectListProps) => {
       key: "projectImages",
       render: (projectImages: string[], project: IProject) => (
         <Image
-          src={
-            project?.category === "Government Projects"
-              ? "https://res.cloudinary.com/dv5lxcotq/image/upload/v1736882114/samples/ecommerce/car-interior-design.jpg"
-              : projectImages[0]
-          }
+          src={projectImages[0]}
           alt="Project Image"
           width={120}
           height={68}
@@ -124,7 +121,7 @@ const ProjectList = ({ projects, setProjects }: IProjectListProps) => {
           marginBottom: "20px",
         }}
       >
-        <h1 style={{ fontSize: "20px" }}>Projects</h1>
+        <h1 style={{ fontSize: "20px" }}>PROJECTS</h1>
         <CoreButton
           text="Project"
           icon={<PlusOutlined />}

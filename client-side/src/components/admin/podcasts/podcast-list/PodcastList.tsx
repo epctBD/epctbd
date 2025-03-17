@@ -126,7 +126,7 @@ const PodcastList = ({ podcasts, setPodcasts }: IPodcastListProps) => {
           marginBottom: "20px",
         }}
       >
-        <h1 style={{ fontSize: "20px" }}>Podcasts</h1>
+        <h1 style={{ fontSize: "20px" }}>PODCASTS</h1>
         <CoreButton
           text="Podcast"
           icon={<PlusOutlined />}

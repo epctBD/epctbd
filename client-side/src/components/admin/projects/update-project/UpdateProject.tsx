@@ -88,17 +88,23 @@ const UpdateProject = ({
       formData.append("name", data.name);
       formData.append("details", data.details);
       formData.append("serviceType", data.serviceType);
-      formData.append("category", data.category);
+      data.category.forEach((cat) => {
+        formData.append("category", cat);
+      });
       formData.append("isFeature", data.isFeature ? "true" : "false");
 
       if (data.area) formData.append("area", data.area);
       if (data.projectYear) formData.append("projectYear", data.projectYear);
       if (data.designer) formData.append("designer", data.designer);
+      if (data.architect) formData.append("architect", data.architect);
+      if (data.structuralEngineer)
+        formData.append("structuralEngineer", data.structuralEngineer);
       if (data.location) formData.append("location", data.location);
       if (data.projectOverview)
         formData.append("projectOverview", data.projectOverview);
       if (data.keyFeatures) formData.append("keyFeatures", data.keyFeatures);
       if (data.outcome) formData.append("outcome", data.outcome);
+      if (data.projectVideo) formData.append("projectVideo", data.projectVideo);
 
       photos.forEach((photo) => {
         if (photo.file) {
@@ -128,8 +134,6 @@ const UpdateProject = ({
     setPhotos([]);
     setIsModalOpen(false);
   };
-
-  const isGovtProject = watch("category");
 
   return (
     <Modal
@@ -264,13 +268,13 @@ const UpdateProject = ({
               <Select
                 {...field}
                 className={"general-select"}
+                style={{
+                  height: "60px",
+                }}
                 placeholder="Select a project category"
+                mode="multiple"
                 options={[
                   { value: "Ongoing Projects", label: "Ongoing Projects" },
-                  {
-                    value: "Government Projects",
-                    label: "Government Projects",
-                  },
                   { value: "Private Projects", label: "Private Projects" },
                   {
                     value: "Highlighted Projects",
@@ -327,6 +331,34 @@ const UpdateProject = ({
               <Input
                 {...field}
                 placeholder="Enter designer name"
+                className={"general-input"}
+              />
+            )}
+          />
+        </div>
+        <div className={"general-input-wrapper"}>
+          <label className={"general-label"}>Architect</label>
+          <Controller
+            name="architect"
+            control={control}
+            render={({ field }) => (
+              <Input
+                {...field}
+                placeholder="Enter architect name"
+                className={"general-input"}
+              />
+            )}
+          />
+        </div>
+        <div className={"general-input-wrapper"}>
+          <label className={"general-label"}>Structural Engineer</label>
+          <Controller
+            name="structuralEngineer"
+            control={control}
+            render={({ field }) => (
+              <Input
+                {...field}
+                placeholder="Enter structural engineer name"
                 className={"general-input"}
               />
             )}
@@ -399,71 +431,96 @@ const UpdateProject = ({
           />
         </div>
 
-        {!isGovtProject ? (
-          <div>
-            <div className={"photo-input-wrapper"}>
-              <label className={"general-label"}>Existing Project Images</label>
-              <div className={"photo-outer-upload-wrapper"}>
-                {existingImageLinks.map((link, index) => (
-                  <div
-                    key={`existing-${index}`}
-                    className="photo-upload-wrapper"
-                  >
-                    <Image
-                      src={link || "/placeholder.svg"}
-                      alt={`Existing Photo ${index + 1}`}
-                      width={76}
-                      height={76}
-                      preview={true}
-                      className="margin-bottom-16"
-                    />
-                    <div
-                      onClick={() => handleRemoveExistingImage(index)}
-                      className="photo-delete-icon"
-                    >
-                      <MinusCircleOutlined />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+        <div className={"general-input-wrapper"}>
+          <label className={"general-label"}>YouTube URL</label>
+          <Controller
+            name="projectVideo"
+            control={control}
+            rules={{
+              pattern: {
+                value: /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)\/.+$/,
+                message: "Please enter a valid YouTube URL",
+              },
+            }}
+            render={({ field }) => (
+              <Input
+                {...field}
+                placeholder="Enter YouTube URL"
+                className={"general-input"}
+              />
+            )}
+          />
+          {errors.projectVideo && (
+            <p style={{ color: "red", marginTop: "5px" }}>
+              {errors.projectVideo.message}
+            </p>
+          )}
+        </div>
 
-            <div className={"photo-input-wrapper"}>
-              <label className={"general-label"}>Project Images</label>
-              <div className={"photo-outer-upload-wrapper"}>
-                {photos.map((photo, index) => (
-                  <div key={index + 1} className="photo-upload-wrapper">
-                    <Image
-                      src={photo.url || "/placeholder.svg"}
-                      alt={`Photo ${index + 1}`}
-                      width={76}
-                      height={76}
-                      preview={true}
-                      className="margin-bottom-16"
-                    />
-                    <div
-                      onClick={() => handleRemovePhoto(index)}
-                      className="photo-delete-icon"
-                    >
-                      <MinusCircleOutlined />
-                    </div>
-                  </div>
-                ))}
-                <Upload
-                  beforeUpload={handlePhotoUpload}
-                  showUploadList={false}
-                  accept="image/*"
+        <div>
+          <div className={"photo-input-wrapper"}>
+            <label className={"general-label"}>Existing Project Images</label>
+            <div className={"photo-outer-upload-wrapper"}>
+              {existingImageLinks.map((link, index) => (
+                <div
+                  key={`existing-${index}`}
+                  className="photo-upload-wrapper"
+                  style={{ cursor: "pointer" }}
                 >
-                  {photos.length + existingImageLinks.length < 10 && (
-                    <div style={{ padding: "8px", cursor: "pointer" }}>
-                      <ImageUploadIcon />
-                    </div>
-                  )}
-                </Upload>
-              </div>
+                  <Image
+                    src={link || "/placeholder.svg"}
+                    alt={`Existing Photo ${index + 1}`}
+                    width={76}
+                    height={76}
+                    preview={true}
+                    className="margin-bottom-16"
+                  />
+                  <div
+                    onClick={() => handleRemoveExistingImage(index)}
+                    className="photo-delete-icon"
+                  >
+                    <MinusCircleOutlined />
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
-        ) : null}
+
+          <div className={"photo-input-wrapper"}>
+            <label className={"general-label"}>Project Images</label>
+            <div className={"photo-outer-upload-wrapper"}>
+              {photos.map((photo, index) => (
+                <div key={index + 1} className="photo-upload-wrapper">
+                  <Image
+                    src={photo.url || "/placeholder.svg"}
+                    alt={`Photo ${index + 1}`}
+                    width={76}
+                    height={76}
+                    preview={true}
+                    className="margin-bottom-16"
+                  />
+                  <div
+                    onClick={() => handleRemovePhoto(index)}
+                    className="photo-delete-icon"
+                  >
+                    <MinusCircleOutlined />
+                  </div>
+                </div>
+              ))}
+              <Upload
+                beforeUpload={handlePhotoUpload}
+                showUploadList={false}
+                accept="image/*"
+              >
+                {photos.length + existingImageLinks.length < 10 && (
+                  <div style={{ padding: "8px", cursor: "pointer" }}>
+                    <ImageUploadIcon />
+                  </div>
+                )}
+              </Upload>
+            </div>
+          </div>
+        </div>
 
         <div
           style={{

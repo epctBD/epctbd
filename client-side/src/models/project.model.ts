@@ -8,7 +8,7 @@ export interface IProject {
   name: string;
   details: string;
   serviceType: string;
-  category: string;
+  category: string[];
   area?: string;
   projectYear?: string;
   designer?: string;
@@ -18,6 +18,9 @@ export interface IProject {
   outcome?: string;
   projectImages?: string[];
   isFeature: boolean;
+  projectVideo?: string;
+  architect?: string;
+  structuralEngineer?: string;
 }
 
 export interface IProjectResponse {

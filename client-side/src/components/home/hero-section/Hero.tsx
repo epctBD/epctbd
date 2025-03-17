@@ -92,6 +92,7 @@ const HeroSection = ({ projects }: HeroSectionProps) => {
               <CoreButton
                 text="See Projects"
                 type="primary"
+                size="small"
                 onClick={() =>
                   router.push(`projects/${backgroundData?.projectSlug}`)
                 }
@@ -102,11 +103,12 @@ const HeroSection = ({ projects }: HeroSectionProps) => {
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+              className={styles.heroButton}
             >
               <CoreButton
                 text="Contact Us"
                 type="primaryHover"
-                size="large"
+                size="small"
                 onClick={() => router.push("contact-us")}
               />
             </motion.div>

@@ -14,28 +14,32 @@ interface IProjectViewProps {
 
 const ProjectView = ({ projectList, setProjectList }: IProjectViewProps) => {
   const router = useRouter();
-  const [isLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("");
 
-  const { tab } = router.query;
-
+  const tab = Array.isArray(router.query.tab)
+    ? router.query.tab[0]
+    : router.query.tab;
   const [activeKey, setActiveKey] = useState("Ongoing Projects");
 
   useEffect(() => {
     if (tab) {
-      setActiveKey(tab as any);
-      setSelectedCategory(tab as any);
+      setActiveKey(tab);
+      setSelectedCategory(tab);
     }
   }, [tab]);
 
   const getFilteredProjects = async () => {
+    if (selectedCategory === "Government Projects") return;
+
+    setIsLoading(true);
     try {
       const response = await getProjects(selectedCategory);
       setProjectList(response);
     } catch (error) {
       message.error(`Error getting projects: ${error}`);
     } finally {
-      //   setLoading(false);
+      setIsLoading(false);
     }
   };
 
@@ -43,73 +47,65 @@ const ProjectView = ({ projectList, setProjectList }: IProjectViewProps) => {
     if (selectedCategory) {
       getFilteredProjects();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedCategory]);
 
   const items: TabsProps["items"] = [
-    {
-      key: "Ongoing Projects",
-      label: "Ongoing Projects",
-    },
-    {
-      key: "Government Projects",
-      label: "Government Projects",
-    },
-    {
-      key: "Private Projects",
-      label: "Private Projects",
-    },
-    {
-      key: "Highlighted Projects",
-      label: "Highlighted Projects",
-    },
+    { key: "Ongoing Projects", label: "Ongoing Projects" },
+    { key: "Private Projects", label: "Private Projects" },
+    { key: "Highlighted Projects", label: "Highlighted Projects" },
+    { key: "Government Projects", label: "Government Projects" },
   ];
 
   const onTabChange = (key: string) => {
-    const selectedTab = items?.find((item) => item.key === key);
-    if (selectedTab) {
-      setActiveKey(selectedTab?.key as any);
-      setSelectedCategory(selectedTab?.label as string);
-    }
+    setActiveKey(key);
+    setSelectedCategory(key);
   };
 
   return (
     <div className={styles.projectViewWrapper}>
       <div className={styles.projectTabWrapper}>
-        <Tabs
-          defaultActiveKey="1"
-          activeKey={activeKey}
-          items={items}
-          onChange={onTabChange}
-        />
+        <Tabs activeKey={activeKey} items={items} onChange={onTabChange} />
       </div>
+
       <Row justify="center" gutter={[24, 24]}>
         {isLoading ? (
           <div className="project-card-loader">
             <Spin indicator={<LoadingOutlined spin />} size="large" />
           </div>
-        ) : projectList?.length <= 0 ? (
+        ) : selectedCategory === "Government Projects" ? (
+          <Col span={8} xs={24} sm={24} md={12} lg={8}>
+            <div className={styles.projectCardWrapper}>
+              <ProjectCard
+                id="default-gov"
+                title="Government Project"
+                location="Bangladesh"
+                imageSrc="https://res.cloudinary.com/dv5lxcotq/image/upload/v1736882114/samples/ecommerce/car-interior-design.jpg"
+                type="Public Service"
+                category="Government Projects"
+                slug=""
+              />
+            </div>
+          </Col>
+        ) : projectList.length === 0 ? (
           <div className={styles.noData}>No Project Available</div>
         ) : (
-          projectList?.map((project: IProject, index) => (
-            <Col span={8} xs={24} sm={24} md={12} lg={8} key={project?._id}>
-              <div className={styles.projectCardWrapper}>
-                <ProjectCard
-                  id={project?._id}
-                  title={project?.name}
-                  location={project?.location || ""}
-                  imageSrc={
-                    project?.category === "Government Projects"
-                      ? "https://res.cloudinary.com/dv5lxcotq/image/upload/v1736882114/samples/ecommerce/car-interior-design.jpg"
-                      : project.projectImages?.[0] || ""
-                  }
-                  type={project?.serviceType}
-                  category={project?.category}
-                  slug={project?.projectSlug || ""}
-                />
-              </div>
-            </Col>
-          ))
+          projectList.map((project: IProject) => {
+            return (
+              <Col span={8} xs={24} sm={24} md={12} lg={8} key={project._id}>
+                <div className={styles.projectCardWrapper}>
+                  <ProjectCard
+                    id={project._id}
+                    title={project.name}
+                    location={project.location || ""}
+                    imageSrc={project.projectImages?.[0] || ""}
+                    type={project.serviceType}
+                    category={selectedCategory || ""}
+                    slug={project.projectSlug || ""}
+                  />
+                </div>
+              </Col>
+            );
+          })
         )}
       </Row>
     </div>

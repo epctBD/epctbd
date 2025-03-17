@@ -10,7 +10,7 @@ import map_img from "@/assets/images/EPCT-MAP.jpg";
 const ContactUs = () => {
   const handleMapClick = () => {
     const address = "1600 Amphitheatre Parkway, Mountain View, CA";
-    const mapUrl = "https://maps.app.goo.gl/JmUdSSeqGDr4SRha8";
+    const mapUrl = "https://maps.app.goo.gl/zQJPWmm6r32D1DtD6";
     window.open(mapUrl, "_blank");
   };
 

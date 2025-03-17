@@ -26,10 +26,19 @@ const ProjectCard = ({
     router.push(`projects/${slug}`);
   };
 
+  const pdf_url =
+    "https://res.cloudinary.com/dv5lxcotq/image/upload/v1738563241/uploaded_book/EPCT_-_Portfolio_-_MAJOR_WORK_UNDERTAKEN_THAT_BEST_ILLUSTRATES_QUALIFICATIONS.pdf";
+
+  const openPDF = () => {
+    if (pdf_url) {
+      window.open(pdf_url, "_blank");
+    }
+  };
+
   return (
     <div
       className={styles.projectCardWrapper}
-      onClick={category === "Government Projects" ? undefined : goToDetails}
+      onClick={category === "Government Projects" ? openPDF : goToDetails}
     >
       <div className={styles.proejectImageWrapper}>
         <Image
@@ -38,6 +47,7 @@ const ProjectCard = ({
           alt={title}
           height={435}
           width={410}
+          objectFit="cover"
         />
       </div>
       <div className={styles.projectDetailsWrapper}>

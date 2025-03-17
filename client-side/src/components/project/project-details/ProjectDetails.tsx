@@ -3,10 +3,12 @@ import styles from "./projectDetails.module.scss";
 import AreaIcon from "@/components/common/svg/AreaIcon";
 import Lighting from "@/components/common/svg/Lighting";
 import MapIcons from "@/components/common/svg/MapIcons";
+import CalendarIcon from "@/components/common/svg/Calendar";
 import ProjectDetailsCarousel from "@/components/common/project/projectDetails/ProjectDetailsCarousel";
 import { IProject } from "@/models/project.model";
 import Link from "next/link";
-
+import ProjectDetailVideoCard from "@/components/common/project-detail-video-card/ProjectDetailVideoCard";
+import { UserOutlined, VerifiedOutlined } from "@ant-design/icons";
 export interface IProjectDetailsProps {
   project: IProject;
 }
@@ -77,7 +79,7 @@ const ProjectDetailsComponent = ({ project }: IProjectDetailsProps) => {
               {project.projectYear && (
                 <div className={styles.areaWrapper}>
                   <div className={styles.projectIcon}>
-                    <AreaIcon />
+                    <CalendarIcon />
                   </div>
                   <p>
                     <span className={styles.areaSpan}>Year: </span>{" "}
@@ -93,6 +95,30 @@ const ProjectDetailsComponent = ({ project }: IProjectDetailsProps) => {
                   <p>
                     <span className={styles.areaSpan}>Designers: </span>
                     {project.designer}
+                  </p>
+                </div>
+              )}
+              {project.architect && (
+                <div className={styles.areaWrapper}>
+                  <div className={styles.projectIcon}>
+                    <UserOutlined />
+                  </div>
+                  <p>
+                    <span className={styles.areaSpan}>Architects: </span>
+                    {project.architect}
+                  </p>
+                </div>
+              )}
+              {project.structuralEngineer && (
+                <div className={styles.areaWrapper}>
+                  <div className={styles.projectIcon}>
+                    <VerifiedOutlined />
+                  </div>
+                  <p>
+                    <span className={styles.areaSpan}>
+                      Structural Engineer:{" "}
+                    </span>
+                    {project.structuralEngineer}
                   </p>
                 </div>
               )}
@@ -116,12 +142,19 @@ const ProjectDetailsComponent = ({ project }: IProjectDetailsProps) => {
             <ProjectDetailsCarousel data={project.projectImages || []} />
           </div>
         </Col>
-        <Col lg={14} md={24} sm={24}>
+        <Col lg={12} md={24} sm={24}>
           <div className={styles.projectTabWrapper}>
             <div className={styles.projectTabInnerWrapper}>
               <Tabs defaultActiveKey="1" items={items} centered={true} />
             </div>
           </div>
+        </Col>
+        <Col lg={12} md={24} sm={24}>
+          {project.projectVideo && (
+            <div className={styles.projectVideoWrapper}>
+              <ProjectDetailVideoCard videoUrl={project.projectVideo} />
+            </div>
+          )}
         </Col>
       </Row>
     </div>

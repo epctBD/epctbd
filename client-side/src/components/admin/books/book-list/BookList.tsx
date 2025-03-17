@@ -106,7 +106,7 @@ const BookList = ({ books, setBooks }: IBookListProps) => {
           marginBottom: "20px",
         }}
       >
-        <h1 style={{ fontSize: "20px" }}>Books</h1>
+        <h1 style={{ fontSize: "20px" }}>BOOKS</h1>
         <CoreButton
           text="Book"
           icon={<PlusOutlined />}
