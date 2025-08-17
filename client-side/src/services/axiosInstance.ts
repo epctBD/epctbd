@@ -1,11 +1,7 @@
-// services/apiService.ts
 import Axios from "axios";
 
-const baseURL = "https://epctbd-production.up.railway.app/api/";
-// const baseURL = "http://localhost:5000/api/";
-
 const AXIOS_INSTANCE = Axios.create({
-  baseURL,
+  baseURL: process.env.NEXT_PUBLIC_API_URL as string,
   withCredentials: true,
 });
 

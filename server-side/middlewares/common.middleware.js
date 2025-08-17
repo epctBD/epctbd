@@ -11,7 +11,7 @@ const commonMiddleWare = [
     origin: [
       "http://localhost:3000",
       "https://epctbd.vercel.app",
-      "https://epctbd.com/",
+      "https://epctbd.com",
       "https://www.epctbd.com",
     ],
     methods: ["HEAD", "GET", "POST", "PUT", "PATCH", "DELETE"],
