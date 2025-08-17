@@ -16,8 +16,14 @@ app.use(...commonMiddleWare);
 router.registerApplicationRoutes(app);
 app.use(errorHandler);
 
+//connect the db
+new database().connect().then(() => {
+  console.log("Database Connected");
+});
+
 // Start the server
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
-  database.connect();
 });
+
+module.exports = app;
