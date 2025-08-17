@@ -8,27 +8,33 @@ const cluster = process.env.DB_CLUSTER;
 const readPreference = process.env.DB_READ_PREFERENCE || "primary";
 
 const host = `mongodb+srv://${username}:${password}@${cluster}/${database}?retryWrites=true&w=majority&readPreference=${readPreference}`;
+class Database {
+  constructor() {}
 
-const connect = async () => {
-  try {
-    await mongoose.connect(host);
-    console.log("Database connected successfully");
-  } catch (error) {
-    console.error("Error connecting to the database:", error.message);
-    process.exit(1);
+  buildURI() {
+    // since host already has the params, just return it
+    return host;
   }
-};
 
-const disconnect = async () => {
-  try {
-    await mongoose.connection.close();
-    console.log("Database disconnected successfully");
-  } catch (error) {
-    console.error("Error disconnecting the database:", error.message);
+  async connect() {
+    try {
+      const uri = this.buildURI();
+      await mongoose.connect(uri);
+      console.log("✅ Database connected successfully");
+    } catch (error) {
+      console.error("❌ Database connection failed:", error.message);
+      process.exit(1);
+    }
   }
-};
 
-module.exports = {
-  connect,
-  disconnect,
-};
+  async disconnect() {
+    try {
+      await mongoose.connection.close();
+      console.log("🛑 Database disconnected successfully");
+    } catch (error) {
+      console.error("❌ Error disconnecting database:", error.message);
+    }
+  }
+}
+
+module.exports = Database;

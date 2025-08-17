@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const router = require("./routes");
 const dotenv = require("dotenv");
-const database = require("./database");
+const Database = require("./database");
 const { commonMiddleWare } = require("./middlewares/common.middleware");
 const { errorHandler } = require("./middlewares/error.middleware");
 
@@ -17,7 +17,7 @@ router.registerApplicationRoutes(app);
 app.use(errorHandler);
 
 //connect the db
-new database().connect().then(() => {
+new Database().connect().then(() => {
   console.log("Database Connected");
 });
 
