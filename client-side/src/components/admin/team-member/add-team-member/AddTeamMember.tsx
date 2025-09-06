@@ -30,7 +30,7 @@ const AddTeamMember = ({
     watch,
   } = useForm<ITeamMember>();
 
-  const [imageData, setImageData] = useState<File | null>(null);
+  const [imageData, setImageData] = useState<string | null>(null);
 
   // Reset the image when the modal opens
   useEffect(() => {
@@ -70,7 +70,7 @@ const AddTeamMember = ({
     }
   };
 
-  const handleImageUpload = (image: File | null) => {
+  const handleImageUpload = (image: string | null) => {
     setImageData(image);
   };
 

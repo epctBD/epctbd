@@ -28,7 +28,7 @@ const UpdateTeamMember = ({
     watch,
   } = useForm<ITeamMember>();
 
-  const [imageData, setImageData] = useState<File | null>(null);
+  const [imageData, setImageData] = useState<string | null>(null);
   const [existingImage] = useState<string | null>(
     currentTeam?.display_picture || null
   );
@@ -47,7 +47,7 @@ const UpdateTeamMember = ({
   }, [currentTeam, reset]);
 
   const handleImageUpload = (image: string | File | null) => {
-    setImageData(image as File);
+    setImageData(image as string);
   };
 
   const onSubmit = async (data: ITeamMember) => {

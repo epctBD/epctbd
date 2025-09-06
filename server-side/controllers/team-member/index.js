@@ -5,27 +5,25 @@ const { asyncHandler } = require("../../utils/asyncHandler");
 const { singleUpload } = require("../../utils/cloudinary");
 
 const addTeamMember = asyncHandler(async (req, res) => {
-  const { name, position, isExTeam, facebook, twitter, linkedin } = req.body;
+  const {
+    name,
+    position,
+    isExTeam,
+    facebook,
+    twitter,
+    linkedin,
+    display_picture, // now expected as Cloudinary URL string
+  } = req.body;
 
   if (!name || !position) {
-    new apiError(400, "Please provide the required information");
-  }
-
-  let display_picture = null;
-
-  if (req.file) {
-    try {
-      display_picture = await singleUpload(req.file);
-    } catch (error) {
-      return new apiError(500, "Image upload failed");
-    }
+    throw new apiError(400, "Please provide the required information");
   }
 
   const member_data = {
     name,
     position,
-    isExTeam: isExTeam == "true" ? true : false,
-    display_picture: display_picture,
+    isExTeam: isExTeam === "true" || isExTeam === true, // handle both string/boolean
+    display_picture, // Cloudinary URL string from frontend
     facebook,
     twitter,
     linkedin,
@@ -55,38 +53,18 @@ const updateTeamMember = asyncHandler(async (req, res) => {
     facebook,
     twitter,
     linkedin,
-    existing_image_link,
+    display_picture, // now expected as Cloudinary URL string
   } = req.body;
 
   if (!name || !position) {
-    new apiError(400, "Please provide the required information");
-  }
-
-  let display_picture = null;
-
-  if (req.file) {
-    try {
-      display_picture = await singleUpload(req.file);
-    } catch (error) {
-      return new apiError(500, "Image upload failed");
-    }
-  }
-
-  if (existing_image_link) {
-    display_picture = existing_image_link;
-  } else {
-    try {
-      display_picture = await singleUpload(req.file);
-    } catch (error) {
-      return new apiError(500, "Image upload failed");
-    }
+    throw new apiError(400, "Please provide the required information");
   }
 
   const member_data = {
     name,
     position,
-    isExTeam: isExTeam == "true" ? true : false,
-    display_picture: display_picture,
+    isExTeam: isExTeam === "true" || isExTeam === true, // handle both string/boolean
+    display_picture, // Cloudinary URL from frontend
     facebook,
     twitter,
     linkedin,
