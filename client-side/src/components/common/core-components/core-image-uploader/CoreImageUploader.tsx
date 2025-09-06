@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Upload } from "antd";
+import { Upload, message } from "antd";
 import { MinusCircleOutlined } from "@ant-design/icons";
 import Image from "next/image";
 import ImageUploadIcon from "../../svg/ImageUploadIcon";
+import { singleUploadToCloudinary } from "@/utils/cloudinarySingleUpload";
 
 interface CoreImageUploaderProps {
-  onImageUpload: (image: File | null) => void;
+  onImageUpload: (imageUrl: string | null) => void;
   existingImage?: string | "";
 }
 
@@ -13,36 +14,26 @@ const CoreImageUploader: React.FC<CoreImageUploaderProps> = ({
   onImageUpload,
   existingImage,
 }) => {
-  const [image, setImage] = useState<File | string>("");
+  const [image, setImage] = useState<string>("");
 
   useEffect(() => {
     setImage(existingImage || "");
   }, [existingImage]);
 
-  useEffect(() => {
-    if (!existingImage) setImage("");
-  }, [existingImage]);
-
-  const handleFileChange = (file: File) => {
-    setImage(file);
-    onImageUpload(file);
+  const handleFileChange = async (file: File) => {
+    try {
+      const url = await singleUploadToCloudinary(file, "portfolio_images");
+      setImage(url);
+      onImageUpload(url);
+      message.success("Image uploaded successfully!");
+    } catch (err: any) {
+      message.error(err.message || "Image upload failed!");
+    }
   };
 
   const handleRemoveImage = () => {
     setImage("");
     onImageUpload(null);
-  };
-
-  const getImageSrc = () => {
-    // If the image is a string (base64 or URL), use it directly
-    if (typeof image === "string") {
-      return image;
-    }
-    // If the image is a File, create a temporary URL for it
-    if (image instanceof File) {
-      return URL.createObjectURL(image);
-    }
-    return "";
   };
 
   return (
@@ -51,7 +42,7 @@ const CoreImageUploader: React.FC<CoreImageUploaderProps> = ({
         <Upload
           beforeUpload={(file) => {
             handleFileChange(file);
-            return false;
+            return Upload.LIST_IGNORE;
           }}
           showUploadList={false}
           accept="image/*"
@@ -71,7 +62,7 @@ const CoreImageUploader: React.FC<CoreImageUploaderProps> = ({
             style={{ position: "relative" }}
           >
             <Image
-              src={getImageSrc()} // Use the helper function to get the correct src
+              src={image}
               alt="Uploaded Photo"
               width={76}
               height={76}

@@ -42,11 +42,15 @@ const AddPortfolio = ({
       formData.append("subtitle", data.subtitle);
 
       if (imageData) {
-        formData.append("feature_image", imageData); // still sending as file
+        formData.append("feature_image", imageData); // now a URL string
+      } else {
+        message.error("No image uploaded");
+        setLoading(false);
+        return;
       }
 
       if (pdfData) {
-        formData.append("pdf_file", pdfData);
+        formData.append("pdf_file", pdfData); // also a URL string
       } else {
         message.error("No PDF uploaded");
         setLoading(false);
@@ -65,7 +69,6 @@ const AddPortfolio = ({
       setLoading(false);
     }
   };
-
   return (
     <Modal
       key="add portfolio"

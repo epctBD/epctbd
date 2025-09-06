@@ -5,31 +5,22 @@ const { asyncHandler } = require("../../utils/asyncHandler");
 const { singleUpload, pdfUpload } = require("../../utils/cloudinary");
 
 const addPortfolio = asyncHandler(async (req, res) => {
-  const { title, subtitle, pdf_file } = req.body;
+  const { title, subtitle, pdf_file, feature_image } = req.body;
 
-  if (!title || !subtitle) {
+  // Validate required fields
+  if (!title || !subtitle || !pdf_file || !feature_image) {
     throw new apiError(400, "Please provide all required information");
   }
 
-  let feature_image = null;
-
-  if (req.files && req.files.feature_image) {
-    try {
-      feature_image = await singleUpload(req.files.feature_image[0]);
-    } catch (error) {
-      throw new apiError(500, "Feature image upload failed");
-    }
-  } else {
-    throw new apiError(400, "Feature image is required");
-  }
-
+  // Prepare portfolio data with Cloudinary URLs
   const portfolio_data = {
     title,
     subtitle,
-    feature_image,
-    pdf_file,
+    feature_image, // Already a Cloudinary URL
+    pdf_file, // Already a Cloudinary URL
   };
 
+  // Save via service
   const { message, portfolios, statusCode } =
     await portfolioService.addPortfolio(portfolio_data);
 
