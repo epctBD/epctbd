@@ -2,6 +2,7 @@ import CoreButton from "@/components/common/core-components/core-button/CoreButt
 import CoreImageUploader from "@/components/common/core-components/core-image-uploader/CoreImageUploader";
 import { IPortfolio } from "@/models/portfolio.model";
 import { createPortfolio } from "@/services/portfolio.service";
+import { uploadPdfToCloudinary } from "@/utils/pdfUpload";
 import { UploadOutlined } from "@ant-design/icons";
 import { Input, message, Modal, Upload } from "antd";
 import React, { useState } from "react";
@@ -27,7 +28,7 @@ const AddPortfolio = ({
   } = useForm<IPortfolio>();
 
   const [imageData, setImageData] = useState<File | null>(null);
-  const [pdfData, setPdfData] = useState<File | null>(null);
+  const [pdfData, setPdfData] = useState<string | null>(null);
 
   const handleImageUpload = (image: string | File | null) => {
     setImageData(image as File);
@@ -41,13 +42,15 @@ const AddPortfolio = ({
       formData.append("subtitle", data.subtitle);
 
       if (imageData) {
-        formData.append("feature_image", imageData);
+        formData.append("feature_image", imageData); // still sending as file
       }
 
       if (pdfData) {
         formData.append("pdf_file", pdfData);
       } else {
-        message.error("no pdf");
+        message.error("No PDF uploaded");
+        setLoading(false);
+        return;
       }
 
       const response = await createPortfolio(formData);
@@ -119,21 +122,29 @@ const AddPortfolio = ({
           <Upload
             accept=".pdf"
             maxCount={1}
-            beforeUpload={(file) => {
-              if (file.type !== "application/pdf") {
-                message.error("You can only upload PDF files!");
-                return Upload.LIST_IGNORE;
+            beforeUpload={async (file) => {
+              try {
+                const url = await uploadPdfToCloudinary(file);
+                setPdfData(url); // Save the Cloudinary URL
+                message.success("PDF uploaded successfully!");
+              } catch (err: any) {
+                message.error(err.message || "PDF upload failed!");
               }
-              if (file.size / 1024 / 1024 > 5) {
-                message.error("PDF must be smaller than 5MB!");
-                return Upload.LIST_IGNORE;
-              }
-              setPdfData(file);
-              return false;
+
+              return Upload.LIST_IGNORE; // prevent default Ant Upload
             }}
             onRemove={() => setPdfData(null)}
             fileList={
-              pdfData ? [{ uid: "-1", name: pdfData.name, status: "done" }] : []
+              pdfData
+                ? [
+                    {
+                      uid: "-1",
+                      name: "Uploaded PDF",
+                      status: "done",
+                      url: pdfData,
+                    },
+                  ]
+                : []
             }
           >
             <CoreButton text="Click" type="basic" icon={<UploadOutlined />} />

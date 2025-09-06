@@ -5,34 +5,30 @@ const { pdfUpload, singleUpload } = require("../../utils/cloudinary");
 const bookService = require("../../services/books");
 
 const addBook = asyncHandler(async (req, res) => {
-  const { book_name, author_name } = req.body;
+  const { book_name, author_name, pdf_file } = req.body;
 
   if (!book_name || !author_name) {
     throw new apiError(400, "Please provide book name and author name");
   }
 
   let cover_image = null;
-  let pdf_file = null;
 
-  if (req.files) {
+  if (req.files && req.files.cover_image) {
     try {
-      if (req.files.cover_image) {
-        cover_image = await singleUpload(req.files.cover_image[0]);
-      } else {
-        throw new apiError(400, "Feature image is required");
-      }
-
-      if (req.files.pdf_file) {
-        pdf_file = await pdfUpload(req.files.pdf_file[0]);
-      }
+      cover_image = await singleUpload(req.files.cover_image[0]);
     } catch (error) {
-      throw new apiError(500, "File upload failed");
+      throw new apiError(500, "Cover image upload failed");
     }
   } else {
-    throw new apiError(400, "Feature image is required");
+    throw new apiError(400, "Cover image is required");
   }
 
-  const book_data = { book_name, author_name, pdf_file, cover_image };
+  const book_data = {
+    book_name,
+    author_name,
+    pdf_file,
+    cover_image,
+  };
 
   const { message, books, statusCode } = await bookService.addBook(book_data);
 
