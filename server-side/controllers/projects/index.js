@@ -30,9 +30,16 @@ const addProject = asyncHandler(async (req, res) => {
     projectVideo,
     architect,
     structuralEngineer,
+    projectImages,
   } = req.body;
 
-  if (!name || !details || !category || !serviceType || !isFeature) {
+  if (
+    !name ||
+    !details ||
+    !category ||
+    !serviceType ||
+    isFeature === undefined
+  ) {
     throw new apiError(400, "Please provide all required information");
   }
 
@@ -47,14 +54,8 @@ const addProject = asyncHandler(async (req, res) => {
     );
   }
 
-  let projectImages = [];
-
-  if (req.files && req.files.length > 0) {
-    try {
-      projectImages = await multipleUpload(req.files);
-    } catch (error) {
-      throw new apiError(500, "Image upload failed");
-    }
+  if (!projectImages || projectImages.length === 0) {
+    throw new apiError(400, "Please provide project images");
   }
 
   const project_data = {
@@ -75,10 +76,6 @@ const addProject = asyncHandler(async (req, res) => {
     architect,
     structuralEngineer,
   };
-
-  if (!projectImages) {
-    throw new apiError(400, "Please provide project images");
-  }
 
   const { message, projects, statusCode } = await projectService.addProject(
     project_data
@@ -115,7 +112,7 @@ const updateProject = asyncHandler(async (req, res) => {
     projectOverview,
     keyFeatures,
     outcome,
-    existing_image_links,
+    projectImages,
     isFeature,
     serviceType,
     projectVideo,
@@ -127,7 +124,13 @@ const updateProject = asyncHandler(async (req, res) => {
     throw new apiError(400, "Project ID is required");
   }
 
-  if (!name || !details || !category || !serviceType || !isFeature) {
+  if (
+    !name ||
+    !details ||
+    !category ||
+    !serviceType ||
+    typeof isFeature === "undefined"
+  ) {
     throw new apiError(400, "Please provide all required information");
   }
 
@@ -142,30 +145,17 @@ const updateProject = asyncHandler(async (req, res) => {
     );
   }
 
-  let newProjectImageLinks = [];
+  const validProjectImages = Array.isArray(projectImages)
+    ? projectImages.filter(
+        (link) => typeof link === "string" && link.startsWith("http")
+      )
+    : typeof projectImages === "string" && projectImages.startsWith("http")
+    ? [projectImages]
+    : [];
 
-  if (req.files && req.files.length > 0) {
-    try {
-      newProjectImageLinks = await multipleUpload(req.files);
-    } catch (error) {
-      return new apiError(500, "Image upload failed");
-    }
+  if (validProjectImages.length === 0) {
+    throw new apiError(400, "Please provide at least one valid project image");
   }
-
-  const validNewProjectImageLinks = Array.isArray(newProjectImageLinks)
-    ? newProjectImageLinks.filter(
-        (link) => typeof link === "string" && link.startsWith("http")
-      )
-    : [];
-
-  const validExistingImageLinks = Array.isArray(existing_image_links)
-    ? existing_image_links.filter(
-        (link) => typeof link === "string" && link.startsWith("http")
-      )
-    : typeof existing_image_links === "string" &&
-      existing_image_links.startsWith("http")
-    ? [existing_image_links]
-    : [];
 
   const update_Data = {
     name,
@@ -178,17 +168,13 @@ const updateProject = asyncHandler(async (req, res) => {
     projectOverview,
     keyFeatures,
     outcome,
-    isFeature,
+    isFeature: isFeature === "true" || isFeature === true,
     serviceType,
     projectVideo,
     architect,
     structuralEngineer,
-    projectImages: [...validExistingImageLinks, ...validNewProjectImageLinks],
+    projectImages: validProjectImages,
   };
-
-  if (!update_Data?.projectImages) {
-    throw new apiError(400, "Please provide project images");
-  }
 
   const { message, projects, statusCode } = await projectService.updateProject(
     id,

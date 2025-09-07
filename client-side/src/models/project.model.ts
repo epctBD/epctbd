@@ -1,5 +1,4 @@
 export interface IPhoto {
-  file?: File;
   url?: string;
 }
 export interface IProject {

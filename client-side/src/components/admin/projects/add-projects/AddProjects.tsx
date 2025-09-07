@@ -2,6 +2,7 @@ import CoreButton from "@/components/common/core-components/core-button/CoreButt
 import ImageUploadIcon from "@/components/common/svg/ImageUploadIcon";
 import { IPhoto, IProject } from "@/models/project.model";
 import { addProject } from "@/services/project.service";
+import { singleUploadToCloudinary } from "@/utils/cloudinarySingleUpload";
 import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
 import {
   Button,
@@ -29,33 +30,28 @@ const AddProjects = ({
   setProjects,
 }: IAddProjectModalProps) => {
   const [loading, setLoading] = useState(false);
-  const [photos, setPhotos] = useState<IPhoto[]>([]);
+  const [photos, setPhotos] = useState<string[]>([]);
 
   const {
     handleSubmit,
     control,
     reset,
-    watch,
     formState: { errors },
   } = useForm<IProject>();
 
-  const handlePhotoUpload = (file: File) => {
+  const handlePhotoUpload = async (file: File) => {
     if (photos.length >= 10) {
-      message.error("You can only upload a maximum of 10 photos.");
-      return false;
+      message.error("You can only upload up to 10 images.");
+      return;
     }
-
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      const newPhoto: IPhoto = {
-        file,
-        url: e.target!.result as string,
-      };
-      setPhotos([...photos, newPhoto]);
-    };
-    reader.readAsDataURL(file);
-
-    return false;
+    try {
+      const url = await singleUploadToCloudinary(file);
+      setPhotos((prev) => [...prev, url]);
+      message.success("Image uploaded successfully!");
+    } catch (error: any) {
+      console.error("Image upload failed:", error);
+      message.error("Failed to upload image.");
+    }
   };
 
   const handleRemovePhoto = (index: number) => {
@@ -67,35 +63,14 @@ const AddProjects = ({
   const onSubmit = async (data: IProject) => {
     setLoading(true);
     try {
-      const formData = new FormData();
-      formData.append("name", data.name);
-      formData.append("details", data.details);
-      formData.append("serviceType", data.serviceType);
-      data.category.forEach((cat) => {
-        formData.append("category", cat);
-      });
+      const projectData = {
+        ...data,
+        category: data.category || [],
+        isFeature: data.isFeature ? true : false,
+        projectImages: photos, // send array of Cloudinary URLs
+      };
 
-      formData.append("isFeature", data.isFeature ? "true" : "false");
-
-      if (data.area) formData.append("area", data.area);
-      if (data.projectYear) formData.append("projectYear", data.projectYear);
-      if (data.designer) formData.append("designer", data.designer);
-      if (data.architect) formData.append("architect", data.architect);
-      if (data.structuralEngineer)
-        formData.append("structuralEngineer", data.structuralEngineer);
-      if (data.location) formData.append("location", data.location);
-      if (data.projectOverview)
-        formData.append("projectOverview", data.projectOverview);
-      if (data.keyFeatures) formData.append("keyFeatures", data.keyFeatures);
-      if (data.outcome) formData.append("outcome", data.outcome);
-      if (data.projectVideo) formData.append("projectVideo", data.projectVideo);
-
-      photos.forEach((file) => {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        formData.append(`projectImages`, file?.file as any);
-      });
-
-      const response = await addProject(formData);
+      const response = await addProject(projectData);
       setProjects(response);
       message.success("Project added successfully!");
       reset();
@@ -183,7 +158,7 @@ const AddProjects = ({
             )}
             rules={{
               validate: (value) =>
-                value !== undefined || "Ex Team member is required",
+                value !== undefined || "Feature Project is required",
             }}
           />
           {errors.isFeature && (
@@ -426,18 +401,17 @@ const AddProjects = ({
           )}
         </div>
         <div>
-          <div className={"photo-input-wrapper"}>
-            <label className={"general-label"}>Project Images</label>
-
-            <div className={"photo-outer-upload-wrapper"}>
+          <div className="photo-input-wrapper">
+            <label className="general-label">Project Images</label>
+            <div className="photo-outer-upload-wrapper">
               {photos.map((photo, index) => (
                 <div
-                  key={index + 1}
+                  key={index}
                   className="photo-upload-wrapper"
                   style={{ cursor: "pointer" }}
                 >
                   <Image
-                    src={photo.url}
+                    src={photo}
                     alt={`Photo ${index + 1}`}
                     width={76}
                     height={76}
@@ -452,17 +426,35 @@ const AddProjects = ({
                   </div>
                 </div>
               ))}
-              <Upload
-                beforeUpload={handlePhotoUpload}
-                showUploadList={false}
-                accept="image/*"
-              >
-                {photos.length < 10 && (
-                  <div style={{ padding: "8px", cursor: "pointer" }}>
-                    <ImageUploadIcon />
-                  </div>
-                )}
-              </Upload>
+
+              {/* Upload button */}
+              {photos.length < 10 && (
+                <label
+                  style={{
+                    padding: "8px",
+                    cursor: "pointer",
+                    border: "1px dashed #d9d9d9",
+                    borderRadius: "8px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    width: "76px",
+                    height: "76px",
+                  }}
+                >
+                  <input
+                    type="file"
+                    accept="image/*"
+                    style={{ display: "none" }}
+                    onChange={(e) => {
+                      if (e.target.files && e.target.files[0]) {
+                        handlePhotoUpload(e.target.files[0]);
+                      }
+                    }}
+                  />
+                  <ImageUploadIcon />
+                </label>
+              )}
             </div>
           </div>
         </div>

@@ -2,6 +2,7 @@ import CoreButton from "@/components/common/core-components/core-button/CoreButt
 import ImageUploadIcon from "@/components/common/svg/ImageUploadIcon";
 import type { IPhoto, IProject } from "@/models/project.model";
 import { updateProject } from "@/services/project.service";
+import { singleUploadToCloudinary } from "@/utils/cloudinarySingleUpload";
 import { MinusCircleOutlined } from "@ant-design/icons";
 import {
   Checkbox,
@@ -31,7 +32,7 @@ const UpdateProject = ({
   project,
 }: IUpdateProjectModalProps) => {
   const [loading, setLoading] = useState(false);
-  const [photos, setPhotos] = useState<IPhoto[]>([]);
+  const [photos, setPhotos] = useState<string[]>([]);
   const [existingImageLinks, setExistingImageLinks] = useState<string[]>([]);
 
   useEffect(() => {
@@ -45,30 +46,25 @@ const UpdateProject = ({
     control,
     reset,
     formState: { errors },
-    watch,
   } = useForm<IProject>({
     defaultValues: { ...project },
   });
 
-  const handlePhotoUpload = (file: File) => {
+  const handlePhotoUpload = async (file: File) => {
     if (photos.length + existingImageLinks.length >= 10) {
       message.error("You can only upload a maximum of 10 photos.");
       return false;
     }
-
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      const newPhoto: IPhoto = {
-        file,
-        url: e.target!.result as string,
-      };
-      setPhotos([...photos, newPhoto]);
-    };
-    reader.readAsDataURL(file);
-
+    try {
+      const url = await singleUploadToCloudinary(file);
+      setPhotos((prev) => [...prev, url]);
+      message.success("Image uploaded successfully!");
+    } catch (error) {
+      console.error("Upload failed:", error);
+      message.error("Failed to upload image.");
+    }
     return false;
   };
-
   const handleRemovePhoto = (index: number) => {
     const newPhotos = [...photos];
     newPhotos.splice(index, 1);
@@ -81,45 +77,23 @@ const UpdateProject = ({
     );
   };
 
+  console.log(existingImageLinks, "existingImageLinks");
   const onSubmit = async (data: IProject) => {
     setLoading(true);
     try {
-      const formData = new FormData();
-      formData.append("name", data.name);
-      formData.append("details", data.details);
-      formData.append("serviceType", data.serviceType);
-      data.category.forEach((cat) => {
-        formData.append("category", cat);
-      });
-      formData.append("isFeature", data.isFeature ? "true" : "false");
+      const projectData = {
+        ...data,
+        category: data.category || [],
+        isFeature: data.isFeature ? true : false,
+        projectImages: [...existingImageLinks, ...photos], // merged array of old + new images
+      };
 
-      if (data.area) formData.append("area", data.area);
-      if (data.projectYear) formData.append("projectYear", data.projectYear);
-      if (data.designer) formData.append("designer", data.designer);
-      if (data.architect) formData.append("architect", data.architect);
-      if (data.structuralEngineer)
-        formData.append("structuralEngineer", data.structuralEngineer);
-      if (data.location) formData.append("location", data.location);
-      if (data.projectOverview)
-        formData.append("projectOverview", data.projectOverview);
-      if (data.keyFeatures) formData.append("keyFeatures", data.keyFeatures);
-      if (data.outcome) formData.append("outcome", data.outcome);
-      if (data.projectVideo) formData.append("projectVideo", data.projectVideo);
-
-      photos.forEach((photo) => {
-        if (photo.file) {
-          formData.append("projectImages", photo.file);
-        }
-      });
-
-      existingImageLinks.forEach((link) => {
-        formData.append("existing_image_links", link);
-      });
-
-      const response = await updateProject(project?._id || "", formData);
+      const response = await updateProject(project?._id || "", projectData);
       setProjects(response);
       message.success("Project updated successfully!");
       reset();
+      setPhotos([]);
+      setExistingImageLinks([]);
       setIsModalOpen(false);
     } catch (error) {
       console.error("Error updating project:", error);
@@ -128,7 +102,6 @@ const UpdateProject = ({
       setLoading(false);
     }
   };
-
   const onCancelClick = () => {
     reset();
     setPhotos([]);
@@ -492,7 +465,7 @@ const UpdateProject = ({
               {photos.map((photo, index) => (
                 <div key={index + 1} className="photo-upload-wrapper">
                   <Image
-                    src={photo.url || "/placeholder.svg"}
+                    src={photo || "/placeholder.svg"}
                     alt={`Photo ${index + 1}`}
                     width={76}
                     height={76}
