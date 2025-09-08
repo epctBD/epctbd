@@ -7,20 +7,17 @@ const { singleUpload, pdfUpload } = require("../../utils/cloudinary");
 const addPortfolio = asyncHandler(async (req, res) => {
   const { title, subtitle, pdf_file, feature_image } = req.body;
 
-  // Validate required fields
   if (!title || !subtitle || !pdf_file || !feature_image) {
     throw new apiError(400, "Please provide all required information");
   }
 
-  // Prepare portfolio data with Cloudinary URLs
   const portfolio_data = {
     title,
     subtitle,
-    feature_image, // Already a Cloudinary URL
-    pdf_file, // Already a Cloudinary URL
+    feature_image,
+    pdf_file,
   };
 
-  // Save via service
   const { message, portfolios, statusCode } =
     await portfolioService.addPortfolio(portfolio_data);
 
@@ -36,36 +33,33 @@ const getPortfolios = asyncHandler(async (req, res) => {
 
 const updatePortfolio = asyncHandler(async (req, res) => {
   const { id } = req.params;
-  const { title, subtitle, existing_image_link } = req.body;
+  const { title, subtitle, feature_image, existing_image_link } = req.body;
 
-  if (!title || !subtitle) {
-    new apiError(400, "Please provide all required information");
+  if (!id) {
+    throw new apiError(400, "Portfolio ID is required");
   }
 
-  let feature_image = null;
+  if (!title || !subtitle) {
+    throw new apiError(400, "Please provide all required information");
+  }
 
-  if (existing_image_link) {
-    feature_image = existing_image_link;
-  } else if (req.file) {
-    try {
-      feature_image = await singleUpload(req.file);
-    } catch (error) {
-      return new apiError(500, "Image upload failed");
-    }
-  } else {
-    return new apiError(400, "Feature image is required");
+  // Prefer new image, otherwise fallback to existing
+  let finalFeatureImage = feature_image || existing_image_link;
+
+  if (!finalFeatureImage) {
+    throw new apiError(400, "Feature image is required");
   }
 
   const portfolio_data = {
     title,
     subtitle,
-    feature_image,
+    feature_image: finalFeatureImage,
   };
 
   const { message, portfolios, statusCode } =
     await portfolioService.updatePortfolio(id, portfolio_data);
 
-  new apiResponse(res, statusCode, message, portfolios);
+  return new apiResponse(res, statusCode, message, portfolios);
 });
 
 const deletePortfolio = asyncHandler(async (req, res) => {

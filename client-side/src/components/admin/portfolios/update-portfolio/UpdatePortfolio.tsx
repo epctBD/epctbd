@@ -20,7 +20,7 @@ const UpdatePortfolio = ({
   setPortfolios,
 }: IUpdatePortfolioModalProps) => {
   const [loading, setLoading] = useState(false);
-  const [imageData, setImageData] = useState<File | null>(null);
+  const [imageData, setImageData] = useState<string | null>(null);
   const [existingImage] = useState<string | null>(
     portfolio?.feature_image || null
   );
@@ -34,24 +34,20 @@ const UpdatePortfolio = ({
     defaultValues: { ...portfolio },
   });
 
-  const handleImageUpload = (image: string | File | null) => {
-    setImageData(image as File);
+  const handleImageUpload = (image: string | null) => {
+    setImageData(image);
   };
 
   const onSubmit = async (data: IPortfolio) => {
     setLoading(true);
     try {
-      const formData = new FormData();
-      formData.append("title", data.title);
-      formData.append("subtitle", data.subtitle);
+      const payload: Partial<IPortfolio> = {
+        title: data.title,
+        subtitle: data.subtitle,
+        feature_image: imageData || existingImage || "",
+      };
 
-      if (imageData) {
-        formData.append("feature_image", imageData);
-      } else {
-        formData.append("existing_image_link", existingImage || "");
-      }
-
-      const response = await updatePortfolio(portfolio?._id || "", formData);
+      const response = await updatePortfolio(portfolio?._id || "", payload);
       setPortfolios(response);
       message.success("Portfolio updated successfully!");
       reset();

@@ -42,7 +42,7 @@ const AddPortfolio = ({
       formData.append("subtitle", data.subtitle);
 
       if (imageData) {
-        formData.append("feature_image", imageData); // now a URL string
+        formData.append("feature_image", imageData);
       } else {
         message.error("No image uploaded");
         setLoading(false);
@@ -50,7 +50,7 @@ const AddPortfolio = ({
       }
 
       if (pdfData) {
-        formData.append("pdf_file", pdfData); // also a URL string
+        formData.append("pdf_file", pdfData);
       } else {
         message.error("No PDF uploaded");
         setLoading(false);
