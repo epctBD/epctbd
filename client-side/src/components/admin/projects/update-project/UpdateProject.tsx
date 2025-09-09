@@ -77,7 +77,6 @@ const UpdateProject = ({
     );
   };
 
-  console.log(existingImageLinks, "existingImageLinks");
   const onSubmit = async (data: IProject) => {
     setLoading(true);
     try {

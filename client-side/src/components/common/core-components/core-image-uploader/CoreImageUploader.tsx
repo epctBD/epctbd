@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Upload, message } from "antd";
-import { MinusCircleOutlined } from "@ant-design/icons";
+import { Upload, message, Spin } from "antd";
+import { MinusCircleOutlined, LoadingOutlined } from "@ant-design/icons";
 import Image from "next/image";
 import ImageUploadIcon from "../../svg/ImageUploadIcon";
 import { singleUploadToCloudinary } from "@/utils/cloudinarySingleUpload";
@@ -15,12 +15,14 @@ const CoreImageUploader: React.FC<CoreImageUploaderProps> = ({
   existingImage,
 }) => {
   const [image, setImage] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     setImage(existingImage || "");
   }, [existingImage]);
 
   const handleFileChange = async (file: File) => {
+    setLoading(true);
     try {
       const url = await singleUploadToCloudinary(file, "portfolio_images");
       setImage(url);
@@ -28,6 +30,8 @@ const CoreImageUploader: React.FC<CoreImageUploaderProps> = ({
       message.success("Image uploaded successfully!");
     } catch (err: any) {
       message.error(err.message || "Image upload failed!");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -38,7 +42,7 @@ const CoreImageUploader: React.FC<CoreImageUploaderProps> = ({
 
   return (
     <div style={{ display: "flex", alignItems: "center", cursor: "pointer" }}>
-      {!image && (
+      {!image && !loading && (
         <Upload
           beforeUpload={(file) => {
             handleFileChange(file);
@@ -53,7 +57,13 @@ const CoreImageUploader: React.FC<CoreImageUploaderProps> = ({
         </Upload>
       )}
 
-      {image && (
+      {loading && (
+        <div style={{ padding: "8px" }}>
+          <Spin indicator={<LoadingOutlined style={{ fontSize: 60 }} spin />} />
+        </div>
+      )}
+
+      {image && !loading && (
         <div
           style={{ display: "flex", alignItems: "center", marginLeft: "16px" }}
         >
