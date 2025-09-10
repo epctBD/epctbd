@@ -4,7 +4,7 @@ import { IAddBook, IBook } from "@/models/book.model";
 import { addBook } from "@/services/book.service";
 import { uploadPdfToCloudinary } from "@/utils/pdfUpload";
 import { UploadOutlined } from "@ant-design/icons";
-import { Input, message, Modal, Upload, Spin } from "antd"; // ⬅️ added Spin
+import { Input, message, Modal, Upload } from "antd";
 import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 
@@ -20,7 +20,7 @@ const AddBook = ({
   setBooks,
 }: IAddBookModalProps) => {
   const [loading, setLoading] = useState(false);
-  const [pdfUploading, setPdfUploading] = useState(false); // ⬅️ PDF upload spinner state
+  const [pdfUploading, setPdfUploading] = useState(false);
 
   const {
     handleSubmit,
@@ -126,20 +126,20 @@ const AddBook = ({
             <Upload
               accept=".pdf"
               maxCount={1}
-              disabled={pdfUploading} // prevent re-trigger during upload
+              disabled={pdfUploading}
               beforeUpload={async (file) => {
-                setPdfUploading(true); // ⬅️ start spinner
+                setPdfUploading(true); 
                 try {
                   const url = await uploadPdfToCloudinary(file);
-                  setPdfData(url); // Save the Cloudinary URL
+                  setPdfData(url); 
                   message.success("PDF uploaded successfully!");
                 } catch (err: any) {
                   message.error(err?.message || "PDF upload failed!");
                 } finally {
-                  setPdfUploading(false); // ⬅️ stop spinner
+                  setPdfUploading(false);
                 }
 
-                return Upload.LIST_IGNORE; // prevent default Ant Upload
+                return Upload.LIST_IGNORE; 
               }}
               onRemove={() => setPdfData(null)}
               fileList={
@@ -157,7 +157,7 @@ const AddBook = ({
               showUploadList={{ showRemoveIcon: !pdfUploading }}
             >
               <CoreButton
-                text={pdfUploading ? "Uploading..." : "ClickX"}
+                text={pdfUploading ? "Uploading..." : "Click"}
                 type="basic"
                 icon={<UploadOutlined />}
                 loading={pdfUploading} // ⬅️ button spinner
@@ -167,7 +167,7 @@ const AddBook = ({
         </div>
 
         <div className={"general-input-wrapper"}>
-          <label className="general-label">Feature ImageX</label>
+          <label className="general-label">Feature Image</label>
           <div style={{ cursor: "pointer", maxWidth: "76px" }}>
             <CoreImageUploader onImageUpload={handleImageUpload} />
           </div>
