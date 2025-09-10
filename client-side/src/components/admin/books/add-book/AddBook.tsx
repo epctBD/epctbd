@@ -4,7 +4,7 @@ import { IAddBook, IBook } from "@/models/book.model";
 import { addBook } from "@/services/book.service";
 import { uploadPdfToCloudinary } from "@/utils/pdfUpload";
 import { UploadOutlined } from "@ant-design/icons";
-import { Input, message, Modal, Upload } from "antd";
+import { Input, message, Modal, Upload, Spin } from "antd"; // ⬅️ added Spin
 import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 
@@ -20,6 +20,8 @@ const AddBook = ({
   setBooks,
 }: IAddBookModalProps) => {
   const [loading, setLoading] = useState(false);
+  const [pdfUploading, setPdfUploading] = useState(false); // ⬅️ PDF upload spinner state
+
   const {
     handleSubmit,
     control,
@@ -119,40 +121,53 @@ const AddBook = ({
 
         <div className={"general-pdf-wrapper"}>
           <label className="general-label">Upload PDF</label>
-          <Upload
-            accept=".pdf"
-            maxCount={1}
-            beforeUpload={async (file) => {
-              try {
-                const url = await uploadPdfToCloudinary(file);
-                setPdfData(url); // Save the Cloudinary URL
-                message.success("PDF uploaded successfully!");
-              } catch (err: any) {
-                message.error(err.message || "PDF upload failed!");
-              }
 
-              return Upload.LIST_IGNORE; // prevent default Ant Upload
-            }}
-            onRemove={() => setPdfData(null)}
-            fileList={
-              pdfData
-                ? [
-                    {
-                      uid: "-1",
-                      name: "Uploaded PDF",
-                      status: "done",
-                      url: pdfData,
-                    },
-                  ]
-                : []
-            }
-          >
-            <CoreButton text="Click" type="basic" icon={<UploadOutlined />} />
-          </Upload>
+          
+            <Upload
+              accept=".pdf"
+              maxCount={1}
+              disabled={pdfUploading} // prevent re-trigger during upload
+              beforeUpload={async (file) => {
+                setPdfUploading(true); // ⬅️ start spinner
+                try {
+                  const url = await uploadPdfToCloudinary(file);
+                  setPdfData(url); // Save the Cloudinary URL
+                  message.success("PDF uploaded successfully!");
+                } catch (err: any) {
+                  message.error(err?.message || "PDF upload failed!");
+                } finally {
+                  setPdfUploading(false); // ⬅️ stop spinner
+                }
+
+                return Upload.LIST_IGNORE; // prevent default Ant Upload
+              }}
+              onRemove={() => setPdfData(null)}
+              fileList={
+                pdfData
+                  ? [
+                      {
+                        uid: "-1",
+                        name: "Uploaded PDF",
+                        status: "done",
+                        url: pdfData,
+                      },
+                    ]
+                  : []
+              }
+              showUploadList={{ showRemoveIcon: !pdfUploading }}
+            >
+              <CoreButton
+                text={pdfUploading ? "Uploading..." : "ClickX"}
+                type="basic"
+                icon={<UploadOutlined />}
+                loading={pdfUploading} // ⬅️ button spinner
+              />
+            </Upload>
+       
         </div>
 
         <div className={"general-input-wrapper"}>
-          <label className="general-label">Feature Image</label>
+          <label className="general-label">Feature ImageX</label>
           <div style={{ cursor: "pointer", maxWidth: "76px" }}>
             <CoreImageUploader onImageUpload={handleImageUpload} />
           </div>
