@@ -20,6 +20,8 @@ const AddBook = ({
   setBooks,
 }: IAddBookModalProps) => {
   const [loading, setLoading] = useState(false);
+  const [pdfUploading, setPdfUploading] = useState(false);
+
   const {
     handleSubmit,
     control,
@@ -119,36 +121,49 @@ const AddBook = ({
 
         <div className={"general-pdf-wrapper"}>
           <label className="general-label">Upload PDF</label>
-          <Upload
-            accept=".pdf"
-            maxCount={1}
-            beforeUpload={async (file) => {
-              try {
-                const url = await uploadPdfToCloudinary(file);
-                setPdfData(url); // Save the Cloudinary URL
-                message.success("PDF uploaded successfully!");
-              } catch (err: any) {
-                message.error(err.message || "PDF upload failed!");
-              }
 
-              return Upload.LIST_IGNORE; // prevent default Ant Upload
-            }}
-            onRemove={() => setPdfData(null)}
-            fileList={
-              pdfData
-                ? [
-                    {
-                      uid: "-1",
-                      name: "Uploaded PDF",
-                      status: "done",
-                      url: pdfData,
-                    },
-                  ]
-                : []
-            }
-          >
-            <CoreButton text="Click" type="basic" icon={<UploadOutlined />} />
-          </Upload>
+          
+            <Upload
+              accept=".pdf"
+              maxCount={1}
+              disabled={pdfUploading}
+              beforeUpload={async (file) => {
+                setPdfUploading(true); 
+                try {
+                  const url = await uploadPdfToCloudinary(file);
+                  setPdfData(url); 
+                  message.success("PDF uploaded successfully!");
+                } catch (err: any) {
+                  message.error(err?.message || "PDF upload failed!");
+                } finally {
+                  setPdfUploading(false);
+                }
+
+                return Upload.LIST_IGNORE; 
+              }}
+              onRemove={() => setPdfData(null)}
+              fileList={
+                pdfData
+                  ? [
+                      {
+                        uid: "-1",
+                        name: "Uploaded PDF",
+                        status: "done",
+                        url: pdfData,
+                      },
+                    ]
+                  : []
+              }
+              showUploadList={{ showRemoveIcon: !pdfUploading }}
+            >
+              <CoreButton
+                text={pdfUploading ? "Uploading..." : "Click"}
+                type="basic"
+                icon={<UploadOutlined />}
+                loading={pdfUploading} // ⬅️ button spinner
+              />
+            </Upload>
+       
         </div>
 
         <div className={"general-input-wrapper"}>

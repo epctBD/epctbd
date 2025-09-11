@@ -3,7 +3,7 @@ import ImageUploadIcon from "@/components/common/svg/ImageUploadIcon";
 import { IPhoto, IProject } from "@/models/project.model";
 import { addProject } from "@/services/project.service";
 import { singleUploadToCloudinary } from "@/utils/cloudinarySingleUpload";
-import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
+import { LoadingOutlined, MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
 import {
   Button,
   Checkbox,
@@ -13,6 +13,7 @@ import {
   Modal,
   Radio,
   Select,
+  Spin,
   Upload,
 } from "antd";
 import React, { useState } from "react";
@@ -31,6 +32,7 @@ const AddProjects = ({
 }: IAddProjectModalProps) => {
   const [loading, setLoading] = useState(false);
   const [photos, setPhotos] = useState<string[]>([]);
+  const [photoUploading, setPhotoUploading] = useState(false);
 
   const {
     handleSubmit,
@@ -39,20 +41,23 @@ const AddProjects = ({
     formState: { errors },
   } = useForm<IProject>();
 
-  const handlePhotoUpload = async (file: File) => {
-    if (photos.length >= 10) {
-      message.error("You can only upload up to 10 images.");
-      return;
-    }
-    try {
-      const url = await singleUploadToCloudinary(file);
-      setPhotos((prev) => [...prev, url]);
-      message.success("Image uploaded successfully!");
-    } catch (error: any) {
-      console.error("Image upload failed:", error);
-      message.error("Failed to upload image.");
-    }
-  };
+ const handlePhotoUpload = async (file: File) => {
+  if (photos.length >= 10) {
+    message.error("You can only upload up to 10 images.");
+    return;
+  }
+  setPhotoUploading(true);
+  try {
+    const url = await singleUploadToCloudinary(file);
+    setPhotos((prev) => [...prev, url]);
+    message.success("Image uploaded successfully!");
+  } catch (error: any) {
+    console.error("Image upload failed:", error);
+    message.error("Failed to upload image.");
+  } finally {
+    setPhotoUploading(false);
+  }
+};
 
   const handleRemovePhoto = (index: number) => {
     const newPhotos = [...photos];
@@ -427,34 +432,53 @@ const AddProjects = ({
                 </div>
               ))}
 
-              {/* Upload button */}
-              {photos.length < 10 && (
-                <label
-                  style={{
-                    padding: "8px",
-                    cursor: "pointer",
-                    border: "1px dashed #d9d9d9",
-                    borderRadius: "8px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    width: "76px",
-                    height: "76px",
-                  }}
-                >
-                  <input
-                    type="file"
-                    accept="image/*"
-                    style={{ display: "none" }}
-                    onChange={(e) => {
-                      if (e.target.files && e.target.files[0]) {
-                        handlePhotoUpload(e.target.files[0]);
-                      }
-                    }}
-                  />
-                  <ImageUploadIcon />
-                </label>
-              )}
+{/* Upload button */}
+{photos.length < 10 && (
+  <>
+    {photoUploading ? (
+      <div
+        style={{
+          width: "76px",
+          height: "76px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          border: "1px dashed #d9d9d9",
+          borderRadius: "8px",
+        }}
+      >
+        <Spin indicator={<LoadingOutlined spin />} size="large" />
+      </div>
+    ) : (
+      <label
+        style={{
+          padding: "8px",
+          cursor: "pointer",
+          border: "1px dashed #d9d9d9",
+          borderRadius: "8px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          width: "76px",
+          height: "76px",
+        }}
+      >
+        <input
+          type="file"
+          accept="image/*"
+          style={{ display: "none" }}
+          onChange={(e) => {
+            if (e.target.files && e.target.files[0]) {
+              handlePhotoUpload(e.target.files[0]);
+            }
+          }}
+        />
+        <ImageUploadIcon />
+      </label>
+    )}
+  </>
+)}
+
             </div>
           </div>
         </div>

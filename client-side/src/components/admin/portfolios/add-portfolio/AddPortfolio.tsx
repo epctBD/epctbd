@@ -4,7 +4,7 @@ import { IPortfolio } from "@/models/portfolio.model";
 import { createPortfolio } from "@/services/portfolio.service";
 import { uploadPdfToCloudinary } from "@/utils/pdfUpload";
 import { UploadOutlined } from "@ant-design/icons";
-import { Input, message, Modal, Upload } from "antd";
+import { Input, message, Modal, Upload, Spin } from "antd"; // ⬅️ Spin imported
 import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 
@@ -20,6 +20,8 @@ const AddPortfolio = ({
   setPortfolios,
 }: IAddPortfolioModalProps) => {
   const [loading, setLoading] = useState(false);
+  const [pdfUploading, setPdfUploading] = useState(false); // ⬅️ PDF upload spinner state
+
   const {
     handleSubmit,
     control,
@@ -69,6 +71,7 @@ const AddPortfolio = ({
       setLoading(false);
     }
   };
+
   return (
     <Modal
       key="add portfolio"
@@ -122,36 +125,47 @@ const AddPortfolio = ({
 
         <div className={"general-pdf-wrapper"}>
           <label className="general-label">Upload PDF</label>
-          <Upload
-            accept=".pdf"
-            maxCount={1}
-            beforeUpload={async (file) => {
-              try {
-                const url = await uploadPdfToCloudinary(file);
-                setPdfData(url); // Save the Cloudinary URL
-                message.success("PDF uploaded successfully!");
-              } catch (err: any) {
-                message.error(err.message || "PDF upload failed!");
+         
+            <Upload
+              accept=".pdf"
+              maxCount={1}
+              disabled={pdfUploading}
+              beforeUpload={async (file) => {
+                setPdfUploading(true); // start spinner
+                try {
+                  const url = await uploadPdfToCloudinary(file);
+                  setPdfData(url);
+                  message.success("PDF uploaded successfully!");
+                } catch (err: any) {
+                  message.error(err?.message || "PDF upload failed!");
+                } finally {
+                  setPdfUploading(false); // stop spinner
+                }
+                return Upload.LIST_IGNORE;
+              }}
+              onRemove={() => setPdfData(null)}
+              fileList={
+                pdfData
+                  ? [
+                      {
+                        uid: "-1",
+                        name: "Uploaded PDF",
+                        status: "done",
+                        url: pdfData,
+                      },
+                    ]
+                  : []
               }
-
-              return Upload.LIST_IGNORE; // prevent default Ant Upload
-            }}
-            onRemove={() => setPdfData(null)}
-            fileList={
-              pdfData
-                ? [
-                    {
-                      uid: "-1",
-                      name: "Uploaded PDF",
-                      status: "done",
-                      url: pdfData,
-                    },
-                  ]
-                : []
-            }
-          >
-            <CoreButton text="Click" type="basic" icon={<UploadOutlined />} />
-          </Upload>
+              showUploadList={{ showRemoveIcon: !pdfUploading }}
+            >
+              <CoreButton
+                text={pdfUploading ? "Uploading..." : "Click"}
+                type="basic"
+                icon={<UploadOutlined />}
+                loading={pdfUploading} // ⬅️ show button loader
+              />
+            </Upload>
+        
         </div>
 
         <div className={"general-input-wrapper"}>
